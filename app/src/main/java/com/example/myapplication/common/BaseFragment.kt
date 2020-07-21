@@ -10,11 +10,18 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.example.myapplication.ui.home.HomeViewModel
+import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
 open class BaseFragment<T : ViewDataBinding, VM : ViewModel>(
     @LayoutRes private val layoutId: Int,
     private val viewModelClass: Class<VM>
 ) : Fragment() {
+
+    @Inject
+    protected lateinit var viewModelFactory: ViewModelProvider.Factory
 
     protected lateinit var binding: T
 
