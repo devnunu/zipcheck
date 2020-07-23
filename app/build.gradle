@@ -62,4 +62,11 @@ dependencies {
     implementation "com.google.dagger:dagger-android-support:$daggerVersion"
     kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
 
+    // room
+    implementation "androidx.room:room-runtime:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+
+    // gson
+    implementation "com.google.code.gson:gson:$gsonVersion"
+
 }
