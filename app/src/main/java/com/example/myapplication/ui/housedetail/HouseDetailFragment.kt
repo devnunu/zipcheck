@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.housedetail
 
+import androidx.fragment.app.viewModels
 import com.example.myapplication.R
 import com.example.myapplication.common.BaseFragment
 import com.example.myapplication.databinding.FragmentHomeBinding
@@ -10,5 +11,5 @@ class HouseDetailFragment : BaseFragment<FragmentHouseDetailBinding, HouseDetail
     R.layout.fragment_house_detail,
     HouseDetailViewModel::class.java
 ) {
-
+    private val viewModel by viewModels<HouseDetailViewModel> { viewModelFactory }
 }

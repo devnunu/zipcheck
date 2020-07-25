@@ -19,5 +19,31 @@
         android:id="@+id/homeFragment"
         android:name="com.example.myapplication.ui.home.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_houseDetailFragment"
+            app:destination="@id/houseDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_inputHouseFragment"
+            app:destination="@id/inputHouseFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/houseDetailFragment"
+        android:name="com.example.myapplication.ui.housedetail.HouseDetailFragment"
+        android:label="HouseDetailFragment"
+        tools:layout="@layout/fragment_house_detail" />
+    <fragment
+        android:id="@+id/inputCheckListFragment"
+        android:name="com.example.myapplication.ui.inputchecklist.InputCheckListFragment"
+        android:label="InputCheckListFragment"
+        tools:layout="@layout/fragment_input_checklist" />
+    <fragment
+        android:id="@+id/inputHouseFragment"
+        android:name="com.example.myapplication.ui.inputhouse.InputHouseFragment"
+        android:label="InputHouseFragment"
+        tools:layout="@layout/fragment_input_house">
+        <action
+            android:id="@+id/action_inputHouseFragment_to_inputCheckListFragment"
+            app:destination="@id/inputCheckListFragment" />
+    </fragment>
 </navigation>

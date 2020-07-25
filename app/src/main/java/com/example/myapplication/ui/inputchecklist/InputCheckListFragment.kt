@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.inputchecklist
 
+import androidx.fragment.app.viewModels
 import com.example.myapplication.R
 import com.example.myapplication.common.BaseFragment
 import com.example.myapplication.databinding.FragmentHouseDetailBinding
@@ -10,5 +11,5 @@ class InputCheckListFragment : BaseFragment<FragmentInputChecklistBinding, Input
     R.layout.fragment_input_checklist,
     InputCheckListViewModel::class.java
 ) {
-
+    private val viewModel by viewModels<InputCheckListViewModel> { viewModelFactory }
 }
