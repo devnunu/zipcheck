@@ -1,14 +1,12 @@
 package com.example.myapplication.common
 
-import android.app.Application
-import androidx.room.Room
-import com.example.myapplication.data.Database
+import com.example.myapplication.di.common.DaggerApplicationComponent
+import dagger.android.AndroidInjector
+import dagger.android.support.DaggerApplication
 
-class ZipCheckApplication:Application() {
-    init {
-        val db = Room.databaseBuilder(
-            applicationContext,
-            Database::class.java, "database-name"
-        ).build()
+open class ZipCheckApplication : DaggerApplication() {
+
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
+        return DaggerApplicationComponent.factory().create(applicationContext)
     }
 }

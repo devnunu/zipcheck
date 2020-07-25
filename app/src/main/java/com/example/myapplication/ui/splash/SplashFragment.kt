@@ -10,7 +10,7 @@ import com.example.myapplication.databinding.FragmentSplashBinding
 
 class SplashFragment : BaseFragment<FragmentSplashBinding, ViewModel>(
     R.layout.fragment_splash,
-    ViewModel::class.java
+    ViewModel::class
 ) {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.myapplication.ui.home.HomeViewModel" />
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,10 +19,21 @@
             android:layout_height="wrap_content"
             android:text="hello, world!" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="집을 추가해보세요!" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="집이 있군요" />
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="집추가하기" />
+
 
     </LinearLayout>
 </layout>

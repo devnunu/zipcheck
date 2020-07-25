@@ -11,17 +11,20 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.myapplication.common.ext.assistedViewModels
 import com.example.myapplication.ui.home.HomeViewModel
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
+import kotlin.reflect.KClass
 
-open class BaseFragment<T : ViewDataBinding, VM : ViewModel>(
+abstract class BaseFragment<T : ViewDataBinding, VM : ViewModel>(
     @LayoutRes private val layoutId: Int,
-    private val viewModelClass: Class<VM>
-) : Fragment() {
+    viewModelClass: KClass<VM>
+) : DaggerFragment() {
 
     @Inject
-    protected lateinit var viewModelFactory: ViewModelProvider.Factory
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    protected val viewModel: VM by assistedViewModels(viewModelClass) { viewModelFactory }
 
     protected lateinit var binding: T
 
@@ -33,9 +36,13 @@ open class BaseFragment<T : ViewDataBinding, VM : ViewModel>(
         super.onCreateView(inflater, container, savedInstanceState)
         binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         binding.lifecycleOwner = this
+        return binding.root
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         setBindingVariables()
         setEventObservers()
-        return binding.root
     }
 
     open fun setBindingVariables() {}

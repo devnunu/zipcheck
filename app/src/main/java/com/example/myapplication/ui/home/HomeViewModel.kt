@@ -4,12 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.myapplication.common.Event
-import com.example.myapplication.di.ViewModelKey
-import dagger.Binds
-import dagger.Module
-import dagger.multibindings.IntoMap
+import com.example.myapplication.data.house.repo.HouseRepository
+import javax.inject.Inject
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel @Inject constructor(
+    private val houseRepository: HouseRepository
+) : ViewModel() {
+
+    val houseList = houseRepository.observeHouseList()
 
     /** event */
     private val _onClickAddHouseBtn = MutableLiveData<Event<Unit>>()
@@ -20,12 +22,4 @@ class HomeViewModel : ViewModel() {
     fun onClickAddHouseBtn() {
         _onClickAddHouseBtn.value = Event(Unit)
     }
-}
-
-@Module
-abstract class HomeViewModelModule {
-    @Binds
-    @IntoMap
-    @ViewModelKey(HomeViewModel::class)
-    abstract fun bindMyViewModel(viewModel: HomeViewModel): ViewModel
 }
