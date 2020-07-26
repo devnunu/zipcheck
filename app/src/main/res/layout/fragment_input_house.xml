@@ -21,13 +21,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_padding_size_medium"
+            android:text="@{viewModel.title}"
             tools:text="매물 별명을 입력해주세요" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_padding_size_xlarge"
-            android:hint="보증금"
+            android:hint="월세"
             app:suffixText="만원">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -40,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_padding_size_xlarge"
-            android:hint="월세"
+            android:hint="보증금"
             app:suffixText="만원">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -78,9 +79,11 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
+            style="@style/Btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="@{()->viewModel.onClickBottomBtn()}"
             android:text="다음" />
 
     </LinearLayout>
