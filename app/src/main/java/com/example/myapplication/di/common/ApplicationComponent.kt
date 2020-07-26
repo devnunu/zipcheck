@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.myapplication.common.ZipCheckApplication
 import com.example.myapplication.ui.home.HomeModule
 import com.example.myapplication.di.ViewModelModule
+import com.example.myapplication.ui.inputhouse.InputHouseModule
 import com.example.myapplication.ui.splash.SplashModule
 import dagger.BindsInstance
 import dagger.Component
@@ -19,7 +20,8 @@ import javax.inject.Singleton
         ApplicationModule::class,
         ViewModelModule::class,
         HomeModule::class,
-        SplashModule::class
+        SplashModule::class,
+        InputHouseModule::class
     ]
 )
 interface ApplicationComponent : AndroidInjector<ZipCheckApplication> {

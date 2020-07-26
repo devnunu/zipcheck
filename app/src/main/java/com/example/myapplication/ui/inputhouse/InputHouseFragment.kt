@@ -14,4 +14,11 @@ class InputHouseFragment : BaseFragment<FragmentInputHouseBinding, InputHouseVie
     InputHouseViewModel::class
 ) {
 
+    override fun setBindingVariables() {
+        super.setBindingVariables()
+    }
+
+    override fun setEventObservers() {
+        super.setEventObservers()
+    }
 }
