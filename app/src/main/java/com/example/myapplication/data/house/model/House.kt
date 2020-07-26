@@ -7,8 +7,9 @@ class House {
     var name: String = ""
     var description: String = ""
     var favorites: Boolean = false
-    var deposit: Int = 0
-    var monthlyPay: Int = 0
+    var deposit: Long = 0
+    var monthlyPay: Long = 0
     var memo: String = ""
+    var houseType: HouseType? = null
     val checkLists: List<CheckListItem> = mutableListOf()
 }

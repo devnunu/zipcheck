@@ -1,7 +1,12 @@
 package com.example.myapplication.ui.inputhouse
 
 import androidx.lifecycle.*
+import com.example.myapplication.common.Event
+import com.example.myapplication.common.util.CurrencyUtil
+import com.example.myapplication.data.house.model.House
+import com.example.myapplication.data.house.model.HouseType
 import com.example.myapplication.data.house.repo.HouseRepository
+import java.lang.NumberFormatException
 import javax.inject.Inject
 
 class InputHouseViewModel @Inject constructor(
@@ -15,10 +20,6 @@ class InputHouseViewModel @Inject constructor(
         const val STEP_MONTHLY_PAY = 4
     }
 
-
-    private fun changeTitle(): String {
-        return ""
-    }
 
     private val _inputStep = MutableLiveData<Int>()
     val inputStep: LiveData<Int> = _inputStep
@@ -39,18 +40,44 @@ class InputHouseViewModel @Inject constructor(
 
     val deposit = MutableLiveData<String>()
 
+    val depositFormatText = deposit.map {
+        try {
+            CurrencyUtil.toKrCurrencyText(it.toLong(), true)
+        } catch (e: NumberFormatException) {
+            "0 원"
+        }
+    }
+
     val monthlyPay = MutableLiveData<String>()
+
+    val monthlyPayFormatText = monthlyPay.map {
+        try {
+            CurrencyUtil.toKrCurrencyText(it.toLong(), true)
+        } catch (e: NumberFormatException) {
+            "0 원"
+        }
+    }
 
     val isBottomBtnEnable = MediatorLiveData<Boolean>().apply {
         addSource(name) { value = checkIsBottomBtnEnable() }
         addSource(houseType) { value = checkIsBottomBtnEnable() }
         addSource(deposit) { value = checkIsBottomBtnEnable() }
         addSource(monthlyPay) { value = checkIsBottomBtnEnable() }
+        addSource(inputStep) { value = checkIsBottomBtnEnable() }
     }
 
+    /** event */
+    private val _onClickNextBtn = MutableLiveData<Event<Unit>>()
+    val onClickNextBtn: LiveData<Event<Unit>> = _onClickNextBtn
+
     private fun checkIsBottomBtnEnable(): Boolean {
-        // TODO:각 step 별로 다음 버튼 검증 로직 추가
-        return true
+        return when (inputStep.value) {
+            STEP_NAME -> name.value?.isNullOrEmpty()?.not() ?: false
+            STEP_HOUSE_TYPE -> houseType.value?.isNullOrEmpty()?.not() ?: false
+            STEP_DEPOSIT -> deposit.value?.isNullOrEmpty()?.not() ?: false
+            STEP_MONTHLY_PAY -> monthlyPay.value?.isNullOrEmpty()?.not() ?: false
+            else -> false
+        }
     }
 
     init {
@@ -64,7 +91,29 @@ class InputHouseViewModel @Inject constructor(
 
     /** click event handlers */
     fun onClickBottomBtn() {
-        increaseStep()
+        when (inputStep.value) {
+            STEP_NAME,
+            STEP_HOUSE_TYPE -> increaseStep()
+            STEP_DEPOSIT -> {
+                if (houseType == HouseType.LEASE_MONTHLY_PAY) {
+                    increaseStep()
+                } else {
+                    saveHouseInfo()
+                    _onClickNextBtn.value = Event(Unit)
+                }
+            }
+            STEP_MONTHLY_PAY -> _onClickNextBtn.value = Event(Unit)
+            else -> false
+        }
+    }
+
+    private fun saveHouseInfo() {
+        val house = House().apply {
+            name = this@InputHouseViewModel.name.value ?: ""
+            houseType = HouseType.fromDisplayName(this@InputHouseViewModel.houseType.value)
+            deposit = this@InputHouseViewModel.deposit.value?.toLong() ?: 0
+            monthlyPay = this@InputHouseViewModel.monthlyPay.value?.toLong() ?: 0
+        }
     }
 
 }
