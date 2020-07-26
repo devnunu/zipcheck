@@ -32,8 +32,8 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="@{()->viewModel.onClickAddHouseBtn()}"
             android:text="집추가하기" />
-
-
+x
     </LinearLayout>
 </layout>

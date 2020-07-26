@@ -12,7 +12,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
 ) {
 
     override fun setBindingVariables() {
-        super.setBindingVariables()
+        binding.also {
+            it.viewModel = viewModel
+        }
     }
 
     override fun setEventObservers() {

@@ -17,7 +17,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, ViewModel>(
         super.onActivityCreated(savedInstanceState)
         Handler().postDelayed({
             startNextActivity()
-        },3000)
+        },1500)
     }
 
     private fun startNextActivity() {
