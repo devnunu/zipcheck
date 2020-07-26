@@ -1,5 +1,7 @@
 package com.example.myapplication.ui.inputhouse
 
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.R
@@ -15,7 +17,12 @@ class InputHouseFragment : BaseFragment<FragmentInputHouseBinding, InputHouseVie
 ) {
 
     override fun setBindingVariables() {
-        super.setBindingVariables()
+        binding.also {
+            it.viewModel = viewModel
+            val items = listOf("전세", "월세", "매매")
+            val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
+            (it.inputHouseType.editText as? AutoCompleteTextView)?.setAdapter(adapter)
+        }
     }
 
     override fun setEventObservers() {
