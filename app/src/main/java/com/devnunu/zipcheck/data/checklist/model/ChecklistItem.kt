@@ -5,10 +5,10 @@ import java.util.*
 class ChecklistItem {
 
     constructor(description: String) {
-        this.description = description
+        this.title = description
     }
 
     var id: String = UUID.randomUUID().toString()
-    var description: String = ""
+    var title: String = ""
     var isGood: Boolean? = null
 }

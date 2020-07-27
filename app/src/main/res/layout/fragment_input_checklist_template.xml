@@ -20,15 +20,24 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <TextView
+                style="@style/Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_padding_size_medium"
+                android:text="체크리스트를 작성해 주세요" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/list_category_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_padding_size_xlarge"
                 android:clipToPadding="true"
                 android:nestedScrollingEnabled="false"
                 android:orientation="vertical"
-                app:layoutManager="LinearLayoutManager"
                 app:categoryNames="@{viewModel.categoryNameList}"
+                app:checklist="@{viewModel.checklist}"
+                app:layoutManager="LinearLayoutManager"
                 tools:itemCount="2"
                 tools:listitem="@layout/item_input_checklist_template_category" />
 

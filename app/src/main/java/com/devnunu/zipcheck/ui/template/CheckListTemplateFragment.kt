@@ -1,12 +1,14 @@
 package com.devnunu.zipcheck.ui.template
 
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.common.BaseFragment
 import com.devnunu.zipcheck.common.ZipCheckApplication
 import com.devnunu.zipcheck.data.checklist.model.Checklist
 import com.devnunu.zipcheck.data.checklist.model.ChecklistType
 import com.devnunu.zipcheck.databinding.FragmentInputChecklistTemplateBinding
+import com.devnunu.zipcheck.ui.template.category.CategoryItemAdapter
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class CheckListTemplateFragment :
@@ -17,6 +19,13 @@ class CheckListTemplateFragment :
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         showItemSelectDialog()
+    }
+
+    override fun setBindingVariables() {
+        binding.also {
+            it.viewModel = viewModel
+            it.listCategoryName.adapter = CategoryItemAdapter()
+        }
     }
 
     private fun showItemSelectDialog() {

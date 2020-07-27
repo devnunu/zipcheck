@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.devnunu.zipcheck.data.checklist.model.ChecklistItem
-import com.devnunu.zipcheck.databinding.ItemInputChecklistTemplateBinding
+import com.devnunu.zipcheck.databinding.ItemInputChecklistTemplateItemBinding
 
 class ChecklistTemplateItemAdapter :
     RecyclerView.Adapter<ChecklistTemplateItemAdapter.CategoryViewHolder>() {
@@ -16,7 +16,7 @@ class ChecklistTemplateItemAdapter :
         parent: ViewGroup,
         viewType: Int
     ): CategoryViewHolder {
-        val binding = ItemInputChecklistTemplateBinding.inflate(
+        val binding = ItemInputChecklistTemplateItemBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
@@ -44,12 +44,12 @@ class ChecklistTemplateItemAdapter :
 
     private fun getChecklistItem(checklistItems: List<ChecklistItem>): List<ChecklistTemplateItem> {
         return checklistItems.map {
-            ChecklistTemplateItem()
+            ChecklistTemplateItem(it)
         }
 
     }
 
-    inner class CategoryViewHolder(private val binding: ItemInputChecklistTemplateBinding) :
+    inner class CategoryViewHolder(private val binding: ItemInputChecklistTemplateItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ChecklistTemplateItem?) {
             binding.item = item
@@ -59,7 +59,7 @@ class ChecklistTemplateItemAdapter :
     companion object {
 
         @JvmStatic
-        @BindingAdapter(value = ["categoryNames"])
+        @BindingAdapter(value = ["items"])
         fun bindItem(
             recyclerView: RecyclerView,
             checklistItems: List<ChecklistItem>?
