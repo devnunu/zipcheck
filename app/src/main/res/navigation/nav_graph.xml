@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.myapplication.ui.splash.SplashFragment"
+        android:name="com.devnunu.zipcheck.ui.splash.SplashFragment"
         android:label="SplashFragment"
         tools:layout="@layout/fragment_splash">
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.myapplication.ui.home.HomeFragment"
+        android:name="com.devnunu.zipcheck.ui.home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
         <action
@@ -29,17 +29,17 @@
     </fragment>
     <fragment
         android:id="@+id/houseDetailFragment"
-        android:name="com.example.myapplication.ui.housedetail.HouseDetailFragment"
+        android:name="com.devnunu.zipcheck.ui.housedetail.HouseDetailFragment"
         android:label="HouseDetailFragment"
         tools:layout="@layout/fragment_house_detail" />
     <fragment
         android:id="@+id/inputCheckListFragment"
-        android:name="com.example.myapplication.ui.inputchecklist.InputCheckListFragment"
+        android:name="com.devnunu.zipcheck.ui.inputchecklist.InputCheckListFragment"
         android:label="InputCheckListFragment"
         tools:layout="@layout/fragment_input_checklist" />
     <fragment
         android:id="@+id/inputHouseFragment"
-        android:name="com.example.myapplication.ui.inputhouse.InputHouseFragment"
+        android:name="com.devnunu.zipcheck.ui.inputhouse.InputHouseFragment"
         android:label="InputHouseFragment"
         tools:layout="@layout/fragment_input_house">
         <action

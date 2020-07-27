@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.myapplication.ui.inputhouse.InputHouseViewModel" />
+            type="com.devnunu.zipcheck.ui.inputhouse.InputHouseViewModel" />
     </data>
 
     <ScrollView
