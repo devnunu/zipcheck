@@ -14,7 +14,7 @@ class InputCheckListFragment : BaseFragment<FragmentInputChecklistBinding, Input
 
     override fun setBindingVariables() {
         binding.also {
-
+            it.viewModel = viewModel
         }
     }
 

@@ -1,18 +1,21 @@
 package com.devnunu.zipcheck.data.checklist.model
 
+import com.devnunu.zipcheck.data.house.model.HouseType
+
 class Checklist {
+
     val name: String = ""
     var items: Map<String, List<ChecklistItem>> = hashMapOf()
 
-    fun resetToDefaultItems(typeList: List<ChecklistType>) {
+    fun resetToDefaultItems(typeList: List<ChecklistType?>) {
         val map = linkedMapOf<String, List<ChecklistItem>>()
-        typeList?.forEach { checklistType ->
+        typeList.filterNotNull().forEach { checklistType ->
             map[checklistType.displayName] = getDefaultChecklist(checklistType)
         }
         items = map
     }
 
-    private fun getDefaultChecklist(checklistType: ChecklistType): List<ChecklistItem> {
+    private fun getDefaultChecklist(checklistType: ChecklistType?): List<ChecklistItem> {
         return when (checklistType) {
             ChecklistType.CHECKLIST_TYPE_HOUSE -> getChecklistHouse()
             ChecklistType.CHECKLIST_TYPE_CIRCUMSTANCE -> getChecklistCircumstance()
@@ -52,5 +55,16 @@ enum class ChecklistType(val displayName: String) {
     CHECKLIST_TYPE_KITCHEN("주방"),
     CHECKLIST_TYPE_VERANDA("베란다"),
     CHECKLIST_TYPE_ETC("기타"),
-    CHECKLIST_TYPE_USER_CUSTOM("내가 추가한 목록")
+    CHECKLIST_TYPE_USER_CUSTOM("내가 추가한 목록");
+
+    companion object {
+        fun fromDisplayName(text: String?): ChecklistType? {
+            ChecklistType.values().forEach { checklistType ->
+                if (checklistType.displayName.equals(text, ignoreCase = true)) {
+                    return checklistType
+                }
+            }
+            return null
+        }
+    }
 }
