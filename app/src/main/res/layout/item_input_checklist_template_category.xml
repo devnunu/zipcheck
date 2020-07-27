@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="item"
             type="com.devnunu.zipcheck.ui.template.category.CategoryItem" />
@@ -12,11 +13,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_padding_size_large"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingVertical="@dimen/margin_padding_size_small"
             android:text="@{item.categoryName}"
             tools:text="현관" />
 
@@ -26,6 +29,7 @@
             android:layout_height="wrap_content"
             android:clipToPadding="true"
             android:nestedScrollingEnabled="false"
+            android:paddingLeft="@dimen/margin_padding_size_medium"
             android:orientation="vertical"
             app:items="@{item.checklistTemplateItems}"
             app:layoutManager="LinearLayoutManager"
