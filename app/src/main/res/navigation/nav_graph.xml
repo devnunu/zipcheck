@@ -52,7 +52,7 @@
     </fragment>
     <fragment
         android:id="@+id/checkListTemplateFragment"
-        android:name="com.devnunu.zipcheck.ui.template.CheckListTemplateFragment"
+        android:name="com.devnunu.zipcheck.ui.inputtemplate.InputTemplateFragment"
         android:label="CheckListTemplateFragment"
-        tools:layout="@layout/fragment_input_checklist_template" />
+        tools:layout="@layout/fragment_input_template" />
 </navigation>

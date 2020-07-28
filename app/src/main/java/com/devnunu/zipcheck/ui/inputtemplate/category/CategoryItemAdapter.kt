@@ -1,13 +1,12 @@
-package com.devnunu.zipcheck.ui.template.category
+package com.devnunu.zipcheck.ui.inputtemplate.category
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.devnunu.zipcheck.data.checklist.model.Checklist
-import com.devnunu.zipcheck.databinding.ItemInputChecklistTemplateCategoryBinding
-import com.devnunu.zipcheck.ui.template.category.item.ChecklistTemplateItem
-import com.devnunu.zipcheck.ui.template.category.item.ChecklistTemplateItemAdapter
+import com.devnunu.zipcheck.databinding.ItemInputTemplateCategoryBinding
+import com.devnunu.zipcheck.ui.inputtemplate.category.item.ChecklistTemplateItemAdapter
 
 class CategoryItemAdapter :
     RecyclerView.Adapter<CategoryItemAdapter.CategoryViewHolder>() {
@@ -18,7 +17,7 @@ class CategoryItemAdapter :
         parent: ViewGroup,
         viewType: Int
     ): CategoryViewHolder {
-        val binding = ItemInputChecklistTemplateCategoryBinding.inflate(
+        val binding = ItemInputTemplateCategoryBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
@@ -52,7 +51,7 @@ class CategoryItemAdapter :
 
     }
 
-    inner class CategoryViewHolder(private val binding: ItemInputChecklistTemplateCategoryBinding) :
+    inner class CategoryViewHolder(private val binding: ItemInputTemplateCategoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: CategoryItem?) {
             binding.also {

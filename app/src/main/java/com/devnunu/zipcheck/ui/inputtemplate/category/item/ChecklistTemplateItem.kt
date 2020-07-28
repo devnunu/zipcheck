@@ -1,4 +1,4 @@
-package com.devnunu.zipcheck.ui.template.category.item
+package com.devnunu.zipcheck.ui.inputtemplate.category.item
 
 import com.devnunu.zipcheck.data.checklist.model.ChecklistItem
 

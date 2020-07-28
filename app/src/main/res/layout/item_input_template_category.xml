@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.devnunu.zipcheck.ui.template.category.CategoryItem" />
+            type="com.devnunu.zipcheck.ui.inputtemplate.category.CategoryItem" />
     </data>
 
     <LinearLayout
@@ -34,7 +34,7 @@
             app:items="@{item.checklistTemplateItems}"
             app:layoutManager="LinearLayoutManager"
             tools:itemCount="2"
-            tools:listitem="@layout/item_input_checklist_template_item" />
+            tools:listitem="@layout/item_input_template_item" />
 
     </LinearLayout>
 </layout>

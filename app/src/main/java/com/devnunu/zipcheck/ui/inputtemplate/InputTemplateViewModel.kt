@@ -1,4 +1,4 @@
-package com.devnunu.zipcheck.ui.template
+package com.devnunu.zipcheck.ui.inputtemplate
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,7 +9,7 @@ import com.devnunu.zipcheck.data.checklist.model.ChecklistType
 import com.devnunu.zipcheck.data.house.repo.HouseRepository
 import javax.inject.Inject
 
-class CheckListTemplateViewModel @Inject constructor(
+class InputTemplateViewModel @Inject constructor(
     private val houseRepository: HouseRepository
 ) : ViewModel() {
 

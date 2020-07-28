@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.devnunu.zipcheck.ui.template.CheckListTemplateViewModel" />
+            type="com.devnunu.zipcheck.ui.inputtemplate.InputTemplateViewModel" />
     </data>
 
     <LinearLayout
@@ -46,7 +46,7 @@
                     app:checklist="@{viewModel.checklist}"
                     app:layoutManager="LinearLayoutManager"
                     tools:itemCount="2"
-                    tools:listitem="@layout/item_input_checklist_template_category" />
+                    tools:listitem="@layout/item_input_template_category" />
 
 
             </LinearLayout>

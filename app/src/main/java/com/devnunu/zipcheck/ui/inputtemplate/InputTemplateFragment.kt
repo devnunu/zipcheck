@@ -1,20 +1,17 @@
-package com.devnunu.zipcheck.ui.template
+package com.devnunu.zipcheck.ui.inputtemplate
 
 import android.os.Bundle
-import androidx.lifecycle.Observer
 import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.common.BaseFragment
-import com.devnunu.zipcheck.common.ZipCheckApplication
-import com.devnunu.zipcheck.data.checklist.model.Checklist
 import com.devnunu.zipcheck.data.checklist.model.ChecklistType
-import com.devnunu.zipcheck.databinding.FragmentInputChecklistTemplateBinding
-import com.devnunu.zipcheck.ui.template.category.CategoryItemAdapter
+import com.devnunu.zipcheck.databinding.FragmentInputTemplateBinding
+import com.devnunu.zipcheck.ui.inputtemplate.category.CategoryItemAdapter
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-class CheckListTemplateFragment :
-    BaseFragment<FragmentInputChecklistTemplateBinding, CheckListTemplateViewModel>(
-        R.layout.fragment_input_checklist_template,
-        CheckListTemplateViewModel::class
+class InputTemplateFragment :
+    BaseFragment<FragmentInputTemplateBinding, InputTemplateViewModel>(
+        R.layout.fragment_input_template,
+        InputTemplateViewModel::class
     ) {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

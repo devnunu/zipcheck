@@ -7,8 +7,7 @@ import com.devnunu.zipcheck.di.ViewModelModule
 import com.devnunu.zipcheck.ui.inputchecklist.InputCheckListModule
 import com.devnunu.zipcheck.ui.inputhouse.InputHouseModule
 import com.devnunu.zipcheck.ui.splash.SplashModule
-import com.devnunu.zipcheck.ui.template.CheckListTemplateModule
-import com.devnunu.zipcheck.ui.template.CheckListTemplateViewModel
+import com.devnunu.zipcheck.ui.inputtemplate.InputTemplateModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -26,7 +25,7 @@ import javax.inject.Singleton
         SplashModule::class,
         InputHouseModule::class,
         InputCheckListModule::class,
-        CheckListTemplateModule::class
+        InputTemplateModule::class
     ]
 )
 interface ApplicationComponent : AndroidInjector<ZipCheckApplication> {
