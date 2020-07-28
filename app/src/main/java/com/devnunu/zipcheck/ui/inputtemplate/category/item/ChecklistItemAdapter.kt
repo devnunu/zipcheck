@@ -6,8 +6,11 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.devnunu.zipcheck.data.checklist.model.CheckItem
 import com.devnunu.zipcheck.databinding.ItemInputTemplateItemBinding
+import com.devnunu.zipcheck.ui.inputtemplate.category.TemplateItemListener
 
-class ChecklistItemAdapter :
+class ChecklistItemAdapter(
+    val templateItemListener: TemplateItemListener
+) :
     RecyclerView.Adapter<ChecklistItemAdapter.CategoryViewHolder>() {
 
     private val checklistChecklistItem: MutableList<ChecklistItem> = mutableListOf()
@@ -52,7 +55,10 @@ class ChecklistItemAdapter :
     inner class CategoryViewHolder(private val binding: ItemInputTemplateItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ChecklistItem?) {
-            binding.item = item
+            binding.also {
+                it.item = item
+                it.executePendingBindings()
+            }
         }
     }
 

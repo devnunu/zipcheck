@@ -3,7 +3,7 @@ package com.devnunu.zipcheck.data.checklist.model
 class Checklist {
 
     val name: String = ""
-    var items: Map<String, List<CheckItem>> = hashMapOf()
+    var items: Map<String, List<CheckItem>>? = linkedMapOf()
 
     fun resetToDefaultItems(typeList: List<ChecklistType?>) {
         val map = linkedMapOf<String, List<CheckItem>>()
