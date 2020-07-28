@@ -38,6 +38,16 @@ class InputTemplateViewModel @Inject constructor(
         }
     }
 
+    fun getCategoryList(): Array<String> {
+        val categoryNames = checklist.value?.items?.keys?.toList()
+        return ChecklistType.values().filter {
+            val isNotAddedCategory = categoryNames?.contains(it.displayName)?.not()
+            isNotAddedCategory ?: true
+        }.map {
+            it.displayName
+        }.toTypedArray()
+    }
+
     /** checklist item click handler */
     override fun onClickRemoveCategory(categoryName: String) {
         val checklist = _checklist.value
@@ -53,9 +63,13 @@ class InputTemplateViewModel @Inject constructor(
         val checklistItems = checklist?.items?.toMutableMap()
         val checkItemList = checklistItems?.get(categoryName)?.toMutableList() ?: mutableListOf()
         checkItemList.removeAt(index)
-        checklistItems?.put(categoryName, checkItemList.toList())
-        checklist?.items = checklistItems?.toMap()
-        _checklist.value = checklist
+        if (checkItemList.isEmpty()) {
+            onClickRemoveCategory(categoryName)
+        } else {
+            checklistItems?.put(categoryName, checkItemList.toList())
+            checklist?.items = checklistItems?.toMap()
+            _checklist.value = checklist
+        }
     }
 
     /** button click handler */

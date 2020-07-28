@@ -1,6 +1,5 @@
 package com.devnunu.zipcheck.ui.inputtemplate
 
-import android.os.Bundle
 import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.common.BaseFragment
 import com.devnunu.zipcheck.common.EventObserver
@@ -30,20 +29,17 @@ class InputTemplateFragment :
     }
 
     private fun showItemSelectDialog() {
-        val array = arrayOf(
-            ChecklistType.CHECKLIST_TYPE_HOUSE.displayName,
-            ChecklistType.CHECKLIST_TYPE_CIRCUMSTANCE.displayName
-        )
+        val keyArray = viewModel.getCategoryList()
         val selectedItems = mutableListOf<Int>()
         MaterialAlertDialogBuilder(requireContext())
             .setTitle("템플릿 추가요소")
             .setPositiveButton("확인") { _, _ ->
                 val items = selectedItems.map {
-                    ChecklistType.fromDisplayName(array[it])
+                    ChecklistType.fromDisplayName(keyArray[it])
                 }
                 viewModel.start(items)
             }
-            .setMultiChoiceItems(array, null) { dialog, which, checked ->
+            .setMultiChoiceItems(keyArray, null) { dialog, which, checked ->
                 if (checked) {
                     selectedItems.add(which)
                 } else if (selectedItems.contains(which)) {
