@@ -6,12 +6,12 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.devnunu.zipcheck.data.checklist.model.Checklist
 import com.devnunu.zipcheck.databinding.ItemInputTemplateCategoryBinding
-import com.devnunu.zipcheck.ui.inputtemplate.category.item.ChecklistTemplateItemAdapter
+import com.devnunu.zipcheck.ui.inputtemplate.category.item.ChecklistItemAdapter
 
-class CategoryItemAdapter :
-    RecyclerView.Adapter<CategoryItemAdapter.CategoryViewHolder>() {
+class ChecklistCategoryItemAdapter :
+    RecyclerView.Adapter<ChecklistCategoryItemAdapter.CategoryViewHolder>() {
 
-    private val categoryItemList: MutableList<CategoryItem> = mutableListOf()
+    private val categoryItemList: MutableList<ChecklistCategoryItem> = mutableListOf()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -43,20 +43,20 @@ class CategoryItemAdapter :
         notifyDataSetChanged()
     }
 
-    private fun getChecklistItem(categoryNameList: List<String>, checklist: Checklist): List<CategoryItem> {
+    private fun getChecklistItem(categoryNameList: List<String>, checklist: Checklist): List<ChecklistCategoryItem> {
         return categoryNameList.map {
             val checklistItems = checklist.items[it]
-            CategoryItem(it, checklistItems)
+            ChecklistCategoryItem(it, checklistItems)
         }
 
     }
 
     inner class CategoryViewHolder(private val binding: ItemInputTemplateCategoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: CategoryItem?) {
+        fun bind(item: ChecklistCategoryItem?) {
             binding.also {
                 it.item = item
-                it.listChecklistItem.adapter = ChecklistTemplateItemAdapter()
+                it.listChecklistItem.adapter = ChecklistItemAdapter()
             }
         }
     }
@@ -70,7 +70,7 @@ class CategoryItemAdapter :
             categoryNameList: List<String>?,
             checklist: Checklist?
         ) {
-            val adapter = recyclerView.adapter as CategoryItemAdapter?
+            val adapter = recyclerView.adapter as ChecklistCategoryItemAdapter?
             if (!categoryNameList.isNullOrEmpty() && checklist != null) {
                 adapter?.setItem(categoryNameList, checklist)
             }

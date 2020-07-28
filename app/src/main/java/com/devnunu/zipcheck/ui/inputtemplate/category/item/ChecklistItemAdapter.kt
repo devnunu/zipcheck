@@ -4,13 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.devnunu.zipcheck.data.checklist.model.ChecklistItem
+import com.devnunu.zipcheck.data.checklist.model.CheckItem
 import com.devnunu.zipcheck.databinding.ItemInputTemplateItemBinding
 
-class ChecklistTemplateItemAdapter :
-    RecyclerView.Adapter<ChecklistTemplateItemAdapter.CategoryViewHolder>() {
+class ChecklistItemAdapter :
+    RecyclerView.Adapter<ChecklistItemAdapter.CategoryViewHolder>() {
 
-    private val checklistTemplateItem: MutableList<ChecklistTemplateItem> = mutableListOf()
+    private val checklistChecklistItem: MutableList<ChecklistItem> = mutableListOf()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -28,30 +28,30 @@ class ChecklistTemplateItemAdapter :
         holder: CategoryViewHolder,
         position: Int
     ) {
-        val item = checklistTemplateItem[position]
+        val item = checklistChecklistItem[position]
         holder.bind(item)
     }
 
     override fun getItemCount(): Int {
-        return checklistTemplateItem.size
+        return checklistChecklistItem.size
     }
 
-    private fun setItem(checklistItems: List<ChecklistItem>) {
-        checklistTemplateItem.clear()
-        checklistTemplateItem.addAll(getChecklistItem(checklistItems))
+    private fun setItem(checklistItems: List<CheckItem>) {
+        checklistChecklistItem.clear()
+        checklistChecklistItem.addAll(getChecklistItem(checklistItems))
         notifyDataSetChanged()
     }
 
-    private fun getChecklistItem(checklistItems: List<ChecklistItem>): List<ChecklistTemplateItem> {
+    private fun getChecklistItem(checklistItems: List<CheckItem>): List<ChecklistItem> {
         return checklistItems.map {
-            ChecklistTemplateItem(it)
+            ChecklistItem(it)
         }
 
     }
 
     inner class CategoryViewHolder(private val binding: ItemInputTemplateItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: ChecklistTemplateItem?) {
+        fun bind(item: ChecklistItem?) {
             binding.item = item
         }
     }
@@ -62,9 +62,9 @@ class ChecklistTemplateItemAdapter :
         @BindingAdapter(value = ["items"])
         fun bindItem(
             recyclerView: RecyclerView,
-            checklistItems: List<ChecklistItem>?
+            checklistItems: List<CheckItem>?
         ) {
-            val adapter = recyclerView.adapter as ChecklistTemplateItemAdapter?
+            val adapter = recyclerView.adapter as ChecklistItemAdapter?
             checklistItems?.let {
                 adapter?.setItem(it)
             }

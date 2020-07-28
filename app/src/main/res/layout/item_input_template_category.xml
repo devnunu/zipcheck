@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.devnunu.zipcheck.ui.inputtemplate.category.CategoryItem" />
+            type="com.devnunu.zipcheck.ui.inputtemplate.category.ChecklistCategoryItem" />
     </data>
 
     <LinearLayout

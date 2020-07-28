@@ -2,7 +2,7 @@ package com.devnunu.zipcheck.data.checklist.model
 
 import java.util.*
 
-class ChecklistItem {
+class CheckItem {
 
     constructor(description: String) {
         this.title = description

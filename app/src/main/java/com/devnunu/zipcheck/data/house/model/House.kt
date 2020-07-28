@@ -1,6 +1,7 @@
 package com.devnunu.zipcheck.data.house.model
 
-import com.devnunu.zipcheck.data.checklist.model.ChecklistItem
+import com.devnunu.zipcheck.data.checklist.model.CheckItem
+import com.devnunu.zipcheck.data.checklist.model.Checklist
 import java.util.*
 
 class House {
@@ -12,5 +13,5 @@ class House {
     var monthlyPay: Long = 0
     var memo: String = ""
     var houseType: HouseType? = null
-    val checklists: List<ChecklistItem> = mutableListOf()
+    val checklist: Checklist? = null
 }
