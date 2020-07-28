@@ -32,14 +32,25 @@ class InputTemplateViewModel @Inject constructor(
     private val _onClickAddCategoryBtn = MutableLiveData<Event<Unit>>()
     val onClickAddCategoryBtn: LiveData<Event<Unit>> = _onClickAddCategoryBtn
 
+    private val _onClickAddCustomItemBtn = MutableLiveData<Event<Unit>>()
+    val onClickAddCustomItemBtn: LiveData<Event<Unit>> = _onClickAddCustomItemBtn
+
     init {
         _checklist.value = Checklist()
     }
 
-    fun addChecklistItems(defaultChecklistItems: List<ChecklistType?>) {
+    fun addChecklistCategories(selChecklistCategories: List<ChecklistType?>) {
         val checklist = _checklist.value
         checklist?.apply {
-            addDefaultItems(defaultChecklistItems)
+            addDefaultItems(selChecklistCategories)
+        }
+        _checklist.value = checklist
+    }
+
+    fun addCustomChecklistItem(title: String?) {
+        val checklist = _checklist.value
+        checklist?.apply {
+            addCustomItem(title)
         }
         _checklist.value = checklist
     }
@@ -58,23 +69,19 @@ class InputTemplateViewModel @Inject constructor(
     /** checklist item click handler */
     override fun onClickRemoveCategory(categoryName: String) {
         val checklist = _checklist.value
-        val checklistItems = checklist?.items?.toMutableMap()
-        checklistItems?.remove(categoryName)
-        checklist?.items = checklistItems?.toMap()
+        checklist?.items?.remove(categoryName)
         _checklist.value = checklist
 
     }
 
     override fun onClickRemoveChecklistItem(categoryName: String, index: Int) {
         val checklist = _checklist.value
-        val checklistItems = checklist?.items?.toMutableMap()
-        val checkItemList = checklistItems?.get(categoryName)?.toMutableList() ?: mutableListOf()
-        checkItemList.removeAt(index)
-        if (checkItemList.isEmpty()) {
+        val checkItemList = checklist?.items?.get(categoryName)
+        checkItemList?.removeAt(index)
+        if (checkItemList.isNullOrEmpty()) {
             onClickRemoveCategory(categoryName)
         } else {
-            checklistItems?.put(categoryName, checkItemList.toList())
-            checklist?.items = checklistItems?.toMap()
+            checklist.items?.put(categoryName, checkItemList)
             _checklist.value = checklist
         }
     }
@@ -82,5 +89,9 @@ class InputTemplateViewModel @Inject constructor(
     /** button click handler */
     fun onClickAddCategoryBtn() {
         _onClickAddCategoryBtn.value = Event(Unit)
+    }
+
+    fun onClickAddCustomItemBtn() {
+        _onClickAddCustomItemBtn.value = Event(Unit)
     }
 }

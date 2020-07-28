@@ -1,5 +1,7 @@
 package com.devnunu.zipcheck.ui.inputtemplate
 
+import android.text.InputType
+import android.widget.EditText
 import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.common.BaseFragment
 import com.devnunu.zipcheck.common.EventObserver
@@ -7,6 +9,7 @@ import com.devnunu.zipcheck.data.checklist.model.ChecklistType
 import com.devnunu.zipcheck.databinding.FragmentInputTemplateBinding
 import com.devnunu.zipcheck.ui.inputtemplate.category.ChecklistCategoryItemAdapter
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+
 
 class InputTemplateFragment :
     BaseFragment<FragmentInputTemplateBinding, InputTemplateViewModel>(
@@ -26,6 +29,10 @@ class InputTemplateFragment :
         viewModel.onClickAddCategoryBtn.observe(this, EventObserver {
             showItemSelectDialog()
         })
+
+        viewModel.onClickAddCustomItemBtn.observe(this, EventObserver {
+            showCustomCheckItemDialog()
+        })
     }
 
     private fun showItemSelectDialog() {
@@ -37,7 +44,7 @@ class InputTemplateFragment :
                 val items = selectedItems.map {
                     ChecklistType.fromDisplayName(keyArray[it])
                 }
-                viewModel.addChecklistItems(items)
+                viewModel.addChecklistCategories(items)
             }
             .setMultiChoiceItems(keyArray, null) { dialog, which, checked ->
                 if (checked) {
@@ -46,6 +53,19 @@ class InputTemplateFragment :
                     selectedItems.remove(Integer.valueOf(which))
                 }
             }
+            .show()
+    }
+
+    private fun showCustomCheckItemDialog() {
+        val input = EditText(requireContext())
+        input.inputType = InputType.TYPE_CLASS_TEXT
+        input.maxLines = 1
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("나의 체크 아이템")
+            .setPositiveButton("확인") { _, _ ->
+                viewModel.addCustomChecklistItem(input.text.toString())
+            }
+            .setView(input)
             .show()
     }
 }

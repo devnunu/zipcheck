@@ -3,7 +3,22 @@ package com.devnunu.zipcheck.data.checklist.model
 class Checklist {
 
     val name: String = ""
-    var items: Map<String, List<CheckItem>>? = linkedMapOf()
+    var items: MutableMap<String, MutableList<CheckItem>>? = linkedMapOf()
+
+    fun addCustomItem(title: String?) {
+        if (title == null) return
+        val haveCustomItemList =
+            items?.get(ChecklistType.CHECKLIST_TYPE_USER_CUSTOM.displayName) != null
+        if (haveCustomItemList) {
+            items?.get(ChecklistType.CHECKLIST_TYPE_USER_CUSTOM.displayName)
+                ?.add(CheckItem(title))
+        } else {
+            items?.put(
+                ChecklistType.CHECKLIST_TYPE_USER_CUSTOM.displayName,
+                mutableListOf(CheckItem(title))
+            )
+        }
+    }
 
     fun addDefaultItems(typeList: List<ChecklistType?>) {
         val map = items?.toMutableMap()
@@ -13,7 +28,7 @@ class Checklist {
         items = map
     }
 
-    private fun getDefaultChecklist(checklistType: ChecklistType?): List<CheckItem> {
+    private fun getDefaultChecklist(checklistType: ChecklistType?): MutableList<CheckItem> {
         return when (checklistType) {
             ChecklistType.CHECKLIST_TYPE_HOUSE -> getChecklistHouse()
             ChecklistType.CHECKLIST_TYPE_CIRCUMSTANCE -> getChecklistCircumstance()
@@ -24,11 +39,11 @@ class Checklist {
             ChecklistType.CHECKLIST_TYPE_KITCHEN -> getChecklistKitchen()
             ChecklistType.CHECKLIST_TYPE_VERANDA -> getChecklistVeranda()
             ChecklistType.CHECKLIST_TYPE_OPTION -> getChecklistOption()
-            else -> listOf()
+            else -> mutableListOf()
         }
     }
 
-    private fun getChecklistHouse(): List<CheckItem> {
+    private fun getChecklistHouse(): MutableList<CheckItem> {
         return mutableListOf<CheckItem>().apply {
             add(CheckItem("관리비가 있나요"))
             add(CheckItem("전기와 수도계량기를 세대별로 사용하나요"))
@@ -38,7 +53,7 @@ class Checklist {
         }
     }
 
-    private fun getChecklistCircumstance(): List<CheckItem> {
+    private fun getChecklistCircumstance(): MutableList<CheckItem> {
         return mutableListOf<CheckItem>().apply {
             add(CheckItem("주변 치안상태는 좋은가요"))
             add(CheckItem("교통 및 편의 시설은 가까운가요"))
@@ -50,7 +65,7 @@ class Checklist {
         }
     }
 
-    private fun getChecklistExterior(): List<CheckItem> {
+    private fun getChecklistExterior(): MutableList<CheckItem> {
         return mutableListOf<CheckItem>().apply {
             add(CheckItem("관리실이 있나요?"))
             add(CheckItem("택배 수령하는 방법이 편리한가요?"))
@@ -59,14 +74,14 @@ class Checklist {
         }
     }
 
-    private fun getChecklistEntrance(): List<CheckItem> {
+    private fun getChecklistEntrance(): MutableList<CheckItem> {
         return mutableListOf<CheckItem>().apply {
             add(CheckItem("현관 잠금장치가 잘 되어있나요?"))
             add(CheckItem("신발장을 놓을 공간 혹은 신발장이 있나요?"))
         }
     }
 
-    private fun getChecklistMainRoom(): List<CheckItem> {
+    private fun getChecklistMainRoom(): MutableList<CheckItem> {
         return mutableListOf<CheckItem>().apply {
             add(CheckItem("문은 모두 잘 열리고 닫히나요?"))
             add(CheckItem("창문의 상태가 양호한가요?"))
@@ -78,7 +93,7 @@ class Checklist {
         }
     }
 
-    private fun getChecklistKitchen(): List<CheckItem> {
+    private fun getChecklistKitchen(): MutableList<CheckItem> {
         return mutableListOf<CheckItem>().apply {
             add(CheckItem("주방 시설의 상태가 양호한가요?"))
             add(CheckItem("수압 및 이물질, 배수의 상태는 양호한가요?"))
@@ -87,7 +102,7 @@ class Checklist {
         }
     }
 
-    private fun getChecklistBathRoom(): List<CheckItem> {
+    private fun getChecklistBathRoom(): MutableList<CheckItem> {
         return mutableListOf<CheckItem>().apply {
             add(CheckItem("욕실 시설의 상태가 양호한가요?"))
             add(CheckItem("수압 및 이물질, 배수상태는 양호한가요?"))
@@ -95,7 +110,7 @@ class Checklist {
         }
     }
 
-    private fun getChecklistVeranda(): List<CheckItem> {
+    private fun getChecklistVeranda(): MutableList<CheckItem> {
         return mutableListOf<CheckItem>().apply {
             add(CheckItem("주변 건물과의 간격은 적당한가요?"))
             add(CheckItem("베란다 시설의 상태가 양호한가요?"))
@@ -104,7 +119,7 @@ class Checklist {
         }
     }
 
-    private fun getChecklistOption(): List<CheckItem> {
+    private fun getChecklistOption(): MutableList<CheckItem> {
         return mutableListOf<CheckItem>().apply {
             add(CheckItem("주차가 가능한가요?"))
             add(CheckItem("반려동물과 함께 거주 가능한가요?"))

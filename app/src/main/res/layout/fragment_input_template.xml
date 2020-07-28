@@ -68,7 +68,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="@dimen/margin_padding_size_small"
                             android:layout_weight="1"
-                            android:text="나의 정보 추가" />
+                            android:onClick="@{()->viewModel.onClickAddCustomItemBtn()}"
+                            android:text="나의 체크리스트 추가" />
 
                         <com.google.android.material.button.MaterialButton
                             android:layout_width="0dp"
