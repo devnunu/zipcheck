@@ -34,25 +34,78 @@
                     android:layout_marginTop="@dimen/margin_padding_size_medium"
                     android:text="체크리스트 템플릿을 만들어주세요" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/list_category_name"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_padding_size_xlarge"
-                    android:clipToPadding="true"
-                    android:nestedScrollingEnabled="false"
-                    android:orientation="vertical"
-                    app:categoryNames="@{viewModel.categoryNameList}"
-                    app:checklist="@{viewModel.checklist}"
-                    app:layoutManager="LinearLayoutManager"
-                    tools:itemCount="2"
-                    tools:listitem="@layout/item_input_template_category" />
+                    android:orientation="vertical">
 
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_padding_size_large"
+                        android:hint="템플릿 이름"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="20">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:singleLine="true"
+                            android:text="@={viewModel.name}" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_padding_size_large"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/margin_padding_size_small"
+                            android:layout_weight="1"
+                            android:text="나의 정보 추가" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:onClick="@{()->viewModel.onClickAddCategoryBtn()}"
+                            android:text="카테고리 추가" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="아직 체크 리스트가 없군요. 버튼을 눌러 요소를 추가해주세요"
+                        app:visibleIf="@{!viewModel.haveChecklistItem}" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/list_category_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clipToPadding="true"
+                        android:nestedScrollingEnabled="false"
+                        android:orientation="vertical"
+                        app:categoryNames="@{viewModel.categoryNameList}"
+                        app:checklist="@{viewModel.checklist}"
+                        app:layoutManager="LinearLayoutManager"
+                        app:visibleIf="@{viewModel.haveChecklistItem}"
+                        tools:itemCount="2"
+                        tools:listitem="@layout/item_input_template_category" />
+
+                </LinearLayout>
 
             </LinearLayout>
         </ScrollView>
 
         <com.google.android.material.button.MaterialButton
+            style="@style/Btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
+import com.devnunu.zipcheck.common.Event
 import com.devnunu.zipcheck.data.checklist.model.Checklist
 import com.devnunu.zipcheck.data.checklist.model.ChecklistType
 import com.devnunu.zipcheck.data.house.repo.HouseRepository
@@ -14,6 +15,8 @@ class InputTemplateViewModel @Inject constructor(
     private val houseRepository: HouseRepository
 ) : ViewModel(), TemplateItemListener {
 
+    val name = MutableLiveData<String>()
+
     private val _checklist = MutableLiveData<Checklist>()
     val checklist: LiveData<Checklist> = _checklist
 
@@ -21,12 +24,21 @@ class InputTemplateViewModel @Inject constructor(
         it.items?.keys?.toList()
     }
 
+    val haveChecklistItem = _checklist.map {
+        !it.items.isNullOrEmpty()
+    }
+
+    /** event */
+    private val _onClickAddCategoryBtn = MutableLiveData<Event<Unit>>()
+    val onClickAddCategoryBtn: LiveData<Event<Unit>> = _onClickAddCategoryBtn
+
     fun start(defaultChecklistItems: List<ChecklistType?>) {
         _checklist.value = Checklist().apply {
             resetToDefaultItems(defaultChecklistItems)
         }
     }
 
+    /** checklist item click handler */
     override fun onClickRemoveCategory(categoryName: String) {
         val checklist = _checklist.value
         val checklistItems = checklist?.items?.toMutableMap()
@@ -44,5 +56,10 @@ class InputTemplateViewModel @Inject constructor(
         checklistItems?.put(categoryName, checkItemList.toList())
         checklist?.items = checklistItems?.toMap()
         _checklist.value = checklist
+    }
+
+    /** button click handler */
+    fun onClickAddCategoryBtn() {
+        _onClickAddCategoryBtn.value = Event(Unit)
     }
 }
