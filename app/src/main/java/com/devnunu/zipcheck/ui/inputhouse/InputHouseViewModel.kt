@@ -41,9 +41,9 @@ class InputHouseViewModel @Inject constructor(
     val deposit = MutableLiveData<String>()
 
     val depositFormatText = deposit.map {
-        try {
-            CurrencyUtil.toKrCurrencyText(it.toLong(), true)
-        } catch (e: NumberFormatException) {
+        if (!it.isNullOrEmpty()) {
+            CurrencyUtil.toKrCurrencyText(it.toLong() * 10000, true)
+        } else {
             "0 원"
         }
     }
@@ -51,9 +51,9 @@ class InputHouseViewModel @Inject constructor(
     val monthlyPay = MutableLiveData<String>()
 
     val monthlyPayFormatText = monthlyPay.map {
-        try {
-            CurrencyUtil.toKrCurrencyText(it.toLong(), true)
-        } catch (e: NumberFormatException) {
+        if (!it.isNullOrEmpty()) {
+            CurrencyUtil.toKrCurrencyText(it.toLong() * 10000, true)
+        } else {
             "0 원"
         }
     }

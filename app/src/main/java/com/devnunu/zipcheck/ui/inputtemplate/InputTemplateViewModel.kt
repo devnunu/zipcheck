@@ -36,7 +36,13 @@ class InputTemplateViewModel @Inject constructor(
 
     }
 
-    override fun onClickRemoveChecklistItem() {
-        TODO("Not yet implemented")
+    override fun onClickRemoveChecklistItem(categoryName: String, index: Int) {
+        val checklist = _checklist.value
+        val checklistItems = checklist?.items?.toMutableMap()
+        val checkItemList = checklistItems?.get(categoryName)?.toMutableList() ?: mutableListOf()
+        checkItemList.removeAt(index)
+        checklistItems?.put(categoryName, checkItemList.toList())
+        checklist?.items = checklistItems?.toMap()
+        _checklist.value = checklist
     }
 }

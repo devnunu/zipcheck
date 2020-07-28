@@ -61,7 +61,8 @@ class ChecklistCategoryItemAdapter(
         fun bind(item: ChecklistCategoryItem?) {
             binding.also {
                 it.item = item
-                it.listChecklistItem.adapter = ChecklistItemAdapter(templateItemListener)
+                it.listChecklistItem.adapter =
+                    ChecklistItemAdapter(templateItemListener, item?.categoryName)
                 it.listener = templateItemListener
                 it.executePendingBindings()
             }
@@ -78,7 +79,7 @@ class ChecklistCategoryItemAdapter(
             checklist: Checklist?
         ) {
             val adapter = recyclerView.adapter as ChecklistCategoryItemAdapter?
-            if (!categoryNameList.isNullOrEmpty() && checklist != null) {
+            if (categoryNameList != null && checklist != null) {
                 adapter?.setItem(categoryNameList, checklist)
             }
         }

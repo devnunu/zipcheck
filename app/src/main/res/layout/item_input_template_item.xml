@@ -5,8 +5,16 @@
     <data>
 
         <variable
+            name="categoryName"
+            type="String" />
+
+        <variable
             name="item"
             type="com.devnunu.zipcheck.ui.inputtemplate.category.item.ChecklistItem" />
+
+        <variable
+            name="listener"
+            type="com.devnunu.zipcheck.ui.inputtemplate.category.TemplateItemListener" />
     </data>
 
     <LinearLayout
@@ -26,7 +34,8 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_clear_24px" />
+            android:src="@drawable/ic_clear_24px"
+            android:onClick="@{()->listener.onClickRemoveChecklistItem(categoryName, item.index)}"/>
 
     </LinearLayout>
 </layout>
