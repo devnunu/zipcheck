@@ -37,7 +37,7 @@ class InputTemplateFragment :
                 val items = selectedItems.map {
                     ChecklistType.fromDisplayName(keyArray[it])
                 }
-                viewModel.start(items)
+                viewModel.addChecklistItems(items)
             }
             .setMultiChoiceItems(keyArray, null) { dialog, which, checked ->
                 if (checked) {

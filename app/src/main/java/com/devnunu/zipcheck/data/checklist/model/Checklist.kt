@@ -5,10 +5,10 @@ class Checklist {
     val name: String = ""
     var items: Map<String, List<CheckItem>>? = linkedMapOf()
 
-    fun resetToDefaultItems(typeList: List<ChecklistType?>) {
-        val map = linkedMapOf<String, List<CheckItem>>()
+    fun addDefaultItems(typeList: List<ChecklistType?>) {
+        val map = items?.toMutableMap()
         typeList.filterNotNull().forEach { checklistType ->
-            map[checklistType.displayName] = getDefaultChecklist(checklistType)
+            map?.put(checklistType.displayName, getDefaultChecklist(checklistType))
         }
         items = map
     }
@@ -121,7 +121,7 @@ enum class ChecklistType(val displayName: String) {
     CHECKLIST_TYPE_ENTRANCE("현관"),
     CHECKLIST_TYPE_MAIN_ROOM("안방/거실"),
     CHECKLIST_TYPE_KITCHEN("주방"),
-    CHECKLIST_TYPE_BATHROOM("주방"),
+    CHECKLIST_TYPE_BATHROOM("화장실"),
     CHECKLIST_TYPE_VERANDA("베란다"),
     CHECKLIST_TYPE_OPTION("옵션"),
     CHECKLIST_TYPE_USER_CUSTOM("내가 추가한 목록");

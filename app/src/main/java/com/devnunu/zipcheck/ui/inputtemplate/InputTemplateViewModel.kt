@@ -32,17 +32,24 @@ class InputTemplateViewModel @Inject constructor(
     private val _onClickAddCategoryBtn = MutableLiveData<Event<Unit>>()
     val onClickAddCategoryBtn: LiveData<Event<Unit>> = _onClickAddCategoryBtn
 
-    fun start(defaultChecklistItems: List<ChecklistType?>) {
-        _checklist.value = Checklist().apply {
-            resetToDefaultItems(defaultChecklistItems)
+    init {
+        _checklist.value = Checklist()
+    }
+
+    fun addChecklistItems(defaultChecklistItems: List<ChecklistType?>) {
+        val checklist = _checklist.value
+        checklist?.apply {
+            addDefaultItems(defaultChecklistItems)
         }
+        _checklist.value = checklist
     }
 
     fun getCategoryList(): Array<String> {
         val categoryNames = checklist.value?.items?.keys?.toList()
         return ChecklistType.values().filter {
-            val isNotAddedCategory = categoryNames?.contains(it.displayName)?.not()
-            isNotAddedCategory ?: true
+            val isNotAddedCategory = categoryNames?.contains(it.displayName)?.not() ?: true
+            val isNotCustomType = ChecklistType.CHECKLIST_TYPE_USER_CUSTOM != it
+            isNotAddedCategory && isNotCustomType
         }.map {
             it.displayName
         }.toTypedArray()
