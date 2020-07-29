@@ -13,5 +13,5 @@ class House {
     var monthlyPay: Long = 0
     var memo: String = ""
     var houseType: HouseType? = null
-    val checklist: Checklist? = null
+    var checklist: Checklist? = null
 }

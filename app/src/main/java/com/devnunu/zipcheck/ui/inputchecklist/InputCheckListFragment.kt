@@ -26,5 +26,9 @@ class InputCheckListFragment : BaseFragment<FragmentInputChecklistBinding, Input
                 InputCheckListFragmentDirections.actionInputCheckListFragmentToCheckListTemplateFragment()
             findNavController().navigate(action)
         })
+
+        viewModel.onSuccessSubmitHouse.observe(this, EventObserver {
+//            findNavController().navigateUp()
+        })
     }
 }

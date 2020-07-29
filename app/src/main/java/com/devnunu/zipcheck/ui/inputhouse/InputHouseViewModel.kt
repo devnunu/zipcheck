@@ -114,6 +114,7 @@ class InputHouseViewModel @Inject constructor(
             deposit = this@InputHouseViewModel.deposit.value?.toLong() ?: 0
             monthlyPay = this@InputHouseViewModel.monthlyPay.value?.toLong() ?: 0
         }
+        houseRepository.setInputHouse(house)
     }
 
 }
