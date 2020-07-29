@@ -2,6 +2,7 @@ package com.devnunu.zipcheck.ui.inputtemplate
 
 import android.text.InputType
 import android.widget.EditText
+import androidx.navigation.fragment.findNavController
 import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.common.BaseFragment
 import com.devnunu.zipcheck.common.EventObserver
@@ -32,6 +33,10 @@ class InputTemplateFragment :
 
         viewModel.onClickAddCustomItemBtn.observe(this, EventObserver {
             showCustomCheckItemDialog()
+        })
+
+        viewModel.onSuccessSaveTemplate.observe(this, EventObserver {
+            findNavController().navigateUp()
         })
     }
 

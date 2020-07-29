@@ -112,6 +112,8 @@
             android:layout_gravity="bottom"
             android:layout_marginHorizontal="@dimen/margin_padding_size_large"
             android:layout_marginBottom="@dimen/margin_padding_size_large"
+            android:enabled="@{viewModel.isBottomBtnEnable}"
+            android:onClick="@{()->viewModel.onClickSubmitTemplateBtn()}"
             android:text="작성완료" />
 
     </LinearLayout>

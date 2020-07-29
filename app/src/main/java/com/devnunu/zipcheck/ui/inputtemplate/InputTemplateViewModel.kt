@@ -1,18 +1,18 @@
 package com.devnunu.zipcheck.ui.inputtemplate
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.map
+import androidx.lifecycle.*
 import com.devnunu.zipcheck.common.Event
 import com.devnunu.zipcheck.data.checklist.model.Checklist
 import com.devnunu.zipcheck.data.checklist.model.ChecklistType
+import com.devnunu.zipcheck.data.checklist.repo.CheckListRepository
 import com.devnunu.zipcheck.data.house.repo.HouseRepository
+import com.devnunu.zipcheck.ui.inputhouse.InputHouseViewModel
 import com.devnunu.zipcheck.ui.inputtemplate.category.TemplateItemListener
 import javax.inject.Inject
 
 class InputTemplateViewModel @Inject constructor(
-    private val houseRepository: HouseRepository
+    private val houseRepository: HouseRepository,
+    private val checkListRepository: CheckListRepository
 ) : ViewModel(), TemplateItemListener {
 
     val name = MutableLiveData<String>()
@@ -28,12 +28,27 @@ class InputTemplateViewModel @Inject constructor(
         !it.items.isNullOrEmpty()
     }
 
+    val isBottomBtnEnable = MediatorLiveData<Boolean>().apply {
+        addSource(name) { value = checkIsBottomBtnEnable() }
+        addSource(haveChecklistItem) { value = checkIsBottomBtnEnable() }
+
+    }
+
+    private fun checkIsBottomBtnEnable(): Boolean {
+        val verifyName = name.value?.isEmpty()?.not() ?: false
+        val verifyChecklist = haveChecklistItem.value ?: false
+        return verifyName && verifyChecklist
+    }
+
     /** event */
     private val _onClickAddCategoryBtn = MutableLiveData<Event<Unit>>()
     val onClickAddCategoryBtn: LiveData<Event<Unit>> = _onClickAddCategoryBtn
 
     private val _onClickAddCustomItemBtn = MutableLiveData<Event<Unit>>()
     val onClickAddCustomItemBtn: LiveData<Event<Unit>> = _onClickAddCustomItemBtn
+
+    private val _onSuccessSaveTemplate = MutableLiveData<Event<Unit>>()
+    val onSuccessSaveTemplate: LiveData<Event<Unit>> = _onSuccessSaveTemplate
 
     init {
         _checklist.value = Checklist()
@@ -93,5 +108,13 @@ class InputTemplateViewModel @Inject constructor(
 
     fun onClickAddCustomItemBtn() {
         _onClickAddCustomItemBtn.value = Event(Unit)
+    }
+
+    fun onClickSubmitTemplateBtn() {
+        val checklist = checklist.value
+        checklist?.let {
+            checkListRepository.saveChecklist(it)
+            _onSuccessSaveTemplate.value = Event(Unit)
+        }
     }
 }

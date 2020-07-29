@@ -5,9 +5,19 @@ import androidx.lifecycle.MutableLiveData
 import com.devnunu.zipcheck.data.checklist.model.Checklist
 
 class CheckListRepository {
-    private val checkLists = MutableLiveData<List<Checklist>>()
+    private val checklists = MutableLiveData<MutableList<Checklist>>()
 
-    fun observeCheckLists(): LiveData<List<Checklist>> {
-        return checkLists
+    fun observeCheckLists(): LiveData<MutableList<Checklist>> {
+        return checklists
+    }
+
+    fun saveChecklist(checklist: Checklist) {
+        var newChecklists = checklists.value
+        if (newChecklists.isNullOrEmpty()) {
+            newChecklists = mutableListOf(checklist)
+        } else {
+            newChecklists.add(checklist)
+        }
+        checklists.value = newChecklists
     }
 }
