@@ -23,7 +23,8 @@
         <com.google.android.material.checkbox.MaterialCheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="@{()->listener.onSelectTemplate(item.index)}"/>
+            android:checked="@{item.selected}"
+            android:onClick="@{()->listener.onSelectTemplate(item.index)}" />
 
         <TextView
             android:layout_width="0dp"

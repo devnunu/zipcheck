@@ -36,17 +36,18 @@ class TemplateItemAdapter(val listener: TemplateItemListener) :
         return categoryItemList.size
     }
 
-    private fun setItem(checklists: List<Checklist>) {
+    private fun setItem(checklists: List<Checklist>, selIndex: Int?) {
         categoryItemList.clear()
-        categoryItemList.addAll(getChecklistItem(checklists))
+        categoryItemList.addAll(getChecklistItem(checklists, selIndex))
         notifyDataSetChanged()
     }
 
     private fun getChecklistItem(
-        checklists: List<Checklist>
+        checklists: List<Checklist>,
+        selIndex: Int?
     ): List<TemplateItem> {
         return checklists.mapIndexed { index, checklist ->
-            TemplateItem(checklist, index)
+            TemplateItem(checklist, index, selIndex == index)
         }
     }
 
@@ -63,14 +64,15 @@ class TemplateItemAdapter(val listener: TemplateItemListener) :
 
     companion object {
         @JvmStatic
-        @BindingAdapter(value = ["items"])
+        @BindingAdapter(value = ["items", "selIndex"])
         fun bindItem(
             recyclerView: RecyclerView,
-            checklists: List<Checklist>?
+            checklists: List<Checklist>?,
+            selIndex: Int?
         ) {
             val adapter = recyclerView.adapter as TemplateItemAdapter?
             checklists?.let {
-                adapter?.setItem(it)
+                adapter?.setItem(it, selIndex)
             }
         }
     }

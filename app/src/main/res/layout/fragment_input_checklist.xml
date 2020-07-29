@@ -57,6 +57,7 @@
                     android:orientation="vertical"
                     app:items="@{viewModel.checklists}"
                     app:layoutManager="LinearLayoutManager"
+                    app:selIndex="@{viewModel.selChecklistIndex}"
                     app:visibleIf="@{viewModel.haveChecklist}"
                     tools:itemCount="2"
                     tools:listitem="@layout/item_input_template_category" />
