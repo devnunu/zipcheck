@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -18,17 +20,20 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="hello, world!" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="집을 추가해보세요!" />
 
-        <TextView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_house"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="집이 있군요" />
+            android:clipToPadding="true"
+            android:nestedScrollingEnabled="false"
+            android:orientation="vertical"
+            app:items="@{viewModel.houseList}"
+            app:layoutManager="LinearLayoutManager"
+            app:visibleIf="@{viewModel.haveHouse}"
+            tools:itemCount="2"
+            tools:listitem="@layout/item_home_house" />
 
         <com.google.android.material.button.MaterialButton
             style="@style/Btn"

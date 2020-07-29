@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.devnunu.zipcheck.ui.home.item.HouseItem" />
+
+        <variable
+            name="listener"
+            type="com.devnunu.zipcheck.ui.home.item.HouseItemListener" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{()->listener.onClickHouseItem(item.id)}"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{item.name}"
+            android:paddingVertical="@dimen/margin_padding_size_medium"
+            tools:text="우리집 우리집"/>
+
+    </LinearLayout>
+</layout>

@@ -8,9 +8,9 @@ class HouseRepository {
 
     private var inputHouse: House? = null
 
-    private val houseList = MutableLiveData<List<House>>()
+    private val houseList = MutableLiveData<MutableList<House>>()
 
-    fun observeHouseList(): LiveData<List<House>> {
+    fun observeHouseList(): LiveData<MutableList<House>> {
         return houseList
     }
 
@@ -22,5 +22,12 @@ class HouseRepository {
 
     fun setInputHouse(house: House?) {
         inputHouse = house
+    }
+
+    /** house list CRUD */
+    fun addHouse(house: House) {
+        val list = houseList.value ?: mutableListOf()
+        list.add(house)
+        houseList.value = list
     }
 }

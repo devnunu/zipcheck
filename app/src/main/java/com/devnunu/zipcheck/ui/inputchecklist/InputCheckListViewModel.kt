@@ -54,7 +54,10 @@ class InputCheckListViewModel @Inject constructor(
             val index = selChecklistIndex.value ?: 0
             checklist = checklists.value?.get(index)
         }
-        houseRepository.setInputHouse(house)
-        _onSuccessSubmitHouse.value = Event(Unit)
+        house?.let {
+            houseRepository.setInputHouse(null)
+            houseRepository.addHouse(it)
+            _onSuccessSubmitHouse.value = Event(Unit)
+        }
     }
 }
