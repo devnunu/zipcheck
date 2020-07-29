@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.devnunu.zipcheck.data.checklist.model.Checklist
 import com.devnunu.zipcheck.databinding.ItemInputChecklistTemplateBinding
 
-class TemplateItemAdapter() :
+class TemplateItemAdapter(val listener: TemplateItemListener) :
     RecyclerView.Adapter<TemplateItemAdapter.TemplateViewHolder>() {
 
     private val categoryItemList: MutableList<TemplateItem> = mutableListOf()
@@ -45,10 +45,9 @@ class TemplateItemAdapter() :
     private fun getChecklistItem(
         checklists: List<Checklist>
     ): List<TemplateItem> {
-        return checklists.map {
-            TemplateItem(it)
+        return checklists.mapIndexed { index, checklist ->
+            TemplateItem(checklist, index)
         }
-
     }
 
     inner class TemplateViewHolder(private val binding: ItemInputChecklistTemplateBinding) :
@@ -56,13 +55,13 @@ class TemplateItemAdapter() :
         fun bind(item: TemplateItem?) {
             binding.also {
                 it.item = item
+                it.listener = listener
                 it.executePendingBindings()
             }
         }
     }
 
     companion object {
-
         @JvmStatic
         @BindingAdapter(value = ["items"])
         fun bindItem(

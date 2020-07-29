@@ -9,7 +9,7 @@ import com.devnunu.zipcheck.databinding.ItemInputTemplateCategoryBinding
 import com.devnunu.zipcheck.ui.inputtemplate.category.item.ChecklistItemAdapter
 
 class ChecklistCategoryItemAdapter(
-    val templateItemListener: TemplateItemListener
+    val inputTemplateItemListener: InputTemplateItemListener
 ) :
     RecyclerView.Adapter<ChecklistCategoryItemAdapter.CategoryViewHolder>() {
 
@@ -62,8 +62,8 @@ class ChecklistCategoryItemAdapter(
             binding.also {
                 it.item = item
                 it.listChecklistItem.adapter =
-                    ChecklistItemAdapter(templateItemListener, item?.categoryName)
-                it.listener = templateItemListener
+                    ChecklistItemAdapter(inputTemplateItemListener, item?.categoryName)
+                it.listener = inputTemplateItemListener
                 it.executePendingBindings()
             }
         }

@@ -7,6 +7,10 @@
         <variable
             name="item"
             type="com.devnunu.zipcheck.ui.inputchecklist.item.TemplateItem" />
+
+        <variable
+            name="listener"
+            type="com.devnunu.zipcheck.ui.inputchecklist.item.TemplateItemListener" />
     </data>
 
     <LinearLayout
@@ -18,7 +22,8 @@
 
         <com.google.android.material.checkbox.MaterialCheckBox
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:onClick="@{()->listener.onSelectTemplate(item.index)}"/>
 
         <TextView
             android:layout_width="0dp"

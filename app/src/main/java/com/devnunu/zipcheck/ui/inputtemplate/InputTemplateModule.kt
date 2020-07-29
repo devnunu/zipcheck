@@ -15,6 +15,6 @@ abstract class InputTemplateModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(InputTemplateViewModel::class)
-    abstract fun bindViewModel(viewModel: InputTemplateViewModel): ViewModel
+    @ViewModelKey(InputInputTemplateViewModel::class)
+    abstract fun bindViewModel(viewModel: InputInputTemplateViewModel): ViewModel
 }

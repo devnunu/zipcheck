@@ -16,7 +16,7 @@ class InputCheckListFragment : BaseFragment<FragmentInputChecklistBinding, Input
     override fun setBindingVariables() {
         binding.also {
             it.viewModel = viewModel
-            it.listChecklistTemplate.adapter = TemplateItemAdapter()
+            it.listChecklistTemplate.adapter = TemplateItemAdapter(viewModel)
         }
     }
 
@@ -28,7 +28,9 @@ class InputCheckListFragment : BaseFragment<FragmentInputChecklistBinding, Input
         })
 
         viewModel.onSuccessSubmitHouse.observe(this, EventObserver {
-//            findNavController().navigateUp()
+            val action =
+                InputCheckListFragmentDirections.actionInputCheckListFragmentToHomeFragment()
+            findNavController().navigate(action)
         })
     }
 }

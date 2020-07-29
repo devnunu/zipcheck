@@ -2,7 +2,7 @@ package com.devnunu.zipcheck.ui.inputchecklist.item
 
 import com.devnunu.zipcheck.data.checklist.model.Checklist
 
-class TemplateItem(val checklist: Checklist) {
+class TemplateItem(val checklist: Checklist, val index: Int) {
 
     val name = checklist.name
 

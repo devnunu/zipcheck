@@ -6,13 +6,13 @@ import com.devnunu.zipcheck.data.checklist.model.Checklist
 import com.devnunu.zipcheck.data.checklist.model.ChecklistType
 import com.devnunu.zipcheck.data.checklist.repo.ChecklistRepository
 import com.devnunu.zipcheck.data.house.repo.HouseRepository
-import com.devnunu.zipcheck.ui.inputtemplate.category.TemplateItemListener
+import com.devnunu.zipcheck.ui.inputtemplate.category.InputTemplateItemListener
 import javax.inject.Inject
 
-class InputTemplateViewModel @Inject constructor(
+class InputInputTemplateViewModel @Inject constructor(
     private val houseRepository: HouseRepository,
     private val checklistRepository: ChecklistRepository
-) : ViewModel(), TemplateItemListener {
+) : ViewModel(), InputTemplateItemListener {
 
     val name = MutableLiveData<String>()
 

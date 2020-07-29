@@ -67,6 +67,8 @@
                 style="@style/Btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:enabled="@{viewModel.isButtonEnable}"
+                android:onClick="@{()->viewModel.onClickSubmitHouseBtn()}"
                 android:text="완료" />
 
         </LinearLayout>

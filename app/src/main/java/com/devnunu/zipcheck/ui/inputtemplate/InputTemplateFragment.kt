@@ -13,9 +13,9 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 
 class InputTemplateFragment :
-    BaseFragment<FragmentInputTemplateBinding, InputTemplateViewModel>(
+    BaseFragment<FragmentInputTemplateBinding, InputInputTemplateViewModel>(
         R.layout.fragment_input_template,
-        InputTemplateViewModel::class
+        InputInputTemplateViewModel::class
     ) {
 
     override fun setBindingVariables() {

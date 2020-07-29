@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.devnunu.zipcheck.ui.inputtemplate.InputTemplateViewModel" />
+            type="com.devnunu.zipcheck.ui.inputtemplate.InputInputTemplateViewModel" />
     </data>
 
     <LinearLayout

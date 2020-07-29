@@ -6,10 +6,10 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.devnunu.zipcheck.data.checklist.model.CheckItem
 import com.devnunu.zipcheck.databinding.ItemInputTemplateItemBinding
-import com.devnunu.zipcheck.ui.inputtemplate.category.TemplateItemListener
+import com.devnunu.zipcheck.ui.inputtemplate.category.InputTemplateItemListener
 
 class ChecklistItemAdapter(
-    val templateItemListener: TemplateItemListener,
+    val inputTemplateItemListener: InputTemplateItemListener,
     val categoryName: String?
 ) :
     RecyclerView.Adapter<ChecklistItemAdapter.CategoryViewHolder>() {
@@ -58,7 +58,7 @@ class ChecklistItemAdapter(
             binding.also {
                 it.item = item
                 it.categoryName = categoryName
-                it.listener = templateItemListener
+                it.listener = inputTemplateItemListener
                 it.executePendingBindings()
             }
         }
