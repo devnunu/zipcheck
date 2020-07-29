@@ -2,7 +2,7 @@ package com.devnunu.zipcheck.data.checklist.model
 
 class Checklist {
 
-    val name: String = ""
+    var name: String? = ""
     var items: MutableMap<String, MutableList<CheckItem>>? = linkedMapOf()
 
     fun addCustomItem(title: String?) {

@@ -1,6 +1,6 @@
 package com.devnunu.zipcheck.di.common
 
-import com.devnunu.zipcheck.data.checklist.repo.CheckListRepository
+import com.devnunu.zipcheck.data.checklist.repo.ChecklistRepository
 import com.devnunu.zipcheck.data.house.repo.HouseRepository
 import dagger.Module
 import dagger.Provides
@@ -18,5 +18,5 @@ object ApplicationModule {
     @Provides
     @JvmStatic
     fun provideChecklistRepository(
-    ): CheckListRepository = CheckListRepository()
+    ): ChecklistRepository = ChecklistRepository()
 }

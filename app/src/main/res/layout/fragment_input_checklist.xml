@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -11,7 +12,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:fillViewport="true">
 
         <LinearLayout
@@ -25,14 +26,48 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_padding_size_medium"
-                tools:text="체크리스트를 선택해 주세요" />
+                android:text="체크리스트 템플릿을 선택해 주세요" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/margin_padding_size_xlarge"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{()->viewModel.onClickAddTemplateBtn()}"
+                    android:text="템플릿 생성" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="아직 체크 리스트가 없군요. 버튼을 눌러 요소를 추가해주세요"
+                    app:visibleIf="@{!viewModel.haveChecklist}" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list_checklist_template"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="true"
+                    android:nestedScrollingEnabled="false"
+                    android:orientation="vertical"
+                    app:items="@{viewModel.checklists}"
+                    app:layoutManager="LinearLayoutManager"
+                    app:visibleIf="@{viewModel.haveChecklist}"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/item_input_template_category" />
+
+            </LinearLayout>
 
             <com.google.android.material.button.MaterialButton
+                style="@style/Btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_padding_size_xlarge"
-                android:onClick="@{()->viewModel.onClickAddTemplateBtn()}"
-                android:text="체크리스트 생성" />
+                android:text="완료" />
 
         </LinearLayout>
     </ScrollView>

@@ -4,15 +4,14 @@ import androidx.lifecycle.*
 import com.devnunu.zipcheck.common.Event
 import com.devnunu.zipcheck.data.checklist.model.Checklist
 import com.devnunu.zipcheck.data.checklist.model.ChecklistType
-import com.devnunu.zipcheck.data.checklist.repo.CheckListRepository
+import com.devnunu.zipcheck.data.checklist.repo.ChecklistRepository
 import com.devnunu.zipcheck.data.house.repo.HouseRepository
-import com.devnunu.zipcheck.ui.inputhouse.InputHouseViewModel
 import com.devnunu.zipcheck.ui.inputtemplate.category.TemplateItemListener
 import javax.inject.Inject
 
 class InputTemplateViewModel @Inject constructor(
     private val houseRepository: HouseRepository,
-    private val checkListRepository: CheckListRepository
+    private val checklistRepository: ChecklistRepository
 ) : ViewModel(), TemplateItemListener {
 
     val name = MutableLiveData<String>()
@@ -113,7 +112,8 @@ class InputTemplateViewModel @Inject constructor(
     fun onClickSubmitTemplateBtn() {
         val checklist = checklist.value
         checklist?.let {
-            checkListRepository.saveChecklist(it)
+            it.name = name.value
+            checklistRepository.saveChecklist(it)
             _onSuccessSaveTemplate.value = Event(Unit)
         }
     }

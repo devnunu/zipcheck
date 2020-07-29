@@ -6,6 +6,7 @@ import com.devnunu.zipcheck.common.BaseFragment
 import com.devnunu.zipcheck.common.EventObserver
 import com.devnunu.zipcheck.databinding.FragmentHouseDetailBinding
 import com.devnunu.zipcheck.databinding.FragmentInputChecklistBinding
+import com.devnunu.zipcheck.ui.inputchecklist.item.TemplateItemAdapter
 
 class InputCheckListFragment : BaseFragment<FragmentInputChecklistBinding, InputCheckListViewModel>(
     R.layout.fragment_input_checklist,
@@ -15,6 +16,7 @@ class InputCheckListFragment : BaseFragment<FragmentInputChecklistBinding, Input
     override fun setBindingVariables() {
         binding.also {
             it.viewModel = viewModel
+            it.listChecklistTemplate.adapter = TemplateItemAdapter()
         }
     }
 
