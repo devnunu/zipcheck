@@ -30,7 +30,6 @@ class InputTemplateViewModel @Inject constructor(
     val isBottomBtnEnable = MediatorLiveData<Boolean>().apply {
         addSource(name) { value = checkIsBottomBtnEnable() }
         addSource(haveChecklistItem) { value = checkIsBottomBtnEnable() }
-
     }
 
     private fun checkIsBottomBtnEnable(): Boolean {

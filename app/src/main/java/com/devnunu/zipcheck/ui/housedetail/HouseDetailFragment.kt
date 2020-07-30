@@ -6,6 +6,8 @@ import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.common.BaseFragment
 import com.devnunu.zipcheck.databinding.FragmentHomeBinding
 import com.devnunu.zipcheck.databinding.FragmentHouseDetailBinding
+import com.devnunu.zipcheck.ui.housedetail.category.HouseChecklistCategoryItemAdapter
+import com.devnunu.zipcheck.ui.inputtemplate.category.InputChecklistCategoryItemAdapter
 
 class HouseDetailFragment : BaseFragment<FragmentHouseDetailBinding, HouseDetailViewModel>(
     R.layout.fragment_house_detail,
@@ -21,6 +23,8 @@ class HouseDetailFragment : BaseFragment<FragmentHouseDetailBinding, HouseDetail
     override fun setBindingVariables() {
         binding.also {
             it.viewModel = viewModel
+            it.listCategoryName.adapter =
+                HouseChecklistCategoryItemAdapter(viewModel)
         }
     }
 

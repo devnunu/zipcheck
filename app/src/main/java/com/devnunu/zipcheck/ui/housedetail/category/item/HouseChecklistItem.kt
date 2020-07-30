@@ -1,4 +1,7 @@
 package com.devnunu.zipcheck.ui.housedetail.category.item
 
-class HouseChecklistItem {
+import com.devnunu.zipcheck.data.checklist.model.CheckItem
+
+class HouseChecklistItem(checklistItem: CheckItem, val index: Int) {
+    val title = checklistItem.title
 }
