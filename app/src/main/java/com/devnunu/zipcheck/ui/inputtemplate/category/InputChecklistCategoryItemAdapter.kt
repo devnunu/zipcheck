@@ -6,14 +6,14 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.devnunu.zipcheck.data.checklist.model.Checklist
 import com.devnunu.zipcheck.databinding.ItemInputTemplateCategoryBinding
-import com.devnunu.zipcheck.ui.inputtemplate.category.item.ChecklistItemAdapter
+import com.devnunu.zipcheck.ui.inputtemplate.category.item.InputChecklistItemAdapter
 
-class ChecklistCategoryItemAdapter(
+class InputChecklistCategoryItemAdapter(
     val inputTemplateItemListener: InputTemplateItemListener
 ) :
-    RecyclerView.Adapter<ChecklistCategoryItemAdapter.CategoryViewHolder>() {
+    RecyclerView.Adapter<InputChecklistCategoryItemAdapter.CategoryViewHolder>() {
 
-    private val categoryItemList: MutableList<ChecklistCategoryItem> = mutableListOf()
+    private val categoryItemList: MutableList<InputChecklistCategoryItem> = mutableListOf()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -48,21 +48,21 @@ class ChecklistCategoryItemAdapter(
     private fun getChecklistItem(
         categoryNameList: List<String>,
         checklist: Checklist
-    ): List<ChecklistCategoryItem> {
+    ): List<InputChecklistCategoryItem> {
         return categoryNameList.map {
             val checklistItems = checklist.items?.get(it)
-            ChecklistCategoryItem(it, checklistItems)
+            InputChecklistCategoryItem(it, checklistItems)
         }
 
     }
 
     inner class CategoryViewHolder(private val binding: ItemInputTemplateCategoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: ChecklistCategoryItem?) {
+        fun bind(item: InputChecklistCategoryItem?) {
             binding.also {
                 it.item = item
                 it.listChecklistItem.adapter =
-                    ChecklistItemAdapter(inputTemplateItemListener, item?.categoryName)
+                    InputChecklistItemAdapter(inputTemplateItemListener, item?.categoryName)
                 it.listener = inputTemplateItemListener
                 it.executePendingBindings()
             }
@@ -78,7 +78,7 @@ class ChecklistCategoryItemAdapter(
             categoryNameList: List<String>?,
             checklist: Checklist?
         ) {
-            val adapter = recyclerView.adapter as ChecklistCategoryItemAdapter?
+            val adapter = recyclerView.adapter as InputChecklistCategoryItemAdapter?
             if (categoryNameList != null && checklist != null) {
                 adapter?.setItem(categoryNameList, checklist)
             }

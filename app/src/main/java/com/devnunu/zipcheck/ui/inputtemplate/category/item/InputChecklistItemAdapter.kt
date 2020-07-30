@@ -8,13 +8,13 @@ import com.devnunu.zipcheck.data.checklist.model.CheckItem
 import com.devnunu.zipcheck.databinding.ItemInputTemplateItemBinding
 import com.devnunu.zipcheck.ui.inputtemplate.category.InputTemplateItemListener
 
-class ChecklistItemAdapter(
+class InputChecklistItemAdapter(
     val inputTemplateItemListener: InputTemplateItemListener,
     val categoryName: String?
 ) :
-    RecyclerView.Adapter<ChecklistItemAdapter.CategoryViewHolder>() {
+    RecyclerView.Adapter<InputChecklistItemAdapter.CategoryViewHolder>() {
 
-    private val checklistChecklistItem: MutableList<ChecklistItem> = mutableListOf()
+    private val checklistChecklistItem: MutableList<InputChecklistItem> = mutableListOf()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -46,15 +46,15 @@ class ChecklistItemAdapter(
         notifyDataSetChanged()
     }
 
-    private fun getChecklistItem(checklistItems: List<CheckItem>): List<ChecklistItem> {
+    private fun getChecklistItem(checklistItems: List<CheckItem>): List<InputChecklistItem> {
         return checklistItems.mapIndexed { index, item ->
-            ChecklistItem(item, index)
+            InputChecklistItem(item, index)
         }
     }
 
     inner class CategoryViewHolder(private val binding: ItemInputTemplateItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: ChecklistItem?) {
+        fun bind(item: InputChecklistItem?) {
             binding.also {
                 it.item = item
                 it.categoryName = categoryName
@@ -72,7 +72,7 @@ class ChecklistItemAdapter(
             recyclerView: RecyclerView,
             checklistItems: List<CheckItem>?
         ) {
-            val adapter = recyclerView.adapter as ChecklistItemAdapter?
+            val adapter = recyclerView.adapter as InputChecklistItemAdapter?
             checklistItems?.let {
                 adapter?.setItem(it)
             }

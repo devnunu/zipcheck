@@ -10,7 +10,7 @@
 
         <variable
             name="item"
-            type="com.devnunu.zipcheck.ui.inputtemplate.category.item.ChecklistItem" />
+            type="com.devnunu.zipcheck.ui.inputtemplate.category.item.InputChecklistItem" />
 
         <variable
             name="listener"

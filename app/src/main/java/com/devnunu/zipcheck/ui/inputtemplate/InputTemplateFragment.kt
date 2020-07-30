@@ -8,7 +8,7 @@ import com.devnunu.zipcheck.common.BaseFragment
 import com.devnunu.zipcheck.common.EventObserver
 import com.devnunu.zipcheck.data.checklist.model.ChecklistType
 import com.devnunu.zipcheck.databinding.FragmentInputTemplateBinding
-import com.devnunu.zipcheck.ui.inputtemplate.category.ChecklistCategoryItemAdapter
+import com.devnunu.zipcheck.ui.inputtemplate.category.InputChecklistCategoryItemAdapter
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 
@@ -22,7 +22,7 @@ class InputTemplateFragment :
         binding.also {
             it.viewModel = viewModel
             it.listCategoryName.adapter =
-                ChecklistCategoryItemAdapter(viewModel)
+                InputChecklistCategoryItemAdapter(viewModel)
         }
     }
 
