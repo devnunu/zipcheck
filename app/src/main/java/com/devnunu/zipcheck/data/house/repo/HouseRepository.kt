@@ -2,6 +2,7 @@ package com.devnunu.zipcheck.data.house.repo
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.liveData
 import com.devnunu.zipcheck.data.house.model.House
 
 class HouseRepository {
@@ -12,6 +13,14 @@ class HouseRepository {
 
     fun observeHouseList(): LiveData<MutableList<House>> {
         return houseList
+    }
+
+    fun observeHouse(id: String): LiveData<House> {
+        return MutableLiveData(
+            houseList.value?.firstOrNull {
+                it.id == id
+            }
+        )
     }
 
 

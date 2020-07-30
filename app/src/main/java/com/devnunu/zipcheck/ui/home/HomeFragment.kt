@@ -18,7 +18,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
             it.viewModel = viewModel
             it.listHouse.adapter = HouseItemAdapter(object : HouseItemListener {
                 override fun onClickHouseItem(id: String) {
-                    val action = HomeFragmentDirections.actionHomeFragmentToHouseDetailFragment()
+                    val action = HomeFragmentDirections.actionHomeFragmentToHouseDetailFragment(id)
                     findNavController().navigate(action)
                 }
             })
