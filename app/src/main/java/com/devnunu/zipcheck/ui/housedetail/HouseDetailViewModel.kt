@@ -1,8 +1,10 @@
 package com.devnunu.zipcheck.ui.housedetail
 
 import androidx.lifecycle.*
+import com.devnunu.zipcheck.common.util.CurrencyUtil
 import com.devnunu.zipcheck.data.checklist.model.Checklist
 import com.devnunu.zipcheck.data.house.model.House
+import com.devnunu.zipcheck.data.house.model.HouseType
 import com.devnunu.zipcheck.data.house.repo.HouseRepository
 import com.devnunu.zipcheck.ui.housedetail.category.HouseChecklistItemListener
 import javax.inject.Inject
@@ -17,6 +19,16 @@ class HouseDetailViewModel @Inject constructor(
         houseRepository.observeHouse(it)
     }
 
+    val typeAndPriceText = house.map {
+        when (it.houseType) {
+            HouseType.LEASE_MONTHLY_PAY ->
+                "${it.houseType?.displayName} ${CurrencyUtil.toKrCurrencyText(it.deposit)}/${CurrencyUtil.toKrCurrencyText(
+                    it.monthlyPay
+                )}"
+            else -> "${it.houseType?.displayName} ${CurrencyUtil.toKrCurrencyText(it.deposit)}"
+        }
+    }
+
     val checklist = house.map {
         it.checklist
     }
@@ -25,8 +37,18 @@ class HouseDetailViewModel @Inject constructor(
         it.checklist?.items?.keys?.toList()
     }
 
-    val name = MutableLiveData<String>().apply {
-        value = "name"
+    val checkItemCountText = house.map {
+        val checklistItems = it.checklist?.items
+        val keys = checklistItems?.keys
+        val checkedGoodCount = keys
+            ?.map { key ->
+                checklistItems[key]?.filter { checkItem -> checkItem.isGood ?: false }?.size
+            }
+            ?.count()
+        val itemCountText = checklistItems?.keys
+            ?.mapNotNull { key -> checklistItems[key]?.size }
+            ?.sumBy { count -> count }
+        "${checkedGoodCount}/${itemCountText}"
     }
 
     fun start(id: String) {

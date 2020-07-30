@@ -111,8 +111,8 @@ class InputHouseViewModel @Inject constructor(
         val house = House().apply {
             name = this@InputHouseViewModel.name.value ?: ""
             houseType = HouseType.fromDisplayName(this@InputHouseViewModel.houseType.value)
-            deposit = this@InputHouseViewModel.deposit.value?.toLong() ?: 0
-            monthlyPay = this@InputHouseViewModel.monthlyPay.value?.toLong() ?: 0
+            deposit = this@InputHouseViewModel.deposit.value?.toLong()?.times(10000) ?: 0
+            monthlyPay = this@InputHouseViewModel.monthlyPay.value?.toLong()?.times(10000) ?: 0
         }
         houseRepository.setInputHouse(house)
     }

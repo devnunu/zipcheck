@@ -44,7 +44,7 @@
             app:houseChecklistItems="@{item.checklistItems}"
             app:layoutManager="LinearLayoutManager"
             tools:itemCount="2"
-            tools:listitem="@layout/item_input_template_item" />
+            tools:listitem="@layout/item_house_detail_checklist_item" />
 
     </LinearLayout>
 </layout>

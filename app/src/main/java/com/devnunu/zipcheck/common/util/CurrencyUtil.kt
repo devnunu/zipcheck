@@ -4,7 +4,7 @@ import java.text.DecimalFormat
 
 object CurrencyUtil {
     @JvmStatic
-    fun toKrCurrencyText(value: Long?, addUnit: Boolean = false): String {
+    fun toKrCurrencyText(value: Long?, addUnit: Boolean = true): String {
         if (value == null) return if (addUnit) "0 원" else "0"
         var remainValue = value
         var result = ""
