@@ -1,5 +1,6 @@
 package com.devnunu.zipcheck.ui.inputhouse
 
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import androidx.navigation.fragment.findNavController
@@ -18,6 +19,7 @@ class InputHouseFragment : BaseFragment<FragmentInputHouseBinding, InputHouseVie
     override fun setBindingVariables() {
         binding.also {
             it.viewModel = viewModel
+            it.onClickBackBtn = View.OnClickListener { findNavController().navigateUp() }
             val items = listOf(
                 HouseType.LEASE_RENT.displayName,
                 HouseType.LEASE_MONTHLY_PAY.displayName,

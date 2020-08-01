@@ -45,7 +45,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="매물을 추가해보세요"
+                        android:text="아래의 버튼을 눌러 새로운 매물을 추가해보세요!"
                         android:textColor="@color/mono000"
                         android:textSize="@dimen/text_size_small" />
 

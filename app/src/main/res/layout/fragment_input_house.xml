@@ -6,116 +6,146 @@
     <data>
 
         <variable
+            name="onClickBackBtn"
+            type="android.view.View.OnClickListener" />
+
+        <variable
             name="viewModel"
             type="com.devnunu.zipcheck.ui.inputhouse.InputHouseViewModel" />
     </data>
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <include
+            layout="@layout/layout_common_header"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingHorizontal="@dimen/margin_padding_size_large">
+            android:layout_height="wrap_content"
+            app:onClickBackBtn="@{onClickBackBtn}"
+            app:title='@{"매출 정보 입력"}' />
 
-            <TextView
-                style="@style/Title"
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_padding_size_medium"
-                android:text="@{viewModel.title}"
-                tools:text="매물 별명을 입력해주세요" />
+                android:layout_height="match_parent">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_padding_size_xlarge"
-                android:hint="월세"
-                app:helperText="@{viewModel.monthlyPayFormatText}"
-                app:helperTextEnabled="true"
-                app:suffixText="만원"
-                app:visibleIf="@{viewModel.inputStep>=viewModel.STEP_MONTHLY_PAY}">
-
-                <com.google.android.material.textfield.TextInputEditText
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:enabled="@{viewModel.inputStep==viewModel.STEP_MONTHLY_PAY}"
-                    android:inputType="numberDecimal"
-                    android:maxLength="7"
-                    android:singleLine="true"
-                    android:text="@={viewModel.monthlyPay}" />
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="@dimen/margin_padding_size_large">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <TextView
+                        style="@style/Title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_padding_size_medium"
+                        android:text="@{viewModel.title}"
+                        tools:text="매물 별명을 입력해주세요" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_padding_size_xlarge"
-                android:hint="보증금"
-                app:helperText="@{viewModel.depositFormatText}"
-                app:helperTextEnabled="true"
-                app:suffixText="만원"
-                app:visibleIf="@{viewModel.inputStep>=viewModel.STEP_DEPOSIT}">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_padding_size_xlarge"
+                        android:hint="월세"
+                        app:boxBackgroundColor="@color/mono000"
+                        app:helperText="@{viewModel.monthlyPayFormatText}"
+                        app:helperTextEnabled="true"
+                        app:suffixText="만원"
+                        app:visibleIf="@{viewModel.inputStep>=viewModel.STEP_MONTHLY_PAY}">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:enabled="@{viewModel.inputStep==viewModel.STEP_DEPOSIT}"
-                    android:inputType="numberDecimal"
-                    android:maxLength="7"
-                    android:singleLine="true"
-                    android:text="@={viewModel.deposit}" />
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:enabled="@{viewModel.inputStep==viewModel.STEP_MONTHLY_PAY}"
+                            android:inputType="numberDecimal"
+                            android:maxLength="7"
+                            android:singleLine="true"
+                            android:text="@={viewModel.monthlyPay}" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/input_house_type"
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_padding_size_xlarge"
-                android:hint="매물 유형"
-                app:visibleIf="@{viewModel.inputStep>=viewModel.STEP_HOUSE_TYPE}">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_padding_size_xlarge"
+                        android:hint="보증금"
+                        app:boxBackgroundColor="@color/mono000"
+                        app:helperText="@{viewModel.depositFormatText}"
+                        app:helperTextEnabled="true"
+                        app:suffixText="만원"
+                        app:visibleIf="@{viewModel.inputStep>=viewModel.STEP_DEPOSIT}">
 
-                <AutoCompleteTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:enabled="@{viewModel.inputStep==viewModel.STEP_HOUSE_TYPE}"
-                    android:inputType="none"
-                    android:singleLine="true"
-                    android:text="@={viewModel.houseType}"/>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:enabled="@{viewModel.inputStep==viewModel.STEP_DEPOSIT}"
+                            android:inputType="numberDecimal"
+                            android:maxLength="7"
+                            android:singleLine="true"
+                            android:text="@={viewModel.deposit}" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_padding_size_xlarge"
-                android:hint="이름"
-                app:counterEnabled="true"
-                app:counterMaxLength="20">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/input_house_type"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_padding_size_xlarge"
+                        app:boxBackgroundColor="@color/mono000"
+                        android:hint="매물 유형"
+                        app:visibleIf="@{viewModel.inputStep>=viewModel.STEP_HOUSE_TYPE}">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:enabled="@{viewModel.inputStep==viewModel.STEP_NAME}"
-                    android:inputType="text"
-                    android:singleLine="true"
-                    android:text="@={viewModel.name}" />
+                        <AutoCompleteTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:enabled="@{viewModel.inputStep==viewModel.STEP_HOUSE_TYPE}"
+                            android:inputType="none"
+                            android:singleLine="true"
+                            android:text="@={viewModel.houseType}" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_padding_size_xlarge"
+                        android:hint="이름"
+                        app:boxBackgroundColor="@color/mono000"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="20">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:enabled="@{viewModel.inputStep==viewModel.STEP_NAME}"
+                            android:inputType="text"
+                            android:singleLine="true"
+                            android:text="@={viewModel.name}" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+            </ScrollView>
 
             <com.google.android.material.button.MaterialButton
                 style="@style/Btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginHorizontal="@dimen/margin_padding_size_medium"
+                android:layout_marginBottom="@dimen/margin_padding_size_medium"
                 android:enabled="@{viewModel.isBottomBtnEnable}"
                 android:onClick="@{()->viewModel.onClickBottomBtn()}"
                 android:text="다음" />
 
-        </LinearLayout>
-
-    </ScrollView>
+        </FrameLayout>
+    </LinearLayout>
 </layout>

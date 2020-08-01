@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.view.Gravity" />
+
+        <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="onClickBackBtn"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/layout_view_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/mono000"
+        android:paddingHorizontal="@dimen/margin_padding_size_small"
+        android:paddingVertical="@dimen/margin_padding_size_small"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/button_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{onClickBackBtn}"
+            android:padding="@dimen/margin_padding_size_small"
+            android:src="@drawable/ic_keyboard_arrow_left_24px"
+            android:layout_marginRight="@dimen/margin_padding_size_small"/>
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:textSize="@dimen/text_size_medium"
+            android:text="@{title}"
+            tool:text="헤더 제목" />
+    </LinearLayout>
+</layout>
