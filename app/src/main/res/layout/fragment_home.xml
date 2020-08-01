@@ -10,38 +10,105 @@
             type="com.devnunu.zipcheck.ui.home.HomeViewModel" />
     </data>
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingHorizontal="@dimen/margin_padding_size_large"
-        android:paddingTop="@dimen/margin_padding_size_large">
+        android:fillViewport="true">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="집을 추가해보세요!" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/list_house"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clipToPadding="true"
-            android:nestedScrollingEnabled="false"
-            android:orientation="vertical"
-            app:items="@{viewModel.houseList}"
-            app:layoutManager="LinearLayoutManager"
-            app:visibleIf="@{viewModel.haveHouse}"
-            tools:itemCount="2"
-            tools:listitem="@layout/item_home_house" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_gradient_emerald500_emerald100"
+                android:paddingBottom="@dimen/overlay_xlarge_plus">
 
-        <com.google.android.material.button.MaterialButton
-            style="@style/Btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_padding_size_xlarge"
-            android:onClick="@{()->viewModel.onClickAddHouseBtn()}"
-            android:text="집추가하기" />
-        x
-    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="@dimen/margin_padding_size_large"
+                    android:paddingVertical="@dimen/margin_padding_size_xlarge">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_padding_size_small"
+                        android:text="안녕하세요!"
+                        android:textColor="@color/mono000"
+                        android:textSize="@dimen/text_size_large"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="매물을 추가해보세요"
+                        android:textColor="@color/mono000"
+                        android:textSize="@dimen/text_size_small" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/overlay_xlarge_minus"
+                android:layout_weight="1"
+                android:background="@drawable/bg_mono000_upper_radius_16dp"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/margin_padding_size_large">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:gravity="center_vertical"
+                    android:onClick="@{()->viewModel.onClickAddHouseBtn()}"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="@dimen/margin_padding_size_large"
+                    android:paddingVertical="@dimen/margin_padding_size_small">
+
+                    <LinearLayout
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginRight="@dimen/margin_padding_size_medium"
+                        android:background="@drawable/bg_mono000_radius_4dp_mono200"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_add_24px" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="새로운 집 추가하기" />
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list_house"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="true"
+                    android:nestedScrollingEnabled="false"
+                    android:orientation="vertical"
+                    app:items="@{viewModel.houseList}"
+                    app:layoutManager="LinearLayoutManager"
+                    app:visibleIf="@{viewModel.haveHouse}"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/item_home_house" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 </layout>

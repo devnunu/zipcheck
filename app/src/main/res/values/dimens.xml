@@ -8,6 +8,9 @@
     <dimen name="margin_padding_size_xlarge">32dp</dimen>
     <dimen name="margin_padding_size_xxlarge">40dp</dimen>
 
+    <dimen name="overlay_xlarge_plus">36dp</dimen>
+    <dimen name="overlay_xlarge_minus">-36dp</dimen>
+
     <!-- text size-->
     <dimen name="text_size_micro">12sp</dimen>
     <dimen name="text_size_small">14sp</dimen>
