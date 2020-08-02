@@ -24,7 +24,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="@color/emerald400"
+            android:paddingHorizontal="@dimen/margin_padding_size_medium">
 
             <TextView
                 android:layout_width="0dp"
@@ -32,7 +34,17 @@
                 android:layout_weight="1"
                 android:paddingVertical="@dimen/margin_padding_size_small"
                 android:text="@{item.categoryName}"
+                android:textSize="@dimen/text_size_medium"
+                android:textColor="@color/mono000"
+                android:textStyle="bold"
                 tools:text="현관" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{()->listener.onClickAddCategoryItem(item.categoryName)}"
+                android:src="@drawable/ic_add_24px"
+                android:layout_marginRight="@dimen/margin_padding_size_small"/>
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -49,7 +61,7 @@
             android:clipToPadding="true"
             android:nestedScrollingEnabled="false"
             android:orientation="vertical"
-            android:paddingLeft="@dimen/margin_padding_size_medium"
+            android:paddingHorizontal="@dimen/margin_padding_size_medium"
             app:items="@{item.checklistTemplateItems}"
             app:layoutManager="LinearLayoutManager"
             tools:itemCount="2"

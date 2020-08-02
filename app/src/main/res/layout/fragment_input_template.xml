@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="onClickBackBtn"
+            type="android.view.View.OnClickListener" />
+
+        <variable
             name="viewModel"
             type="com.devnunu.zipcheck.ui.inputtemplate.InputTemplateViewModel" />
     </data>
@@ -14,6 +18,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+        <include
+            layout="@layout/layout_common_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:onClickBackBtn="@{onClickBackBtn}"
+            app:title='@{"체크리스트 템플릿"}' />
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -37,14 +48,24 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_padding_size_xlarge"
+                    android:layout_marginTop="@dimen/margin_padding_size_small"
                     android:orientation="vertical">
+
+                    <com.google.android.material.button.MaterialButton
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:onClick="@{()->viewModel.onClickAddCategoryBtn()}"
+                        android:text="카테고리 추가"
+                        app:icon="@drawable/ic_add_24px" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_padding_size_large"
                         android:hint="템플릿 이름"
+                        app:boxBackgroundColor="@color/mono000"
                         app:counterEnabled="true"
                         app:counterMaxLength="20">
 
@@ -56,35 +77,6 @@
                             android:text="@={viewModel.name}" />
 
                     </com.google.android.material.textfield.TextInputLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/margin_padding_size_large"
-                        android:orientation="horizontal">
-
-                        <com.google.android.material.button.MaterialButton
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="@dimen/margin_padding_size_small"
-                            android:layout_weight="1"
-                            android:onClick="@{()->viewModel.onClickAddCustomItemBtn()}"
-                            android:text="나의 체크리스트 추가" />
-
-                        <com.google.android.material.button.MaterialButton
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:onClick="@{()->viewModel.onClickAddCategoryBtn()}"
-                            android:text="카테고리 추가" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="아직 체크 리스트가 없군요. 버튼을 눌러 요소를 추가해주세요"
-                        app:visibleIf="@{!viewModel.haveChecklistItem}" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/list_category_name"

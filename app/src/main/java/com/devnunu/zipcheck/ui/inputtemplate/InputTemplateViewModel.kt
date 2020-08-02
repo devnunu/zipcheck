@@ -42,8 +42,8 @@ class InputTemplateViewModel @Inject constructor(
     private val _onClickAddCategoryBtn = MutableLiveData<Event<Unit>>()
     val onClickAddCategoryBtn: LiveData<Event<Unit>> = _onClickAddCategoryBtn
 
-    private val _onClickAddCustomItemBtn = MutableLiveData<Event<Unit>>()
-    val onClickAddCustomItemBtn: LiveData<Event<Unit>> = _onClickAddCustomItemBtn
+    private val _onClickAddCustomItemBtn = MutableLiveData<Event<String>>()
+    val onClickAddCustomItemBtn: LiveData<Event<String>> = _onClickAddCustomItemBtn
 
     private val _onSuccessSaveTemplate = MutableLiveData<Event<Unit>>()
     val onSuccessSaveTemplate: LiveData<Event<Unit>> = _onSuccessSaveTemplate
@@ -60,10 +60,10 @@ class InputTemplateViewModel @Inject constructor(
         _checklist.value = checklist
     }
 
-    fun addCustomChecklistItem(title: String?) {
+    fun addCustomChecklistItem(categoryName: String, title: String?) {
         val checklist = _checklist.value
         checklist?.apply {
-            addCustomItem(title)
+            addCustomItem(categoryName, title)
         }
         _checklist.value = checklist
     }
@@ -99,13 +99,13 @@ class InputTemplateViewModel @Inject constructor(
         }
     }
 
+    override fun onClickAddCategoryItem(categoryName: String) {
+        _onClickAddCustomItemBtn.value = Event(categoryName)
+    }
+
     /** button click handler */
     fun onClickAddCategoryBtn() {
         _onClickAddCategoryBtn.value = Event(Unit)
-    }
-
-    fun onClickAddCustomItemBtn() {
-        _onClickAddCustomItemBtn.value = Event(Unit)
     }
 
     fun onClickSubmitTemplateBtn() {

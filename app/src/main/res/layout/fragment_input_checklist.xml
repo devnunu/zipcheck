@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:onClickBackBtn="@{onClickBackBtn}"
-            app:title='@{"매출 정보 입력"}' />
+            app:title='@{"체크리스트 템플릿"}' />
 
         <ScrollView
             android:layout_width="match_parent"

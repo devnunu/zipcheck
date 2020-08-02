@@ -5,19 +5,9 @@ class Checklist {
     var name: String? = ""
     var items: MutableMap<String, MutableList<CheckItem>>? = linkedMapOf()
 
-    fun addCustomItem(title: String?) {
+    fun addCustomItem(categoryName: String, title: String?) {
         if (title == null) return
-        val haveCustomItemList =
-            items?.get(ChecklistType.CHECKLIST_TYPE_USER_CUSTOM.displayName) != null
-        if (haveCustomItemList) {
-            items?.get(ChecklistType.CHECKLIST_TYPE_USER_CUSTOM.displayName)
-                ?.add(CheckItem(title))
-        } else {
-            items?.put(
-                ChecklistType.CHECKLIST_TYPE_USER_CUSTOM.displayName,
-                mutableListOf(CheckItem(title))
-            )
-        }
+        items?.get(categoryName)?.add(CheckItem(title))
     }
 
     fun addDefaultItems(typeList: List<ChecklistType?>) {

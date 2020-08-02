@@ -1,6 +1,7 @@
 package com.devnunu.zipcheck.ui.inputtemplate
 
 import android.text.InputType
+import android.view.View
 import android.widget.EditText
 import androidx.navigation.fragment.findNavController
 import com.devnunu.zipcheck.R
@@ -21,6 +22,7 @@ class InputTemplateFragment :
     override fun setBindingVariables() {
         binding.also {
             it.viewModel = viewModel
+            it.onClickBackBtn = View.OnClickListener { findNavController().navigateUp() }
             it.listCategoryName.adapter =
                 InputChecklistCategoryItemAdapter(viewModel)
         }
@@ -32,7 +34,7 @@ class InputTemplateFragment :
         })
 
         viewModel.onClickAddCustomItemBtn.observe(this, EventObserver {
-            showCustomCheckItemDialog()
+            showCustomCheckItemDialog(it)
         })
 
         viewModel.onSuccessSaveTemplate.observe(this, EventObserver {
@@ -61,14 +63,14 @@ class InputTemplateFragment :
             .show()
     }
 
-    private fun showCustomCheckItemDialog() {
+    private fun showCustomCheckItemDialog(categoryName: String) {
         val input = EditText(requireContext())
         input.inputType = InputType.TYPE_CLASS_TEXT
         input.maxLines = 1
         MaterialAlertDialogBuilder(requireContext())
             .setTitle("나의 체크 아이템")
             .setPositiveButton("확인") { _, _ ->
-                viewModel.addCustomChecklistItem(input.text.toString())
+                viewModel.addCustomChecklistItem(categoryName, input.text.toString())
             }
             .setView(input)
             .show()
