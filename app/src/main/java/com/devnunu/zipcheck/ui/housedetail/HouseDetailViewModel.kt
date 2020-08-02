@@ -38,19 +38,34 @@ class HouseDetailViewModel @Inject constructor(
     }
 
     val checkItemCountText = house.map {
-        val checklistItems = it?.checklist?.items
+        val checkedGoodCount = getGoodCount(it)
+        val itemCountText = getTotalItemCount(it)
+        "${checkedGoodCount}/${itemCountText}"
+    }
+
+    val checkItemProgress = house.map {
+        val checkedGoodCount = getGoodCount(it)
+        val itemCountText = getTotalItemCount(it)
+        checkedGoodCount * 100 / itemCountText
+    }
+
+    private fun getGoodCount(house: House?): Int {
+        val checklistItems = house?.checklist?.items
         val keys = checklistItems?.keys
-        val checkedGoodCount = keys
+        return keys
             ?.mapNotNull { key ->
                 checklistItems[key]?.filter { checkItem -> checkItem.isGood != null }?.size
             }
-            ?.sumBy { count->
+            ?.sumBy { count ->
                 count
-            }
-        val itemCountText = checklistItems?.keys
+            } ?: 0
+    }
+
+    private fun getTotalItemCount(house: House?): Int {
+        val checklistItems = house?.checklist?.items
+        return checklistItems?.keys
             ?.mapNotNull { key -> checklistItems[key]?.size }
-            ?.sumBy { count -> count }
-        "${checkedGoodCount}/${itemCountText}"
+            ?.sumBy { count -> count } ?: 0
     }
 
     fun start(id: String) {

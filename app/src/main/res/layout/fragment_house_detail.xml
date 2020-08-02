@@ -97,6 +97,15 @@
 
                 </LinearLayout>
 
+                <ProgressBar
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="12dp"
+                    android:progress="@{viewModel.checkItemProgress}"
+                    android:progressDrawable="@drawable/progressbar"
+                    tools:progress="70"
+                    android:layout_marginBottom="@dimen/margin_padding_size_large"/>
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/list_category_name"
                     android:layout_width="match_parent"
