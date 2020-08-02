@@ -37,7 +37,7 @@
             android:onClick="@{()->listener.onClickCheckItem(categoryName, item.id, true)}"
             android:padding="@dimen/margin_padding_size_small"
             android:text="Good"
-            android:textColor="@{item.isGood == true ? @color/emerald500 : @color/mono500 }" />
+            android:textColor="@{item.isGood ? @color/emerald500 : @color/mono500 }" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -45,7 +45,7 @@
             android:onClick="@{()->listener.onClickCheckItem(categoryName, item.id, false)}"
             android:padding="@dimen/margin_padding_size_small"
             android:text="Bad"
-            android:textColor="@{item.isGood == false ? @color/emerald500 : @color/mono500 }" />
+            android:textColor="@{item.isBad ? @color/emerald500 : @color/mono500 }" />
 
     </LinearLayout>
 </layout>
