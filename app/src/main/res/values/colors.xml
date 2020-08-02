@@ -11,6 +11,8 @@
     <color name="emerald200">#9CEAEF</color>
     <color name="emerald100">#C4FFF9</color>
 
+    <color name="mono500">#B0B0B0</color>
+    <color name="mono400">#CACACA</color>
     <color name="mono200">#EDEDED</color>
     <color name="mono100">#F6F6F6</color>
     <color name="mono000">#FFFFFF</color>
