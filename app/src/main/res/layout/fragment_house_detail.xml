@@ -6,97 +6,115 @@
     <data>
 
         <variable
+            name="onClickBackBtn"
+            type="android.view.View.OnClickListener" />
+
+        <variable
             name="viewModel"
             type="com.devnunu.zipcheck.ui.housedetail.HouseDetailViewModel" />
 
     </data>
 
-    <androidx.core.widget.NestedScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:orientation="vertical">
 
-        <LinearLayout
+        <include
+            layout="@layout/layout_common_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:onClickBackBtn="@{onClickBackBtn}"
+            app:title='@{viewModel.checklist.name}' />
+
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:background="#9c9c9c"
-                android:gravity="center"
-                android:text="사진 들어갈 자리"
-                android:textSize="@dimen/text_size_large" />
+            android:fillViewport="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:padding="@dimen/margin_padding_size_medium">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@{viewModel.house.name}"
-                    android:textSize="@dimen/text_size_medium"
-                    tools:text="집집" />
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="#9c9c9c"
+                    android:gravity="center"
+                    android:text="사진 들어갈 자리"
+                    android:textSize="@dimen/text_size_large" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{viewModel.typeAndPriceText}"
-                    android:textSize="@dimen/text_size_large"
-                    android:textStyle="bold"
-                    tools:text="전세 2억 8,000 만 원" />
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/margin_padding_size_medium">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@{viewModel.house.name}"
+                        android:textSize="@dimen/text_size_medium"
+                        tools:text="집집" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.typeAndPriceText}"
+                        android:textSize="@dimen/text_size_large"
+                        android:textStyle="bold"
+                        tools:text="전세 2억 8,000 만 원" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:background="#F6F6F6" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/margin_padding_size_medium">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="체크리스트"
+                        android:textSize="@dimen/text_size_large"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.checkItemCountText}"
+                        android:textSize="@dimen/text_size_medium"
+                        tools:text="0/13" />
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list_category_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="true"
+                    android:nestedScrollingEnabled="false"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="@dimen/margin_padding_size_medium"
+                    app:categoryNames="@{viewModel.categoryNameList}"
+                    app:houseChecklist="@{viewModel.checklist}"
+                    app:layoutManager="LinearLayoutManager"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/item_house_detail_category" />
+
 
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:background="#F6F6F6" />
+        </androidx.core.widget.NestedScrollView>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="@dimen/margin_padding_size_medium">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="체크리스트"
-                    android:textSize="@dimen/text_size_large"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{viewModel.checkItemCountText}"
-                    android:textSize="@dimen/text_size_medium"
-                    tools:text="0/13" />
-
-            </LinearLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/list_category_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clipToPadding="true"
-                android:nestedScrollingEnabled="false"
-                android:orientation="vertical"
-                android:paddingHorizontal="@dimen/margin_padding_size_medium"
-                app:categoryNames="@{viewModel.categoryNameList}"
-                app:houseChecklist="@{viewModel.checklist}"
-                app:layoutManager="LinearLayoutManager"
-                tools:itemCount="2"
-                tools:listitem="@layout/item_house_detail_category" />
-
-
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
 </layout>

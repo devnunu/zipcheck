@@ -3,6 +3,7 @@ package com.devnunu.zipcheck.data.house.repo
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
+import androidx.lifecycle.map
 import com.devnunu.zipcheck.data.house.model.House
 
 class HouseRepository {
@@ -15,12 +16,12 @@ class HouseRepository {
         return houseList
     }
 
-    fun observeHouse(id: String): LiveData<House> {
-        return MutableLiveData(
-            houseList.value?.firstOrNull {
-                it.id == id
+    fun observeHouse(id: String): LiveData<House?> {
+        return houseList.map {
+            it?.firstOrNull {house->
+                house.id == id
             }
-        )
+        }
     }
 
 
@@ -37,6 +38,14 @@ class HouseRepository {
     fun addHouse(house: House) {
         val list = houseList.value ?: mutableListOf()
         list.add(house)
+        houseList.value = list
+    }
+
+    fun updateHouse(house: House) {
+        val list = houseList.value ?: mutableListOf()
+        list.map {
+            if (it.id == house.id) house else it
+        }
         houseList.value = list
     }
 }

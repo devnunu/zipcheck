@@ -1,6 +1,8 @@
 package com.devnunu.zipcheck.ui.housedetail
 
 import android.os.Bundle
+import android.view.View
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.common.BaseFragment
@@ -23,9 +25,9 @@ class HouseDetailFragment : BaseFragment<FragmentHouseDetailBinding, HouseDetail
     override fun setBindingVariables() {
         binding.also {
             it.viewModel = viewModel
+            it.onClickBackBtn = View.OnClickListener { findNavController().navigateUp() }
             it.listCategoryName.adapter =
                 HouseChecklistCategoryItemAdapter(viewModel)
         }
     }
-
 }

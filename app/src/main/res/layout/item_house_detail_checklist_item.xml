@@ -31,5 +31,21 @@
             android:text="@{item.title}"
             tools:text="교통 및 편의 시설은 가까운가요" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->listener.onClickCheckItem(categoryName, item.id, true)}"
+            android:padding="@dimen/margin_padding_size_small"
+            android:text="Good"
+            android:textColor="@{item.isGood == true ? @color/emerald500 : @color/mono500 }" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->listener.onClickCheckItem(categoryName, item.id, false)}"
+            android:padding="@dimen/margin_padding_size_small"
+            android:text="Bad"
+            android:textColor="@{item.isGood == false ? @color/emerald500 : @color/mono500 }" />
+
     </LinearLayout>
 </layout>

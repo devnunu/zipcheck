@@ -15,36 +15,38 @@ class HouseDetailViewModel @Inject constructor(
 
     private val houseId = MutableLiveData<String>()
 
-    val house: LiveData<House> = houseId.switchMap {
+    val house: LiveData<House?> = houseId.switchMap {
         houseRepository.observeHouse(it)
     }
 
     val typeAndPriceText = house.map {
-        when (it.houseType) {
+        when (it?.houseType) {
             HouseType.LEASE_MONTHLY_PAY ->
                 "${it.houseType?.displayName} ${CurrencyUtil.toKrCurrencyText(it.deposit)}/${CurrencyUtil.toKrCurrencyText(
                     it.monthlyPay
                 )}"
-            else -> "${it.houseType?.displayName} ${CurrencyUtil.toKrCurrencyText(it.deposit)}"
+            else -> "${it?.houseType?.displayName} ${CurrencyUtil.toKrCurrencyText(it?.deposit)}"
         }
     }
 
     val checklist = house.map {
-        it.checklist
+        it?.checklist
     }
 
     val categoryNameList = house.map {
-        it.checklist?.items?.keys?.toList()
+        it?.checklist?.items?.keys?.toList()
     }
 
     val checkItemCountText = house.map {
-        val checklistItems = it.checklist?.items
+        val checklistItems = it?.checklist?.items
         val keys = checklistItems?.keys
         val checkedGoodCount = keys
-            ?.map { key ->
-                checklistItems[key]?.filter { checkItem -> checkItem.isGood ?: false }?.size
+            ?.mapNotNull { key ->
+                checklistItems[key]?.filter { checkItem -> checkItem.isGood != null }?.size
             }
-            ?.count()
+            ?.sumBy { count->
+                count
+            }
         val itemCountText = checklistItems?.keys
             ?.mapNotNull { key -> checklistItems[key]?.size }
             ?.sumBy { count -> count }
@@ -53,5 +55,17 @@ class HouseDetailViewModel @Inject constructor(
 
     fun start(id: String) {
         houseId.value = id
+    }
+
+    override fun onClickCheckItem(categoryName: String?, itemId: String?, isGood: Boolean?) {
+        val house = house.value
+        if (house != null) {
+            house.checklist?.items?.get(categoryName)?.forEach {
+                if (it.id == itemId) {
+                    it.isGood = isGood
+                }
+            }
+            houseRepository.updateHouse(house)
+        }
     }
 }
