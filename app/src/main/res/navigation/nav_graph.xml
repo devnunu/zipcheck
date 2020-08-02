@@ -24,10 +24,18 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_houseDetailFragment"
-            app:destination="@id/houseDetailFragment" />
+            app:destination="@id/houseDetailFragment"
+            app:enterAnim="@anim/right_in"
+            app:exitAnim="@anim/left_out"
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/right_out" />
         <action
             android:id="@+id/action_homeFragment_to_inputHouseFragment"
-            app:destination="@id/inputHouseFragment" />
+            app:destination="@id/inputHouseFragment"
+            app:enterAnim="@anim/right_in"
+            app:exitAnim="@anim/left_out"
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/right_out" />
     </fragment>
     <fragment
         android:id="@+id/houseDetailFragment"
@@ -46,7 +54,11 @@
         tools:layout="@layout/fragment_input_checklist">
         <action
             android:id="@+id/action_inputCheckListFragment_to_checkListTemplateFragment"
-            app:destination="@id/checkListTemplateFragment" />
+            app:destination="@id/checkListTemplateFragment"
+            app:enterAnim="@anim/right_in"
+            app:exitAnim="@anim/left_out"
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/right_out" />
         <action
             android:id="@+id/action_inputCheckListFragment_to_homeFragment"
             app:destination="@id/homeFragment"
@@ -60,7 +72,11 @@
         tools:layout="@layout/fragment_input_house">
         <action
             android:id="@+id/action_inputHouseFragment_to_inputCheckListFragment"
-            app:destination="@id/inputCheckListFragment" />
+            app:destination="@id/inputCheckListFragment"
+            app:enterAnim="@anim/right_in"
+            app:exitAnim="@anim/left_out"
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/right_out" />
     </fragment>
     <fragment
         android:id="@+id/checkListTemplateFragment"
