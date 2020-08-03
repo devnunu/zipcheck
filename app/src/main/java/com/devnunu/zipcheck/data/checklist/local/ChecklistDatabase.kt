@@ -7,7 +7,10 @@ import com.devnunu.zipcheck.data.checklist.model.Checklist
 import com.devnunu.zipcheck.data.house.local.HouseDao
 
 @Database(entities = [Checklist::class], version = 1, exportSchema = false)
-abstract class ChecklistDatabase : RoomDatabase() {
-    abstract fun checklistDao(): ChecklistDao
+abstract class ChecklistDatabase(
+    private val database: RoomDatabase,
+    private val checklistDao: ChecklistDao
+) : RoomDatabase() {
+    
 }
 
