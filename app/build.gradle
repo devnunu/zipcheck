@@ -33,6 +33,24 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8
     }
 
+    flavorDimensions "tier"
+
+    productFlavors {
+        stg {
+            dimension "tier"
+            manifestPlaceholders = [appLabel: "@string/app_name"]
+            applicationIdSuffix ".stg"
+            versionCode 100
+            versionName "1.0.0"
+        }
+        prd {
+            dimension "tier"
+            manifestPlaceholders = [appLabel: "@string/app_name"]
+            versionCode 100
+            versionName "1.0.0"
+        }
+    }
+
     dataBinding {
         enabled = true
     }
