@@ -1,20 +1,18 @@
 package com.devnunu.zipcheck.di
 
-import com.devnunu.zipcheck.data.checklist.local.ChecklistDao
-import com.devnunu.zipcheck.data.checklist.local.ChecklistDatabase
-import com.devnunu.zipcheck.data.database.AppDatabase
+//import com.devnunu.zipcheck.data.database.AppDatabase
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
-@Module
-class DatabaseModule {
+//@Module
+//class DatabaseModule {
 
-    @Singleton
-    @Provides
-    fun provideChecklistDatabase(
-        db: AppDatabase,
-        dao: ChecklistDao
-    ): ChecklistDatabase =
-        ChecklistDatabase(db, dao)
-}
+//    @Singleton
+//    @Provides
+//    fun provideChecklistDatabase(
+//        db: AppDatabase,
+//        dao: ChecklistDao
+//    ): ChecklistDatabase =
+//        ChecklistDatabase(db, dao)
+//}
