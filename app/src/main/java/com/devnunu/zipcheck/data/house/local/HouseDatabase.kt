@@ -1,10 +1,11 @@
 package com.devnunu.zipcheck.data.house.local
 
-import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.devnunu.zipcheck.data.house.model.House
+import javax.inject.Inject
 
-//@Database(entities = [House::class], version = 1, exportSchema = false)
-//abstract class HouseDatabase : RoomDatabase() {
-//    abstract fun houseDao(): HouseDao
-//}
+class HouseDatabase @Inject constructor(
+    private val database: RoomDatabase,
+    private val houseDao: HouseDao
+) {
+
+}
