@@ -17,8 +17,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/mono000"
+        android:background="@drawable/bg_mono000_radius_4dp"
         android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:layout_marginBottom="@dimen/margin_padding_size_medium"
         android:gravity="center_vertical"
         android:onClick="@{()->listener.onClickHouseItem(item.id)}"
         android:orientation="horizontal"
