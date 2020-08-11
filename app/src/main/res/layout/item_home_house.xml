@@ -17,26 +17,54 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_padding_size_medium"
         android:background="@drawable/bg_mono000_radius_4dp"
         android:foreground="?attr/selectableItemBackgroundBorderless"
-        android:layout_marginBottom="@dimen/margin_padding_size_medium"
         android:gravity="center_vertical"
         android:onClick="@{()->listener.onClickHouseItem(item.id)}"
         android:orientation="horizontal"
-        android:paddingHorizontal="@dimen/margin_padding_size_large"
-        android:paddingVertical="@dimen/margin_padding_size_small">
+        android:paddingRight="@dimen/margin_padding_size_medium"
+        android:paddingLeft="@dimen/margin_padding_size_large"
+        android:paddingVertical="@dimen/margin_padding_size_medium">
 
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginRight="@dimen/margin_padding_size_medium"
-            android:background="@android:color/darker_gray" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_padding_size_micro"
+                android:text="@{item.name}"
+                android:textSize="@dimen/text_size_large"
+                android:textStyle="bold"
+                tools:text="우리집" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{item.typeAndPriceText}"
+                android:textColor="@color/mono500"
+                android:textSize="@dimen/text_size_small"
+                tools:text="전세 3000만 원" />
+
+        </LinearLayout>
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{item.name}"
-            tools:text="우리집" />
+            android:text="@{item.checklistCountText}"
+            android:textSize="@dimen/text_size_medium"
+            tools:text="12/30" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_padding_size_medium"
+            android:src="@drawable/ic_keyboard_arrow_right_24px"/>
+
 
     </LinearLayout>
 </layout>
