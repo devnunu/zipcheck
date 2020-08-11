@@ -3,6 +3,7 @@ package com.devnunu.zipcheck.ui.inputhouse
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
 import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.common.BaseFragment
@@ -27,6 +28,9 @@ class InputHouseFragment : BaseFragment<FragmentInputHouseBinding, InputHouseVie
             )
             val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
             (it.inputHouseType.editText as? AutoCompleteTextView)?.setAdapter(adapter)
+            it.inputHouseType.editText?.addTextChangedListener {
+                viewModel.onChangeHouseType()
+            }
         }
     }
 

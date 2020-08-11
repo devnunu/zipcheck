@@ -95,15 +95,24 @@ class InputHouseViewModel @Inject constructor(
             STEP_NAME,
             STEP_HOUSE_TYPE -> increaseStep()
             STEP_DEPOSIT -> {
-                if (houseType == HouseType.LEASE_MONTHLY_PAY) {
+                if (houseType.value == HouseType.LEASE_MONTHLY_PAY.displayName) {
                     increaseStep()
                 } else {
                     saveHouseInfo()
                     _onClickNextBtn.value = Event(Unit)
                 }
             }
-            STEP_MONTHLY_PAY -> _onClickNextBtn.value = Event(Unit)
+            STEP_MONTHLY_PAY -> {
+                saveHouseInfo()
+                _onClickNextBtn.value = Event(Unit)
+            }
             else -> false
+        }
+    }
+
+    fun onChangeHouseType() {
+        if (inputStep.value == STEP_HOUSE_TYPE) {
+            increaseStep()
         }
     }
 

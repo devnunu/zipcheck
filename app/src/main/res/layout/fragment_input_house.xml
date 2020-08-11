@@ -65,7 +65,7 @@
                             android:layout_height="wrap_content"
                             android:enabled="@{viewModel.inputStep==viewModel.STEP_MONTHLY_PAY}"
                             android:inputType="numberDecimal"
-                            android:maxLength="7"
+                            android:maxLength="3"
                             android:singleLine="true"
                             android:text="@={viewModel.monthlyPay}" />
 
