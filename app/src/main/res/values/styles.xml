@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/emerald400</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
@@ -13,13 +13,15 @@
 
     <style name="Title">
         <item name="android:textSize">@dimen/text_size_large</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="Btn">
-        <item name="android:paddingTop">@dimen/margin_padding_size_medium</item>
-        <item name="android:paddingBottom">@dimen/margin_padding_size_medium</item>
+    <style name="Btn" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:backgroundTint">@color/btn_common</item>
         <item name="android:textSize">@dimen/text_size_medium</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:paddingTop">@dimen/margin_padding_size_medium</item>
+        <item name="android:paddingBottom">@dimen/margin_padding_size_medium</item>
     </style>
 
 </resources>

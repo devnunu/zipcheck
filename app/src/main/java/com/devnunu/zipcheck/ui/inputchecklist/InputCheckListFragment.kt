@@ -1,5 +1,6 @@
 package com.devnunu.zipcheck.ui.inputchecklist
 
+import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.common.BaseFragment
@@ -16,6 +17,7 @@ class InputCheckListFragment : BaseFragment<FragmentInputChecklistBinding, Input
     override fun setBindingVariables() {
         binding.also {
             it.viewModel = viewModel
+            it.onClickBackBtn = View.OnClickListener { findNavController().navigateUp() }
             it.listChecklistTemplate.adapter = TemplateItemAdapter(viewModel)
         }
     }

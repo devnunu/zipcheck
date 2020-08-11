@@ -46,9 +46,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_padding_size_medium"
                         android:text="@{viewModel.title}"
-                        tools:text="매물 별명을 입력해주세요" />
+                        tools:text="집 이름을 입력해주세요" />
 
                     <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_padding_size_xlarge"
@@ -71,6 +72,7 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_padding_size_xlarge"
@@ -94,12 +96,12 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/input_house_type"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_padding_size_xlarge"
-                        app:boxBackgroundColor="@color/mono000"
                         android:hint="매물 유형"
+                        app:boxBackgroundColor="@color/mono000"
                         app:visibleIf="@{viewModel.inputStep>=viewModel.STEP_HOUSE_TYPE}">
 
                         <AutoCompleteTextView
@@ -113,6 +115,7 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_padding_size_xlarge"
@@ -140,10 +143,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:layout_marginHorizontal="@dimen/margin_padding_size_medium"
-                android:layout_marginBottom="@dimen/margin_padding_size_medium"
+                android:layout_marginHorizontal="@dimen/margin_padding_size_large"
+                android:layout_marginBottom="@dimen/margin_padding_size_large"
                 android:enabled="@{viewModel.isBottomBtnEnable}"
                 android:onClick="@{()->viewModel.onClickBottomBtn()}"
+                android:paddingVertical="@dimen/margin_padding_size_medium"
                 android:text="다음" />
 
         </FrameLayout>
