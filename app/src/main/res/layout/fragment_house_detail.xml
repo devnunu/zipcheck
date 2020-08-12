@@ -195,12 +195,10 @@
                             android:textStyle="bold" />
 
                         <com.google.android.material.button.MaterialButton
-                            style="@style/Btn"
+                            style="@style/Btn.Small"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingVertical="@dimen/margin_padding_size_small"
-                            android:text="추가하기"
-                            android:textSize="@dimen/text_size_small" />
+                            android:text="추가하기" />
 
                     </LinearLayout>
 
