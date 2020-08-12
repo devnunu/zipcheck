@@ -30,9 +30,9 @@ class InputCheckListFragment : BaseFragment<FragmentInputChecklistBinding, Input
         })
 
         viewModel.onSuccessSubmitHouse.observe(this, EventObserver {
-            val action =
-                InputCheckListFragmentDirections.actionInputCheckListFragmentToHomeFragment()
-            findNavController().navigate(action)
+//            val action =
+//                InputCheckListFragmentDirections.actionInputCheckListFragmentToHomeFragment()
+//            findNavController().navigate(action)
         })
     }
 }

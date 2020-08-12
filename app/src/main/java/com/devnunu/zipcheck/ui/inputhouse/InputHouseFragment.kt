@@ -11,6 +11,7 @@ import com.devnunu.zipcheck.common.EventObserver
 import com.devnunu.zipcheck.data.house.model.HouseType
 import com.devnunu.zipcheck.databinding.FragmentInputChecklistBinding
 import com.devnunu.zipcheck.databinding.FragmentInputHouseBinding
+import com.devnunu.zipcheck.ui.inputchecklist.InputCheckListFragmentDirections
 
 class InputHouseFragment : BaseFragment<FragmentInputHouseBinding, InputHouseViewModel>(
     R.layout.fragment_input_house,
@@ -35,9 +36,9 @@ class InputHouseFragment : BaseFragment<FragmentInputHouseBinding, InputHouseVie
     }
 
     override fun setEventObservers() {
-        viewModel.onClickNextBtn.observe(this, EventObserver {
-            val action =
-                InputHouseFragmentDirections.actionInputHouseFragmentToInputCheckListFragment()
+        viewModel.onSuccessRegisterHouse.observe(this, EventObserver {
+            showToast("집이 등록되었습니다!")
+            val action = InputHouseFragmentDirections.actionInputHouseFragmentToHomeFragment()
             findNavController().navigate(action)
         })
     }

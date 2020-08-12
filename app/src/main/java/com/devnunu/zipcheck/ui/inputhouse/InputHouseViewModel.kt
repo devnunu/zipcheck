@@ -6,7 +6,6 @@ import com.devnunu.zipcheck.common.util.CurrencyUtil
 import com.devnunu.zipcheck.data.house.model.House
 import com.devnunu.zipcheck.data.house.model.HouseType
 import com.devnunu.zipcheck.data.house.repo.HouseRepository
-import java.lang.NumberFormatException
 import javax.inject.Inject
 
 class InputHouseViewModel @Inject constructor(
@@ -67,8 +66,8 @@ class InputHouseViewModel @Inject constructor(
     }
 
     /** event */
-    private val _onClickNextBtn = MutableLiveData<Event<Unit>>()
-    val onClickNextBtn: LiveData<Event<Unit>> = _onClickNextBtn
+    private val _onSuccessRegisterHouse = MutableLiveData<Event<Unit>>()
+    val onSuccessRegisterHouse: LiveData<Event<Unit>> = _onSuccessRegisterHouse
 
     private fun checkIsBottomBtnEnable(): Boolean {
         return when (inputStep.value) {
@@ -98,13 +97,13 @@ class InputHouseViewModel @Inject constructor(
                 if (houseType.value == HouseType.LEASE_MONTHLY_PAY.displayName) {
                     increaseStep()
                 } else {
-                    saveHouseInfo()
-                    _onClickNextBtn.value = Event(Unit)
+                    registerHouse()
+                    _onSuccessRegisterHouse.value = Event(Unit)
                 }
             }
             STEP_MONTHLY_PAY -> {
-                saveHouseInfo()
-                _onClickNextBtn.value = Event(Unit)
+                registerHouse()
+                _onSuccessRegisterHouse.value = Event(Unit)
             }
             else -> false
         }
@@ -116,14 +115,17 @@ class InputHouseViewModel @Inject constructor(
         }
     }
 
-    private fun saveHouseInfo() {
+    private fun registerHouse() {
         val house = House().apply {
             name = this@InputHouseViewModel.name.value ?: ""
             houseType = HouseType.fromDisplayName(this@InputHouseViewModel.houseType.value)
             deposit = this@InputHouseViewModel.deposit.value?.toLong()?.times(10000) ?: 0
             monthlyPay = this@InputHouseViewModel.monthlyPay.value?.toLong()?.times(10000) ?: 0
         }
-        houseRepository.setInputHouse(house)
+        house.let {
+            houseRepository.setInputHouse(null)
+            houseRepository.addHouse(it)
+        }
     }
 
 }
