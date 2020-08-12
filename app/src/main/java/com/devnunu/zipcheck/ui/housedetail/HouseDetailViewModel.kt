@@ -1,6 +1,7 @@
 package com.devnunu.zipcheck.ui.housedetail
 
 import androidx.lifecycle.*
+import com.devnunu.zipcheck.common.Event
 import com.devnunu.zipcheck.common.util.CurrencyUtil
 import com.devnunu.zipcheck.data.house.model.House
 import com.devnunu.zipcheck.data.house.model.HouseType
@@ -72,8 +73,19 @@ class HouseDetailViewModel @Inject constructor(
             ?.sumBy { count -> count } ?: 0
     }
 
+    /** event */
+    private val _onClickAddChecklistBtn = MutableLiveData<Event<Unit>>()
+    val onClickAddChecklistBtn: LiveData<Event<Unit>> = _onClickAddChecklistBtn
+
+    /** data loading start */
     fun start(id: String) {
         houseId.value = id
+    }
+
+
+    /** click handler */
+    fun onClickAddChecklistBtn() {
+        _onClickAddChecklistBtn.value = Event(Unit)
     }
 
     override fun onClickCheckItem(categoryName: String?, itemId: String?, isGood: Boolean?) {

@@ -48,7 +48,11 @@
             app:argType="string" />
         <action
             android:id="@+id/action_houseDetailFragment_to_inputCheckListFragment"
-            app:destination="@id/inputCheckListFragment" />
+            app:destination="@id/inputCheckListFragment"
+            app:enterAnim="@anim/right_in"
+            app:exitAnim="@anim/left_out"
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/right_out" />
     </fragment>
     <fragment
         android:id="@+id/inputCheckListFragment"

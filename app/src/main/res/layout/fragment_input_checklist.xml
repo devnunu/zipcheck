@@ -14,103 +14,118 @@
             type="com.devnunu.zipcheck.ui.inputchecklist.InputCheckListViewModel" />
     </data>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include
-            layout="@layout/layout_common_header"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:onClickBackBtn="@{onClickBackBtn}"
-            app:title='@{"체크리스트 템플릿"}' />
-
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fillViewport="true">
+            android:orientation="vertical">
 
-            <LinearLayout
+            <include
+                layout="@layout/layout_common_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:onClickBackBtn="@{onClickBackBtn}"
+                app:title='@{"체크리스트 추가하기"}' />
+
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    style="@style/Title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_padding_size_medium"
-                    android:paddingHorizontal="@dimen/margin_padding_size_large"
-                    android:text="체크리스트 템플릿을 선택해 주세요" />
+                android:fillViewport="true">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="@dimen/margin_padding_size_xlarge"
-                    android:layout_weight="1"
+                    android:layout_height="match_parent"
                     android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:foreground="?attr/selectableItemBackgroundBorderless"
                         android:gravity="center_vertical"
-                        android:onClick="@{()->viewModel.onClickAddTemplateBtn()}"
                         android:orientation="horizontal"
                         android:paddingHorizontal="@dimen/margin_padding_size_large"
                         android:paddingVertical="@dimen/margin_padding_size_medium">
 
-                        <LinearLayout
+                        <TextView
+                            style="@style/Title"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="체크리스트" />
+
+                        <com.google.android.material.button.MaterialButton
+                            style="@style/Btn.Small"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="@dimen/margin_padding_size_medium"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                            android:layout_gravity="center"
+                            android:onClick="@{()->viewModel.onClickAddTemplateBtn()}"
+                            android:text="새로운 템플릿 추가하기" />
 
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/ic_add_24px" />
+                    </LinearLayout>
 
-                        </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:paddingHorizontal="@dimen/margin_padding_size_large"
+                        android:background="@color/mono200"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="새로운 템플릿 추가하기"
-                            android:textSize="@dimen/text_size_medium" />
+                            android:layout_marginTop="@dimen/margin_padding_size_xxlarge"
+                            android:gravity="center"
+                            android:paddingTop="@dimen/margin_padding_size_xxlarge"
+                            android:text="아직 등록된 체크리스트가 없습니다.\n상단 버튼을 클릭해서 추가해주세요!"
+                            android:textColor="@color/emerald500"
+                            android:textSize="@dimen/text_size_medium"
+                            android:visibility="gone"
+                            app:visibleIf="@{!viewModel.haveChecklist}" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="@dimen/margin_padding_size_medium"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/list_checklist_template"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:clipToPadding="true"
+                                android:nestedScrollingEnabled="false"
+                                android:orientation="vertical"
+                                app:items="@{viewModel.checklists}"
+                                app:layoutManager="LinearLayoutManager"
+                                app:selIndex="@{viewModel.selChecklistIndex}"
+                                app:visibleIf="@{viewModel.haveChecklist}"
+                                tools:itemCount="2"
+                                tools:listitem="@layout/item_input_checklist_template" />
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/list_checklist_template"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clipToPadding="true"
-                        android:nestedScrollingEnabled="false"
-                        android:orientation="vertical"
-                        app:items="@{viewModel.checklists}"
-                        app:layoutManager="LinearLayoutManager"
-                        app:selIndex="@{viewModel.selChecklistIndex}"
-                        app:visibleIf="@{viewModel.haveChecklist}"
-                        tools:itemCount="2"
-                        tools:listitem="@layout/item_input_checklist_template" />
-
                 </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
 
-                <com.google.android.material.button.MaterialButton
-                    style="@style/Btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/margin_padding_size_large"
-                    android:layout_marginBottom="@dimen/margin_padding_size_large"
-                    android:enabled="@{viewModel.isButtonEnable}"
-                    android:onClick="@{()->viewModel.onClickSubmitHouseBtn()}"
-                    android:text="완료" />
+        </LinearLayout>
 
-            </LinearLayout>
-        </ScrollView>
+        <com.google.android.material.button.MaterialButton
+            style="@style/Btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginHorizontal="@dimen/margin_padding_size_large"
+            android:layout_marginBottom="@dimen/margin_padding_size_large"
+            android:enabled="@{viewModel.isButtonEnable}"
+            android:onClick="@{()->viewModel.onClickSubmitHouseBtn()}"
+            android:text="완료" />
 
-    </LinearLayout>
+    </FrameLayout>
 </layout>

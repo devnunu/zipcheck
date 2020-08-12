@@ -19,4 +19,7 @@
     <color name="mono200">#EDEDED</color>
     <color name="mono100">#F6F6F6</color>
     <color name="mono000">#FFFFFF</color>
+
+    <color name="disable">#CCCCCC</color>
+
 </resources>

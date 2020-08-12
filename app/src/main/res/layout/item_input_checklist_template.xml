@@ -17,19 +17,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_padding_size_medium"
+        android:background="@drawable/bg_mono000_radius_4dp"
         android:gravity="center_vertical"
+        android:onClick="@{()->listener.onSelectTemplate(item.index)}"
         android:orientation="horizontal"
-        android:paddingVertical="@dimen/margin_padding_size_small"
-        android:paddingHorizontal="@dimen/margin_padding_size_large">
+        android:paddingHorizontal="@dimen/margin_padding_size_large"
+        android:paddingVertical="@dimen/margin_padding_size_medium">
 
-        <com.google.android.material.checkbox.MaterialCheckBox
-            style="@style/Widget.MaterialComponents.CompoundButton.CheckBox"
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="@{item.selected}"
-            android:onClick="@{()->listener.onSelectTemplate(item.index)}"
-            android:text=""
-            app:buttonTint="@color/emerald400" />
+            android:src="@{item.selected? @drawable/ic_check_box_24px : @drawable/ic_check_box_outline_blank_24px}"
+            android:tint="@{item.selected? @color/emerald400 : @color/mono400 }"
+            tools:src="@drawable/ic_check_box_24px"
+            android:layout_marginRight="@dimen/margin_padding_size_medium"
+            tools:tint="@color/emerald400" />>
 
         <LinearLayout
             android:layout_width="0dp"
