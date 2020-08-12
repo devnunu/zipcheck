@@ -24,8 +24,7 @@
             layout="@layout/layout_common_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:onClickBackBtn="@{onClickBackBtn}"
-            app:title='@{viewModel.checklist.name}' />
+            app:onClickBackBtn="@{onClickBackBtn}" />
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -37,33 +36,28 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#9c9c9c"
-                    android:gravity="center"
-                    android:text="사진 들어갈 자리"
-                    android:textSize="@dimen/text_size_large" />
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
-                    android:padding="@dimen/margin_padding_size_medium">
+                    android:orientation="vertical"
+                    android:paddingHorizontal="@dimen/margin_padding_size_large"
+                    android:paddingVertical="@dimen/margin_padding_size_medium">
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_marginBottom="@dimen/margin_padding_size_micro"
                         android:text="@{viewModel.house.name}"
+                        android:textColor="@color/mono600"
                         android:textSize="@dimen/text_size_medium"
-                        tools:text="집집" />
+                        tools:text="우리" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@{viewModel.typeAndPriceText}"
-                        android:textSize="@dimen/text_size_large"
+                        android:textSize="@dimen/text_size_xxlarge"
                         android:textStyle="bold"
                         tools:text="전세 2억 8,000 만 원" />
 
@@ -71,8 +65,9 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:background="#F6F6F6" />
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="@dimen/margin_padding_size_large"
+                    android:background="@color/mono200" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -80,20 +75,94 @@
                     android:orientation="horizontal"
                     android:padding="@dimen/margin_padding_size_medium">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="체크리스트"
-                        android:textSize="@dimen/text_size_large"
-                        android:textStyle="bold" />
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_padding_size_small"
+                            android:text="Total"
+                            android:textSize="@dimen/text_size_large"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_padding_size_small"
+                            android:text="@{viewModel.totalItemCountText}"
+                            android:textSize="@dimen/text_size_medium"
+                            tools:text="0 개" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginVertical="@dimen/margin_padding_size_small"
+                        android:background="@color/mono400" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="@{viewModel.checkItemCountText}"
-                        android:textSize="@dimen/text_size_medium"
-                        tools:text="0/13" />
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_padding_size_small"
+                            android:text="Good"
+                            android:textColor="@color/emerald400"
+                            android:textSize="@dimen/text_size_large"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_padding_size_small"
+                            android:text="@{viewModel.goodItemCountText}"
+                            android:textSize="@dimen/text_size_medium"
+                            tools:text="0 개" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginVertical="@dimen/margin_padding_size_small"
+                        android:background="@color/mono400" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_padding_size_small"
+                            android:text="Bad"
+                            android:textColor="@color/mono500"
+                            android:textSize="@dimen/text_size_large"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_padding_size_small"
+                            android:text="@{viewModel.badItemCountText}"
+                            android:textSize="@dimen/text_size_medium"
+                            tools:text="0 개" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -103,23 +172,66 @@
                     android:layout_height="12dp"
                     android:progress="@{viewModel.checkItemProgress}"
                     android:progressDrawable="@drawable/progressbar"
-                    tools:progress="70"
-                    android:layout_marginBottom="@dimen/margin_padding_size_large"/>
+                    tools:progress="70" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/list_category_name"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:clipToPadding="true"
-                    android:nestedScrollingEnabled="false"
                     android:orientation="vertical"
-                    android:paddingHorizontal="@dimen/margin_padding_size_medium"
-                    app:categoryNames="@{viewModel.categoryNameList}"
-                    app:houseChecklist="@{viewModel.checklist}"
-                    app:layoutManager="LinearLayoutManager"
-                    tools:itemCount="2"
-                    tools:listitem="@layout/item_house_detail_category" />
+                    android:padding="@dimen/margin_padding_size_large">
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="체크리스트"
+                            android:textSize="@dimen/text_size_large"
+                            android:textStyle="bold" />
+
+                        <com.google.android.material.button.MaterialButton
+                            style="@style/Btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/margin_padding_size_small"
+                            android:text="추가하기"
+                            android:textSize="@dimen/text_size_small" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_padding_size_xxlarge"
+                        android:gravity="center"
+                        android:paddingTop="@dimen/margin_padding_size_xxlarge"
+                        android:text="아직 등록된 집이 없습니다.\n상단 버튼을 클릭해서 추가해주세요!"
+                        android:textColor="@color/emerald500"
+                        android:textSize="@dimen/text_size_medium"
+                        android:visibility="gone"
+                        app:visibleIf="@{viewModel.checklist==null}" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/list_category_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_padding_size_medium"
+                        android:clipToPadding="true"
+                        android:nestedScrollingEnabled="false"
+                        android:orientation="vertical"
+                        app:categoryNames="@{viewModel.categoryNameList}"
+                        app:houseChecklist="@{viewModel.checklist}"
+                        app:layoutManager="LinearLayoutManager"
+                        app:visibleIf="@{viewModel.checklist!=null}"
+                        tools:itemCount="2"
+                        tools:listitem="@layout/item_house_detail_category" />
+
+                </LinearLayout>
 
             </LinearLayout>
 

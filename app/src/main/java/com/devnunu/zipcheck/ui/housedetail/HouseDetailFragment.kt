@@ -26,8 +26,8 @@ class HouseDetailFragment : BaseFragment<FragmentHouseDetailBinding, HouseDetail
         binding.also {
             it.viewModel = viewModel
             it.onClickBackBtn = View.OnClickListener { findNavController().navigateUp() }
-            it.listCategoryName.adapter =
-                HouseChecklistCategoryItemAdapter(viewModel)
+//            it.listCategoryName.adapter =
+//                HouseChecklistCategoryItemAdapter(viewModel)
         }
     }
 }

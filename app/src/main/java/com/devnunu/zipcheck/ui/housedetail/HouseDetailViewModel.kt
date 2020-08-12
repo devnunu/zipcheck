@@ -2,7 +2,6 @@ package com.devnunu.zipcheck.ui.housedetail
 
 import androidx.lifecycle.*
 import com.devnunu.zipcheck.common.util.CurrencyUtil
-import com.devnunu.zipcheck.data.checklist.model.Checklist
 import com.devnunu.zipcheck.data.house.model.House
 import com.devnunu.zipcheck.data.house.model.HouseType
 import com.devnunu.zipcheck.data.house.repo.HouseRepository
@@ -37,28 +36,33 @@ class HouseDetailViewModel @Inject constructor(
         it?.checklist?.items?.keys?.toList()
     }
 
-    val checkItemCountText = house.map {
-        val checkedGoodCount = getGoodCount(it)
-        val itemCountText = getTotalItemCount(it)
-        "${checkedGoodCount}/${itemCountText}"
-    }
-
     val checkItemProgress = house.map {
-        val checkedGoodCount = getGoodCount(it)
+        val checkedGoodCount = getItemCountByStatus(it, true)
         val itemCountText = getTotalItemCount(it)
-        checkedGoodCount * 100 / itemCountText
+        if (checkedGoodCount == 0 || itemCountText == 0) 0
+        else checkedGoodCount * 100 / itemCountText
     }
 
-    private fun getGoodCount(house: House?): Int {
+    val totalItemCountText = house.map {
+        "${getTotalItemCount(it)} 개"
+    }
+
+    val goodItemCountText = house.map {
+        "${getItemCountByStatus(it, true)} 개"
+    }
+
+    val badItemCountText = house.map {
+        "${getItemCountByStatus(it, false)} 개"
+    }
+
+    private fun getItemCountByStatus(house: House?, status: Boolean): Int {
         val checklistItems = house?.checklist?.items
         val keys = checklistItems?.keys
         return keys
             ?.mapNotNull { key ->
-                checklistItems[key]?.filter { checkItem -> checkItem.isGood != null }?.size
+                checklistItems[key]?.filter { checkItem -> checkItem.isGood == status }?.size
             }
-            ?.sumBy { count ->
-                count
-            } ?: 0
+            ?.sumBy { count -> count } ?: 0
     }
 
     private fun getTotalItemCount(house: House?): Int {

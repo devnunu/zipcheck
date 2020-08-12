@@ -18,12 +18,11 @@ class HouseRepository {
 
     fun observeHouse(id: String): LiveData<House?> {
         return houseList.map {
-            it?.firstOrNull {house->
+            it.firstOrNull { house ->
                 house.id == id
             }
         }
     }
-
 
     /** 사용자 입력으로 새로 추가되는 house */
     fun getInputHouse(): House? {
