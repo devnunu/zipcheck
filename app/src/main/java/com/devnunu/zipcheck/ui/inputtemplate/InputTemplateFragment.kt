@@ -1,90 +1,37 @@
 package com.devnunu.zipcheck.ui.inputtemplate
 
-import android.os.Bundle
-import android.text.InputType
 import android.view.View
-import android.widget.EditText
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.common.BaseFragment
 import com.devnunu.zipcheck.common.EventObserver
-import com.devnunu.zipcheck.data.checklist.model.ChecklistType
 import com.devnunu.zipcheck.databinding.FragmentInputTemplateBinding
-import com.devnunu.zipcheck.ui.housedetail.HouseDetailFragmentArgs
-import com.devnunu.zipcheck.ui.inputtemplate.category.InputChecklistCategoryItemAdapter
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.devnunu.zipcheck.ui.inputtemplate.item.TemplateItemAdapter
 
-
-class InputTemplateFragment :
-    BaseFragment<FragmentInputTemplateBinding, InputTemplateViewModel>(
-        R.layout.fragment_input_template,
-        InputTemplateViewModel::class
-    ) {
-
-    private val arg: InputTemplateFragmentArgs by navArgs()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel.setArgument(arg.checklistName)
-    }
+class InputTemplateFragment : BaseFragment<FragmentInputTemplateBinding, InputTemplateViewModel>(
+    R.layout.fragment_input_template,
+    InputTemplateViewModel::class
+) {
 
     override fun setBindingVariables() {
         binding.also {
             it.viewModel = viewModel
-            it.onClickBackBtn = View.OnClickListener { findNavController().popBackStack() }
-            it.listCategoryName.adapter =
-                InputChecklistCategoryItemAdapter(viewModel)
+            it.onClickBackBtn = View.OnClickListener { findNavController().navigateUp() }
+            it.listChecklistTemplate.adapter = TemplateItemAdapter(viewModel)
         }
     }
 
     override fun setEventObservers() {
-        viewModel.onClickAddCategoryBtn.observe(this, EventObserver {
-            showItemSelectDialog()
-        })
-
-        viewModel.onClickAddCustomItemBtn.observe(this, EventObserver {
-            showCustomCheckItemDialog(it)
-        })
-
-        viewModel.onSuccessSaveTemplate.observe(this, EventObserver {
+        viewModel.onClickAddTemplateBtn.observe(this, EventObserver {
             val action =
-                InputTemplateFragmentDirections.actionCheckListTemplateFragmentToInputCheckListFragment()
+                InputTemplateFragmentDirections.actionInputCheckListFragmentToInputListNameFragment()
             findNavController().navigate(action)
         })
-    }
 
-    private fun showItemSelectDialog() {
-        val keyArray = viewModel.getCategoryList()
-        val selectedItems = mutableListOf<Int>()
-        MaterialAlertDialogBuilder(requireContext())
-            .setTitle("템플릿 추가요소")
-            .setPositiveButton("확인") { _, _ ->
-                val items = selectedItems.map {
-                    ChecklistType.fromDisplayName(keyArray[it])
-                }
-                viewModel.addChecklistCategories(items)
-            }
-            .setMultiChoiceItems(keyArray, null) { dialog, which, checked ->
-                if (checked) {
-                    selectedItems.add(which)
-                } else if (selectedItems.contains(which)) {
-                    selectedItems.remove(Integer.valueOf(which))
-                }
-            }
-            .show()
-    }
-
-    private fun showCustomCheckItemDialog(categoryName: String) {
-        val input = EditText(requireContext())
-        input.inputType = InputType.TYPE_CLASS_TEXT
-        input.maxLines = 1
-        MaterialAlertDialogBuilder(requireContext())
-            .setTitle("나의 체크 아이템")
-            .setPositiveButton("확인") { _, _ ->
-                viewModel.addCustomChecklistItem(categoryName, input.text.toString())
-            }
-            .setView(input)
-            .show()
+        viewModel.onSuccessSubmitHouse.observe(this, EventObserver {
+//            val action =
+//                InputCheckListFragmentDirections.actionInputCheckListFragmentToHomeFragment()
+//            findNavController().navigate(action)
+        })
     }
 }

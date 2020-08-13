@@ -1,15 +1,13 @@
-package com.devnunu.zipcheck.ui.inputlistname
+package com.devnunu.zipcheck.ui.inputtemplatename
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
 import com.devnunu.zipcheck.common.Event
-import com.devnunu.zipcheck.data.checklist.repo.ChecklistRepository
-import com.devnunu.zipcheck.data.house.repo.HouseRepository
 import javax.inject.Inject
 
-class InputListNameViewModel @Inject constructor(
+class InputTemplateNameViewModel @Inject constructor(
 )  : ViewModel() {
 
     val name = MutableLiveData<String>()

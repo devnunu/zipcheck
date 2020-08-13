@@ -2,13 +2,11 @@ package com.devnunu.zipcheck.di
 
 import android.app.Application
 import androidx.room.Room
-import androidx.room.RoomDatabase
-import com.devnunu.zipcheck.data.checklist.local.ChecklistDao
-import com.devnunu.zipcheck.data.checklist.local.ChecklistDatabase
+import com.devnunu.zipcheck.data.template.local.TemplateDao
+import com.devnunu.zipcheck.data.template.local.TemplateDatabase
 import com.devnunu.zipcheck.data.database.AppDatabase
 import com.devnunu.zipcheck.data.house.local.HouseDao
 import com.devnunu.zipcheck.data.house.local.HouseDatabase
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -25,11 +23,11 @@ class DatabaseModule {
 
     @Singleton
     @Provides
-    fun provideChecklistDatabase(
+    fun provideTemplateDatabase(
         db: AppDatabase,
-        dao: ChecklistDao
-    ): ChecklistDatabase =
-        ChecklistDatabase(db, dao)
+        dao: TemplateDao
+    ): TemplateDatabase =
+        TemplateDatabase(db, dao)
 
     @Singleton
     @Provides

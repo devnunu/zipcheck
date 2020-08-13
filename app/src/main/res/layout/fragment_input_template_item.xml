@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="onClickBackBtn"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="viewModel"
+            type="com.devnunu.zipcheck.ui.inputtemplateitem.InputTemplateItemViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/layout_common_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:onClickBackBtn="@{onClickBackBtn}" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/margin_padding_size_large">
+
+                <TextView
+                    style="@style/Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_padding_size_medium"
+                    android:text="체크 목록을 추가해주세요" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_padding_size_small"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.button.MaterialButton
+                        style="@style/Btn.Small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:onClick="@{()->viewModel.onClickAddCategoryBtn()}"
+                        android:text="카테고리 추가" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/list_category_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clipToPadding="true"
+                        android:nestedScrollingEnabled="false"
+                        android:orientation="vertical"
+                        app:categoryNames="@{viewModel.categoryNameList}"
+                        app:checklist="@{viewModel.checklist}"
+                        app:layoutManager="LinearLayoutManager"
+                        app:visibleIf="@{viewModel.haveChecklistItem}"
+                        tools:itemCount="2"
+                        tools:listitem="@layout/item_input_template_category" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginHorizontal="@dimen/margin_padding_size_large"
+            android:layout_marginBottom="@dimen/margin_padding_size_large"
+            android:enabled="@{viewModel.isBottomBtnEnable}"
+            android:onClick="@{()->viewModel.onClickSubmitTemplateBtn()}"
+            android:text="작성완료" />
+
+    </LinearLayout>
+</layout>

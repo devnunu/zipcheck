@@ -1,4 +1,4 @@
-package com.devnunu.zipcheck.ui.inputtemplate.category
+package com.devnunu.zipcheck.ui.inputtemplateitem.category
 
 interface InputTemplateItemListener {
     fun onClickAddCategoryItem(categoryName: String)

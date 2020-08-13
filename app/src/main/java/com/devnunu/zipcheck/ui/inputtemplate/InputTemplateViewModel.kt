@@ -1,116 +1,63 @@
 package com.devnunu.zipcheck.ui.inputtemplate
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.map
 import com.devnunu.zipcheck.common.Event
-import com.devnunu.zipcheck.data.checklist.model.Checklist
-import com.devnunu.zipcheck.data.checklist.model.ChecklistType
-import com.devnunu.zipcheck.data.checklist.repo.ChecklistRepository
+import com.devnunu.zipcheck.data.template.repo.TemplateRepository
 import com.devnunu.zipcheck.data.house.repo.HouseRepository
-import com.devnunu.zipcheck.ui.inputtemplate.category.InputTemplateItemListener
+import com.devnunu.zipcheck.ui.inputtemplate.item.TemplateItemListener
 import javax.inject.Inject
 
 class InputTemplateViewModel @Inject constructor(
     private val houseRepository: HouseRepository,
-    private val checklistRepository: ChecklistRepository
-) : ViewModel(), InputTemplateItemListener {
+    private val templateRepository: TemplateRepository
+) : ViewModel(), TemplateItemListener {
 
-    var name: String? = null
+    val checklists = templateRepository.observeCheckLists()
 
-    private val _checklist = MutableLiveData<Checklist>()
-    val checklist: LiveData<Checklist> = _checklist
+    var selChecklistIndex = MutableLiveData<Int>()
 
-    val categoryNameList = _checklist.map {
-        it.items?.keys?.toList()
+    val isButtonEnable = selChecklistIndex.map {
+        it != null
     }
 
-    val haveChecklistItem = _checklist.map {
-        !it.items.isNullOrEmpty()
-    }
-
-    val isBottomBtnEnable = haveChecklistItem.map {
-        it
+    val haveChecklist = checklists.map {
+        !it.isNullOrEmpty()
     }
 
     /** event */
-    private val _onClickAddCategoryBtn = MutableLiveData<Event<Unit>>()
-    val onClickAddCategoryBtn: LiveData<Event<Unit>> = _onClickAddCategoryBtn
+    private val _onClickAddTemplateBtn = MutableLiveData<Event<Unit>>()
+    val onClickAddTemplateBtn: LiveData<Event<Unit>> = _onClickAddTemplateBtn
 
-    private val _onClickAddCustomItemBtn = MutableLiveData<Event<String>>()
-    val onClickAddCustomItemBtn: LiveData<Event<String>> = _onClickAddCustomItemBtn
+    private val _onSuccessSubmitHouse = MutableLiveData<Event<Unit>>()
+    val onSuccessSubmitHouse: LiveData<Event<Unit>> = _onSuccessSubmitHouse
 
-    private val _onSuccessSaveTemplate = MutableLiveData<Event<Unit>>()
-    val onSuccessSaveTemplate: LiveData<Event<Unit>> = _onSuccessSaveTemplate
-
-    init {
-        _checklist.value = Checklist()
-    }
-
-    fun setArgument(name: String) {
-        this.name = name
-    }
-
-    fun addChecklistCategories(selChecklistCategories: List<ChecklistType?>) {
-        val checklist = _checklist.value
-        checklist?.apply {
-            addDefaultItems(selChecklistCategories)
-        }
-        _checklist.value = checklist
-    }
-
-    fun addCustomChecklistItem(categoryName: String, title: String?) {
-        val checklist = _checklist.value
-        checklist?.apply {
-            addCustomItem(categoryName, title)
-        }
-        _checklist.value = checklist
-    }
-
-    fun getCategoryList(): Array<String> {
-        val categoryNames = checklist.value?.items?.keys?.toList()
-        return ChecklistType.values().filter {
-            val isNotAddedCategory = categoryNames?.contains(it.displayName)?.not() ?: true
-            val isNotCustomType = ChecklistType.CHECKLIST_TYPE_USER_CUSTOM != it
-            isNotAddedCategory && isNotCustomType
-        }.map {
-            it.displayName
-        }.toTypedArray()
-    }
-
-    /** checklist item click handler */
-    override fun onClickRemoveCategory(categoryName: String) {
-        val checklist = _checklist.value
-        checklist?.items?.remove(categoryName)
-        _checklist.value = checklist
-
-    }
-
-    override fun onClickRemoveChecklistItem(categoryName: String, index: Int) {
-        val checklist = _checklist.value
-        val checkItemList = checklist?.items?.get(categoryName)
-        checkItemList?.removeAt(index)
-        if (checkItemList.isNullOrEmpty()) {
-            onClickRemoveCategory(categoryName)
+    /** 템플릿 선택시 */
+    override fun onSelectTemplate(index: Int) {
+        val selIndex = selChecklistIndex.value
+        if (selIndex == index) {
+            selChecklistIndex.value = null
         } else {
-            checklist.items?.put(categoryName, checkItemList)
-            _checklist.value = checklist
+            selChecklistIndex.value = index
         }
     }
 
-    override fun onClickAddCategoryItem(categoryName: String) {
-        _onClickAddCustomItemBtn.value = Event(categoryName)
+    /** event handler */
+    fun onClickAddTemplateBtn() {
+        _onClickAddTemplateBtn.value = Event(Unit)
     }
 
-    /** button click handler */
-    fun onClickAddCategoryBtn() {
-        _onClickAddCategoryBtn.value = Event(Unit)
-    }
-
-    fun onClickSubmitTemplateBtn() {
-        val checklist = checklist.value
-        checklist?.let {
-            it.name = name
-            checklistRepository.saveChecklist(it)
-            _onSuccessSaveTemplate.value = Event(Unit)
+    fun onClickSubmitHouseBtn() {
+        val house = houseRepository.getInputHouse()?.apply {
+            val index = selChecklistIndex.value ?: 0
+            checklist = checklists.value?.get(index)
+        }
+        house?.let {
+            houseRepository.setInputHouse(null)
+            houseRepository.addHouse(it)
+            _onSuccessSubmitHouse.value = Event(Unit)
         }
     }
 }

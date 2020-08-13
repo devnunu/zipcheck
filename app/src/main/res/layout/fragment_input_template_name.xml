@@ -10,7 +10,7 @@
 
         <variable
             name="viewModel"
-            type="com.devnunu.zipcheck.ui.inputlistname.InputListNameViewModel" />
+            type="com.devnunu.zipcheck.ui.inputtemplatename.InputTemplateNameViewModel" />
     </data>
 
     <FrameLayout

@@ -56,9 +56,9 @@
     </fragment>
     <fragment
         android:id="@+id/inputCheckListFragment"
-        android:name="com.devnunu.zipcheck.ui.inputchecklist.InputCheckListFragment"
+        android:name="com.devnunu.zipcheck.ui.inputtemplate.InputTemplateFragment"
         android:label="InputCheckListFragment"
-        tools:layout="@layout/fragment_input_checklist">
+        tools:layout="@layout/fragment_input_template">
         <action
             android:id="@+id/action_inputCheckListFragment_to_inputListNameFragment"
             app:destination="@id/inputListNameFragment"
@@ -80,9 +80,9 @@
     </fragment>
     <fragment
         android:id="@+id/inputListNameFragment"
-        android:name="com.devnunu.zipcheck.ui.inputlistname.InputListNameFragment"
+        android:name="com.devnunu.zipcheck.ui.inputtemplatename.InputTemplateNameFragment"
         android:label="InputListNameFragment"
-        tools:layout="@layout/fragment_input_checklist_name">
+        tools:layout="@layout/fragment_input_template_name">
         <action
             android:id="@+id/action_inputListNameFragment_to_checkListTemplateFragment"
             app:destination="@id/checkListTemplateFragment"
@@ -93,9 +93,9 @@
     </fragment>
     <fragment
         android:id="@+id/checkListTemplateFragment"
-        android:name="com.devnunu.zipcheck.ui.inputtemplate.InputTemplateFragment"
+        android:name="com.devnunu.zipcheck.ui.inputtemplateitem.InputTemplateItemFragment"
         android:label="CheckListTemplateFragment"
-        tools:layout="@layout/fragment_input_template">
+        tools:layout="@layout/fragment_input_template_item">
         <argument
             android:name="checklistName"
             android:defaultValue="0"

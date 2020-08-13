@@ -9,9 +9,7 @@ import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.common.BaseFragment
 import com.devnunu.zipcheck.common.EventObserver
 import com.devnunu.zipcheck.data.house.model.HouseType
-import com.devnunu.zipcheck.databinding.FragmentInputChecklistBinding
 import com.devnunu.zipcheck.databinding.FragmentInputHouseBinding
-import com.devnunu.zipcheck.ui.inputchecklist.InputCheckListFragmentDirections
 
 class InputHouseFragment : BaseFragment<FragmentInputHouseBinding, InputHouseViewModel>(
     R.layout.fragment_input_house,

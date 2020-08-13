@@ -1,12 +1,12 @@
-package com.devnunu.zipcheck.ui.inputtemplate.category.item
+package com.devnunu.zipcheck.ui.inputtemplateitem.category.item
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.devnunu.zipcheck.data.checklist.model.CheckItem
+import com.devnunu.zipcheck.data.template.model.CheckItem
 import com.devnunu.zipcheck.databinding.ItemInputTemplateItemBinding
-import com.devnunu.zipcheck.ui.inputtemplate.category.InputTemplateItemListener
+import com.devnunu.zipcheck.ui.inputtemplateitem.category.InputTemplateItemListener
 
 class InputChecklistItemAdapter(
     val inputTemplateItemListener: InputTemplateItemListener,

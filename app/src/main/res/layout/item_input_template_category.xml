@@ -7,11 +7,11 @@
 
         <variable
             name="item"
-            type="com.devnunu.zipcheck.ui.inputtemplate.category.InputChecklistCategoryItem" />
+            type="com.devnunu.zipcheck.ui.inputtemplateitem.category.InputChecklistCategoryItem" />
 
         <variable
             name="listener"
-            type="com.devnunu.zipcheck.ui.inputtemplate.category.InputTemplateItemListener" />
+            type="com.devnunu.zipcheck.ui.inputtemplateitem.category.InputTemplateItemListener" />
     </data>
 
     <LinearLayout

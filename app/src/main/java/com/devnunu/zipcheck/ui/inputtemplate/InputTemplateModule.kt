@@ -11,7 +11,7 @@ import dagger.multibindings.IntoMap
 abstract class InputTemplateModule {
 
     @ContributesAndroidInjector
-    abstract fun checkListTemplateFragment(): InputTemplateFragment
+    abstract fun inputCheckListFragment(): InputTemplateFragment
 
     @Binds
     @IntoMap
