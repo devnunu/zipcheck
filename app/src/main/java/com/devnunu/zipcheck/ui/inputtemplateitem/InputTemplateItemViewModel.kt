@@ -3,7 +3,6 @@ package com.devnunu.zipcheck.ui.inputtemplateitem
 import androidx.lifecycle.*
 import com.devnunu.zipcheck.common.Event
 import com.devnunu.zipcheck.data.template.model.Checklist
-import com.devnunu.zipcheck.data.template.model.ChecklistType
 import com.devnunu.zipcheck.data.template.repo.TemplateRepository
 import com.devnunu.zipcheck.data.house.repo.HouseRepository
 import com.devnunu.zipcheck.ui.inputtemplateitem.category.InputTemplateItemListener
