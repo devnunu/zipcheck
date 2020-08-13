@@ -36,10 +36,9 @@ class InputTemplateItemAdapter :
         return checkItems.size
     }
 
-    private fun setItem(checkItems: List<CheckItem>) {
-        this.checkItems.clear()
-        this.checkItems.addAll(checkItems)
-        notifyDataSetChanged()
+    fun addItem(checkItem: CheckItem) {
+        checkItems.add(0, checkItem)
+        notifyItemInserted(0)
     }
 
     inner class CategoryViewHolder(private val binding: ItemInputTemplateBinding) :
@@ -48,21 +47,6 @@ class InputTemplateItemAdapter :
             binding.also {
                 it.item = item
                 it.executePendingBindings()
-            }
-        }
-    }
-
-    companion object {
-
-        @JvmStatic
-        @BindingAdapter(value = ["templateItems"])
-        fun bindItem(
-            recyclerView: RecyclerView,
-            checkItems: MutableList<CheckItem>?
-        ) {
-            val adapter = recyclerView.adapter as InputTemplateItemAdapter?
-            checkItems?.let {
-                adapter?.setItem(checkItems)
             }
         }
     }

@@ -15,7 +15,7 @@ class InputTemplateItemViewModel @Inject constructor(
 
     var name: String? = null
 
-    val checkItem = MutableLiveData<String>()
+    val checkItemName = MutableLiveData<String>()
 
     private val _template = MutableLiveData<Template>()
     val template: LiveData<Template> = _template
@@ -29,6 +29,9 @@ class InputTemplateItemViewModel @Inject constructor(
     }
 
     /** event */
+    private val _onClickAddItem = MutableLiveData<Event<CheckItem>>()
+    val onClickAddItem: LiveData<Event<CheckItem>> = _onClickAddItem
+
     private val _onSuccessSaveTemplate = MutableLiveData<Event<Unit>>()
     val onSuccessSaveTemplate: LiveData<Event<Unit>> = _onSuccessSaveTemplate
 
@@ -42,12 +45,10 @@ class InputTemplateItemViewModel @Inject constructor(
 
     /** button click handler */
     fun onClickAddItemBtn() {
-        val template = _template.value
-        name?.let {
-            template?.items?.add(CheckItem(it))
+        checkItemName.value?.let {
+            _onClickAddItem.value = Event(CheckItem(it))
         }
-        _template.value = template
-        checkItem.value = null
+        checkItemName.value = ""
     }
 
     fun onClickSubmitTemplateBtn() {

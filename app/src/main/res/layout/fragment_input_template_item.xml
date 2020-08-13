@@ -62,15 +62,16 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:background="@null"
-                            android:padding="0dp"
-                            android:text="@={viewModel.checkItem}" />
+                            android:hint="체크리스트를 입력해주세요"
+                            android:paddingHorizontal="@dimen/margin_padding_size_small"
+                            android:text="@={viewModel.checkItemName}" />
 
                         <FrameLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@color/emerald400"
                             android:onClick="@{()->viewModel.onClickAddItemBtn()}"
-                            android:padding="8dp">
+                            android:padding="10dp">
 
                             <ImageView
                                 android:layout_width="wrap_content"
@@ -91,8 +92,6 @@
                         android:orientation="vertical"
                         app:layoutManager="LinearLayoutManager"
                         android:layout_marginTop="@dimen/margin_padding_size_large"
-                        app:templateItems="@{viewModel.template.items}"
-                        app:visibleIf="@{viewModel.haveChecklistItem}"
                         tools:itemCount="2"
                         tools:listitem="@layout/item_input_template" />
 
