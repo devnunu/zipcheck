@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.devnunu.zipcheck.data.template.model.CheckItem
 import com.devnunu.zipcheck.databinding.ItemInputTemplateBinding
 
-class InputTemplateItemAdapter :
+class InputTemplateItemAdapter(val listener: InputTemplateItemListener) :
     RecyclerView.Adapter<InputTemplateItemAdapter.CategoryViewHolder>() {
 
     private val checkItems: MutableList<CheckItem> = mutableListOf()
@@ -38,6 +38,7 @@ class InputTemplateItemAdapter :
 
     fun addItem(checkItem: CheckItem) {
         checkItems.add(0, checkItem)
+        listener.onChangeCheckItems(checkItems)
         notifyItemInserted(0)
     }
 

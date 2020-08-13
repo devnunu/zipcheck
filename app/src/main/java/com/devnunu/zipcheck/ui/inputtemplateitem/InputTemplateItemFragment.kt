@@ -30,7 +30,7 @@ class InputTemplateItemFragment :
         binding.also {
             it.viewModel = viewModel
             it.onClickBackBtn = View.OnClickListener { findNavController().popBackStack() }
-            it.listItem.adapter = InputTemplateItemAdapter()
+            it.listItem.adapter = InputTemplateItemAdapter(viewModel)
             it.listItem.addItemDecoration(StyleUtil.getDividerItemDecoration(R.drawable.divider_mono200))
             it.listItem.itemAnimator = DefaultItemAnimator()
         }
