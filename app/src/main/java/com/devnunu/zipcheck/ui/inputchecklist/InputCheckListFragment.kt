@@ -25,7 +25,7 @@ class InputCheckListFragment : BaseFragment<FragmentInputChecklistBinding, Input
     override fun setEventObservers() {
         viewModel.onClickAddTemplateBtn.observe(this, EventObserver {
             val action =
-                InputCheckListFragmentDirections.actionInputCheckListFragmentToCheckListTemplateFragment()
+                InputCheckListFragmentDirections.actionInputCheckListFragmentToInputListNameFragment()
             findNavController().navigate(action)
         })
 

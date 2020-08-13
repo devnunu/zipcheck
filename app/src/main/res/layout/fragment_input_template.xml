@@ -23,8 +23,7 @@
             layout="@layout/layout_common_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:onClickBackBtn="@{onClickBackBtn}"
-            app:title='@{"체크리스트 템플릿"}' />
+            app:onClickBackBtn="@{onClickBackBtn}" />
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -43,7 +42,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_padding_size_medium"
-                    android:text="체크리스트 템플릿을 만들어주세요" />
+                    android:text="체크 목록을 추가해주세요" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -52,31 +51,12 @@
                     android:orientation="vertical">
 
                     <com.google.android.material.button.MaterialButton
-                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        style="@style/Btn.Small"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
                         android:onClick="@{()->viewModel.onClickAddCategoryBtn()}"
-                        android:text="카테고리 추가"
-                        app:icon="@drawable/ic_add_24px" />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/margin_padding_size_large"
-                        android:hint="템플릿 이름"
-                        app:boxBackgroundColor="@color/mono000"
-                        app:counterEnabled="true"
-                        app:counterMaxLength="20">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="text"
-                            android:singleLine="true"
-                            android:text="@={viewModel.name}" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
+                        android:text="카테고리 추가" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/list_category_name"

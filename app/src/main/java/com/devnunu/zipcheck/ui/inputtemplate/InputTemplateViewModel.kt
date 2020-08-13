@@ -14,7 +14,7 @@ class InputTemplateViewModel @Inject constructor(
     private val checklistRepository: ChecklistRepository
 ) : ViewModel(), InputTemplateItemListener {
 
-    val name = MutableLiveData<String>()
+    var name: String? = null
 
     private val _checklist = MutableLiveData<Checklist>()
     val checklist: LiveData<Checklist> = _checklist
@@ -27,15 +27,8 @@ class InputTemplateViewModel @Inject constructor(
         !it.items.isNullOrEmpty()
     }
 
-    val isBottomBtnEnable = MediatorLiveData<Boolean>().apply {
-        addSource(name) { value = checkIsBottomBtnEnable() }
-        addSource(haveChecklistItem) { value = checkIsBottomBtnEnable() }
-    }
-
-    private fun checkIsBottomBtnEnable(): Boolean {
-        val verifyName = name.value?.isEmpty()?.not() ?: false
-        val verifyChecklist = haveChecklistItem.value ?: false
-        return verifyName && verifyChecklist
+    val isBottomBtnEnable = haveChecklistItem.map {
+        it
     }
 
     /** event */
@@ -50,6 +43,10 @@ class InputTemplateViewModel @Inject constructor(
 
     init {
         _checklist.value = Checklist()
+    }
+
+    fun setArgument(name: String) {
+        this.name = name
     }
 
     fun addChecklistCategories(selChecklistCategories: List<ChecklistType?>) {
@@ -111,7 +108,7 @@ class InputTemplateViewModel @Inject constructor(
     fun onClickSubmitTemplateBtn() {
         val checklist = checklist.value
         checklist?.let {
-            it.name = name.value
+            it.name = name
             checklistRepository.saveChecklist(it)
             _onSuccessSaveTemplate.value = Event(Unit)
         }

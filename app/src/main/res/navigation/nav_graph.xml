@@ -60,8 +60,8 @@
         android:label="InputCheckListFragment"
         tools:layout="@layout/fragment_input_checklist">
         <action
-            android:id="@+id/action_inputCheckListFragment_to_checkListTemplateFragment"
-            app:destination="@id/checkListTemplateFragment"
+            android:id="@+id/action_inputCheckListFragment_to_inputListNameFragment"
+            app:destination="@id/inputListNameFragment"
             app:enterAnim="@anim/right_in"
             app:exitAnim="@anim/left_out"
             app:popEnterAnim="@anim/left_in"
@@ -74,11 +74,36 @@
         tools:layout="@layout/fragment_input_house">
         <action
             android:id="@+id/action_inputHouseFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/inputListNameFragment"
+        android:name="com.devnunu.zipcheck.ui.inputlistname.InputListNameFragment"
+        android:label="InputListNameFragment"
+        tools:layout="@layout/fragment_input_checklist_name">
+        <action
+            android:id="@+id/action_inputListNameFragment_to_checkListTemplateFragment"
+            app:destination="@id/checkListTemplateFragment"
+            app:enterAnim="@anim/right_in"
+            app:exitAnim="@anim/left_out"
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/right_out" />
     </fragment>
     <fragment
         android:id="@+id/checkListTemplateFragment"
         android:name="com.devnunu.zipcheck.ui.inputtemplate.InputTemplateFragment"
         android:label="CheckListTemplateFragment"
-        tools:layout="@layout/fragment_input_template" />
+        tools:layout="@layout/fragment_input_template">
+        <argument
+            android:name="checklistName"
+            android:defaultValue="0"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_checkListTemplateFragment_to_inputCheckListFragment"
+            app:destination="@id/inputCheckListFragment"
+            app:popUpTo="@id/inputCheckListFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

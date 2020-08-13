@@ -1,14 +1,17 @@
 package com.devnunu.zipcheck.ui.inputtemplate
 
+import android.os.Bundle
 import android.text.InputType
 import android.view.View
 import android.widget.EditText
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.common.BaseFragment
 import com.devnunu.zipcheck.common.EventObserver
 import com.devnunu.zipcheck.data.checklist.model.ChecklistType
 import com.devnunu.zipcheck.databinding.FragmentInputTemplateBinding
+import com.devnunu.zipcheck.ui.housedetail.HouseDetailFragmentArgs
 import com.devnunu.zipcheck.ui.inputtemplate.category.InputChecklistCategoryItemAdapter
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
@@ -19,10 +22,17 @@ class InputTemplateFragment :
         InputTemplateViewModel::class
     ) {
 
+    private val arg: InputTemplateFragmentArgs by navArgs()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.setArgument(arg.checklistName)
+    }
+
     override fun setBindingVariables() {
         binding.also {
             it.viewModel = viewModel
-            it.onClickBackBtn = View.OnClickListener { findNavController().navigateUp() }
+            it.onClickBackBtn = View.OnClickListener { findNavController().popBackStack() }
             it.listCategoryName.adapter =
                 InputChecklistCategoryItemAdapter(viewModel)
         }
@@ -38,7 +48,9 @@ class InputTemplateFragment :
         })
 
         viewModel.onSuccessSaveTemplate.observe(this, EventObserver {
-            findNavController().navigateUp()
+            val action =
+                InputTemplateFragmentDirections.actionCheckListTemplateFragmentToInputCheckListFragment()
+            findNavController().navigate(action)
         })
     }
 

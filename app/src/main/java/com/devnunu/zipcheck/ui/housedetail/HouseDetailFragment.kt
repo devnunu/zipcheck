@@ -26,7 +26,7 @@ class HouseDetailFragment : BaseFragment<FragmentHouseDetailBinding, HouseDetail
     override fun setBindingVariables() {
         binding.also {
             it.viewModel = viewModel
-            it.onClickBackBtn = View.OnClickListener { findNavController().navigateUp() }
+            it.onClickBackBtn = View.OnClickListener { findNavController().popBackStack() }
             it.listCategoryName.adapter =
                 HouseChecklistCategoryItemAdapter(viewModel)
         }

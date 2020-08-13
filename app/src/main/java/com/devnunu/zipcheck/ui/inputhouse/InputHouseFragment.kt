@@ -21,7 +21,7 @@ class InputHouseFragment : BaseFragment<FragmentInputHouseBinding, InputHouseVie
     override fun setBindingVariables() {
         binding.also {
             it.viewModel = viewModel
-            it.onClickBackBtn = View.OnClickListener { findNavController().navigateUp() }
+            it.onClickBackBtn = View.OnClickListener { findNavController().popBackStack() }
             val items = listOf(
                 HouseType.LEASE_RENT.displayName,
                 HouseType.LEASE_MONTHLY_PAY.displayName,

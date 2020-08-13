@@ -8,6 +8,7 @@ import com.devnunu.zipcheck.di.ViewModelModule
 import com.devnunu.zipcheck.ui.housedetail.HouseDetailModule
 import com.devnunu.zipcheck.ui.inputchecklist.InputCheckListModule
 import com.devnunu.zipcheck.ui.inputhouse.InputHouseModule
+import com.devnunu.zipcheck.ui.inputlistname.InputListNameModule
 import com.devnunu.zipcheck.ui.splash.SplashModule
 import com.devnunu.zipcheck.ui.inputtemplate.InputTemplateModule
 import dagger.BindsInstance
@@ -28,6 +29,7 @@ import javax.inject.Singleton
         HouseDetailModule::class,
         SplashModule::class,
         InputHouseModule::class,
+        InputListNameModule::class,
         InputCheckListModule::class,
         InputTemplateModule::class
     ]
