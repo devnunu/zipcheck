@@ -16,6 +16,8 @@ class InputTemplateItemViewModel @Inject constructor(
 
     var name: String? = null
 
+    val checkItem = MutableLiveData<String>()
+
     private val _checklist = MutableLiveData<Checklist>()
     val checklist: LiveData<Checklist> = _checklist
 
@@ -32,12 +34,6 @@ class InputTemplateItemViewModel @Inject constructor(
     }
 
     /** event */
-    private val _onClickAddCategoryBtn = MutableLiveData<Event<Unit>>()
-    val onClickAddCategoryBtn: LiveData<Event<Unit>> = _onClickAddCategoryBtn
-
-    private val _onClickAddCustomItemBtn = MutableLiveData<Event<String>>()
-    val onClickAddCustomItemBtn: LiveData<Event<String>> = _onClickAddCustomItemBtn
-
     private val _onSuccessSaveTemplate = MutableLiveData<Event<Unit>>()
     val onSuccessSaveTemplate: LiveData<Event<Unit>> = _onSuccessSaveTemplate
 
@@ -47,33 +43,6 @@ class InputTemplateItemViewModel @Inject constructor(
 
     fun setArgument(name: String) {
         this.name = name
-    }
-
-    fun addChecklistCategories(selChecklistCategories: List<ChecklistType?>) {
-        val checklist = _checklist.value
-        checklist?.apply {
-            addDefaultItems(selChecklistCategories)
-        }
-        _checklist.value = checklist
-    }
-
-    fun addCustomChecklistItem(categoryName: String, title: String?) {
-        val checklist = _checklist.value
-        checklist?.apply {
-            addCustomItem(categoryName, title)
-        }
-        _checklist.value = checklist
-    }
-
-    fun getCategoryList(): Array<String> {
-        val categoryNames = checklist.value?.items?.keys?.toList()
-        return ChecklistType.values().filter {
-            val isNotAddedCategory = categoryNames?.contains(it.displayName)?.not() ?: true
-            val isNotCustomType = ChecklistType.CHECKLIST_TYPE_USER_CUSTOM != it
-            isNotAddedCategory && isNotCustomType
-        }.map {
-            it.displayName
-        }.toTypedArray()
     }
 
     /** checklist item click handler */
@@ -97,12 +66,17 @@ class InputTemplateItemViewModel @Inject constructor(
     }
 
     override fun onClickAddCategoryItem(categoryName: String) {
-        _onClickAddCustomItemBtn.value = Event(categoryName)
+
     }
 
     /** button click handler */
-    fun onClickAddCategoryBtn() {
-        _onClickAddCategoryBtn.value = Event(Unit)
+    fun onClickAddItemBtn() {
+        val checklist = _checklist.value
+        checklist?.apply {
+//            addCustomItem(categoryName, title)
+        }
+        _checklist.value = checklist
+        checkItem.value = null
     }
 
     fun onClickSubmitTemplateBtn() {

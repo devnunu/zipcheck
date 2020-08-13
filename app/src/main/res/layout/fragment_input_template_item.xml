@@ -50,27 +50,37 @@
                     android:layout_marginTop="@dimen/margin_padding_size_small"
                     android:orientation="vertical">
 
-                    <com.google.android.material.button.MaterialButton
-                        style="@style/Btn.Small"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:onClick="@{()->viewModel.onClickAddCategoryBtn()}"
-                        android:text="카테고리 추가" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/list_category_name"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:clipToPadding="true"
-                        android:nestedScrollingEnabled="false"
-                        android:orientation="vertical"
-                        app:categoryNames="@{viewModel.categoryNameList}"
-                        app:checklist="@{viewModel.checklist}"
-                        app:layoutManager="LinearLayoutManager"
-                        app:visibleIf="@{viewModel.haveChecklistItem}"
-                        tools:itemCount="2"
-                        tools:listitem="@layout/item_input_template_category" />
+                        android:layout_marginTop="@dimen/margin_padding_size_large"
+                        android:background="@drawable/border_emerald400"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:text="@={viewModel.checkItem}"
+                            android:padding="0dp" />
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/emerald400"
+                            android:onClick="@{()->viewModel.onClickAddItemBtn()}"
+                            android:padding="6dp">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_add_24px"
+                                android:tint="@color/mono000" />
+
+                        </FrameLayout>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 

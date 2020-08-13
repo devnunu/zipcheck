@@ -32,58 +32,14 @@ class InputTemplateItemFragment :
         binding.also {
             it.viewModel = viewModel
             it.onClickBackBtn = View.OnClickListener { findNavController().popBackStack() }
-            it.listCategoryName.adapter =
-                InputChecklistCategoryItemAdapter(viewModel)
         }
     }
 
     override fun setEventObservers() {
-        viewModel.onClickAddCategoryBtn.observe(this, EventObserver {
-            showItemSelectDialog()
-        })
-
-        viewModel.onClickAddCustomItemBtn.observe(this, EventObserver {
-            showCustomCheckItemDialog(it)
-        })
-
         viewModel.onSuccessSaveTemplate.observe(this, EventObserver {
             val action =
                 InputTemplateItemFragmentDirections.actionCheckListTemplateFragmentToInputCheckListFragment()
             findNavController().navigate(action)
         })
-    }
-
-    private fun showItemSelectDialog() {
-        val keyArray = viewModel.getCategoryList()
-        val selectedItems = mutableListOf<Int>()
-        MaterialAlertDialogBuilder(requireContext())
-            .setTitle("템플릿 추가요소")
-            .setPositiveButton("확인") { _, _ ->
-                val items = selectedItems.map {
-                    ChecklistType.fromDisplayName(keyArray[it])
-                }
-                viewModel.addChecklistCategories(items)
-            }
-            .setMultiChoiceItems(keyArray, null) { dialog, which, checked ->
-                if (checked) {
-                    selectedItems.add(which)
-                } else if (selectedItems.contains(which)) {
-                    selectedItems.remove(Integer.valueOf(which))
-                }
-            }
-            .show()
-    }
-
-    private fun showCustomCheckItemDialog(categoryName: String) {
-        val input = EditText(requireContext())
-        input.inputType = InputType.TYPE_CLASS_TEXT
-        input.maxLines = 1
-        MaterialAlertDialogBuilder(requireContext())
-            .setTitle("나의 체크 아이템")
-            .setPositiveButton("확인") { _, _ ->
-                viewModel.addCustomChecklistItem(categoryName, input.text.toString())
-            }
-            .setView(input)
-            .show()
     }
 }
