@@ -42,6 +42,11 @@ class InputTemplateItemAdapter(val listener: InputTemplateItemListener) :
         notifyItemInserted(0)
     }
 
+    fun removeItem(position: Int) {
+        checkItems.removeAt(position)
+        notifyItemRemoved(position)
+    }
+
     inner class CategoryViewHolder(private val binding: ItemInputTemplateBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: CheckItem?) {
