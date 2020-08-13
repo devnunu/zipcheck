@@ -2,21 +2,21 @@ package com.devnunu.zipcheck.data.template.repo
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.devnunu.zipcheck.data.template.model.Checklist
+import com.devnunu.zipcheck.data.template.model.Template
 
 class TemplateRepository {
-    private val checklists = MutableLiveData<MutableList<Checklist>>()
+    private val checklists = MutableLiveData<MutableList<Template>>()
 
-    fun observeCheckLists(): LiveData<MutableList<Checklist>> {
+    fun observeCheckLists(): LiveData<MutableList<Template>> {
         return checklists
     }
 
-    fun saveChecklist(checklist: Checklist) {
+    fun saveChecklist(template: Template) {
         var newChecklists = checklists.value
         if (newChecklists.isNullOrEmpty()) {
-            newChecklists = mutableListOf(checklist)
+            newChecklists = mutableListOf(template)
         } else {
-            newChecklists.add(checklist)
+            newChecklists.add(template)
         }
         checklists.value = newChecklists
     }

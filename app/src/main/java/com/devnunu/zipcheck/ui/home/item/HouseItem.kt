@@ -18,13 +18,6 @@ class HouseItem(house: House) {
         var totalChecklistCount = 0
         var checkedItemCount = 0
 
-        val keys = house.checklist?.items?.keys
-        val items = house.checklist?.items
-        keys?.forEach { key ->
-            totalChecklistCount += items?.size ?: 0
-            checkedItemCount += items?.get(key)?.filter { it.isGood != null }?.size ?: 0
-        }
-
         return "${checkedItemCount}/${totalChecklistCount}"
     }
 

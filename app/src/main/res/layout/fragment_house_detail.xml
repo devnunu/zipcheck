@@ -215,21 +215,6 @@
                         android:visibility="gone"
                         app:visibleIf="@{viewModel.checklist==null}" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/list_category_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_padding_size_medium"
-                        android:clipToPadding="true"
-                        android:nestedScrollingEnabled="false"
-                        android:orientation="vertical"
-                        app:categoryNames="@{viewModel.categoryNameList}"
-                        app:houseChecklist="@{viewModel.checklist}"
-                        app:layoutManager="LinearLayoutManager"
-                        app:visibleIf="@{viewModel.checklist!=null}"
-                        tools:itemCount="2"
-                        tools:listitem="@layout/item_house_detail_category" />
-
                 </LinearLayout>
 
             </LinearLayout>

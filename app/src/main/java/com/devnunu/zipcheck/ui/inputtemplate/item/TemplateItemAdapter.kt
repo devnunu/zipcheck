@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.devnunu.zipcheck.data.template.model.Checklist
+import com.devnunu.zipcheck.data.template.model.Template
 import com.devnunu.zipcheck.databinding.ItemInputChecklistTemplateBinding
 
 class TemplateItemAdapter(val listener: TemplateItemListener) :
@@ -36,17 +36,17 @@ class TemplateItemAdapter(val listener: TemplateItemListener) :
         return categoryItemList.size
     }
 
-    private fun setItem(checklists: List<Checklist>, selIndex: Int?) {
+    private fun setItem(templates: List<Template>, selIndex: Int?) {
         categoryItemList.clear()
-        categoryItemList.addAll(getChecklistItem(checklists, selIndex))
+        categoryItemList.addAll(getChecklistItem(templates, selIndex))
         notifyDataSetChanged()
     }
 
     private fun getChecklistItem(
-        checklists: List<Checklist>,
+        templates: List<Template>,
         selIndex: Int?
     ): List<TemplateItem> {
-        return checklists.mapIndexed { index, checklist ->
+        return templates.mapIndexed { index, checklist ->
             TemplateItem(checklist, index, selIndex == index)
         }
     }
@@ -67,11 +67,11 @@ class TemplateItemAdapter(val listener: TemplateItemListener) :
         @BindingAdapter(value = ["items", "selIndex"])
         fun bindItem(
             recyclerView: RecyclerView,
-            checklists: List<Checklist>?,
+            templates: List<Template>?,
             selIndex: Int?
         ) {
             val adapter = recyclerView.adapter as TemplateItemAdapter?
-            checklists?.let {
+            templates?.let {
                 adapter?.setItem(it, selIndex)
             }
         }

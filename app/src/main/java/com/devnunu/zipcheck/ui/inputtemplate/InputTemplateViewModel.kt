@@ -52,7 +52,7 @@ class InputTemplateViewModel @Inject constructor(
     fun onClickSubmitHouseBtn() {
         val house = houseRepository.getInputHouse()?.apply {
             val index = selChecklistIndex.value ?: 0
-            checklist = checklists.value?.get(index)
+            template = checklists.value?.get(index)
         }
         house?.let {
             houseRepository.setInputHouse(null)

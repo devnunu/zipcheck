@@ -8,6 +8,7 @@ import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.common.BaseFragment
 import com.devnunu.zipcheck.common.EventObserver
 import com.devnunu.zipcheck.databinding.FragmentInputTemplateItemBinding
+import com.devnunu.zipcheck.ui.inputtemplateitem.category.InputTemplateItemAdapter
 
 
 class InputTemplateItemFragment :
@@ -27,6 +28,7 @@ class InputTemplateItemFragment :
         binding.also {
             it.viewModel = viewModel
             it.onClickBackBtn = View.OnClickListener { findNavController().popBackStack() }
+            it.listItem.adapter = InputTemplateItemAdapter()
         }
     }
 

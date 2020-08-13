@@ -1,7 +1,8 @@
 package com.devnunu.zipcheck.data.template.model
 
-class Checklist {
+class Template {
 
     var name: String? = ""
-    var items: MutableMap<String, MutableList<CheckItem>>? = linkedMapOf()
+
+    var items: MutableList<CheckItem> = mutableListOf()
 }

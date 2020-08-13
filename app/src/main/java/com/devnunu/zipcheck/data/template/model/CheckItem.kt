@@ -4,11 +4,11 @@ import java.util.*
 
 class CheckItem {
 
-    constructor(description: String) {
-        this.title = description
+    constructor(name: String) {
+        this.name = name
     }
 
     var id: String = UUID.randomUUID().toString()
-    var title: String = ""
+    var name: String = ""
     var isGood: Boolean? = null
 }

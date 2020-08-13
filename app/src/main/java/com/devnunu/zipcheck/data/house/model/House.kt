@@ -1,6 +1,6 @@
 package com.devnunu.zipcheck.data.house.model
 
-import com.devnunu.zipcheck.data.template.model.Checklist
+import com.devnunu.zipcheck.data.template.model.Template
 import java.util.*
 
 class House {
@@ -12,5 +12,5 @@ class House {
     var monthlyPay: Long = 0
     var memo: String = ""
     var houseType: HouseType? = null
-    var checklist: Checklist? = null
+    var template: Template? = null
 }

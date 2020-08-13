@@ -7,9 +7,7 @@ import androidx.navigation.fragment.navArgs
 import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.common.BaseFragment
 import com.devnunu.zipcheck.common.EventObserver
-import com.devnunu.zipcheck.databinding.FragmentHomeBinding
 import com.devnunu.zipcheck.databinding.FragmentHouseDetailBinding
-import com.devnunu.zipcheck.ui.housedetail.category.HouseChecklistCategoryItemAdapter
 
 class HouseDetailFragment : BaseFragment<FragmentHouseDetailBinding, HouseDetailViewModel>(
     R.layout.fragment_house_detail,
@@ -26,8 +24,6 @@ class HouseDetailFragment : BaseFragment<FragmentHouseDetailBinding, HouseDetail
         binding.also {
             it.viewModel = viewModel
             it.onClickBackBtn = View.OnClickListener { findNavController().popBackStack() }
-            it.listCategoryName.adapter =
-                HouseChecklistCategoryItemAdapter(viewModel)
         }
     }
 
