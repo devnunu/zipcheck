@@ -7,8 +7,8 @@ import androidx.lifecycle.map
 import com.devnunu.zipcheck.common.Event
 import javax.inject.Inject
 
-class InputTemplateNameViewModel @Inject constructor(
-)  : ViewModel() {
+class InputTemplateNameViewModel(
+) : ViewModel() {
 
     val name = MutableLiveData<String>()
 
