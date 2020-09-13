@@ -4,7 +4,6 @@ import android.content.Context
 import com.devnunu.zipcheck.common.ZipCheckApplication
 import com.devnunu.zipcheck.di.DatabaseModule
 import com.devnunu.zipcheck.di.ViewModelModule
-import com.devnunu.zipcheck.ui.splash.SplashModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -18,8 +17,7 @@ import javax.inject.Singleton
         AndroidSupportInjectionModule::class,
         ApplicationModule::class,
         ViewModelModule::class,
-        DatabaseModule::class,
-        SplashModule::class
+        DatabaseModule::class
     ]
 )
 interface ApplicationComponent : AndroidInjector<ZipCheckApplication> {

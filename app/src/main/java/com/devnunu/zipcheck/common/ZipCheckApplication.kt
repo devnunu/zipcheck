@@ -5,6 +5,7 @@ import com.devnunu.zipcheck.di.common.DaggerApplicationComponent
 import com.devnunu.zipcheck.koindi.feature.homeDataModule
 import com.devnunu.zipcheck.koindi.data.houseDataModule
 import com.devnunu.zipcheck.koindi.data.templateDataModule
+import com.devnunu.zipcheck.koindi.feature.splashModule
 import com.devnunu.zipcheck.koindi.feature.templateModule
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
@@ -38,6 +39,7 @@ class ZipCheckApplication : DaggerApplication() {
                 templateDataModule,
 
                 // feature
+                splashModule,
                 homeDataModule,
                 templateModule
 
