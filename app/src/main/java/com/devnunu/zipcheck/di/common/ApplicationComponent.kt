@@ -4,7 +4,6 @@ import android.content.Context
 import com.devnunu.zipcheck.common.ZipCheckApplication
 import com.devnunu.zipcheck.di.DatabaseModule
 import com.devnunu.zipcheck.di.ViewModelModule
-import com.devnunu.zipcheck.ui.housedetail.HouseDetailModule
 import com.devnunu.zipcheck.ui.inputtemplate.InputTemplateModule
 import com.devnunu.zipcheck.ui.inputhouse.InputHouseModule
 import com.devnunu.zipcheck.ui.inputtemplatename.InputTemplateNameModule
@@ -24,7 +23,6 @@ import javax.inject.Singleton
         ApplicationModule::class,
         ViewModelModule::class,
         DatabaseModule::class,
-        HouseDetailModule::class,
         SplashModule::class,
         InputHouseModule::class,
         InputTemplateNameModule::class,

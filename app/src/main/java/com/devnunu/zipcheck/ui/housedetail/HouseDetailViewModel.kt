@@ -8,7 +8,7 @@ import com.devnunu.zipcheck.data.house.model.HouseType
 import com.devnunu.zipcheck.data.house.repo.HouseRepository
 import javax.inject.Inject
 
-class HouseDetailViewModel @Inject constructor(
+class HouseDetailViewModel(
     private val houseRepository: HouseRepository
 ) : ViewModel() {
 
@@ -21,9 +21,11 @@ class HouseDetailViewModel @Inject constructor(
     val typeAndPriceText = house.map {
         when (it?.houseType) {
             HouseType.LEASE_MONTHLY_PAY ->
-                "${it.houseType?.displayName} ${CurrencyUtil.toKrCurrencyText(it.deposit)}/${CurrencyUtil.toKrCurrencyText(
-                    it.monthlyPay
-                )}"
+                "${it.houseType?.displayName} ${CurrencyUtil.toKrCurrencyText(it.deposit)}/${
+                    CurrencyUtil.toKrCurrencyText(
+                        it.monthlyPay
+                    )
+                }"
             else -> "${it?.houseType?.displayName} ${CurrencyUtil.toKrCurrencyText(it?.deposit)}"
         }
     }

@@ -6,12 +6,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.common.BaseFragment
+import com.devnunu.zipcheck.common.BaseFragmentKoin
 import com.devnunu.zipcheck.common.EventObserver
 import com.devnunu.zipcheck.databinding.FragmentHouseDetailBinding
 
-class HouseDetailFragment : BaseFragment<FragmentHouseDetailBinding, HouseDetailViewModel>(
+class HouseDetailFragment : BaseFragmentKoin<FragmentHouseDetailBinding, HouseDetailViewModel>(
     R.layout.fragment_house_detail,
-    HouseDetailViewModel::class
+    HouseDetailViewModel::class.java
 ) {
     private val arg: HouseDetailFragmentArgs by navArgs()
 
