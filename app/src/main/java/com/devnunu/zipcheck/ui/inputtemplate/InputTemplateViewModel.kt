@@ -10,7 +10,7 @@ import com.devnunu.zipcheck.data.house.repo.HouseRepository
 import com.devnunu.zipcheck.ui.inputtemplate.item.TemplateItemListener
 import javax.inject.Inject
 
-class InputTemplateViewModel @Inject constructor(
+class InputTemplateViewModel(
     private val houseRepository: HouseRepository,
     private val templateRepository: TemplateRepository
 ) : ViewModel(), TemplateItemListener {

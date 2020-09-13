@@ -4,13 +4,14 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.common.BaseFragment
+import com.devnunu.zipcheck.common.BaseFragmentKoin
 import com.devnunu.zipcheck.common.EventObserver
 import com.devnunu.zipcheck.databinding.FragmentInputTemplateBinding
 import com.devnunu.zipcheck.ui.inputtemplate.item.TemplateItemAdapter
 
-class InputTemplateFragment : BaseFragment<FragmentInputTemplateBinding, InputTemplateViewModel>(
+class InputTemplateFragment : BaseFragmentKoin<FragmentInputTemplateBinding, InputTemplateViewModel>(
     R.layout.fragment_input_template,
-    InputTemplateViewModel::class
+    InputTemplateViewModel::class.java
 ) {
 
     override fun setBindingVariables() {

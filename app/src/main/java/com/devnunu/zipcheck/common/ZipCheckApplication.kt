@@ -2,9 +2,10 @@ package com.devnunu.zipcheck.common
 
 import android.content.Context
 import com.devnunu.zipcheck.di.common.DaggerApplicationComponent
-import com.devnunu.zipcheck.koindi.feature.homeModule
-import com.devnunu.zipcheck.koindi.data.houseModule
-import com.devnunu.zipcheck.koindi.feature.houseInputModule
+import com.devnunu.zipcheck.koindi.feature.homeDataModule
+import com.devnunu.zipcheck.koindi.data.houseDataModule
+import com.devnunu.zipcheck.koindi.data.templateDataModule
+import com.devnunu.zipcheck.koindi.feature.templateModule
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 import org.koin.android.ext.koin.androidContext
@@ -33,11 +34,13 @@ class ZipCheckApplication : DaggerApplication() {
         startKoin {
             androidContext(this@ZipCheckApplication)
             modules(
-                houseModule,
+                houseDataModule,
+                templateDataModule,
 
                 // feature
-                homeModule,
-                houseInputModule
+                homeDataModule,
+                templateModule
+
             )
         }
     }
