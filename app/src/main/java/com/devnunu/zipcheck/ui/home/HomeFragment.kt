@@ -2,7 +2,6 @@ package com.devnunu.zipcheck.ui.home
 
 import androidx.navigation.fragment.findNavController
 import com.devnunu.zipcheck.R
-import com.devnunu.zipcheck.common.BaseFragment
 import com.devnunu.zipcheck.common.BaseFragmentKoin
 import com.devnunu.zipcheck.common.EventObserver
 import com.devnunu.zipcheck.databinding.FragmentHomeBinding

@@ -6,7 +6,6 @@ import com.devnunu.zipcheck.common.util.CurrencyUtil
 import com.devnunu.zipcheck.data.house.model.House
 import com.devnunu.zipcheck.data.house.model.HouseType
 import com.devnunu.zipcheck.data.house.repo.HouseRepository
-import javax.inject.Inject
 
 class InputHouseViewModel(
     private val houseRepository: HouseRepository

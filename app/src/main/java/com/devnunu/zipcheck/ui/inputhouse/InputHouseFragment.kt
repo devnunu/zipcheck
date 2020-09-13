@@ -6,7 +6,6 @@ import android.widget.AutoCompleteTextView
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
 import com.devnunu.zipcheck.R
-import com.devnunu.zipcheck.common.BaseFragment
 import com.devnunu.zipcheck.common.BaseFragmentKoin
 import com.devnunu.zipcheck.common.EventObserver
 import com.devnunu.zipcheck.data.house.model.HouseType

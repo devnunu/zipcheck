@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
 import com.devnunu.zipcheck.common.Event
 import com.devnunu.zipcheck.data.house.repo.HouseRepository
-import javax.inject.Inject
 
 class HomeViewModel(
     private val houseRepository: HouseRepository

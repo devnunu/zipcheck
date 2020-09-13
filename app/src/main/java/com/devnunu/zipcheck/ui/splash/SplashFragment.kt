@@ -5,12 +5,12 @@ import android.os.Handler
 import androidx.lifecycle.ViewModel
 import androidx.navigation.fragment.findNavController
 import com.devnunu.zipcheck.R
-import com.devnunu.zipcheck.common.BaseFragment
+import com.devnunu.zipcheck.common.BaseFragmentKoin
 import com.devnunu.zipcheck.databinding.FragmentSplashBinding
 
-class SplashFragment : BaseFragment<FragmentSplashBinding, ViewModel>(
+class SplashFragment : BaseFragmentKoin<FragmentSplashBinding, ViewModel>(
     R.layout.fragment_splash,
-    ViewModel::class
+    ViewModel::class.java
 ) {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

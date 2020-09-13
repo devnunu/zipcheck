@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
 import com.devnunu.zipcheck.common.Event
-import javax.inject.Inject
 
 class InputTemplateNameViewModel(
 ) : ViewModel() {

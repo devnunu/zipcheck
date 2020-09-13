@@ -8,7 +8,6 @@ import com.devnunu.zipcheck.common.Event
 import com.devnunu.zipcheck.data.template.repo.TemplateRepository
 import com.devnunu.zipcheck.data.house.repo.HouseRepository
 import com.devnunu.zipcheck.ui.inputtemplate.item.TemplateItemListener
-import javax.inject.Inject
 
 class InputTemplateViewModel(
     private val houseRepository: HouseRepository,
