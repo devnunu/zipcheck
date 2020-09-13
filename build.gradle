@@ -9,6 +9,8 @@ buildscript {
         gsonVersion = '2.8.6'
         materialVersion = '1.2.0-rc01'
         archLifecycleVersion = '2.2.0-rc02'
+
+        koin_version = '2.1.6'
     }
     repositories {
         google()

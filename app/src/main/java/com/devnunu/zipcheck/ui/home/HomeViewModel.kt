@@ -8,7 +8,7 @@ import com.devnunu.zipcheck.common.Event
 import com.devnunu.zipcheck.data.house.repo.HouseRepository
 import javax.inject.Inject
 
-class HomeViewModel @Inject constructor(
+class HomeViewModel(
     private val houseRepository: HouseRepository
 ) : ViewModel() {
 
