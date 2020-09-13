@@ -7,13 +7,14 @@ import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
 import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.common.BaseFragment
+import com.devnunu.zipcheck.common.BaseFragmentKoin
 import com.devnunu.zipcheck.common.EventObserver
 import com.devnunu.zipcheck.data.house.model.HouseType
 import com.devnunu.zipcheck.databinding.FragmentInputHouseBinding
 
-class InputHouseFragment : BaseFragment<FragmentInputHouseBinding, InputHouseViewModel>(
+class InputHouseFragment : BaseFragmentKoin<FragmentInputHouseBinding, InputHouseViewModel>(
     R.layout.fragment_input_house,
-    InputHouseViewModel::class
+    InputHouseViewModel::class.java
 ) {
 
     override fun setBindingVariables() {

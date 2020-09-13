@@ -5,7 +5,6 @@ import com.devnunu.zipcheck.common.ZipCheckApplication
 import com.devnunu.zipcheck.di.DatabaseModule
 import com.devnunu.zipcheck.di.ViewModelModule
 import com.devnunu.zipcheck.ui.inputtemplate.InputTemplateModule
-import com.devnunu.zipcheck.ui.inputhouse.InputHouseModule
 import com.devnunu.zipcheck.ui.inputtemplatename.InputTemplateNameModule
 import com.devnunu.zipcheck.ui.splash.SplashModule
 import com.devnunu.zipcheck.ui.inputtemplateitem.InputTemplateItemModule
@@ -24,7 +23,6 @@ import javax.inject.Singleton
         ViewModelModule::class,
         DatabaseModule::class,
         SplashModule::class,
-        InputHouseModule::class,
         InputTemplateNameModule::class,
         InputTemplateModule::class,
         InputTemplateItemModule::class

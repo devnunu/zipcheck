@@ -4,6 +4,7 @@ import android.content.Context
 import com.devnunu.zipcheck.di.common.DaggerApplicationComponent
 import com.devnunu.zipcheck.koindi.feature.homeModule
 import com.devnunu.zipcheck.koindi.data.houseModule
+import com.devnunu.zipcheck.koindi.feature.houseInputModule
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 import org.koin.android.ext.koin.androidContext
@@ -35,7 +36,8 @@ class ZipCheckApplication : DaggerApplication() {
                 houseModule,
 
                 // feature
-                homeModule
+                homeModule,
+                houseInputModule
             )
         }
     }
