@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ItemTouchHelper.*
 import androidx.recyclerview.widget.RecyclerView
 import com.devnunu.zipcheck.R
-import com.devnunu.zipcheck.common.BaseFragment
+import com.devnunu.zipcheck.common.BaseFragmentKoin
 import com.devnunu.zipcheck.common.EventObserver
 import com.devnunu.zipcheck.common.util.StyleUtil
 import com.devnunu.zipcheck.databinding.FragmentInputTemplateItemBinding
@@ -18,9 +18,9 @@ import com.devnunu.zipcheck.ui.inputtemplateitem.item.OnStartActionListener
 
 
 class InputTemplateItemFragment :
-    BaseFragment<FragmentInputTemplateItemBinding, InputTemplateItemViewModel>(
+    BaseFragmentKoin<FragmentInputTemplateItemBinding, InputTemplateItemViewModel>(
         R.layout.fragment_input_template_item,
-        InputTemplateItemViewModel::class
+        InputTemplateItemViewModel::class.java
     ), OnStartActionListener {
 
     private val itemTouchHelper by lazy {
