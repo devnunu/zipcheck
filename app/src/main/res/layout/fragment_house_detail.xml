@@ -215,6 +215,18 @@
                         android:visibility="gone"
                         app:visibleIf="@{viewModel.checklist==null}" />
 
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/list_check_item"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clipToPadding="true"
+                        android:nestedScrollingEnabled="false"
+                        android:orientation="vertical"
+                        app:items="@{viewModel.house.template.items}"
+                        app:layoutManager="LinearLayoutManager"
+                        tools:itemCount="2"
+                        tools:listitem="@layout/item_house_detail_checklist" />
+
                 </LinearLayout>
 
             </LinearLayout>

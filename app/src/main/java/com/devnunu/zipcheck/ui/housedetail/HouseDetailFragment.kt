@@ -8,6 +8,7 @@ import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.common.BaseFragmentKoin
 import com.devnunu.zipcheck.common.EventObserver
 import com.devnunu.zipcheck.databinding.FragmentHouseDetailBinding
+import com.devnunu.zipcheck.ui.housedetail.item.ChecklistItemAdapter
 
 class HouseDetailFragment : BaseFragmentKoin<FragmentHouseDetailBinding, HouseDetailViewModel>(
     R.layout.fragment_house_detail,
@@ -25,6 +26,7 @@ class HouseDetailFragment : BaseFragmentKoin<FragmentHouseDetailBinding, HouseDe
     override fun setBindingVariables() {
         binding.also {
             it.viewModel = viewModel
+            it.listCheckItem.adapter = ChecklistItemAdapter(viewModel)
             it.onClickBackBtn = View.OnClickListener { findNavController().popBackStack() }
         }
     }
