@@ -1,4 +1,4 @@
-package com.devnunu.zipcheck.koindi.feature
+package com.devnunu.zipcheck.di.feature
 
 import com.devnunu.zipcheck.ui.home.HomeViewModel
 import com.devnunu.zipcheck.ui.housedetail.HouseDetailViewModel

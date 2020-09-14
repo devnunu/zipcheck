@@ -1,4 +1,4 @@
-package com.devnunu.zipcheck.koindi.feature
+package com.devnunu.zipcheck.di.feature
 
 import com.devnunu.zipcheck.ui.splash.SplashViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel

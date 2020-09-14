@@ -1,4 +1,4 @@
-package com.devnunu.zipcheck.koindi.feature
+package com.devnunu.zipcheck.di.feature
 
 import com.devnunu.zipcheck.ui.inputtemplate.InputTemplateViewModel
 import com.devnunu.zipcheck.ui.inputtemplateitem.InputTemplateItemViewModel
