@@ -25,6 +25,12 @@ class HouseRepository {
     }
 
     /** 사용자 입력으로 새로 추가되는 house */
+    fun getInputHouse(id: String?): House? {
+        return houseList.value?.firstOrNull {
+            it.id == id
+        }
+    }
+
     fun getInputHouse(): House? {
         return inputHouse
     }

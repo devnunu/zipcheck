@@ -53,17 +53,18 @@ class HouseDetailViewModel(
     }
 
     /** event */
-    private val _onClickAddChecklistBtn = MutableLiveData<Event<Unit>>()
-    val onClickAddChecklistBtn: LiveData<Event<Unit>> = _onClickAddChecklistBtn
+    private val _onClickAddChecklistBtn = MutableLiveData<Event<String>>()
+    val onClickAddChecklistBtn: LiveData<Event<String>> = _onClickAddChecklistBtn
 
     /** data loading start */
     fun start(id: String) {
         houseId.value = id
     }
 
-
     /** click handler */
     fun onClickAddChecklistBtn() {
-        _onClickAddChecklistBtn.value = Event(Unit)
+        houseId.value?.let {
+            _onClickAddChecklistBtn.value = Event(it)
+        }
     }
 }

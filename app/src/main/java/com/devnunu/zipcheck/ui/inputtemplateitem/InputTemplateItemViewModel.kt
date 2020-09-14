@@ -4,12 +4,10 @@ import androidx.lifecycle.*
 import com.devnunu.zipcheck.common.Event
 import com.devnunu.zipcheck.data.template.model.Template
 import com.devnunu.zipcheck.data.template.repo.TemplateRepository
-import com.devnunu.zipcheck.data.house.repo.HouseRepository
 import com.devnunu.zipcheck.data.template.model.CheckItem
 import com.devnunu.zipcheck.ui.inputtemplateitem.item.InputTemplateItemListener
 
 class InputTemplateItemViewModel(
-    private val houseRepository: HouseRepository,
     private val templateRepository: TemplateRepository
 ) : ViewModel(), InputTemplateItemListener {
 

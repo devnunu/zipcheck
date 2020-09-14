@@ -8,6 +8,6 @@ import org.koin.dsl.module
 
 val templateModule = module {
     viewModel { InputTemplateViewModel(get(), get()) }
-    viewModel { InputTemplateItemViewModel(get(), get()) }
+    viewModel { InputTemplateItemViewModel(get()) }
     viewModel { InputTemplateNameViewModel() }
 }

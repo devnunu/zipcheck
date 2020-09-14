@@ -44,8 +44,8 @@
         tools:layout="@layout/fragment_house_detail">
         <argument
             android:name="houseId"
-            android:defaultValue="0"
-            app:argType="string" />
+            app:argType="string"
+            app:nullable="true"/>
         <action
             android:id="@+id/action_houseDetailFragment_to_inputCheckListFragment"
             app:destination="@id/inputCheckListFragment"
@@ -59,6 +59,10 @@
         android:name="com.devnunu.zipcheck.ui.inputtemplate.InputTemplateFragment"
         android:label="InputCheckListFragment"
         tools:layout="@layout/fragment_input_template">
+        <argument
+            android:name="houseId"
+            app:argType="string"
+            app:nullable="true"/>
         <action
             android:id="@+id/action_inputCheckListFragment_to_inputListNameFragment"
             app:destination="@id/inputListNameFragment"
@@ -100,10 +104,5 @@
             android:name="checklistName"
             android:defaultValue="0"
             app:argType="string" />
-        <action
-            android:id="@+id/action_checkListTemplateFragment_to_inputCheckListFragment"
-            app:destination="@id/inputCheckListFragment"
-            app:popUpTo="@id/inputCheckListFragment"
-            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

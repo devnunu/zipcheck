@@ -17,7 +17,9 @@ class HouseDetailFragment : BaseFragmentKoin<FragmentHouseDetailBinding, HouseDe
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel.start(arg.houseId)
+        arg.houseId?.let {
+            viewModel.start(it)
+        }
     }
 
     override fun setBindingVariables() {
@@ -30,7 +32,7 @@ class HouseDetailFragment : BaseFragmentKoin<FragmentHouseDetailBinding, HouseDe
     override fun setEventObservers() {
         viewModel.onClickAddChecklistBtn.observe(this, EventObserver {
             val action =
-                HouseDetailFragmentDirections.actionHouseDetailFragmentToInputCheckListFragment()
+                HouseDetailFragmentDirections.actionHouseDetailFragmentToInputCheckListFragment(it)
             findNavController().navigate(action)
         })
     }

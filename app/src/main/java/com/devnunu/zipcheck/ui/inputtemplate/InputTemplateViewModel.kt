@@ -14,6 +14,8 @@ class InputTemplateViewModel(
     private val templateRepository: TemplateRepository
 ) : ViewModel(), TemplateItemListener {
 
+    var houseId = MutableLiveData<String>()
+
     val checklists = templateRepository.observeCheckLists()
 
     var selChecklistIndex = MutableLiveData<Int>()
@@ -49,13 +51,12 @@ class InputTemplateViewModel(
     }
 
     fun onClickSubmitHouseBtn() {
-        val house = houseRepository.getInputHouse()?.apply {
+        val house = houseRepository.getInputHouse(houseId.value)?.apply {
             val index = selChecklistIndex.value ?: 0
             template = checklists.value?.get(index)
         }
         house?.let {
-            houseRepository.setInputHouse(null)
-            houseRepository.addHouse(it)
+            houseRepository.updateHouse(house)
             _onSuccessSubmitHouse.value = Event(Unit)
         }
     }
