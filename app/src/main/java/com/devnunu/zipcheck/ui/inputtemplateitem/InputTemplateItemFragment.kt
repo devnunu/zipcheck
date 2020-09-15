@@ -51,7 +51,7 @@ class InputTemplateItemFragment :
 
     override fun setEventObservers() {
         viewModel.onSuccessSaveTemplate.observe(this, EventObserver {
-            findNavController().popBackStack(R.id.inputCheckListFragment, true)
+            findNavController().popBackStack(R.id.inputCheckListFragment, false)
         })
 
         viewModel.onClickAddItem.observe(this, EventObserver { checkItem ->

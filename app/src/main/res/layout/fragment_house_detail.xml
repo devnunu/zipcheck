@@ -222,7 +222,7 @@
                         android:clipToPadding="true"
                         android:nestedScrollingEnabled="false"
                         android:orientation="vertical"
-                        app:items="@{viewModel.house.template.items}"
+                        app:items="@{viewModel.checklist.items}"
                         app:layoutManager="LinearLayoutManager"
                         tools:itemCount="2"
                         tools:listitem="@layout/item_house_detail_checklist" />

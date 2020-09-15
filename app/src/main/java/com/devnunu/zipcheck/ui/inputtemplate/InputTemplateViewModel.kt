@@ -38,11 +38,7 @@ class InputTemplateViewModel(
     /** 템플릿 선택시 */
     override fun onSelectTemplate(index: Int) {
         val selIndex = selChecklistIndex.value
-        if (selIndex == index) {
-            selChecklistIndex.value = null
-        } else {
-            selChecklistIndex.value = index
-        }
+        selChecklistIndex.value = if (selIndex == index) null else index
     }
 
     /** event handler */
