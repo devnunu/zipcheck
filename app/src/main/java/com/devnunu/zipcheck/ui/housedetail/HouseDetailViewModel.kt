@@ -53,6 +53,10 @@ class HouseDetailViewModel(
         "${0} 개"
     }
 
+    val checklistBtnText = checklist.map {
+        if(it != null) "변경하기" else "추가하기"
+    }
+
     /** event */
     private val _onClickAddChecklistBtn = MutableLiveData<Event<String>>()
     val onClickAddChecklistBtn: LiveData<Event<String>> = _onClickAddChecklistBtn
