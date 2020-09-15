@@ -54,7 +54,7 @@ class HouseDetailViewModel(
     }
 
     val checklistBtnText = checklist.map {
-        if(it != null) "변경하기" else "추가하기"
+        if (it != null) "변경하기" else "추가하기"
     }
 
     /** event */
@@ -73,7 +73,15 @@ class HouseDetailViewModel(
         }
     }
 
-    override fun onClickCheck(id: String) {
-        TODO("Not yet implemented")
+    override fun onClickCheck(id: String, isGood: Boolean) {
+        val house = house.value
+        house?.template?.items?.forEach {
+            if (it.id == id) {
+                it.isGood = isGood
+            }
+        }
+        house?.let {
+            houseRepository.updateHouse(house)
+        }
     }
 }

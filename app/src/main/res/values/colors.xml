@@ -20,6 +20,17 @@
     <color name="mono100">#F6F6F6</color>
     <color name="mono000">#FFFFFF</color>
 
+    <color name="blue900">#215899</color>
+    <color name="blue700">#1D6ECC</color>
+    <color name="blue500">#227FEC</color>
+    <color name="blue300">#60A9FF</color>
+    <color name="blue200">#B0D4FD</color>
+    <color name="blue100">#E6F1FF</color>
+    <color name="accent_blue">#0094ff</color>
+
+    <color name="red700">#C13E55</color>
+    <color name="red500">#D74861</color>
+
     <color name="disable">#CCCCCC</color>
 
 </resources>
