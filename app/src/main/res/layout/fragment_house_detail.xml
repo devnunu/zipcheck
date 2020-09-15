@@ -199,7 +199,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:onClick="@{()->viewModel.onClickAddChecklistBtn()}"
-                            android:text="추가하기" />
+                            android:text="@{viewModel.checklistBtnText}"
+                            tools:text="추가하기"/>
 
                     </LinearLayout>
 
