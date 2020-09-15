@@ -35,22 +35,25 @@ class HouseDetailViewModel(
     }
 
     val checkItemProgress = house.map {
-        val checkedGoodCount = 0
-        val itemCountText = 0
-        if (checkedGoodCount == 0 || itemCountText == 0) 0
-        else checkedGoodCount * 100 / itemCountText
+        val totalChecklistCount = it?.template?.items?.size ?: 0
+        val checkItemCount = it?.template?.items?.filter { item -> item.isGood != null }?.size ?: 0
+        if (totalChecklistCount == 0) {
+            0
+        } else {
+            checkItemCount * 100 / totalChecklistCount
+        }
     }
 
     val totalItemCountText = house.map {
-        "${0} 개"
+        "${it?.template?.items?.size ?: 0} 개"
     }
 
     val goodItemCountText = house.map {
-        "${0} 개"
+        "${getItemCountByStatus(it, true)} 개"
     }
 
     val badItemCountText = house.map {
-        "${0} 개"
+        "${getItemCountByStatus(it, false)} 개"
     }
 
     val checklistBtnText = checklist.map {
@@ -64,6 +67,14 @@ class HouseDetailViewModel(
     /** data loading start */
     fun start(id: String) {
         houseId.value = id
+    }
+
+    private fun getItemCountByStatus(house: House?, status: Boolean): Int {
+        val checklistItems = house?.template?.items
+        return checklistItems
+            ?.filter { item ->
+                item.isGood == status
+            }?.size ?: 0
     }
 
     /** click handler */
