@@ -5,7 +5,7 @@ import com.devnunu.zipcheck.common.Event
 import com.devnunu.zipcheck.common.util.CurrencyUtil
 import com.devnunu.zipcheck.data.house.model.House
 import com.devnunu.zipcheck.data.house.model.HouseType
-import com.devnunu.zipcheck.data.house.repo.HouseRepository
+import com.devnunu.zipcheck.data.house.HouseRepository
 
 class InputHouseViewModel(
     private val houseRepository: HouseRepository
@@ -115,16 +115,15 @@ class InputHouseViewModel(
     }
 
     private fun registerHouse() {
-        val house = House().apply {
+        houseRepository.addHouse(getNewHouse())
+    }
+
+    private fun getNewHouse(): House {
+        return House().apply {
             name = this@InputHouseViewModel.name.value ?: ""
             houseType = HouseType.fromDisplayName(this@InputHouseViewModel.houseType.value)
             deposit = this@InputHouseViewModel.deposit.value?.toLong()?.times(10000) ?: 0
             monthlyPay = this@InputHouseViewModel.monthlyPay.value?.toLong()?.times(10000) ?: 0
         }
-        house.let {
-            houseRepository.setInputHouse(null)
-            houseRepository.addHouse(it)
-        }
     }
-
 }

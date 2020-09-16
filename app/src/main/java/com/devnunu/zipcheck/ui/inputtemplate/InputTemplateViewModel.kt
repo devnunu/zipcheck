@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
 import com.devnunu.zipcheck.common.Event
 import com.devnunu.zipcheck.data.template.repo.TemplateRepository
-import com.devnunu.zipcheck.data.house.repo.HouseRepository
+import com.devnunu.zipcheck.data.house.HouseRepository
 import com.devnunu.zipcheck.ui.inputtemplate.item.TemplateItemListener
 
 class InputTemplateViewModel(
@@ -47,7 +47,7 @@ class InputTemplateViewModel(
     }
 
     fun onClickSubmitHouseBtn() {
-        val house = houseRepository.getInputHouse(houseId.value)?.apply {
+        val house = houseRepository.getHouse(houseId.value)?.apply {
             val index = selChecklistIndex.value ?: 0
             checklist = checklists.value?.get(index)
         }

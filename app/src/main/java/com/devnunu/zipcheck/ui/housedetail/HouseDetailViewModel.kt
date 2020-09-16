@@ -5,7 +5,7 @@ import com.devnunu.zipcheck.common.Event
 import com.devnunu.zipcheck.common.util.CurrencyUtil
 import com.devnunu.zipcheck.data.house.model.House
 import com.devnunu.zipcheck.data.house.model.HouseType
-import com.devnunu.zipcheck.data.house.repo.HouseRepository
+import com.devnunu.zipcheck.data.house.HouseRepository
 import com.devnunu.zipcheck.ui.housedetail.item.ChecklistItemListener
 
 class HouseDetailViewModel(

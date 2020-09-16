@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
 import com.devnunu.zipcheck.common.Event
-import com.devnunu.zipcheck.data.house.repo.HouseRepository
+import com.devnunu.zipcheck.data.house.HouseRepository
 
 class HomeViewModel(
     private val houseRepository: HouseRepository
