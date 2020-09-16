@@ -2,7 +2,7 @@ package com.devnunu.zipcheck.ui.inputtemplateitem
 
 import androidx.lifecycle.*
 import com.devnunu.zipcheck.common.Event
-import com.devnunu.zipcheck.data.template.model.Template
+import com.devnunu.zipcheck.data.template.model.Checklist
 import com.devnunu.zipcheck.data.template.repo.TemplateRepository
 import com.devnunu.zipcheck.data.template.model.CheckItem
 import com.devnunu.zipcheck.ui.inputtemplateitem.item.InputTemplateItemListener
@@ -47,7 +47,7 @@ class InputTemplateItemViewModel(
     }
 
     fun onClickSubmitTemplateBtn() {
-        val template = Template().apply {
+        val template = Checklist().apply {
             name = templateName
             items = _checkItems.value ?: mutableListOf()
         }

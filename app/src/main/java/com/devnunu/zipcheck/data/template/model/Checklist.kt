@@ -1,6 +1,6 @@
 package com.devnunu.zipcheck.data.template.model
 
-class Template {
+class Checklist {
 
     var name: String? = ""
 

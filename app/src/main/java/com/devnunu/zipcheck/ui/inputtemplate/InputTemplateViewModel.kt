@@ -49,7 +49,7 @@ class InputTemplateViewModel(
     fun onClickSubmitHouseBtn() {
         val house = houseRepository.getInputHouse(houseId.value)?.apply {
             val index = selChecklistIndex.value ?: 0
-            template = checklists.value?.get(index)
+            checklist = checklists.value?.get(index)
         }
         house?.let {
             houseRepository.updateHouse(house)

@@ -31,12 +31,12 @@ class HouseDetailViewModel(
     }
 
     val checklist = house.map {
-        it?.template
+        it?.checklist
     }
 
     val checkItemProgress = house.map {
-        val totalChecklistCount = it?.template?.items?.size ?: 0
-        val checkItemCount = it?.template?.items?.filter { item -> item.isGood != null }?.size ?: 0
+        val totalChecklistCount = it?.checklist?.items?.size ?: 0
+        val checkItemCount = it?.checklist?.items?.filter { item -> item.isGood != null }?.size ?: 0
         if (totalChecklistCount == 0) {
             0
         } else {
@@ -45,7 +45,7 @@ class HouseDetailViewModel(
     }
 
     val totalItemCountText = house.map {
-        "${it?.template?.items?.size ?: 0} 개"
+        "${it?.checklist?.items?.size ?: 0} 개"
     }
 
     val goodItemCountText = house.map {
@@ -70,7 +70,7 @@ class HouseDetailViewModel(
     }
 
     private fun getItemCountByStatus(house: House?, status: Boolean): Int {
-        val checklistItems = house?.template?.items
+        val checklistItems = house?.checklist?.items
         return checklistItems
             ?.filter { item ->
                 item.isGood == status
@@ -86,7 +86,7 @@ class HouseDetailViewModel(
 
     override fun onClickCheck(id: String, isGood: Boolean) {
         val house = house.value
-        house?.template?.items?.forEach {
+        house?.checklist?.items?.forEach {
             if (it.id == id) {
                 it.isGood = isGood
             }
