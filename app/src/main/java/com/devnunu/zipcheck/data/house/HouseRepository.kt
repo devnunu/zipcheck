@@ -17,8 +17,6 @@ class DefaultHouseRepository(
     private val localHouseDataSource: HouseDataSource
 ) : HouseRepository {
 
-    private var inputHouse: House? = null
-
     override fun observeHouseList(): LiveData<MutableList<House>> {
         return localHouseDataSource.observeHouseList()
     }

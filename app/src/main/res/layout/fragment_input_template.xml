@@ -62,7 +62,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:onClick="@{()->viewModel.onClickAddTemplateBtn()}"
-                            android:text="새로운 템플릿 추가하기" />
+                            android:text="추가하기" />
 
                     </LinearLayout>
 

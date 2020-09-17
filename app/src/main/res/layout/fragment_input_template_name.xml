@@ -45,7 +45,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_padding_size_medium"
-                        android:text="템플릿 이름을 입력해주세요" />
+                        android:text="체크리스트 이름을 입력해주세요" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
