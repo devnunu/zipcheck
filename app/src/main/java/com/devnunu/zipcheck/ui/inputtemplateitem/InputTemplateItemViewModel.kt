@@ -2,13 +2,13 @@ package com.devnunu.zipcheck.ui.inputtemplateitem
 
 import androidx.lifecycle.*
 import com.devnunu.zipcheck.common.Event
-import com.devnunu.zipcheck.data.template.model.Checklist
-import com.devnunu.zipcheck.data.template.repo.TemplateRepository
-import com.devnunu.zipcheck.data.template.model.CheckItem
+import com.devnunu.zipcheck.data.checklist.model.Checklist
+import com.devnunu.zipcheck.data.checklist.repo.ChecklistRepository
+import com.devnunu.zipcheck.data.checklist.model.CheckItem
 import com.devnunu.zipcheck.ui.inputtemplateitem.item.InputTemplateItemListener
 
 class InputTemplateItemViewModel(
-    private val templateRepository: TemplateRepository
+    private val checklistRepository: ChecklistRepository
 ) : ViewModel(), InputTemplateItemListener {
 
     private var templateName: String? = null
@@ -51,7 +51,7 @@ class InputTemplateItemViewModel(
             name = templateName
             items = _checkItems.value ?: mutableListOf()
         }
-        templateRepository.saveChecklist(template)
+        checklistRepository.saveChecklist(template)
         _onSuccessSaveTemplate.value = Event(Unit)
     }
 }

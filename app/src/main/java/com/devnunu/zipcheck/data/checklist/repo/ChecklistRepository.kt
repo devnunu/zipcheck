@@ -1,10 +1,10 @@
-package com.devnunu.zipcheck.data.template.repo
+package com.devnunu.zipcheck.data.checklist.repo
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.devnunu.zipcheck.data.template.model.Checklist
+import com.devnunu.zipcheck.data.checklist.model.Checklist
 
-class TemplateRepository {
+class ChecklistRepository {
     private val checklists = MutableLiveData<MutableList<Checklist>>()
 
     fun observeCheckLists(): LiveData<MutableList<Checklist>> {

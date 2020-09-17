@@ -1,4 +1,4 @@
-package com.devnunu.zipcheck.data.template.model
+package com.devnunu.zipcheck.data.checklist.model
 
 import java.util.*
 

@@ -5,18 +5,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
 import com.devnunu.zipcheck.common.Event
-import com.devnunu.zipcheck.data.template.repo.TemplateRepository
+import com.devnunu.zipcheck.data.checklist.repo.ChecklistRepository
 import com.devnunu.zipcheck.data.house.HouseRepository
 import com.devnunu.zipcheck.ui.inputtemplate.item.TemplateItemListener
 
 class InputTemplateViewModel(
     private val houseRepository: HouseRepository,
-    private val templateRepository: TemplateRepository
+    private val checklistRepository: ChecklistRepository
 ) : ViewModel(), TemplateItemListener {
 
     var houseId = MutableLiveData<String>()
 
-    val checklists = templateRepository.observeCheckLists()
+    val checklists = checklistRepository.observeCheckLists()
 
     var selChecklistIndex = MutableLiveData<Int>()
 

@@ -1,6 +1,6 @@
 package com.devnunu.zipcheck.ui.housedetail.item
 
-import com.devnunu.zipcheck.data.template.model.CheckItem
+import com.devnunu.zipcheck.data.checklist.model.CheckItem
 
 class ChecklistItem(checkItem: CheckItem) {
 

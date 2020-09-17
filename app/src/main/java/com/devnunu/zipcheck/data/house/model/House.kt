@@ -1,6 +1,6 @@
 package com.devnunu.zipcheck.data.house.model
 
-import com.devnunu.zipcheck.data.template.model.Checklist
+import com.devnunu.zipcheck.data.checklist.model.Checklist
 import java.util.*
 
 class House {

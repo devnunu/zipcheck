@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.devnunu.zipcheck.data.template.model.CheckItem
+import com.devnunu.zipcheck.data.checklist.model.CheckItem
 import com.devnunu.zipcheck.databinding.ItemInputTemplateBinding
 import java.util.*
 

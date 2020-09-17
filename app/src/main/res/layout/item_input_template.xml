@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.devnunu.zipcheck.data.template.model.CheckItem" />
+            type="com.devnunu.zipcheck.data.checklist.model.CheckItem" />
     </data>
 
     <LinearLayout

@@ -1,6 +1,6 @@
 package com.devnunu.zipcheck.ui.inputtemplate.item
 
-import com.devnunu.zipcheck.data.template.model.Checklist
+import com.devnunu.zipcheck.data.checklist.model.Checklist
 
 class TemplateItem(val checklist: Checklist, val index: Int, val isSelected: Boolean) {
 
