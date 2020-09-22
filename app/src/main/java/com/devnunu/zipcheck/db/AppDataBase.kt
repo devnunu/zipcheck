@@ -19,7 +19,7 @@ import com.google.gson.reflect.TypeToken
         ChecklistEntity::class,
         HouseEntity::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 @TypeConverters(DatabaseConverters::class)
@@ -40,19 +40,19 @@ class DatabaseConverters {
         Gson().toJson(from)
 
     @TypeConverter
-    fun fromStringToChecklist(from: String): Checklist =
+    fun fromStringToChecklist(from: String?): Checklist? =
         Gson().fromJson(from, object : TypeToken<Checklist>() {}.type)
 
     @TypeConverter
-    fun fromChecklistToString(from: Checklist): String =
+    fun fromChecklistToString(from: Checklist?): String? =
         Gson().toJson(from)
 
     @TypeConverter
-    fun fromStringToHouseType(from: String): HouseType =
+    fun fromStringToHouseType(from: String?): HouseType? =
         Gson().fromJson(from, object : TypeToken<HouseType>() {}.type)
 
     @TypeConverter
-    fun fromHouseTypeToString(from: HouseType): String =
+    fun fromHouseTypeToString(from: HouseType?): String? =
         Gson().toJson(from)
 
 }

@@ -24,7 +24,7 @@ class InputTemplateFragment :
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        arg.houseId?.let {
+        arg.houseId.let {
             viewModel.houseId.value = it
         }
     }

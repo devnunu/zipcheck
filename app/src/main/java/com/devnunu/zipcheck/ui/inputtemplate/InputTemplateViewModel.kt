@@ -14,10 +14,6 @@ class InputTemplateViewModel(
 
     var houseId = MutableLiveData<Int>()
 
-    private val _house = houseId.switchMap {
-        houseRepository.observeHouse(it)
-    }
-
     val checklists = checklistRepository.observeCheckLists()
 
     var selChecklistIndex = MutableLiveData<Int>()
@@ -50,7 +46,7 @@ class InputTemplateViewModel(
 
     fun onClickSubmitHouseBtn() {
         viewModelScope.launch {
-            val houseId = _house.value?.id
+            val houseId = houseId.value
             val index = selChecklistIndex.value ?: 0
             val checklist = checklists.value?.get(index)
 
