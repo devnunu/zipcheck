@@ -2,43 +2,35 @@ package com.devnunu.zipcheck.data.house.local
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.map
+import com.devnunu.zipcheck.data.checklist.model.Checklist
 import com.devnunu.zipcheck.data.house.HouseDataSource
+import com.devnunu.zipcheck.data.house.dao.HouseDao
+import com.devnunu.zipcheck.data.house.entity.HouseEntity
+import com.devnunu.zipcheck.data.house.mapper.toHouseEntity
 import com.devnunu.zipcheck.data.house.model.House
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
-class LocalHouseDataSource : HouseDataSource {
+class LocalHouseDataSource(
+    private val checklistDao: HouseDao,
+    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
+) : HouseDataSource {
 
-    private val houseList = MutableLiveData<MutableList<House>>()
-
-    override fun observeHouseList(): LiveData<MutableList<House>> {
-        return houseList
+    override fun observeHouseList(): LiveData<List<HouseEntity>> {
+        return checklistDao.observeHouseList()
     }
 
-    override fun observeHouse(id: String): LiveData<House?> {
-        return houseList.map {
-            it.firstOrNull { house ->
-                house.id == id
-            }
+    override fun observeHouse(id: Int): LiveData<HouseEntity> {
+        return checklistDao.observeHouse(id)
+    }
+
+    override suspend fun insertHouse(house: House) = withContext(ioDispatcher) {
+        checklistDao.insertHouse(house.toHouseEntity())
+    }
+
+    override suspend fun updateHouseChecklist(houseId: Int, checklist: Checklist) =
+        withContext(ioDispatcher) {
+            checklistDao.updateHouseChecklist(houseId, checklist)
         }
-    }
-
-    override fun getHouse(id: String?): House? {
-        return houseList.value?.firstOrNull {
-            it.id == id
-        }
-    }
-
-    override fun addHouse(house: House) {
-        val list = houseList.value ?: mutableListOf()
-        list.add(house)
-        houseList.value = list
-    }
-
-    override fun updateHouse(house: House) {
-        val list = houseList.value ?: mutableListOf()
-        list.map {
-            if (it.id == house.id) house else it
-        }
-        houseList.value = list
-    }
 }

@@ -7,12 +7,13 @@ import com.devnunu.zipcheck.data.house.model.House
 import com.devnunu.zipcheck.data.house.model.HouseType
 import com.devnunu.zipcheck.data.house.HouseRepository
 import com.devnunu.zipcheck.ui.housedetail.item.ChecklistItemListener
+import kotlinx.coroutines.launch
 
 class HouseDetailViewModel(
     private val houseRepository: HouseRepository
 ) : ViewModel(), ChecklistItemListener {
 
-    private val houseId = MutableLiveData<String>()
+    private val houseId = MutableLiveData<Int>()
 
     val house: LiveData<House?> = houseId.switchMap {
         houseRepository.observeHouse(it)
@@ -61,11 +62,11 @@ class HouseDetailViewModel(
     }
 
     /** event */
-    private val _onClickAddChecklistBtn = MutableLiveData<Event<String>>()
-    val onClickAddChecklistBtn: LiveData<Event<String>> = _onClickAddChecklistBtn
+    private val _onClickAddChecklistBtn = MutableLiveData<Event<Int>>()
+    val onClickAddChecklistBtn: LiveData<Event<Int>> = _onClickAddChecklistBtn
 
     /** data loading start */
-    fun start(id: String) {
+    fun start(id: Int) {
         houseId.value = id
     }
 
@@ -85,14 +86,16 @@ class HouseDetailViewModel(
     }
 
     override fun onClickCheck(id: String, isGood: Boolean) {
-        val house = house.value
-        house?.checklist?.items?.forEach {
-            if (it.id == id) {
-                it.isGood = isGood
+        viewModelScope.launch {
+            val houseId = houseId.value
+            val checklist = house.value?.checklist
+            checklist?.items?.forEach {
+                if (it.id == id) it.isGood = isGood
             }
-        }
-        house?.let {
-            houseRepository.updateHouse(house)
+
+            if(houseId!=null && checklist!=null) {
+                houseRepository.updateHouseChecklist(houseId, checklist)
+            }
         }
     }
 }

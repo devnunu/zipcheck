@@ -18,7 +18,7 @@ class HouseDetailFragment : BaseFragmentKoin<FragmentHouseDetailBinding, HouseDe
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        arg.houseId?.let {
+        arg.houseId.let {
             viewModel.start(it)
         }
     }

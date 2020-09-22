@@ -44,8 +44,8 @@
         tools:layout="@layout/fragment_house_detail">
         <argument
             android:name="houseId"
-            app:argType="string"
-            app:nullable="true"/>
+            app:argType="integer"
+            android:defaultValue="0"/>
         <action
             android:id="@+id/action_houseDetailFragment_to_inputCheckListFragment"
             app:destination="@id/inputCheckListFragment"
@@ -61,8 +61,8 @@
         tools:layout="@layout/fragment_input_template">
         <argument
             android:name="houseId"
-            app:argType="string"
-            app:nullable="true"/>
+            app:argType="integer"
+            android:defaultValue="0"/>
         <action
             android:id="@+id/action_inputCheckListFragment_to_inputListNameFragment"
             app:destination="@id/inputListNameFragment"

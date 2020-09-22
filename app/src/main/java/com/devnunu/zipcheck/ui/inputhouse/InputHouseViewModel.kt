@@ -6,6 +6,7 @@ import com.devnunu.zipcheck.common.util.CurrencyUtil
 import com.devnunu.zipcheck.data.house.model.House
 import com.devnunu.zipcheck.data.house.model.HouseType
 import com.devnunu.zipcheck.data.house.HouseRepository
+import kotlinx.coroutines.launch
 
 class InputHouseViewModel(
     private val houseRepository: HouseRepository
@@ -115,15 +116,19 @@ class InputHouseViewModel(
     }
 
     private fun registerHouse() {
-        houseRepository.addHouse(getNewHouse())
+        viewModelScope.launch {
+            houseRepository.insertHouse(getNewHouse())
+        }
     }
 
     private fun getNewHouse(): House {
-        return House().apply {
-            name = this@InputHouseViewModel.name.value ?: ""
-            houseType = HouseType.fromDisplayName(this@InputHouseViewModel.houseType.value)
-            deposit = this@InputHouseViewModel.deposit.value?.toLong()?.times(10000) ?: 0
-            monthlyPay = this@InputHouseViewModel.monthlyPay.value?.toLong()?.times(10000) ?: 0
-        }
+        return House(
+            id = 0,
+            name = this@InputHouseViewModel.name.value ?: "",
+            houseType = HouseType.fromDisplayName(this@InputHouseViewModel.houseType.value),
+            deposit = this@InputHouseViewModel.deposit.value?.toLong()?.times(10000),
+            monthlyPay = this@InputHouseViewModel.monthlyPay.value?.toLong()?.times(10000),
+            checklist = null
+        )
     }
 }

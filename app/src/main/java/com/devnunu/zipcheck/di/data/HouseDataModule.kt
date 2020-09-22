@@ -8,7 +8,7 @@ import org.koin.dsl.module
 
 val houseDataModule = module {
 
-    single<HouseDataSource> { LocalHouseDataSource() }
+    factory<HouseDataSource> { LocalHouseDataSource(get()) }
 
     factory<HouseRepository> { DefaultHouseRepository(get()) }
 

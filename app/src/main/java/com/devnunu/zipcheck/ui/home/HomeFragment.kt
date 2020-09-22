@@ -17,7 +17,7 @@ class HomeFragment : BaseFragmentKoin<FragmentHomeBinding, HomeViewModel>(
         binding.also {
             it.viewModel = viewModel
             it.listHouse.adapter = HouseItemAdapter(object : HouseItemListener {
-                override fun onClickHouseItem(id: String) {
+                override fun onClickHouseItem(id: Int) {
                     val action = HomeFragmentDirections.actionHomeFragmentToHouseDetailFragment(id)
                     findNavController().navigate(action)
                 }

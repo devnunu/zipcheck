@@ -1,20 +1,22 @@
 package com.devnunu.zipcheck.ui.inputtemplate
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.map
+import androidx.lifecycle.*
 import com.devnunu.zipcheck.common.Event
 import com.devnunu.zipcheck.data.checklist.ChecklistRepository
 import com.devnunu.zipcheck.data.house.HouseRepository
 import com.devnunu.zipcheck.ui.inputtemplate.item.TemplateItemListener
+import kotlinx.coroutines.launch
 
 class InputTemplateViewModel(
     private val houseRepository: HouseRepository,
     private val checklistRepository: ChecklistRepository
 ) : ViewModel(), TemplateItemListener {
 
-    var houseId = MutableLiveData<String>()
+    var houseId = MutableLiveData<Int>()
+
+    private val _house = houseId.switchMap {
+        houseRepository.observeHouse(it)
+    }
 
     val checklists = checklistRepository.observeCheckLists()
 
@@ -47,13 +49,15 @@ class InputTemplateViewModel(
     }
 
     fun onClickSubmitHouseBtn() {
-        val house = houseRepository.getHouse(houseId.value)?.apply {
+        viewModelScope.launch {
+            val houseId = _house.value?.id
             val index = selChecklistIndex.value ?: 0
-            checklist = checklists.value?.get(index)
-        }
-        house?.let {
-            houseRepository.updateHouse(house)
-            _onSuccessSubmitHouse.value = Event(Unit)
+            val checklist = checklists.value?.get(index)
+
+            if (houseId != null && checklist != null) {
+                houseRepository.updateHouseChecklist(houseId, checklist)
+                _onSuccessSubmitHouse.value = Event(Unit)
+            }
         }
     }
 }
