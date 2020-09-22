@@ -6,6 +6,7 @@ import com.devnunu.zipcheck.data.checklist.model.Checklist
 import com.devnunu.zipcheck.data.checklist.ChecklistRepository
 import com.devnunu.zipcheck.data.checklist.model.CheckItem
 import com.devnunu.zipcheck.ui.inputtemplateitem.item.InputTemplateItemListener
+import kotlinx.coroutines.launch
 
 class InputTemplateItemViewModel(
     private val checklistRepository: ChecklistRepository
@@ -40,18 +41,20 @@ class InputTemplateItemViewModel(
     /** button click handler */
     fun onClickAddItemBtn() {
         val name = checkItemName.value
-        if(!name.isNullOrEmpty()) {
-            _onClickAddItem.value = Event(CheckItem(name))
+        if (!name.isNullOrEmpty()) {
+            _onClickAddItem.value = Event(CheckItem(name = name))
         }
         checkItemName.value = ""
     }
 
     fun onClickSubmitTemplateBtn() {
-        val template = Checklist().apply {
-            name = templateName
+        val checklist = Checklist(
+            name = templateName ?: "",
             items = _checkItems.value ?: mutableListOf()
+        )
+        viewModelScope.launch {
+            checklistRepository.insertChecklist(checklist)
+            _onSuccessSaveTemplate.value = Event(Unit)
         }
-        checklistRepository.saveChecklist(template)
-        _onSuccessSaveTemplate.value = Event(Unit)
     }
 }

@@ -3,23 +3,23 @@ package com.devnunu.zipcheck.data.checklist.local
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.devnunu.zipcheck.data.checklist.ChecklistDataSource
+import com.devnunu.zipcheck.data.checklist.dao.ChecklistDao
+import com.devnunu.zipcheck.data.checklist.entity.ChecklistEntity
 import com.devnunu.zipcheck.data.checklist.model.Checklist
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
-class LocalChecklistDataSource : ChecklistDataSource {
+class LocalChecklistDataSource(
+    private val checklistDao: ChecklistDao,
+    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
+) : ChecklistDataSource {
 
-    private val checklists = MutableLiveData<MutableList<Checklist>>()
-
-    override fun observeCheckLists(): LiveData<MutableList<Checklist>> {
-        return checklists
+    override fun observeCheckLists(): LiveData<List<ChecklistEntity>> {
+        return checklistDao.observeChecklist()
     }
 
-    override fun saveChecklist(checklist: Checklist) {
-        var newChecklists = checklists.value
-        if (newChecklists.isNullOrEmpty()) {
-            newChecklists = mutableListOf(checklist)
-        } else {
-            newChecklists.add(checklist)
-        }
-        checklists.value = newChecklists
+    override suspend fun insertChecklist(checklist: ChecklistEntity) = withContext(ioDispatcher) {
+        checklistDao.insert(checklist)
     }
 }

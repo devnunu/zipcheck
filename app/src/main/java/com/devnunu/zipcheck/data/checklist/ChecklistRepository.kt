@@ -1,24 +1,31 @@
 package com.devnunu.zipcheck.data.checklist
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.devnunu.zipcheck.data.checklist.local.LocalChecklistDataSource
+import androidx.lifecycle.map
+import com.devnunu.zipcheck.data.checklist.entity.ChecklistEntity
+import com.devnunu.zipcheck.data.checklist.mapper.toChecklist
+import com.devnunu.zipcheck.data.checklist.mapper.toChecklistEntity
 import com.devnunu.zipcheck.data.checklist.model.Checklist
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 interface ChecklistRepository {
-    fun observeCheckLists(): LiveData<MutableList<Checklist>>
-    fun saveChecklist(checklist: Checklist)
+    fun observeCheckLists(): LiveData<List<Checklist>>
+    suspend fun insertChecklist(checklist: Checklist)
 }
 
 class DefaultChecklistRepository(
-    private val localChecklistDataSource: ChecklistDataSource
+    private val localChecklistDataSource: ChecklistDataSource,
+    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : ChecklistRepository {
 
-    override fun observeCheckLists(): LiveData<MutableList<Checklist>> {
+    override fun observeCheckLists(): LiveData<List<Checklist>> {
         return localChecklistDataSource.observeCheckLists()
+            .map { it.map(ChecklistEntity::toChecklist) }
     }
 
-    override fun saveChecklist(checklist: Checklist) {
-        localChecklistDataSource.saveChecklist(checklist)
+    override suspend fun insertChecklist(checklist: Checklist) = withContext(ioDispatcher) {
+        localChecklistDataSource.insertChecklist(checklist.toChecklistEntity())
     }
 }

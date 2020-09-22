@@ -6,9 +6,9 @@ import com.devnunu.zipcheck.data.checklist.DefaultChecklistRepository
 import com.devnunu.zipcheck.data.checklist.local.LocalChecklistDataSource
 import org.koin.dsl.module
 
-val templateDataModule = module {
+val checklistDataModule = module {
 
-    single<ChecklistDataSource> { LocalChecklistDataSource() }
+    factory<ChecklistDataSource> { LocalChecklistDataSource(get()) }
 
     factory<ChecklistRepository> { DefaultChecklistRepository(get()) }
 }
