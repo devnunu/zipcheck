@@ -19,12 +19,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include
-            layout="@layout/layout_common_header"
+        <com.devnunu.zipcheck.ui.common.Header
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:onClickBackBtn="@{onClickBackBtn}"
-            app:title='@{"매출 정보 입력"}' />
+            app:onClickBack="@{onClickBackBtn}"
+            app:title="매출 정보 입력"/>
 
         <FrameLayout
             android:layout_width="match_parent"

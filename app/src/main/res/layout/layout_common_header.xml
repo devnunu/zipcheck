@@ -1,48 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tool="http://schemas.android.com/tools">
 
-    <data>
-
-        <import type="android.view.View" />
-
-        <import type="android.view.Gravity" />
-
-        <variable
-            name="title"
-            type="String" />
-
-        <variable
-            name="onClickBackBtn"
-            type="android.view.View.OnClickListener" />
-    </data>
-
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_view_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/mono000"
         android:paddingHorizontal="@dimen/margin_padding_size_small"
-        android:paddingVertical="@dimen/margin_padding_size_small"
-        android:gravity="center_vertical">
+        android:paddingVertical="@dimen/margin_padding_size_small">
 
         <ImageView
             android:id="@+id/button_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="@{onClickBackBtn}"
             android:padding="@dimen/margin_padding_size_small"
             android:src="@drawable/ic_keyboard_arrow_left_24px"
-            android:layout_marginRight="@dimen/margin_padding_size_small"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/text_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_weight="1"
             android:ellipsize="end"
             android:textSize="@dimen/text_size_medium"
-            android:text="@{title}"
-            tool:text="헤더 제목" />
-    </LinearLayout>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button_left"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

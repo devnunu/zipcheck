@@ -22,11 +22,10 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <include
-                layout="@layout/layout_common_header"
+            <com.devnunu.zipcheck.ui.common.Header
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:onClickBackBtn="@{onClickBackBtn}" />
+                app:onClickBack="@{onClickBackBtn}"/>
 
             <ScrollView
                 android:layout_width="match_parent"
