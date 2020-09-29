@@ -39,14 +39,6 @@ class HouseDetailFragment : BaseFragmentKoin<FragmentHouseDetailBinding, HouseDe
         }
     }
 
-    override fun setEventObservers() {
-        viewModel.onClickAddChecklistBtn.observe(this, EventObserver {
-            val action =
-                HouseDetailFragmentDirections.actionHouseDetailFragmentToInputCheckListFragment(it)
-            findNavController().navigate(action)
-        })
-    }
-
     private fun setViewPagerAdapter() {
         val adapter = HouseDetailPagerAdapter(requireActivity())
         binding.apply {

@@ -35,56 +35,12 @@ class HouseDetailViewModel(
         it?.checklist
     }
 
-    val checkItemProgress = house.map {
-        val totalChecklistCount = it?.checklist?.items?.size ?: 0
-        val checkItemCount = it?.checklist?.items?.filter { item -> item.isGood != null }?.size ?: 0
-        if (totalChecklistCount == 0) {
-            0
-        } else {
-            checkItemCount * 100 / totalChecklistCount
-        }
-    }
-
-    val totalItemCountText = house.map {
-        "${it?.checklist?.items?.size ?: 0} 개"
-    }
-
-    val goodItemCountText = house.map {
-        "${getItemCountByStatus(it, true)} 개"
-    }
-
-    val badItemCountText = house.map {
-        "${getItemCountByStatus(it, false)} 개"
-    }
-
-    val checklistBtnText = checklist.map {
-        if (it != null) "변경하기" else "추가하기"
-    }
-
-    /** event */
-    private val _onClickAddChecklistBtn = MutableLiveData<Event<Int>>()
-    val onClickAddChecklistBtn: LiveData<Event<Int>> = _onClickAddChecklistBtn
-
     /** data loading start */
     fun start(id: Int) {
         houseId.value = id
     }
 
-    private fun getItemCountByStatus(house: House?, status: Boolean): Int {
-        val checklistItems = house?.checklist?.items
-        return checklistItems
-            ?.filter { item ->
-                item.isGood == status
-            }?.size ?: 0
-    }
-
     /** click handler */
-    fun onClickAddChecklistBtn() {
-        houseId.value?.let {
-            _onClickAddChecklistBtn.value = Event(it)
-        }
-    }
-
     override fun onClickCheck(id: String, isGood: Boolean) {
         viewModelScope.launch {
             val houseId = houseId.value

@@ -23,7 +23,7 @@
         <com.devnunu.zipcheck.ui.common.Header
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:onClickBack="@{onClickBackBtn}"/>
+            app:onClickBack="@{onClickBackBtn}" />
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -68,107 +68,10 @@
                     android:layout_marginHorizontal="@dimen/margin_padding_size_large"
                     android:background="@color/mono200" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/margin_padding_size_medium">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/margin_padding_size_small"
-                            android:text="Total"
-                            android:textSize="@dimen/text_size_large"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/margin_padding_size_small"
-                            android:text="@{viewModel.totalItemCountText}"
-                            android:textSize="@dimen/text_size_medium"
-                            tools:text="0 개" />
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginVertical="@dimen/margin_padding_size_small"
-                        android:background="@color/mono400" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/margin_padding_size_small"
-                            android:text="Good"
-                            android:textColor="@color/emerald400"
-                            android:textSize="@dimen/text_size_large"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/margin_padding_size_small"
-                            android:text="@{viewModel.goodItemCountText}"
-                            android:textSize="@dimen/text_size_medium"
-                            tools:text="0 개" />
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginVertical="@dimen/margin_padding_size_small"
-                        android:background="@color/mono400" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/margin_padding_size_small"
-                            android:text="Bad"
-                            android:textColor="@color/mono500"
-                            android:textSize="@dimen/text_size_large"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/margin_padding_size_small"
-                            android:text="@{viewModel.badItemCountText}"
-                            android:textSize="@dimen/text_size_medium"
-                            tools:text="0 개" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/layout_tab"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content" />
 
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/viewpager"
