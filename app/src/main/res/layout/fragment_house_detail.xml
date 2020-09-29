@@ -165,70 +165,16 @@
 
                 </LinearLayout>
 
-                <ProgressBar
-                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/layout_tab"
                     android:layout_width="match_parent"
-                    android:layout_height="12dp"
-                    android:progress="@{viewModel.checkItemProgress}"
-                    android:progressDrawable="@drawable/progressbar"
-                    tools:progress="70" />
+                    android:layout_height="wrap_content"/>
 
-                <LinearLayout
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/viewpager"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="@dimen/margin_padding_size_large">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="체크리스트"
-                            android:textSize="@dimen/text_size_large"
-                            android:textStyle="bold" />
-
-                        <com.google.android.material.button.MaterialButton
-                            style="@style/Btn.Small"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:onClick="@{()->viewModel.onClickAddChecklistBtn()}"
-                            android:text="@{viewModel.checklistBtnText}"
-                            tools:text="추가하기"/>
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_padding_size_xxlarge"
-                        android:gravity="center"
-                        android:paddingTop="@dimen/margin_padding_size_xxlarge"
-                        android:text="아직 등록된 집이 없습니다.\n상단 버튼을 클릭해서 추가해주세요!"
-                        android:textColor="@color/emerald500"
-                        android:textSize="@dimen/text_size_medium"
-                        android:visibility="gone"
-                        app:visibleIf="@{viewModel.checklist==null}" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/list_check_item"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="10dp"
-                        android:clipToPadding="true"
-                        android:nestedScrollingEnabled="false"
-                        android:orientation="vertical"
-                        app:items="@{viewModel.checklist.items}"
-                        app:layoutManager="LinearLayoutManager"
-                        tools:itemCount="2"
-                        tools:listitem="@layout/item_house_detail_checklist" />
-
-                </LinearLayout>
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
 
             </LinearLayout>
 
