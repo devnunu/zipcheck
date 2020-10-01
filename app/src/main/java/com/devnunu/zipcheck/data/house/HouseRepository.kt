@@ -2,8 +2,8 @@ package com.devnunu.zipcheck.data.house
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
-import com.devnunu.zipcheck.data.checklist.model.Checklist
 import com.devnunu.zipcheck.data.house.mapper.toHouse
+import com.devnunu.zipcheck.data.house.model.CheckItem
 import com.devnunu.zipcheck.data.house.model.House
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -13,7 +13,7 @@ interface HouseRepository {
     fun observeHouseList(): LiveData<List<House>>
     fun observeHouse(id: Int): LiveData<House?>
     suspend fun insertHouse(house: House)
-    suspend fun updateHouseChecklist(id: Int, checklist: Checklist)
+    suspend fun updateHouseChecklist(id: Int, checklist: List<CheckItem>)
 }
 
 class DefaultHouseRepository(
@@ -35,7 +35,7 @@ class DefaultHouseRepository(
             localHouseDataSource.insertHouse(house)
         }
 
-    override suspend fun updateHouseChecklist(id: Int, checklist: Checklist) =
+    override suspend fun updateHouseChecklist(id: Int, checklist: List<CheckItem>) =
         withContext(ioDispatcher) {
             localHouseDataSource.updateHouseChecklist(id, checklist)
         }

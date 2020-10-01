@@ -1,5 +1,5 @@
 package com.devnunu.zipcheck.ui.housedetail.item
 
 interface ChecklistItemListener {
-    fun onClickCheck(id: String, isGood: Boolean)
+    fun onClickCheck(name: String, point: Int)
 }

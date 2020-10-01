@@ -41,12 +41,12 @@ class HouseDetailViewModel(
     }
 
     /** click handler */
-    override fun onClickCheck(id: String, isGood: Boolean) {
+    override fun onClickCheck(name: String, point: Int) {
         viewModelScope.launch {
             val houseId = houseId.value
             val checklist = house.value?.checklist
-            checklist?.items?.forEach {
-                if (it.id == id) it.isGood = isGood
+            checklist?.forEach {
+//                if (it.name == id) it.isGood = isGood
             }
 
             if(houseId!=null && checklist!=null) {

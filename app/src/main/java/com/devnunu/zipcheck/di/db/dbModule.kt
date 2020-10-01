@@ -11,8 +11,6 @@ val dbModule = module {
             .build()
     }
 
-    factory { get<AppDatabase>().checklistDao() }
-
     factory { get<AppDatabase>().houseDao() }
 
 }

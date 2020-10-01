@@ -1,10 +1,7 @@
 package com.devnunu.zipcheck.data.house.mapper
 
-import com.devnunu.zipcheck.data.checklist.entity.ChecklistEntity
-import com.devnunu.zipcheck.data.checklist.model.Checklist
 import com.devnunu.zipcheck.data.house.entity.HouseEntity
 import com.devnunu.zipcheck.data.house.model.House
-import com.devnunu.zipcheck.data.house.model.HouseType
 
 internal fun House.toHouseEntity(): HouseEntity =
     HouseEntity(

@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.devnunu.zipcheck.data.checklist.model.CheckItem
+import com.devnunu.zipcheck.data.house.model.CheckItem
 import com.devnunu.zipcheck.databinding.ItemHouseDetailChecklistBinding
 
 class ChecklistItemAdapter(val listener: ChecklistItemListener) :

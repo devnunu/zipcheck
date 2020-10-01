@@ -6,6 +6,7 @@ import com.devnunu.zipcheck.common.util.CurrencyUtil
 import com.devnunu.zipcheck.data.house.model.House
 import com.devnunu.zipcheck.data.house.model.HouseType
 import com.devnunu.zipcheck.data.house.HouseRepository
+import com.devnunu.zipcheck.data.house.model.CheckItem
 import kotlinx.coroutines.launch
 
 class InputHouseViewModel(
@@ -71,10 +72,10 @@ class InputHouseViewModel(
 
     private fun checkIsBottomBtnEnable(): Boolean {
         return when (inputStep.value) {
-            STEP_NAME -> name.value?.isNullOrEmpty()?.not() ?: false
-            STEP_HOUSE_TYPE -> houseType.value?.isNullOrEmpty()?.not() ?: false
-            STEP_DEPOSIT -> deposit.value?.isNullOrEmpty()?.not() ?: false
-            STEP_MONTHLY_PAY -> monthlyPay.value?.isNullOrEmpty()?.not() ?: false
+            STEP_NAME -> name.value?.isEmpty()?.not() ?: false
+            STEP_HOUSE_TYPE -> houseType.value?.isEmpty()?.not() ?: false
+            STEP_DEPOSIT -> deposit.value?.isEmpty()?.not() ?: false
+            STEP_MONTHLY_PAY -> monthlyPay.value?.isEmpty()?.not() ?: false
             else -> false
         }
     }
@@ -128,7 +129,33 @@ class InputHouseViewModel(
             houseType = HouseType.fromDisplayName(this@InputHouseViewModel.houseType.value),
             deposit = this@InputHouseViewModel.deposit.value?.toLong()?.times(10000),
             monthlyPay = this@InputHouseViewModel.monthlyPay.value?.toLong()?.times(10000),
-            checklist = null
+            checklist = getNewChecklist()
+        )
+    }
+
+    private fun getNewChecklist(): List<CheckItem> {
+        return listOf(
+            CheckItem("햇빛이 잘들어오나요"),
+            CheckItem("물이 샌 흔적은 없나요"),
+            CheckItem("환기가 잘되나요"),
+            CheckItem("곰팡이가 핀곳은 없나요"),
+            CheckItem("주변은 조용한가요"),
+            CheckItem("집의 크기는 적당한가요"),
+            CheckItem("냉장고, 세탁기 등, 가전을 놓을 자리가 있나요"),
+            CheckItem("전등은 잘들어오나요"),
+            CheckItem("수도는 잘나오나요(온수 포함)"),
+            CheckItem("배수는 잘되나요"),
+            CheckItem("파손된 시설은 없나요"),
+            CheckItem("외풍이 심하지는 않나요"),
+            CheckItem("방충망, 방범창이 있나요"),
+            CheckItem("CCTV는 설치되어있나요"),
+            CheckItem("주차장이 있나요"),
+            CheckItem("교통이 편리한가요"),
+            CheckItem("주변에 편의시설들이 있나요"),
+            CheckItem("등기부등본상에 융자가 있나요"),
+            CheckItem("관리비가 적당한가요"),
+            CheckItem("집이 너무 외진곳은 아닌가요"),
+            CheckItem("집을 내놨을때 잘 나갈수 있나요")
         )
     }
 }

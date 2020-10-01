@@ -1,12 +1,11 @@
 package com.devnunu.zipcheck.data.house.local
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.devnunu.zipcheck.data.checklist.model.Checklist
 import com.devnunu.zipcheck.data.house.HouseDataSource
 import com.devnunu.zipcheck.data.house.dao.HouseDao
 import com.devnunu.zipcheck.data.house.entity.HouseEntity
 import com.devnunu.zipcheck.data.house.mapper.toHouseEntity
+import com.devnunu.zipcheck.data.house.model.CheckItem
 import com.devnunu.zipcheck.data.house.model.House
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -29,7 +28,7 @@ class LocalHouseDataSource(
         checklistDao.insertHouse(house.toHouseEntity())
     }
 
-    override suspend fun updateHouseChecklist(houseId: Int, checklist: Checklist) =
+    override suspend fun updateHouseChecklist(houseId: Int, checklist: List<CheckItem>) =
         withContext(ioDispatcher) {
             checklistDao.updateHouseChecklist(houseId, checklist)
         }

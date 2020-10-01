@@ -4,7 +4,6 @@ import android.app.Application
 import android.content.Context
 import com.devnunu.zipcheck.di.feature.homeDataModule
 import com.devnunu.zipcheck.di.data.houseDataModule
-import com.devnunu.zipcheck.di.data.checklistDataModule
 import com.devnunu.zipcheck.di.db.dbModule
 import com.devnunu.zipcheck.di.feature.splashModule
 import org.koin.android.ext.koin.androidContext
@@ -34,7 +33,6 @@ class ZipCheckApplication : Application() {
 
                 // data
                 houseDataModule,
-                checklistDataModule,
 
                 // feature
                 splashModule,
