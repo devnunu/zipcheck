@@ -1,5 +1,8 @@
 package com.devnunu.zipcheck.ui.housedetail.pager
 
+import android.view.Gravity
+import android.view.ViewGroup
+import android.view.Window
 import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.common.BaseFragmentKoin
 import com.devnunu.zipcheck.databinding.FragmentHouseDetailChecklistBinding

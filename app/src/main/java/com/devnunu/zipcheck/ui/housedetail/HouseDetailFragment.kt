@@ -49,6 +49,4 @@ class HouseDetailFragment : BaseFragmentKoin<FragmentHouseDetailBinding, HouseDe
             viewpager.isSaveEnabled = false
         }
     }
-
-
 }
