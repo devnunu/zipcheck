@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
+import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.databinding.LayoutCommonRateViewBinding
@@ -30,6 +31,22 @@ class RateView @JvmOverloads constructor(
             if (style.hasValue(R.styleable.RateView_point)) {
                 val point = style.getInt(R.styleable.RateView_point, 0)
                 binding.point = point
+            }
+        }
+    }
+
+    companion object {
+        @JvmStatic
+        @BindingAdapter(
+            "point",
+            requireAll = false
+        )
+        fun setData(
+            view: RateView,
+            point: Int?
+        ) {
+            point?.let {
+                view.binding.point = it
             }
         }
     }

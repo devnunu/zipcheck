@@ -123,7 +123,7 @@ class InputHouseViewModel(
     }
 
     private fun getNewHouse(): House {
-        return House(
+        val house = House(
             id = 0,
             name = this@InputHouseViewModel.name.value ?: "",
             houseType = HouseType.fromDisplayName(this@InputHouseViewModel.houseType.value),
@@ -131,6 +131,7 @@ class InputHouseViewModel(
             monthlyPay = this@InputHouseViewModel.monthlyPay.value?.toLong()?.times(10000),
             checklist = getNewChecklist()
         )
+        return house
     }
 
     private fun getNewChecklist(): List<CheckItem> {

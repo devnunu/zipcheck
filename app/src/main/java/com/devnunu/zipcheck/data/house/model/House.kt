@@ -9,5 +9,5 @@ data class House(
     var monthlyPay: Long? = 0,
     var memo: String? = null,
     var houseType: HouseType?,
-    val checklist: List<CheckItem>? = listOf()
+    val checklist: List<CheckItem>
 )

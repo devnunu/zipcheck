@@ -15,7 +15,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 class HouseDetailFragment : BaseFragmentKoin<FragmentHouseDetailBinding, HouseDetailViewModel>(
     R.layout.fragment_house_detail,
     HouseDetailViewModel::class.java
-), ChecklistItemListener {
+) {
 
     private val textArray = arrayOf("체크리스트", "메모")
     private val arg: HouseDetailFragmentArgs by navArgs()
@@ -50,8 +50,5 @@ class HouseDetailFragment : BaseFragmentKoin<FragmentHouseDetailBinding, HouseDe
         }
     }
 
-    override fun onClickCheck(index: Int) {
-        val dialog = RatingDialog(index, viewModel)
-        dialog.show(parentFragmentManager, dialog.tag)
-    }
+
 }

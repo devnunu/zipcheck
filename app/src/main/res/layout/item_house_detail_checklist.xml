@@ -17,9 +17,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{()->listener.onClickCheck(item.index, item.point)}"
         android:orientation="vertical"
-        android:paddingVertical="14dp"
-        android:onClick="@{()->listener.onClickCheck(item.index)}">
+        android:paddingVertical="14dp">
 
         <TextView
             android:id="@+id/textView"

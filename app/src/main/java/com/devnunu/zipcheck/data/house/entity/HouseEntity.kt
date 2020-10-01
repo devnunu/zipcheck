@@ -16,5 +16,5 @@ data class HouseEntity(
     val monthlyPay: Long?,
     val memo: String?,
     val houseType: HouseType?,
-    val checklist: List<CheckItem>?
+    val checklist: List<CheckItem>
 )

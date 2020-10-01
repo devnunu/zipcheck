@@ -13,7 +13,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.DefinitionParameters
+import org.koin.core.parameter.emptyParametersHolder
 
 abstract class BaseFragmentKoin<T : ViewDataBinding, VM : ViewModel>(
     @LayoutRes private val layoutId: Int,
@@ -22,7 +25,9 @@ abstract class BaseFragmentKoin<T : ViewDataBinding, VM : ViewModel>(
 
     protected lateinit var binding: T
 
-    val viewModel: VM by viewModel(viewModelClass.kotlin)
+    open val viewModelParameters: DefinitionParameters = emptyParametersHolder()
+
+    val viewModel: VM by sharedViewModel(viewModelClass.kotlin) { viewModelParameters }
 
     override fun onCreateView(
         inflater: LayoutInflater,
