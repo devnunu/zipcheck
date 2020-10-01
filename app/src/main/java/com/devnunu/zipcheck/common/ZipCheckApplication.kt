@@ -7,7 +7,6 @@ import com.devnunu.zipcheck.di.data.houseDataModule
 import com.devnunu.zipcheck.di.data.checklistDataModule
 import com.devnunu.zipcheck.di.db.dbModule
 import com.devnunu.zipcheck.di.feature.splashModule
-import com.devnunu.zipcheck.di.feature.templateModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -39,8 +38,7 @@ class ZipCheckApplication : Application() {
 
                 // feature
                 splashModule,
-                homeDataModule,
-                templateModule
+                homeDataModule
             )
         }
     }
