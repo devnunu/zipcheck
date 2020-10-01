@@ -28,6 +28,13 @@
     <color name="blue100">#E6F1FF</color>
     <color name="accent_blue">#0094ff</color>
 
+    <color name="yellow900">#FFC145</color>
+    <color name="yellow700">#FFDE31</color>
+    <color name="yellow500">#FFEA00</color>
+    <color name="yellow300">#FFF046</color>
+    <color name="yellow200">#FFF47D</color>
+    <color name="yellow100">#FFF9B0</color>
+
     <color name="red700">#C13E55</color>
     <color name="red500">#D74861</color>
 

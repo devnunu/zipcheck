@@ -22,11 +22,8 @@ class HouseDetailViewModel(
     val typeAndPriceText = house.map {
         when (it?.houseType) {
             HouseType.LEASE_MONTHLY_PAY ->
-                "${it.houseType?.displayName} ${CurrencyUtil.toKrCurrencyText(it.deposit)}/${
-                    CurrencyUtil.toKrCurrencyText(
-                        it.monthlyPay
-                    )
-                }"
+                "${it.houseType?.displayName} ${CurrencyUtil.toKrCurrencyText(it.deposit)}" +
+                        "/${CurrencyUtil.toKrCurrencyText(it.monthlyPay)}"
             else -> "${it?.houseType?.displayName} ${CurrencyUtil.toKrCurrencyText(it?.deposit)}"
         }
     }
@@ -46,10 +43,10 @@ class HouseDetailViewModel(
             val houseId = houseId.value
             val checklist = house.value?.checklist
             checklist?.forEach {
-//                if (it.name == id) it.isGood = isGood
+                if (it.name == name) it.point = point
             }
 
-            if(houseId!=null && checklist!=null) {
+            if (houseId != null && checklist != null) {
                 houseRepository.updateHouseChecklist(houseId, checklist)
             }
         }
