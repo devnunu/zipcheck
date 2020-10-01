@@ -8,14 +8,16 @@ import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.common.BaseFragmentKoin
 import com.devnunu.zipcheck.common.EventObserver
 import com.devnunu.zipcheck.databinding.FragmentHouseDetailBinding
+import com.devnunu.zipcheck.ui.common.RatingDialog
 import com.devnunu.zipcheck.ui.housedetail.item.ChecklistItemAdapter
+import com.devnunu.zipcheck.ui.housedetail.item.ChecklistItemListener
 import com.devnunu.zipcheck.ui.housedetail.pager.HouseDetailPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
 class HouseDetailFragment : BaseFragmentKoin<FragmentHouseDetailBinding, HouseDetailViewModel>(
     R.layout.fragment_house_detail,
     HouseDetailViewModel::class.java
-) {
+), ChecklistItemListener {
 
     private val textArray = arrayOf("체크리스트", "메모")
     private val arg: HouseDetailFragmentArgs by navArgs()
@@ -48,5 +50,10 @@ class HouseDetailFragment : BaseFragmentKoin<FragmentHouseDetailBinding, HouseDe
             }.attach()
             viewpager.isSaveEnabled = false
         }
+    }
+
+    override fun onClickCheck(index: Int) {
+        val dialog = RatingDialog(index, viewModel)
+        dialog.show(parentFragmentManager, dialog.tag)
     }
 }

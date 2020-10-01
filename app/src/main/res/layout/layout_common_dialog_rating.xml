@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="point"
+            type="Integer" />
+
+        <variable
+            name="listener"
+            type="com.devnunu.zipcheck.ui.common.RatingDialogListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="20dp">
+
+        <ImageView
+            android:id="@+id/img_star1"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@{point > 0 ? @drawable/ic_star_24px : @drawable/ic_star_border_24px}"
+            android:tint="@color/yellow900"
+            app:layout_constraintEnd_toStartOf="@+id/img_star2"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_star_border_24px" />
+
+        <ImageView
+            android:id="@+id/img_star2"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@{point > 1 ? @drawable/ic_star_24px : @drawable/ic_star_border_24px}"
+            android:tint="@color/yellow900"
+            app:layout_constraintEnd_toStartOf="@+id/img_star3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/img_star1"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_star_border_24px" />
+
+        <ImageView
+            android:id="@+id/img_star3"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@{point > 2 ? @drawable/ic_star_24px : @drawable/ic_star_border_24px}"
+            android:tint="@color/yellow900"
+            app:layout_constraintEnd_toStartOf="@+id/img_star4"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/img_star2"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_star_border_24px" />
+
+        <ImageView
+            android:id="@+id/img_star4"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@{point > 3 ? @drawable/ic_star_24px : @drawable/ic_star_border_24px}"
+            android:tint="@color/yellow900"
+            app:layout_constraintEnd_toStartOf="@+id/img_star5"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/img_star3"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_star_border_24px" />
+
+        <ImageView
+            android:id="@+id/img_star5"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@{point > 4 ? @drawable/ic_star_24px : @drawable/ic_star_border_24px}"
+            android:tint="@color/yellow900"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/img_star4"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_star_border_24px" />
+
+        <Button
+            android:id="@+id/btn_positive"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="초기화"
+            android:backgroundTint="@color/mono400"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_negative"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btn_negative" />
+
+        <Button
+            android:id="@+id/btn_negative"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="확인"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn_positive"
+            app:layout_constraintTop_toBottomOf="@+id/img_star3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

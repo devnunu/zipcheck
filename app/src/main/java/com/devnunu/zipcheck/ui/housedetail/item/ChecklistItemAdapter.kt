@@ -45,8 +45,8 @@ class ChecklistItemAdapter(val listener: ChecklistItemListener) :
     private fun getHouseItem(
         checkItemList: List<CheckItem>
     ): List<ChecklistItem> {
-        return checkItemList.map {
-            ChecklistItem(it)
+        return checkItemList.mapIndexed { index, checkItem ->
+            ChecklistItem(index, checkItem)
         }
     }
 

@@ -18,7 +18,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingVertical="14dp">
+        android:paddingVertical="14dp"
+        android:onClick="@{()->listener.onClickCheck(item.index)}">
 
         <TextView
             android:id="@+id/textView"
