@@ -6,10 +6,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.common.BaseFragmentKoin
-import com.devnunu.zipcheck.common.EventObserver
 import com.devnunu.zipcheck.databinding.FragmentHouseDetailBinding
-import com.devnunu.zipcheck.ui.common.RatingDialog
-import com.devnunu.zipcheck.ui.housedetail.item.ChecklistItemAdapter
+import com.devnunu.zipcheck.ui.housedetail.dialog.RatingDialog
 import com.devnunu.zipcheck.ui.housedetail.item.ChecklistItemListener
 import com.devnunu.zipcheck.ui.housedetail.pager.HouseDetailPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator

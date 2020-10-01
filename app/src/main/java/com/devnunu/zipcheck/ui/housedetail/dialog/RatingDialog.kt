@@ -1,20 +1,25 @@
-package com.devnunu.zipcheck.ui.common
+package com.devnunu.zipcheck.ui.housedetail.dialog
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.ObservableInt
 import androidx.fragment.app.DialogFragment
 import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.databinding.LayoutCommonDialogRatingBinding
+import com.devnunu.zipcheck.ui.housedetail.HouseDetailViewModel
 
 class RatingDialog(
     val index: Int,
-    val listener: RatingDialogListener
+    val point: Int,
+    val viewModel: HouseDetailViewModel
 ) : DialogFragment() {
 
     private lateinit var binding: LayoutCommonDialogRatingBinding
+
+    private var inputPoint: ObservableInt = ObservableInt(point)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,8 +39,22 @@ class RatingDialog(
 
     private fun setBindingVariables() {
         binding.also {
-            it.listener = listener
+            it.index = index
+            it.point = inputPoint
+            it.dialog = this
         }
+    }
+
+    fun onClickStar(point: Int) {
+        inputPoint.set(point)
+    }
+
+    fun onClickPositiveBtn() {
+        viewModel.onClickRate(index, inputPoint.get())
+    }
+
+    fun onClickNegativeBtn() {
+        viewModel.onClickRate(index, 0)
     }
 
 }

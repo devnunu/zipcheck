@@ -6,12 +6,16 @@
     <data>
 
         <variable
-            name="point"
+            name="index"
             type="Integer" />
 
         <variable
-            name="listener"
-            type="com.devnunu.zipcheck.ui.common.RatingDialogListener" />
+            name="point"
+            type="androidx.databinding.ObservableInt" />
+
+        <variable
+            name="dialog"
+            type="com.devnunu.zipcheck.ui.housedetail.dialog.RatingDialog" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,6 +28,7 @@
             android:id="@+id/img_star1"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:onClick="@{()->dialog.onClickStar(1)}"
             android:src="@{point > 0 ? @drawable/ic_star_24px : @drawable/ic_star_border_24px}"
             android:tint="@color/yellow900"
             app:layout_constraintEnd_toStartOf="@+id/img_star2"
@@ -36,6 +41,7 @@
             android:id="@+id/img_star2"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:onClick="@{()->dialog.onClickStar(2)}"
             android:src="@{point > 1 ? @drawable/ic_star_24px : @drawable/ic_star_border_24px}"
             android:tint="@color/yellow900"
             app:layout_constraintEnd_toStartOf="@+id/img_star3"
@@ -48,6 +54,7 @@
             android:id="@+id/img_star3"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:onClick="@{()->dialog.onClickStar(3)}"
             android:src="@{point > 2 ? @drawable/ic_star_24px : @drawable/ic_star_border_24px}"
             android:tint="@color/yellow900"
             app:layout_constraintEnd_toStartOf="@+id/img_star4"
@@ -60,6 +67,7 @@
             android:id="@+id/img_star4"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:onClick="@{()->dialog.onClickStar(4)}"
             android:src="@{point > 3 ? @drawable/ic_star_24px : @drawable/ic_star_border_24px}"
             android:tint="@color/yellow900"
             app:layout_constraintEnd_toStartOf="@+id/img_star5"
@@ -72,6 +80,7 @@
             android:id="@+id/img_star5"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:onClick="@{()->dialog.onClickStar(5)}"
             android:src="@{point > 4 ? @drawable/ic_star_24px : @drawable/ic_star_border_24px}"
             android:tint="@color/yellow900"
             app:layout_constraintEnd_toEndOf="parent"
@@ -85,8 +94,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
-            android:text="초기화"
             android:backgroundTint="@color/mono400"
+            android:onClick="@{()->dialog.onClickPositiveBtn()}"
+            android:text="초기화"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_negative"
             app:layout_constraintHorizontal_bias="0.5"
@@ -99,6 +109,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
+            android:onClick="@{()->dialog.onClickNegativeBtn()}"
             android:text="확인"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

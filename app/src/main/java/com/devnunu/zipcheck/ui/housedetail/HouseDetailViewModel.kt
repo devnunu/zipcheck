@@ -1,18 +1,15 @@
 package com.devnunu.zipcheck.ui.housedetail
 
 import androidx.lifecycle.*
-import com.devnunu.zipcheck.common.Event
 import com.devnunu.zipcheck.common.util.CurrencyUtil
 import com.devnunu.zipcheck.data.house.model.House
 import com.devnunu.zipcheck.data.house.model.HouseType
 import com.devnunu.zipcheck.data.house.HouseRepository
-import com.devnunu.zipcheck.ui.common.RatingDialogListener
-import com.devnunu.zipcheck.ui.housedetail.item.ChecklistItemListener
 import kotlinx.coroutines.launch
 
 class HouseDetailViewModel(
     private val houseRepository: HouseRepository
-) : ViewModel(), RatingDialogListener {
+) : ViewModel() {
 
     private val houseId = MutableLiveData<Int>()
 
@@ -39,15 +36,7 @@ class HouseDetailViewModel(
     }
 
     /** click handler */
-    override fun onClickRate(index: Int, point: Int) {
-        setPoint(index, point)
-    }
-
-    override fun onClickReset(index: Int) {
-        setPoint(index)
-    }
-
-    private fun setPoint(index: Int, point: Int = 0) {
+    fun onClickRate(index: Int, point: Int) {
         viewModelScope.launch {
             val houseId = houseId.value
             val checklist = house.value?.checklist
