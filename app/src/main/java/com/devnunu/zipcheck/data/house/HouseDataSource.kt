@@ -9,5 +9,6 @@ interface HouseDataSource {
     fun observeHouseList(): LiveData<List<HouseEntity>>
     fun observeHouse(id: Int): LiveData<HouseEntity>
     suspend fun insertHouse(house: House)
-    suspend fun updateHouseChecklist(houseId:Int, checklist: List<CheckItem>)
+    suspend fun deleteHouse(houseId: Int)
+    suspend fun updateHouseChecklist(houseId: Int, checklist: List<CheckItem>)
 }

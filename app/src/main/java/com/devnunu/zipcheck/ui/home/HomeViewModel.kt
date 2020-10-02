@@ -1,9 +1,6 @@
 package com.devnunu.zipcheck.ui.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.map
+import androidx.lifecycle.*
 import com.devnunu.zipcheck.common.Event
 import com.devnunu.zipcheck.data.house.HouseRepository
 
@@ -11,7 +8,7 @@ class HomeViewModel(
     private val houseRepository: HouseRepository
 ) : ViewModel() {
 
-    val houseList = houseRepository.observeHouseList()
+    val houseList = houseRepository.observeHouseList().distinctUntilChanged()
 
     val haveHouse = houseList.map {
         !it.isNullOrEmpty()

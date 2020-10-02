@@ -1,11 +1,15 @@
 package com.devnunu.zipcheck.ui.housedetail
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.common.BaseFragmentKoin
+import com.devnunu.zipcheck.common.EventObserver
 import com.devnunu.zipcheck.databinding.FragmentHouseDetailBinding
 import com.devnunu.zipcheck.ui.housedetail.dialog.RatingDialog
 import com.devnunu.zipcheck.ui.housedetail.item.ChecklistItemListener
@@ -37,6 +41,28 @@ class HouseDetailFragment : BaseFragmentKoin<FragmentHouseDetailBinding, HouseDe
             it.viewModel = viewModel
             it.onClickBackBtn = View.OnClickListener { findNavController().popBackStack() }
         }
+    }
+
+    override fun setEventObservers() {
+        viewModel.onClickDeleteBtn.observe(this, EventObserver {
+            showDeleteConfirmDialog()
+        })
+
+        viewModel.onSuccessDeleteHouse.observe(this, EventObserver {
+            showToast("집 정보가 삭제 되었습니다.")
+            findNavController().popBackStack()
+        })
+    }
+
+    private fun showDeleteConfirmDialog() {
+        AlertDialog.Builder(requireContext())
+            .setMessage("정말 삭제하시겠습니까?")
+            .setCancelable(true)
+            .setNegativeButton("아니요", null)
+            .setPositiveButton("네") { _, _ ->
+                viewModel.deleteHouse()
+            }.create()
+            .show()
     }
 
     private fun setViewPagerAdapter() {

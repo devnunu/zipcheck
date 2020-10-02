@@ -1,6 +1,7 @@
 package com.devnunu.zipcheck.ui.housedetail
 
 import androidx.lifecycle.*
+import com.devnunu.zipcheck.common.Event
 import com.devnunu.zipcheck.common.util.CurrencyUtil
 import com.devnunu.zipcheck.data.house.model.House
 import com.devnunu.zipcheck.data.house.model.HouseType
@@ -30,12 +31,32 @@ class HouseDetailViewModel(
         it?.checklist
     }
 
+    /** event*/
+    private val _onClickDeleteBtn = MutableLiveData<Event<Unit>>()
+    val onClickDeleteBtn: LiveData<Event<Unit>> = _onClickDeleteBtn
+
+    private val _onSuccessDeleteHouse = MutableLiveData<Event<Unit>>()
+    val onSuccessDeleteHouse: LiveData<Event<Unit>> = _onSuccessDeleteHouse
+
     /** data loading start */
     fun start(id: Int) {
         houseId.value = id
     }
 
+    fun deleteHouse() {
+        viewModelScope.launch {
+            houseId.value?.let {
+                houseRepository.deleteHouse(it)
+                _onSuccessDeleteHouse.value = Event(Unit)
+            }
+        }
+    }
+
     /** click handler */
+    fun onClickDeleteBtn() {
+        _onClickDeleteBtn.value = Event(Unit)
+    }
+
     fun onClickRate(index: Int, point: Int) {
         viewModelScope.launch {
             val houseId = houseId.value

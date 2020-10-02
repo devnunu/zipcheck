@@ -32,4 +32,8 @@ class LocalHouseDataSource(
         withContext(ioDispatcher) {
             checklistDao.updateHouseChecklist(houseId, checklist)
         }
+
+    override suspend fun deleteHouse(houseId: Int) {
+        return checklistDao.deleteHouse(houseId)
+    }
 }

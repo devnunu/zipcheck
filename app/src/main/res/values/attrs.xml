@@ -3,6 +3,7 @@
 
     <declare-styleable name="Header">
         <attr name="title" format="reference|string" />
+        <attr name="rightImage" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="RateView">

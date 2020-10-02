@@ -13,6 +13,7 @@ interface HouseRepository {
     fun observeHouseList(): LiveData<List<House>>
     fun observeHouse(id: Int): LiveData<House?>
     suspend fun insertHouse(house: House)
+    suspend fun deleteHouse(houseId: Int)
     suspend fun updateHouseChecklist(id: Int, checklist: List<CheckItem>)
 }
 
@@ -22,12 +23,14 @@ class DefaultHouseRepository(
 ) : HouseRepository {
 
     override fun observeHouseList(): LiveData<List<House>> {
+        // null 걸리는 경우 있으니 ? operator 필수 포함
         return localHouseDataSource.observeHouseList()
-            .map { houseList -> houseList.map { it.toHouse() } }
+            .map { houseList -> houseList.map { it?.toHouse() } }
     }
 
     override fun observeHouse(id: Int): LiveData<House?> {
-        return localHouseDataSource.observeHouse(id).map { house -> house.toHouse() }
+        // null 걸리는 경우 있으니 ? operator 필수 포함
+        return localHouseDataSource.observeHouse(id).map { house -> house?.toHouse() }
     }
 
     override suspend fun insertHouse(house: House) =
@@ -39,4 +42,10 @@ class DefaultHouseRepository(
         withContext(ioDispatcher) {
             localHouseDataSource.updateHouseChecklist(id, checklist)
         }
+
+    override suspend fun deleteHouse(houseId: Int) {
+        return withContext(ioDispatcher) {
+            localHouseDataSource.deleteHouse(houseId)
+        }
+    }
 }

@@ -33,6 +33,10 @@ class Header @JvmOverloads constructor(
                 val title = style.getText(R.styleable.Header_title)
                 binding.textTitle.text = title
             }
+            if (style.hasValue(R.styleable.Header_rightImage)) {
+                val src = style.getDrawable(R.styleable.Header_rightImage)
+                binding.imgRightIcon.setImageDrawable(src)
+            }
         }
     }
 
@@ -40,14 +44,19 @@ class Header @JvmOverloads constructor(
         @JvmStatic
         @BindingAdapter(
             "onClickBack",
+            "onClickRightIcon",
             requireAll = false
         )
         fun setData(
             view: Header,
-            onClickBack: OnClickListener?
+            onClickBack: OnClickListener?,
+            onClickRightIcon: OnClickListener?
         ) {
-            onClickBack.let {
-                view.binding.buttonLeft.setOnClickListener(onClickBack)
+            onClickBack?.let {
+                view.binding.buttonLeft.setOnClickListener(it)
+            }
+            onClickRightIcon?.let {
+                view.binding.imgRightIcon.setOnClickListener(it)
             }
         }
     }

@@ -3,7 +3,7 @@ package com.devnunu.zipcheck.data.house.mapper
 import com.devnunu.zipcheck.data.house.entity.HouseEntity
 import com.devnunu.zipcheck.data.house.model.House
 
-internal fun House.toHouseEntity(): HouseEntity =
+internal fun House.toHouseEntity() =
     HouseEntity(
         id = id,
         name = name,

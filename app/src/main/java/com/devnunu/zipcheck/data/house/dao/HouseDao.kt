@@ -1,10 +1,7 @@
 package com.devnunu.zipcheck.data.house.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.devnunu.zipcheck.data.house.entity.HouseEntity
 import com.devnunu.zipcheck.data.house.model.CheckItem
 
@@ -22,5 +19,8 @@ interface HouseDao {
 
     @Query("select * from house where id = :houseId")
     fun observeHouse(houseId: Int): LiveData<HouseEntity>
+
+    @Query("delete from House where id = :houseId")
+    suspend fun deleteHouse(houseId: Int)
 
 }
