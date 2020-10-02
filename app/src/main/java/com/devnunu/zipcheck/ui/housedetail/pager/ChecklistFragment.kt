@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import android.view.Window
 import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.common.BaseFragmentKoin
+import com.devnunu.zipcheck.common.util.StyleUtil
 import com.devnunu.zipcheck.databinding.FragmentHouseDetailChecklistBinding
 import com.devnunu.zipcheck.ui.housedetail.HouseDetailViewModel
 import com.devnunu.zipcheck.ui.housedetail.dialog.RatingDialog
@@ -21,6 +22,7 @@ class ChecklistFragment :
         super.setBindingVariables()
         binding.also {
             it.listCheckItem.adapter = ChecklistItemAdapter(this)
+            it.listCheckItem.addItemDecoration(StyleUtil.getDividerItemDecoration(R.drawable.divider_mono200))
             it.viewModel = viewModel
         }
     }
