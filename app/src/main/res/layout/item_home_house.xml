@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -14,7 +15,7 @@
 
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_padding_size_medium"
@@ -23,48 +24,39 @@
         android:gravity="center_vertical"
         android:onClick="@{()->listener.onClickHouseItem(item.id)}"
         android:orientation="horizontal"
-        android:paddingRight="@dimen/margin_padding_size_medium"
+        android:paddingVertical="@dimen/margin_padding_size_medium"
         android:paddingLeft="@dimen/margin_padding_size_large"
-        android:paddingVertical="@dimen/margin_padding_size_medium">
+        android:paddingRight="@dimen/margin_padding_size_medium">
 
-        <LinearLayout
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_padding_size_micro"
-                android:text="@{item.name}"
-                android:textSize="@dimen/text_size_large"
-                android:textStyle="bold"
-                tools:text="우리집" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{item.typeAndPriceText}"
-                android:textColor="@color/mono500"
-                android:textSize="@dimen/text_size_small"
-                tools:text="전세 3000만 원" />
-
-        </LinearLayout>
+            android:text="@{item.name}"
+            android:textSize="@dimen/text_size_large"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="우리집" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{item.checklistCountText}"
-            android:textSize="@dimen/text_size_medium"
-            tools:text="12/30" />
+            android:layout_marginTop="8dp"
+            android:text="@{item.typeAndPriceText}"
+            android:textColor="@color/mono500"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            tools:text="전세 3000만 원" />
 
-        <ImageView
+        <com.devnunu.zipcheck.ui.common.RateView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_padding_size_medium"
-            android:src="@drawable/ic_keyboard_arrow_right_24px"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:point="@{item.point}" />
 
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
