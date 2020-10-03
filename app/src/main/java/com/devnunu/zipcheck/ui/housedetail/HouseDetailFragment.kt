@@ -113,6 +113,6 @@ class HouseDetailFragment : BaseFragmentKoin<FragmentHouseDetailBinding, HouseDe
     }
 
     private fun handlePhotoUris(uris: List<Uri>) {
-        binding.imgHouse.setImageURI(uris[0])
+//        binding.imgHouse.setImageURI(uris[0])
     }
 }
