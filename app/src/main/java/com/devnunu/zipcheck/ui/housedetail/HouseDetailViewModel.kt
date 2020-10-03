@@ -38,6 +38,9 @@ class HouseDetailViewModel(
     private val _onSuccessDeleteHouse = MutableLiveData<Event<Unit>>()
     val onSuccessDeleteHouse: LiveData<Event<Unit>> = _onSuccessDeleteHouse
 
+    private val _onClickAddPhotos = MutableLiveData<Event<Unit>>()
+    val onClickAddPhotos: LiveData<Event<Unit>> = _onClickAddPhotos
+
     /** data loading start */
     fun start(id: Int) {
         houseId.value = id
@@ -66,5 +69,9 @@ class HouseDetailViewModel(
                 houseRepository.updateHouseChecklist(houseId, checklist)
             }
         }
+    }
+
+    fun onClickAddPhotos() {
+        _onClickAddPhotos.value = Event(Unit)
     }
 }
