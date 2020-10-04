@@ -59,8 +59,9 @@ class HouseDetailViewModel(
         }
     }
 
-    fun setImageUriList(imageUriList: List<Uri>?) {
-        _imageUriList.value = imageUriList
+    fun setImageUriList(list: List<Uri>) {
+        val imageUriList = _imageUriList.value ?: listOf()
+        _imageUriList.value = imageUriList + list
     }
 
     /** click handler */

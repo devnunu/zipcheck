@@ -8,8 +8,12 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.ObservableArrayList
+import androidx.databinding.ObservableList
+import androidx.viewpager2.widget.ViewPager2
 import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.databinding.LayoutCommonPhotoSliderBinding
+import com.google.android.material.tabs.TabLayoutMediator
 
 class PhotoSlider @JvmOverloads constructor(
     context: Context,
@@ -27,16 +31,34 @@ class PhotoSlider @JvmOverloads constructor(
             this,
             true
         )
+        setBindingVariables()
 
-        if (attrs != null) {
-            val style = context.obtainStyledAttributes(attrs, R.styleable.PhotoSlider)
-//            if (style.hasValue(R.styleable.Header_title)) {
-//                val title = style.getText(R.styleable.Header_title)
-//                binding.textTitle.text = title
-//            }
+    }
+
+    private fun setBindingVariables() {
+        binding.apply {
+            viewpager.adapter = PhotoSliderAdapter()
+            viewpager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageScrolled(
+                    position: Int,
+                    positionOffset: Float,
+                    positionOffsetPixels: Int
+                ) {
+                    super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+                }
+
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+                    val currentPage = position + 1
+                    binding.textImgSize.text = "$currentPage/"
+                }
+
+                override fun onPageScrollStateChanged(state: Int) {
+                    super.onPageScrollStateChanged(state)
+                }
+            })
+            viewpager.isSaveEnabled = false
         }
-
-        binding.viewpager.adapter = PhotoSliderAdapter()
     }
 
     companion object {
@@ -53,6 +75,7 @@ class PhotoSlider @JvmOverloads constructor(
         ) {
             uriList?.let {
                 view.binding.viewpager.visibility = View.VISIBLE
+                view.binding.textNote.visibility = View.GONE
                 val adapter = view.binding.viewpager.adapter as PhotoSliderAdapter
                 adapter.setItem(it)
             }
