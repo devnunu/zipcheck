@@ -51,7 +51,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView3"
             tools:text="전세 3000만 원" />
 
-        <com.devnunu.zipcheck.ui.common.RateView
+        <com.devnunu.zipcheck.ui.common.rateview.RateView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"

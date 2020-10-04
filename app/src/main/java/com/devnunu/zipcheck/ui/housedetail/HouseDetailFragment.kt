@@ -108,11 +108,7 @@ class HouseDetailFragment : BaseFragmentKoin<FragmentHouseDetailBinding, HouseDe
             }
             val uris = selectedPhotoUris.distinctBy { it.toString() }
 
-            handlePhotoUris(uris)
+            viewModel.setImageUriList(uris)
         }
-    }
-
-    private fun handlePhotoUris(uris: List<Uri>) {
-//        binding.imgHouse.setImageURI(uris[0])
     }
 }

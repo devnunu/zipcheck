@@ -19,7 +19,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.devnunu.zipcheck.ui.common.Header
+        <com.devnunu.zipcheck.ui.common.header.Header
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:onClickBack="@{onClickBackBtn}"

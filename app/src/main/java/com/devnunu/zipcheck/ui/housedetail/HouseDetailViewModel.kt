@@ -1,5 +1,6 @@
 package com.devnunu.zipcheck.ui.housedetail
 
+import android.net.Uri
 import androidx.lifecycle.*
 import com.devnunu.zipcheck.common.Event
 import com.devnunu.zipcheck.common.util.CurrencyUtil
@@ -31,6 +32,9 @@ class HouseDetailViewModel(
         it?.checklist
     }
 
+    private val _imageUriList = MutableLiveData<List<Uri>>()
+    val imageUriList: LiveData<List<Uri>> = _imageUriList
+
     /** event*/
     private val _onClickDeleteBtn = MutableLiveData<Event<Unit>>()
     val onClickDeleteBtn: LiveData<Event<Unit>> = _onClickDeleteBtn
@@ -53,6 +57,10 @@ class HouseDetailViewModel(
                 _onSuccessDeleteHouse.value = Event(Unit)
             }
         }
+    }
+
+    fun setImageUriList(imageUriList: List<Uri>?) {
+        _imageUriList.value = imageUriList
     }
 
     /** click handler */

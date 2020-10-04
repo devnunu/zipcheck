@@ -1,4 +1,4 @@
-package com.devnunu.zipcheck.ui.common
+package com.devnunu.zipcheck.ui.common.rateview
 
 import android.content.Context
 import android.util.AttributeSet

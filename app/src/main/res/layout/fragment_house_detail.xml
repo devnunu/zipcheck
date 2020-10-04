@@ -20,7 +20,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.devnunu.zipcheck.ui.common.Header
+        <com.devnunu.zipcheck.ui.common.header.Header
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:onClickBack="@{onClickBackBtn}"
@@ -50,10 +50,12 @@
                         app:layout_collapseParallaxMultiplier="0.8"
                         app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed">
 
-                        <com.devnunu.zipcheck.ui.common.PhotoSlider
+                        <com.devnunu.zipcheck.ui.common.photoslider.PhotoSlider
                             android:id="@+id/img_house"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            app:onClickAddPhoto="@{()->viewModel.onClickAddPhotos()}"
+                            app:uriList="@{viewModel.imageUriList}"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
