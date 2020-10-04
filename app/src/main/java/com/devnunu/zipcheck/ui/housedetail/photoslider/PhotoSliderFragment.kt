@@ -1,16 +1,14 @@
-package com.devnunu.zipcheck.ui.common.photoslider
+package com.devnunu.zipcheck.ui.housedetail.photoslider
 
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.databinding.FragmentCommonPhotoSliderBinding
-import com.devnunu.zipcheck.ui.common.header.Header
 
 class PhotoSliderFragment(
     private val uri: Uri

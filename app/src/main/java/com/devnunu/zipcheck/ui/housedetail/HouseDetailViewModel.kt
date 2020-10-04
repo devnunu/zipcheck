@@ -32,7 +32,7 @@ class HouseDetailViewModel(
         it?.checklist
     }
 
-    private val _imageUriList = MutableLiveData<List<Uri>>()
+    private val _imageUriList = MutableLiveData<List<Uri>>(listOf())
     val imageUriList: LiveData<List<Uri>> = _imageUriList
 
     /** event*/
@@ -63,6 +63,11 @@ class HouseDetailViewModel(
         val imageUriList = _imageUriList.value ?: listOf()
         _imageUriList.value = imageUriList + list
     }
+
+    fun getImageUriListSize(): Int {
+        return _imageUriList.value?.size ?: 0
+    }
+
 
     /** click handler */
     fun onClickDeleteBtn() {

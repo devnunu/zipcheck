@@ -1,11 +1,13 @@
-package com.devnunu.zipcheck.ui.common.photoslider
+package com.devnunu.zipcheck.ui.housedetail.photoslider
 
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.devnunu.zipcheck.data.house.model.CheckItem
 import com.devnunu.zipcheck.databinding.ItemCommonPhotoSliderBinding
+import com.devnunu.zipcheck.ui.housedetail.item.ChecklistItemAdapter
 
 class PhotoSliderAdapter : RecyclerView.Adapter<PhotoSliderAdapter.PhotoSliderItemViewHolder>() {
 
@@ -50,5 +52,4 @@ class PhotoSliderAdapter : RecyclerView.Adapter<PhotoSliderAdapter.PhotoSliderIt
             }
         }
     }
-
 }

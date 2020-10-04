@@ -6,13 +6,16 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.viewpager2.widget.ViewPager2
 import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.common.BaseFragmentKoin
 import com.devnunu.zipcheck.common.EventObserver
 import com.devnunu.zipcheck.databinding.FragmentHouseDetailBinding
 import com.devnunu.zipcheck.ui.housedetail.pager.HouseDetailPagerAdapter
+import com.devnunu.zipcheck.ui.housedetail.photoslider.PhotoSliderAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
 
@@ -31,7 +34,38 @@ class HouseDetailFragment : BaseFragmentKoin<FragmentHouseDetailBinding, HouseDe
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setViewPagerAdapter()
+        setImgViewPagerAdapter()
         start()
+    }
+
+    private fun setImgViewPagerAdapter() {
+        val adapter = PhotoSliderAdapter()
+        binding.apply {
+            imgViewpager.adapter = adapter
+            imgViewpager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageScrolled(
+                    position: Int,
+                    positionOffset: Float,
+                    positionOffsetPixels: Int
+                ) {
+                    super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+                    val currentPage = position + 1
+                    val totalPageSize = this@HouseDetailFragment.viewModel.getImageUriListSize()
+                    binding.textImgSize.text = "$currentPage/${totalPageSize}"
+                }
+            })
+        }
+    }
+
+    private fun setViewPagerAdapter() {
+        val adapter = HouseDetailPagerAdapter(requireActivity())
+        binding.apply {
+            viewpager.adapter = adapter
+            TabLayoutMediator(layoutTab, viewpager) { tab, position ->
+                tab.text = textArray[position]
+            }.attach()
+            viewpager.isSaveEnabled = false
+        }
     }
 
     private fun start() {
@@ -48,6 +82,11 @@ class HouseDetailFragment : BaseFragmentKoin<FragmentHouseDetailBinding, HouseDe
     }
 
     override fun setEventObservers() {
+        viewModel.imageUriList.observe(this, Observer {
+            val adapter = binding.imgViewpager.adapter as PhotoSliderAdapter
+            adapter.setItem(it)
+        })
+
         viewModel.onClickDeleteBtn.observe(this, EventObserver {
             showDeleteConfirmDialog()
         })
@@ -77,17 +116,6 @@ class HouseDetailFragment : BaseFragmentKoin<FragmentHouseDetailBinding, HouseDe
                 viewModel.deleteHouse()
             }.create()
             .show()
-    }
-
-    private fun setViewPagerAdapter() {
-        val adapter = HouseDetailPagerAdapter(requireActivity())
-        binding.apply {
-            viewpager.adapter = adapter
-            TabLayoutMediator(layoutTab, viewpager) { tab, position ->
-                tab.text = textArray[position]
-            }.attach()
-            viewpager.isSaveEnabled = false
-        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
