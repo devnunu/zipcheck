@@ -42,15 +42,20 @@ class Header @JvmOverloads constructor(
     companion object {
         @JvmStatic
         @BindingAdapter(
+            "title",
             "onClickBack",
             "onClickRightIcon",
             requireAll = false
         )
         fun setData(
             view: Header,
+            title:CharSequence?,
             onClickBack: OnClickListener?,
             onClickRightIcon: OnClickListener?
         ) {
+            title?.let {
+                view.binding.textTitle.text = it
+            }
             onClickBack?.let {
                 view.binding.buttonLeft.setOnClickListener(it)
             }

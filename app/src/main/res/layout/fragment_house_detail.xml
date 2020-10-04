@@ -24,6 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:onClickBack="@{onClickBackBtn}"
+            app:title="@{viewModel.house.name}"
             app:onClickRightIcon="@{()->viewModel.onClickDeleteBtn()}"
             app:rightImage="@drawable/ic_delete_24px" />
 
@@ -122,30 +123,17 @@
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
-                            android:id="@+id/textView4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="24dp"
-                            android:layout_marginTop="10dp"
-                            android:text="@{viewModel.house.name}"
-                            android:textColor="@color/mono600"
-                            android:textSize="@dimen/text_size_medium"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/layout_house_img"
-                            tools:text="우리집" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="24dp"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="16dp"
                             android:layout_marginBottom="16dp"
                             android:text="@{viewModel.typeAndPriceText}"
                             android:textSize="@dimen/text_size_xxlarge"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView4"
+                            app:layout_constraintTop_toBottomOf="@+id/layout_house_img"
                             tools:text="전세 2억 8,000 만 원" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
