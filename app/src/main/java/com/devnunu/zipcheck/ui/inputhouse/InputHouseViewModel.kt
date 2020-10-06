@@ -168,4 +168,15 @@ class InputHouseViewModel(
             CheckItem("집을 내놨을때 잘 나갈수 있나요")
         )
     }
+
+    /**
+     * shared viewModel 사용으로 viewModel을 reset해준다.
+     * */
+    fun resetViewModelLiveData() {
+        _inputStep.value = STEP_NAME
+        name.value = null
+        transactionType.value = null
+        deposit.value = null
+        monthlyPay.value = null
+    }
 }

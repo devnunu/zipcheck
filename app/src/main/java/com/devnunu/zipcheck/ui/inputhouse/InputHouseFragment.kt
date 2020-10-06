@@ -5,6 +5,7 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
+import com.devnunu.zipcheck.MainActivity
 import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.common.BaseFragmentKoin
 import com.devnunu.zipcheck.common.EventObserver
@@ -43,5 +44,10 @@ class InputHouseFragment : BaseFragmentKoin<FragmentInputHouseBinding, InputHous
             )
             bottomSheet.show(parentFragmentManager, bottomSheet.tag)
         })
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        viewModel.resetViewModelLiveData()
     }
 }

@@ -30,7 +30,6 @@
             android:paddingBottom="6dp"
             android:singleLine="true"
             android:focusable="false"
-            android:textColor="@color/mono900"
             android:textColorHint="@color/mono500"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

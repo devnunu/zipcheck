@@ -27,7 +27,6 @@ class SelectInput @JvmOverloads constructor(
             true
         )
 
-
         binding.inputValue.setOnClickListener {
             dropDownClick()
         }
@@ -74,6 +73,8 @@ class SelectInput @JvmOverloads constructor(
         binding.inputValue.isEnabled = enabled
         if (!enabled) {
             changeStatus(InputStatus.DISABLE)
+        } else {
+            changeStatus(InputStatus.BASIC)
         }
     }
 
@@ -88,14 +89,20 @@ class SelectInput @JvmOverloads constructor(
 
     companion object {
         @JvmStatic
-        @BindingAdapter("value", requireAll = false)
+        @BindingAdapter(
+            "value",
+            "enabled"
+            , requireAll = false)
         fun setData(
             view: SelectInput,
-            value: CharSequence?
+            value: CharSequence?,
+            enabled: Boolean?
         ) {
             value?.let {
                 view.binding.inputValue.setText(it)
-                view.changeStatus(InputStatus.BASIC)
+            }
+            enabled?.let {
+                view.isEnabled = it
             }
         }
     }
