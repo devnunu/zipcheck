@@ -114,7 +114,7 @@
                 android:background="@drawable/border_bottom_mono200_1dp"
                 android:paddingHorizontal="@dimen/margin_padding_size_medium"
                 android:paddingVertical="@dimen/margin_padding_size_medium"
-                android:text="메모"
+                android:text="매물 정보"
                 android:drawableRight="@drawable/ic_edit_24px"
                 android:textSize="@dimen/text_size_large" />
 

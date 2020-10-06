@@ -66,17 +66,17 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        app:visibleIf="@{viewModel.haveHouse}"
+                        android:paddingHorizontal="@dimen/margin_padding_size_large"
                         android:paddingTop="@dimen/margin_padding_size_xxlarge"
-                        android:paddingHorizontal="@dimen/margin_padding_size_large">
+                        app:visibleIf="@{viewModel.haveHouse}">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_padding_size_large"
                             android:text="집 목록"
                             android:textSize="@dimen/text_size_large"
-                            android:textStyle="bold"
-                            android:layout_marginBottom="@dimen/margin_padding_size_large"/>
+                            android:textStyle="bold" />
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/list_house"
@@ -110,16 +110,15 @@
 
         </androidx.core.widget.NestedScrollView>
 
-        <com.google.android.material.button.MaterialButton
-            style="@style/Btn"
-            android:layout_width="match_parent"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
+            android:layout_gravity="bottom|right"
             android:layout_marginHorizontal="@dimen/margin_padding_size_large"
-            android:layout_marginBottom="@dimen/margin_padding_size_large"
+            android:layout_marginBottom="@dimen/margin_padding_size_xlarge"
             android:onClick="@{()->viewModel.onClickAddHouseBtn()}"
-            android:paddingVertical="@dimen/margin_padding_size_medium"
-            android:text="새로운 집 추가하기" />
+            android:src="@drawable/ic_add_24px"
+            app:tint="@android:color/white" />
 
     </FrameLayout>
 
