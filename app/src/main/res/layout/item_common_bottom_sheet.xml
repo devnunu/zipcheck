@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="listener"
+            type="com.devnunu.zipcheck.ui.common.bottomsheet.BottomSheetListener" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/layout_bottom_sheet_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{v->listener.onItemClick(title)}"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:orientation="vertical"
+        android:paddingVertical="@dimen/margin_padding_size_medium"
+        android:paddingHorizontal="@dimen/margin_padding_size_large">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@{title}"
+            android:textSize="@dimen/text_size_small"/>
+
+    </LinearLayout>
+</layout>

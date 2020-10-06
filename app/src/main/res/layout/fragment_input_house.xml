@@ -53,6 +53,7 @@
                         android:layout_marginTop="@dimen/margin_padding_size_xlarge"
                         android:enabled="@{viewModel.inputStep==viewModel.STEP_MONTHLY_PAY}"
                         android:hint="월세를 입력해주세요"
+                        android:inputType="numberDecimal"
                         android:label="월세"
                         app:subtext="@{viewModel.monthlyPayFormatText}"
                         app:unit="만원"
@@ -66,31 +67,23 @@
                         android:layout_marginTop="@dimen/margin_padding_size_xlarge"
                         android:enabled="@{viewModel.inputStep==viewModel.STEP_DEPOSIT}"
                         android:hint="보증금을 입력해주세요"
+                        android:inputType="numberDecimal"
                         android:label="보증금"
                         app:subtext="@{viewModel.depositFormatText}"
                         app:unit="만원"
                         app:value="@={viewModel.deposit}"
                         app:visibleIf="@{viewModel.inputStep>=viewModel.STEP_DEPOSIT}" />
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/input_house_type"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                    <com.devnunu.zipcheck.ui.common.input.SelectInput
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_padding_size_xlarge"
-                        android:hint="매물 유형"
-                        app:boxBackgroundColor="@color/mono000"
-                        app:visibleIf="@{viewModel.inputStep>=viewModel.STEP_HOUSE_TYPE}">
-
-                        <AutoCompleteTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:enabled="@{viewModel.inputStep==viewModel.STEP_HOUSE_TYPE}"
-                            android:inputType="none"
-                            android:singleLine="true"
-                            android:text="@={viewModel.houseType}" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
+                        android:enabled="@{viewModel.inputStep==viewModel.STEP_HOUSE_TYPE}"
+                        android:hint="매물 유형을 선택해주세요"
+                        android:label="매물 유형"
+                        android:onClick="@{()->viewModel.onClickHouseType()}"
+                        app:value="@{viewModel.transactionType}"
+                        app:visibleIf="@{viewModel.inputStep>=viewModel.STEP_HOUSE_TYPE}" />
 
                     <com.devnunu.zipcheck.ui.common.input.BasicInput
                         android:layout_width="match_parent"

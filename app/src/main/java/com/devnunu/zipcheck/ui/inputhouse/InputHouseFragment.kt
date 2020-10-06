@@ -10,6 +10,7 @@ import com.devnunu.zipcheck.common.BaseFragmentKoin
 import com.devnunu.zipcheck.common.EventObserver
 import com.devnunu.zipcheck.data.house.model.TransactionType
 import com.devnunu.zipcheck.databinding.FragmentInputHouseBinding
+import com.devnunu.zipcheck.ui.common.bottomsheet.BottomSheet
 
 class InputHouseFragment : BaseFragmentKoin<FragmentInputHouseBinding, InputHouseViewModel>(
     R.layout.fragment_input_house,
@@ -20,16 +21,6 @@ class InputHouseFragment : BaseFragmentKoin<FragmentInputHouseBinding, InputHous
         binding.also {
             it.viewModel = viewModel
             it.onClickBackBtn = View.OnClickListener { findNavController().popBackStack() }
-            val items = listOf(
-                TransactionType.LEASE_RENT.displayName,
-                TransactionType.LEASE_MONTHLY_PAY.displayName,
-                TransactionType.TRADE.displayName
-            )
-            val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
-            (it.inputHouseType.editText as? AutoCompleteTextView)?.setAdapter(adapter)
-            it.inputHouseType.editText?.addTextChangedListener {
-                viewModel.onChangeHouseType()
-            }
         }
     }
 
@@ -38,6 +29,19 @@ class InputHouseFragment : BaseFragmentKoin<FragmentInputHouseBinding, InputHous
             showToast("집이 등록되었습니다!")
             val action = InputHouseFragmentDirections.actionInputHouseFragmentToHomeFragment()
             findNavController().navigate(action)
+        })
+
+        viewModel.onClickHouseType.observe(this, EventObserver {
+            val items = arrayListOf(
+                TransactionType.LEASE_RENT.displayName,
+                TransactionType.LEASE_MONTHLY_PAY.displayName,
+                TransactionType.TRADE.displayName
+            )
+            val bottomSheet = BottomSheet(
+                items,
+                viewModel
+            )
+            bottomSheet.show(parentFragmentManager, bottomSheet.tag)
         })
     }
 }

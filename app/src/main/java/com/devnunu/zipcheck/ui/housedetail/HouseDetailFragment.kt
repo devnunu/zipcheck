@@ -28,7 +28,7 @@ class HouseDetailFragment : BaseFragmentKoin<FragmentHouseDetailBinding, HouseDe
         const val REQUEST_CODE_SELECT_PICTURES = 30828
     }
 
-    private val textArray = arrayOf("체크리스트", "메모")
+    private val textArray = arrayOf("체크리스트", "매물 정보")
     private val arg: HouseDetailFragmentArgs by navArgs()
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

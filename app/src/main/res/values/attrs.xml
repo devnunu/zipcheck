@@ -30,4 +30,10 @@
         <attr name="subtext" format="reference|string"  />
     </declare-styleable>
 
+    <declare-styleable name="SelectInput">
+        <attr name="android:label" />
+        <attr name="android:hint" />
+        <attr name="subtext" />
+    </declare-styleable>
+
 </resources>

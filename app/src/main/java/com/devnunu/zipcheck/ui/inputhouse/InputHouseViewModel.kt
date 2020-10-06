@@ -7,11 +7,12 @@ import com.devnunu.zipcheck.data.house.model.House
 import com.devnunu.zipcheck.data.house.model.TransactionType
 import com.devnunu.zipcheck.data.house.HouseRepository
 import com.devnunu.zipcheck.data.house.model.CheckItem
+import com.devnunu.zipcheck.ui.common.bottomsheet.BottomSheetListener
 import kotlinx.coroutines.launch
 
 class InputHouseViewModel(
     private val houseRepository: HouseRepository
-) : ViewModel() {
+) : ViewModel(),BottomSheetListener {
 
     companion object {
         const val STEP_NAME = 1
@@ -36,7 +37,7 @@ class InputHouseViewModel(
 
     val name = MutableLiveData<String>()
 
-    val houseType = MutableLiveData<String>()
+    val transactionType = MutableLiveData<String>()
 
     val deposit = MutableLiveData<String>()
 
@@ -60,20 +61,23 @@ class InputHouseViewModel(
 
     val isBottomBtnEnable = MediatorLiveData<Boolean>().apply {
         addSource(name) { value = checkIsBottomBtnEnable() }
-        addSource(houseType) { value = checkIsBottomBtnEnable() }
+        addSource(transactionType) { value = checkIsBottomBtnEnable() }
         addSource(deposit) { value = checkIsBottomBtnEnable() }
         addSource(monthlyPay) { value = checkIsBottomBtnEnable() }
         addSource(inputStep) { value = checkIsBottomBtnEnable() }
     }
 
     /** event */
+    private val _onClickHouseType = MutableLiveData<Event<Unit>>()
+    val onClickHouseType: LiveData<Event<Unit>> = _onClickHouseType
+
     private val _onSuccessRegisterHouse = MutableLiveData<Event<Unit>>()
     val onSuccessRegisterHouse: LiveData<Event<Unit>> = _onSuccessRegisterHouse
 
     private fun checkIsBottomBtnEnable(): Boolean {
         return when (inputStep.value) {
             STEP_NAME -> name.value?.isEmpty()?.not() ?: false
-            STEP_HOUSE_TYPE -> houseType.value?.isEmpty()?.not() ?: false
+            STEP_HOUSE_TYPE -> transactionType.value?.isEmpty()?.not() ?: false
             STEP_DEPOSIT -> deposit.value?.isEmpty()?.not() ?: false
             STEP_MONTHLY_PAY -> monthlyPay.value?.isEmpty()?.not() ?: false
             else -> false
@@ -95,7 +99,7 @@ class InputHouseViewModel(
             STEP_NAME,
             STEP_HOUSE_TYPE -> increaseStep()
             STEP_DEPOSIT -> {
-                if (houseType.value == TransactionType.LEASE_MONTHLY_PAY.displayName) {
+                if (transactionType.value == TransactionType.LEASE_MONTHLY_PAY.displayName) {
                     increaseStep()
                 } else {
                     registerHouse()
@@ -110,7 +114,12 @@ class InputHouseViewModel(
         }
     }
 
-    fun onChangeHouseType() {
+    fun onClickHouseType() {
+        _onClickHouseType.value = Event(Unit)
+    }
+
+    override fun onItemClick(title: String?) {
+        transactionType.value = title
         if (inputStep.value == STEP_HOUSE_TYPE) {
             increaseStep()
         }
@@ -126,7 +135,7 @@ class InputHouseViewModel(
         val house = House(
             id = 0,
             name = this@InputHouseViewModel.name.value ?: "",
-            transactionType = TransactionType.fromDisplayName(this@InputHouseViewModel.houseType.value),
+            transactionType = TransactionType.fromDisplayName(this@InputHouseViewModel.transactionType.value),
             deposit = this@InputHouseViewModel.deposit.value?.toLong()?.times(10000),
             monthlyPay = this@InputHouseViewModel.monthlyPay.value?.toLong()?.times(10000),
             checklist = getNewChecklist()
