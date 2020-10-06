@@ -38,40 +38,6 @@
             app:popExitAnim="@anim/right_out" />
     </fragment>
     <fragment
-        android:id="@+id/houseDetailFragment"
-        android:name="com.devnunu.zipcheck.ui.housedetail.HouseDetailFragment"
-        android:label="HouseDetailFragment"
-        tools:layout="@layout/fragment_house_detail">
-        <argument
-            android:name="houseId"
-            app:argType="integer"
-            android:defaultValue="0"/>
-        <action
-            android:id="@+id/action_houseDetailFragment_to_inputCheckListFragment"
-            app:destination="@id/inputCheckListFragment"
-            app:enterAnim="@anim/right_in"
-            app:exitAnim="@anim/left_out"
-            app:popEnterAnim="@anim/left_in"
-            app:popExitAnim="@anim/right_out" />
-    </fragment>
-    <fragment
-        android:id="@+id/inputCheckListFragment"
-        android:name="com.devnunu.zipcheck.ui.inputtemplate.InputTemplateFragment"
-        android:label="InputCheckListFragment"
-        tools:layout="@layout/fragment_input_template">
-        <argument
-            android:name="houseId"
-            app:argType="integer"
-            android:defaultValue="0"/>
-        <action
-            android:id="@+id/action_inputCheckListFragment_to_inputListNameFragment"
-            app:destination="@id/inputListNameFragment"
-            app:enterAnim="@anim/right_in"
-            app:exitAnim="@anim/left_out"
-            app:popEnterAnim="@anim/left_in"
-            app:popExitAnim="@anim/right_out" />
-    </fragment>
-    <fragment
         android:id="@+id/inputHouseFragment"
         android:name="com.devnunu.zipcheck.ui.inputhouse.InputHouseFragment"
         android:label="InputHouseFragment"
@@ -83,26 +49,26 @@
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
-        android:id="@+id/inputListNameFragment"
-        android:name="com.devnunu.zipcheck.ui.inputtemplatename.InputTemplateNameFragment"
-        android:label="InputListNameFragment"
-        tools:layout="@layout/fragment_input_template_name">
+        android:id="@+id/houseDetailFragment"
+        android:name="com.devnunu.zipcheck.ui.housedetail.HouseDetailFragment"
+        android:label="HouseDetailFragment"
+        tools:layout="@layout/fragment_house_detail">
+        <argument
+            android:name="houseId"
+            app:argType="integer"
+            android:defaultValue="0"/>
         <action
-            android:id="@+id/action_inputListNameFragment_to_checkListTemplateFragment"
-            app:destination="@id/checkListTemplateFragment"
-            app:enterAnim="@anim/right_in"
-            app:exitAnim="@anim/left_out"
-            app:popEnterAnim="@anim/left_in"
-            app:popExitAnim="@anim/right_out" />
+            android:id="@+id/action_houseDetailFragment_to_houseModifyFragment"
+            app:destination="@id/houseModifyFragment" />
     </fragment>
     <fragment
-        android:id="@+id/checkListTemplateFragment"
-        android:name="com.devnunu.zipcheck.ui.inputtemplateitem.InputTemplateItemFragment"
-        android:label="CheckListTemplateFragment"
-        tools:layout="@layout/fragment_input_template_item">
+        android:id="@+id/houseModifyFragment"
+        android:name="com.devnunu.zipcheck.ui.housemodify.HouseModifyFragment"
+        android:label="HouseModifyFragment"
+        tools:layout="@layout/fragment_house_modify">
         <argument
-            android:name="checklistName"
-            android:defaultValue="0"
-            app:argType="string" />
+            android:name="houseId"
+            app:argType="integer"
+            android:defaultValue="0"/>
     </fragment>
 </navigation>

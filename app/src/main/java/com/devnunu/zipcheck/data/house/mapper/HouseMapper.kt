@@ -12,8 +12,14 @@ internal fun House.toHouseEntity() =
         deposit = deposit,
         monthlyPay = monthlyPay,
         memo = memo,
-        houseType = houseType,
-        checklist = checklist
+        transactionType = transactionType,
+        checklist = checklist,
+        area = area,
+        floor = floor,
+        structure = structure,
+        parking = parking,
+        managementFee = managementFee,
+        houseType = houseType
     )
 
 internal fun HouseEntity.toHouse() =
@@ -25,6 +31,12 @@ internal fun HouseEntity.toHouse() =
         deposit = deposit,
         monthlyPay = monthlyPay,
         memo = memo,
-        houseType = houseType,
-        checklist = checklist
+        transactionType = transactionType,
+        checklist = checklist,
+        area = area,
+        floor = floor,
+        structure = structure,
+        parking = parking,
+        managementFee = managementFee,
+        houseType = houseType
     )

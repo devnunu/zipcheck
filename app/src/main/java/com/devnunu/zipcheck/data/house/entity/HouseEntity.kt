@@ -3,7 +3,9 @@ package com.devnunu.zipcheck.data.house.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.devnunu.zipcheck.data.house.model.CheckItem
+import com.devnunu.zipcheck.data.house.model.HouseStructure
 import com.devnunu.zipcheck.data.house.model.HouseType
+import com.devnunu.zipcheck.data.house.model.TransactionType
 
 @Entity(tableName = "House")
 data class HouseEntity(
@@ -15,6 +17,12 @@ data class HouseEntity(
     val deposit: Long?,
     val monthlyPay: Long?,
     val memo: String?,
-    val houseType: HouseType?,
-    val checklist: List<CheckItem>
+    val transactionType: TransactionType?,
+    val checklist: List<CheckItem>,
+    val area: Int?,
+    val floor: Int?,
+    val structure: HouseStructure?,
+    val parking: Int?,
+    val managementFee: Int?,
+    val houseType: HouseType?
 )

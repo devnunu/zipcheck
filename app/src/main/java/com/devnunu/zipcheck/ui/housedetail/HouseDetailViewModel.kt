@@ -5,7 +5,7 @@ import androidx.lifecycle.*
 import com.devnunu.zipcheck.common.Event
 import com.devnunu.zipcheck.common.util.CurrencyUtil
 import com.devnunu.zipcheck.data.house.model.House
-import com.devnunu.zipcheck.data.house.model.HouseType
+import com.devnunu.zipcheck.data.house.model.TransactionType
 import com.devnunu.zipcheck.data.house.HouseRepository
 import kotlinx.coroutines.launch
 
@@ -20,11 +20,11 @@ class HouseDetailViewModel(
     }
 
     val typeAndPriceText = house.map {
-        when (it?.houseType) {
-            HouseType.LEASE_MONTHLY_PAY ->
-                "${it.houseType?.displayName} ${CurrencyUtil.toKrCurrencyText(it.deposit)}" +
+        when (it?.transactionType) {
+            TransactionType.LEASE_MONTHLY_PAY ->
+                "${it.transactionType?.displayName} ${CurrencyUtil.toKrCurrencyText(it.deposit)}" +
                         "/${CurrencyUtil.toKrCurrencyText(it.monthlyPay)}"
-            else -> "${it?.houseType?.displayName} ${CurrencyUtil.toKrCurrencyText(it?.deposit)}"
+            else -> "${it?.transactionType?.displayName} ${CurrencyUtil.toKrCurrencyText(it?.deposit)}"
         }
     }
 

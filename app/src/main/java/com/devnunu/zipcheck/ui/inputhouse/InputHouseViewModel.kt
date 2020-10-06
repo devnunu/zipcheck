@@ -4,7 +4,7 @@ import androidx.lifecycle.*
 import com.devnunu.zipcheck.common.Event
 import com.devnunu.zipcheck.common.util.CurrencyUtil
 import com.devnunu.zipcheck.data.house.model.House
-import com.devnunu.zipcheck.data.house.model.HouseType
+import com.devnunu.zipcheck.data.house.model.TransactionType
 import com.devnunu.zipcheck.data.house.HouseRepository
 import com.devnunu.zipcheck.data.house.model.CheckItem
 import kotlinx.coroutines.launch
@@ -95,7 +95,7 @@ class InputHouseViewModel(
             STEP_NAME,
             STEP_HOUSE_TYPE -> increaseStep()
             STEP_DEPOSIT -> {
-                if (houseType.value == HouseType.LEASE_MONTHLY_PAY.displayName) {
+                if (houseType.value == TransactionType.LEASE_MONTHLY_PAY.displayName) {
                     increaseStep()
                 } else {
                     registerHouse()
@@ -126,7 +126,7 @@ class InputHouseViewModel(
         val house = House(
             id = 0,
             name = this@InputHouseViewModel.name.value ?: "",
-            houseType = HouseType.fromDisplayName(this@InputHouseViewModel.houseType.value),
+            transactionType = TransactionType.fromDisplayName(this@InputHouseViewModel.houseType.value),
             deposit = this@InputHouseViewModel.deposit.value?.toLong()?.times(10000),
             monthlyPay = this@InputHouseViewModel.monthlyPay.value?.toLong()?.times(10000),
             checklist = getNewChecklist()

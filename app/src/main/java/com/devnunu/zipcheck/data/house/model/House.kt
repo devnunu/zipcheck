@@ -8,6 +8,12 @@ data class House(
     var deposit: Long? = 0,
     var monthlyPay: Long? = 0,
     var memo: String? = null,
-    var houseType: HouseType?,
-    val checklist: List<CheckItem>
+    var transactionType: TransactionType?,
+    val checklist: List<CheckItem>,
+    val area: Int? = null,
+    val floor: Int? = null,
+    val structure: HouseStructure? = null,
+    val parking: Int? = null,
+    val managementFee: Int? = null,
+    val houseType: HouseType? = null
 )

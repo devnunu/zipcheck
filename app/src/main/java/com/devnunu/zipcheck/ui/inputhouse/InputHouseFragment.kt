@@ -8,7 +8,7 @@ import androidx.navigation.fragment.findNavController
 import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.common.BaseFragmentKoin
 import com.devnunu.zipcheck.common.EventObserver
-import com.devnunu.zipcheck.data.house.model.HouseType
+import com.devnunu.zipcheck.data.house.model.TransactionType
 import com.devnunu.zipcheck.databinding.FragmentInputHouseBinding
 
 class InputHouseFragment : BaseFragmentKoin<FragmentInputHouseBinding, InputHouseViewModel>(
@@ -21,9 +21,9 @@ class InputHouseFragment : BaseFragmentKoin<FragmentInputHouseBinding, InputHous
             it.viewModel = viewModel
             it.onClickBackBtn = View.OnClickListener { findNavController().popBackStack() }
             val items = listOf(
-                HouseType.LEASE_RENT.displayName,
-                HouseType.LEASE_MONTHLY_PAY.displayName,
-                HouseType.TRADE.displayName
+                TransactionType.LEASE_RENT.displayName,
+                TransactionType.LEASE_MONTHLY_PAY.displayName,
+                TransactionType.TRADE.displayName
             )
             val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
             (it.inputHouseType.editText as? AutoCompleteTextView)?.setAdapter(adapter)

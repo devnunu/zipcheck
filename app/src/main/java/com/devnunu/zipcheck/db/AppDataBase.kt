@@ -7,7 +7,9 @@ import androidx.room.TypeConverters
 import com.devnunu.zipcheck.data.house.model.CheckItem
 import com.devnunu.zipcheck.data.house.dao.HouseDao
 import com.devnunu.zipcheck.data.house.entity.HouseEntity
+import com.devnunu.zipcheck.data.house.model.HouseStructure
 import com.devnunu.zipcheck.data.house.model.HouseType
+import com.devnunu.zipcheck.data.house.model.TransactionType
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -34,11 +36,27 @@ class DatabaseConverters {
         Gson().toJson(from)
 
     @TypeConverter
+    fun fromStringToTransactionType(from: String?): TransactionType? =
+        Gson().fromJson(from, object : TypeToken<TransactionType>() {}.type)
+
+    @TypeConverter
+    fun fromTransactionTypeToString(from: TransactionType?): String? =
+        Gson().toJson(from)
+
+    @TypeConverter
     fun fromStringToHouseType(from: String?): HouseType? =
         Gson().fromJson(from, object : TypeToken<HouseType>() {}.type)
 
     @TypeConverter
     fun fromHouseTypeToString(from: HouseType?): String? =
+        Gson().toJson(from)
+
+    @TypeConverter
+    fun fromStringToHouseStructure(from: String?): HouseStructure? =
+        Gson().fromJson(from, object : TypeToken<HouseStructure>() {}.type)
+
+    @TypeConverter
+    fun fromHouseStructureToString(from: HouseStructure?): String? =
         Gson().toJson(from)
 
 }
