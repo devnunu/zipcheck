@@ -10,6 +10,6 @@ class HouseDetailPagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
     override fun createFragment(position: Int): Fragment =
         when (position) {
             0 -> ChecklistFragment.newInstance()
-            else -> MemoFragment.newInstance()
+            else -> InfoFragment.newInstance()
         }
 }

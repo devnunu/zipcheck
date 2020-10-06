@@ -10,6 +10,11 @@
         <attr name="point" format="reference|integer" />
     </declare-styleable>
 
+    <declare-styleable name="KeyValueText">
+        <attr name="key" format="reference|string" />
+        <attr name="value" format="reference|string" />
+    </declare-styleable>
+
     <declare-styleable name="PhotoSlider">
 
     </declare-styleable>
