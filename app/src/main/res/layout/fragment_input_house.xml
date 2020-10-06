@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:onClickBack="@{onClickBackBtn}"
-            app:title="매출 정보 입력"/>
+            app:title="매출 정보 입력" />
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -47,51 +47,30 @@
                         android:text="@{viewModel.title}"
                         tools:text="집 이름을 입력해주세요" />
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                    <com.devnunu.zipcheck.ui.common.input.BasicInput
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_padding_size_xlarge"
-                        android:hint="월세"
-                        app:boxBackgroundColor="@color/mono000"
-                        app:helperText="@{viewModel.monthlyPayFormatText}"
-                        app:helperTextEnabled="true"
-                        app:suffixText="만원"
-                        app:visibleIf="@{viewModel.inputStep>=viewModel.STEP_MONTHLY_PAY}">
+                        android:enabled="@{viewModel.inputStep==viewModel.STEP_MONTHLY_PAY}"
+                        android:hint="월세를 입력해주세요"
+                        android:label="월세"
+                        app:subtext="@{viewModel.monthlyPayFormatText}"
+                        app:unit="만원"
+                        app:value="@={viewModel.monthlyPay}"
+                        app:visibleIf="@{viewModel.inputStep>=viewModel.STEP_MONTHLY_PAY}" />
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:enabled="@{viewModel.inputStep==viewModel.STEP_MONTHLY_PAY}"
-                            android:inputType="numberDecimal"
-                            android:maxLength="3"
-                            android:singleLine="true"
-                            android:text="@={viewModel.monthlyPay}" />
 
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                    <com.devnunu.zipcheck.ui.common.input.BasicInput
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_padding_size_xlarge"
-                        android:hint="보증금"
-                        app:boxBackgroundColor="@color/mono000"
-                        app:helperText="@{viewModel.depositFormatText}"
-                        app:helperTextEnabled="true"
-                        app:suffixText="만원"
-                        app:visibleIf="@{viewModel.inputStep>=viewModel.STEP_DEPOSIT}">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:enabled="@{viewModel.inputStep==viewModel.STEP_DEPOSIT}"
-                            android:inputType="numberDecimal"
-                            android:maxLength="7"
-                            android:singleLine="true"
-                            android:text="@={viewModel.deposit}" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
+                        android:enabled="@{viewModel.inputStep==viewModel.STEP_DEPOSIT}"
+                        android:hint="보증금을 입력해주세요"
+                        android:label="보증금"
+                        app:subtext="@{viewModel.depositFormatText}"
+                        app:unit="만원"
+                        app:value="@={viewModel.deposit}"
+                        app:visibleIf="@{viewModel.inputStep>=viewModel.STEP_DEPOSIT}" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/input_house_type"
@@ -113,25 +92,15 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                    <com.devnunu.zipcheck.ui.common.input.BasicInput
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_padding_size_xlarge"
-                        android:hint="이름"
-                        app:boxBackgroundColor="@color/mono000"
-                        app:counterEnabled="true"
-                        app:counterMaxLength="20">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:enabled="@{viewModel.inputStep==viewModel.STEP_NAME}"
-                            android:inputType="text"
-                            android:singleLine="true"
-                            android:text="@={viewModel.name}" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
+                        android:enabled="@{viewModel.inputStep==viewModel.STEP_NAME}"
+                        android:hint="이름을 입력해주세요"
+                        android:label="이름"
+                        app:value="@={viewModel.name}"
+                        app:visibleIf="@{viewModel.inputStep>=viewModel.STEP_NAME}" />
 
                 </LinearLayout>
 
