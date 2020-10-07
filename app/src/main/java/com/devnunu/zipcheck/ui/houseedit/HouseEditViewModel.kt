@@ -1,9 +1,10 @@
-package com.devnunu.zipcheck.ui.housemodify
+package com.devnunu.zipcheck.ui.houseedit
 
 import androidx.lifecycle.ViewModel
 import com.devnunu.zipcheck.data.house.HouseRepository
 
-class HouseModifyViewModel(
+class HouseEditViewModel(
     private val houseRepository: HouseRepository
 ):ViewModel() {
+
 }

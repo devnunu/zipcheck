@@ -1,15 +1,15 @@
-package com.devnunu.zipcheck.ui.housemodify
+package com.devnunu.zipcheck.ui.houseedit
 
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.common.BaseFragmentKoin
-import com.devnunu.zipcheck.databinding.FragmentHouseModifyBinding
+import com.devnunu.zipcheck.databinding.FragmentHouseEditBinding
 
-class HouseModifyFragment : BaseFragmentKoin<FragmentHouseModifyBinding, HouseModifyViewModel>(
-    R.layout.fragment_house_modify,
-    HouseModifyViewModel::class.java
+class HouseEditFragment : BaseFragmentKoin<FragmentHouseEditBinding, HouseEditViewModel>(
+    R.layout.fragment_house_edit,
+    HouseEditViewModel::class.java
 ) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

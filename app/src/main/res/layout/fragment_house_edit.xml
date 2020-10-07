@@ -10,7 +10,7 @@
 
         <variable
             name="viewModel"
-            type="com.devnunu.zipcheck.ui.housemodify.HouseModifyViewModel" />
+            type="com.devnunu.zipcheck.ui.houseedit.HouseEditViewModel" />
     </data>
 
 

@@ -59,13 +59,26 @@
             android:defaultValue="0"/>
         <action
             android:id="@+id/action_houseDetailFragment_to_houseModifyFragment"
-            app:destination="@id/houseModifyFragment" />
+            app:destination="@id/houseEditFragment" />
+        <action
+            android:id="@+id/action_houseDetailFragment_to_houseMemoFragment"
+            app:destination="@id/houseMemoFragment" />
     </fragment>
     <fragment
-        android:id="@+id/houseModifyFragment"
-        android:name="com.devnunu.zipcheck.ui.housemodify.HouseModifyFragment"
-        android:label="HouseModifyFragment"
-        tools:layout="@layout/fragment_house_modify">
+        android:id="@+id/houseEditFragment"
+        android:name="com.devnunu.zipcheck.ui.houseedit.HouseEditFragment"
+        android:label="houseEditFragment"
+        tools:layout="@layout/fragment_house_edit">
+        <argument
+            android:name="houseId"
+            app:argType="integer"
+            android:defaultValue="0"/>
+    </fragment>
+    <fragment
+        android:id="@+id/houseMemoFragment"
+        android:name="com.devnunu.zipcheck.ui.housememo.HouseMemoFragment"
+        android:label="houseMemoFragment"
+        tools:layout="@layout/fragment_house_memo">
         <argument
             android:name="houseId"
             app:argType="integer"
