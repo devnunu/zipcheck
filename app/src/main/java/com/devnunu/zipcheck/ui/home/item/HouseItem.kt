@@ -13,6 +13,8 @@ class HouseItem(house: House) {
 
     val point = house.filteredAveragePoint
 
+    val pointText = house.filteredAveragePoint.toString()
+
     val typeAndPriceText = getHousePrice(house)
 
     private fun getHousePrice(house: House): String {

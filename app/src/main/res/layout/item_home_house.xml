@@ -18,15 +18,15 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_padding_size_medium"
-        android:background="@drawable/bg_mono000_radius_4dp"
+        android:layout_marginBottom="@dimen/margin_padding_size_xsmall"
+        android:background="@drawable/bg_mono000_radius_8dp"
         android:foreground="?attr/selectableItemBackgroundBorderless"
         android:gravity="center_vertical"
         android:onClick="@{()->listener.onClickHouseItem(item.id)}"
         android:orientation="horizontal"
-        android:paddingVertical="@dimen/margin_padding_size_medium"
-        android:paddingLeft="@dimen/margin_padding_size_large"
-        android:paddingRight="@dimen/margin_padding_size_medium">
+        android:paddingVertical="@dimen/margin_padding_size_small"
+        android:paddingLeft="@dimen/margin_padding_size_medium"
+        android:paddingRight="@dimen/margin_padding_size_xsmall">
 
         <TextView
             android:id="@+id/textView3"
@@ -42,21 +42,39 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:text="@{item.typeAndPriceText}"
             android:textColor="@color/mono500"
-            android:textSize="@dimen/text_size_small"
+            android:textSize="@dimen/text_size_micro"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3"
             tools:text="전세 3000만 원" />
 
-        <com.devnunu.zipcheck.ui.common.rateview.RateView
+        <ImageView
+            android:id="@+id/img_star1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="4dp"
+            android:src="@{item.point > 0 ? @drawable/ic_star_24px : @drawable/ic_star_border_24px}"
+            android:tint="@color/yellow900"
+            app:layout_constraintEnd_toStartOf="@+id/textView5"
             app:layout_constraintTop_toTopOf="parent"
-            app:point="@{item.point}" />
+            tools:src="@drawable/ic_star_border_24px" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@{item.pointText}"
+            android:textColor="@color/yellow900"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size_medium"
+            app:layout_constraintBottom_toBottomOf="@+id/img_star1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/img_star1"
+            tools:text="3.5" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -3,7 +3,8 @@
 
     <!-- margin padding size-->
     <dimen name="margin_padding_size_micro">4dp</dimen>
-    <dimen name="margin_padding_size_small">8dp</dimen>
+    <dimen name="margin_padding_size_xsmall">8dp</dimen>
+    <dimen name="margin_padding_size_small">14dp</dimen>
     <dimen name="margin_padding_size_medium">16dp</dimen>
     <dimen name="margin_padding_size_large">24dp</dimen>
     <dimen name="margin_padding_size_xlarge">32dp</dimen>

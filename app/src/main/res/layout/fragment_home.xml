@@ -22,89 +22,49 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/bg_gradient_emerald500_emerald100"
-                android:orientation="vertical">
+                android:background="@color/emerald600"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/margin_padding_size_large">
 
-                <LinearLayout
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_padding_size_large"
+                    android:layout_marginBottom="@dimen/margin_padding_size_medium"
+                    android:paddingHorizontal="@dimen/margin_padding_size_medium"
+                    android:text="@{viewModel.title}"
+                    android:textColor="@color/mono000"
+                    android:textSize="@dimen/text_size_xxlarge"
+                    android:textStyle="bold"
+                    tools:text="체크 할 집 목록" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:paddingHorizontal="@dimen/margin_padding_size_large"
-                        android:paddingVertical="@dimen/margin_padding_size_xlarge">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/margin_padding_size_small"
-                            android:text="Zip Check"
-                            android:textColor="@color/mono000"
-                            android:textSize="@dimen/text_size_xlarge"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="아래의 버튼을 눌러 새로운 매물을 추가해보세요!"
-                            android:textColor="@color/mono000"
-                            android:textSize="@dimen/text_size_small" />
-
-                    </LinearLayout>
-                </LinearLayout>
-
-                <FrameLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list_house"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:background="@drawable/bg_mono200_upper_radius_16dp"
-                    android:orientation="vertical">
+                    android:clipToPadding="true"
+                    android:nestedScrollingEnabled="false"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="@dimen/margin_padding_size_medium"
+                    app:items="@{viewModel.houseList}"
+                    app:layoutManager="LinearLayoutManager"
+                    app:visibleIf="@{viewModel.haveHouse}"
+                    tools:itemCount="3"
+                    tools:listitem="@layout/item_home_house" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:paddingHorizontal="@dimen/margin_padding_size_large"
-                        android:paddingTop="@dimen/margin_padding_size_xxlarge"
-                        app:visibleIf="@{viewModel.haveHouse}">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/margin_padding_size_large"
-                            android:text="집 목록"
-                            android:textSize="@dimen/text_size_large"
-                            android:textStyle="bold" />
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/list_house"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:clipToPadding="true"
-                            android:nestedScrollingEnabled="false"
-                            android:orientation="vertical"
-                            app:items="@{viewModel.houseList}"
-                            app:layoutManager="LinearLayoutManager"
-                            tools:itemCount="2"
-                            tools:listitem="@layout/item_home_house" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_padding_size_xxlarge"
-                        android:gravity="center"
-                        android:paddingTop="@dimen/margin_padding_size_xxlarge"
-                        android:text="아직 등록된 집이 없습니다.\n하단 버튼을 클릭해서 추가해주세요!"
-                        android:textColor="@color/emerald500"
-                        android:textSize="@dimen/text_size_medium"
-                        app:visibleIf="@{!viewModel.haveHouse}"
-                        tools:visibility="gone" />
-
-                </FrameLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/margin_padding_size_xxlarge"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/margin_padding_size_xxlarge"
+                    android:text="아직 등록된 집이 없습니다.\n하단 버튼을 클릭해서 추가해주세요!"
+                    android:textColor="@color/emerald500"
+                    android:textSize="@dimen/text_size_medium"
+                    app:visibleIf="@{!viewModel.haveHouse}"
+                    tools:visibility="gone" />
 
             </LinearLayout>
 

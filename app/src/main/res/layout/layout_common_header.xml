@@ -7,14 +7,14 @@
         android:id="@+id/layout_view_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="@dimen/margin_padding_size_small"
-        android:paddingVertical="@dimen/margin_padding_size_small">
+        android:paddingHorizontal="@dimen/margin_padding_size_xsmall"
+        android:paddingVertical="@dimen/margin_padding_size_xsmall">
 
         <ImageView
             android:id="@+id/button_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/margin_padding_size_small"
+            android:padding="@dimen/margin_padding_size_xsmall"
             android:src="@drawable/ic_keyboard_arrow_left_24px"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
