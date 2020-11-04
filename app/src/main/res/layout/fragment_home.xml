@@ -24,19 +24,18 @@
                 android:layout_height="match_parent"
                 android:background="@color/emerald600"
                 android:orientation="vertical"
-                android:paddingTop="@dimen/margin_padding_size_large">
+                android:paddingTop="50dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_padding_size_large"
                     android:layout_marginBottom="@dimen/margin_padding_size_medium"
                     android:paddingHorizontal="@dimen/margin_padding_size_medium"
                     android:text="@{viewModel.title}"
                     android:textColor="@color/mono000"
                     android:textSize="@dimen/text_size_xxlarge"
                     android:textStyle="bold"
-                    tools:text="체크 할 집 목록" />
+                    tools:text="집 목록" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/list_house"
@@ -78,7 +77,8 @@
             android:layout_marginBottom="@dimen/margin_padding_size_xlarge"
             android:onClick="@{()->viewModel.onClickAddHouseBtn()}"
             android:src="@drawable/ic_add_24px"
-            app:tint="@android:color/white" />
+            app:backgroundTint="@color/mono000"
+            app:tint="@color/emerald600" />
 
     </FrameLayout>
 

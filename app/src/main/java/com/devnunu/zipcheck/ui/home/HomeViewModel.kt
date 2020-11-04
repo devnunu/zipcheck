@@ -14,7 +14,7 @@ class HomeViewModel(
         !it.isNullOrEmpty()
     }
 
-    val title = MutableLiveData<String>("${getEmoji(0x1F3E0)} 체크 할 집 목록")
+    val title = MutableLiveData<String>("${getEmoji(0x1F3E0)} 집 목록")
 
     /** event */
     private val _onClickAddHouseBtn = MutableLiveData<Event<Unit>>()
