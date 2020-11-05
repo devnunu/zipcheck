@@ -24,6 +24,10 @@ class LocalHouseDataSource(
         return checklistDao.observeHouse(id)
     }
 
+    override suspend fun getHouse(houseId: Int): HouseEntity = withContext(ioDispatcher) {
+        checklistDao.getHouse(houseId)
+    }
+
     override suspend fun insertHouse(house: House) = withContext(ioDispatcher) {
         checklistDao.insertHouse(house.toHouseEntity())
     }

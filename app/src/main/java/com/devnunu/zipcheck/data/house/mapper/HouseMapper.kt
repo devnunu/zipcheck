@@ -18,6 +18,7 @@ internal fun House.toHouseEntity() =
         floor = floor,
         structure = structure,
         parking = parking,
+        elevator = elevator,
         managementFee = managementFee,
         houseType = houseType
     )
@@ -37,6 +38,7 @@ internal fun HouseEntity.toHouse() =
         floor = floor,
         structure = structure,
         parking = parking,
+        elevator = elevator,
         managementFee = managementFee,
         houseType = houseType
     )

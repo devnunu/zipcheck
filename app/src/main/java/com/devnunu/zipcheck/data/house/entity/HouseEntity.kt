@@ -21,8 +21,9 @@ data class HouseEntity(
     val checklist: List<CheckItem>,
     val area: Int?,
     val floor: Int?,
+    val elevator:Boolean?,
     val structure: HouseStructure?,
-    val parking: Int?,
+    val parking: Boolean?,
     val managementFee: Int?,
     val houseType: HouseType?
 )

@@ -29,7 +29,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_padding_size_medium"
                     android:paddingHorizontal="@dimen/margin_padding_size_medium"
                     android:text="@{viewModel.title}"
                     android:textColor="@color/mono000"
@@ -43,6 +42,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:clipToPadding="true"
+                    android:layout_marginTop="@dimen/margin_padding_size_medium"
                     android:nestedScrollingEnabled="false"
                     android:orientation="vertical"
                     android:paddingHorizontal="@dimen/margin_padding_size_medium"
@@ -55,13 +55,12 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_marginTop="@dimen/margin_padding_size_xxlarge"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:paddingTop="@dimen/margin_padding_size_xxlarge"
-                    android:text="아직 등록된 집이 없습니다.\n하단 버튼을 클릭해서 추가해주세요!"
-                    android:textColor="@color/emerald500"
-                    android:textSize="@dimen/text_size_medium"
+                    android:textStyle="bold"
+                    android:text="아직 등록된 집이 없습니다.\n\n하단 버튼을 클릭해서 추가해주세요!"
+                    android:textColor="@color/mono000"
+                    android:textSize="@dimen/text_size_large"
                     app:visibleIf="@{!viewModel.haveHouse}"
                     tools:visibility="gone" />
 

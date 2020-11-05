@@ -59,10 +59,18 @@
             android:defaultValue="0"/>
         <action
             android:id="@+id/action_houseDetailFragment_to_houseModifyFragment"
-            app:destination="@id/houseEditFragment" />
+            app:destination="@id/houseEditFragment"
+            app:enterAnim="@anim/right_in"
+            app:exitAnim="@anim/left_out"
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/right_out" />
         <action
             android:id="@+id/action_houseDetailFragment_to_houseMemoFragment"
-            app:destination="@id/houseMemoFragment" />
+            app:destination="@id/houseMemoFragment"
+            app:enterAnim="@anim/right_in"
+            app:exitAnim="@anim/left_out"
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/right_out" />
     </fragment>
     <fragment
         android:id="@+id/houseEditFragment"

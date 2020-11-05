@@ -12,8 +12,9 @@ data class House(
     val checklist: List<CheckItem>,
     val area: Int? = null,
     val floor: Int? = null,
+    val elevator:Boolean? = null,
     val structure: HouseStructure? = null,
-    val parking: Int? = null,
+    val parking: Boolean? = null,
     val managementFee: Int? = null,
     val houseType: HouseType? = null
 )

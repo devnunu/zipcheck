@@ -12,6 +12,7 @@ import kotlinx.coroutines.withContext
 interface HouseRepository {
     fun observeHouseList(): LiveData<List<House>>
     fun observeHouse(id: Int): LiveData<House?>
+    suspend fun getHouse(houseId: Int): House
     suspend fun insertHouse(house: House)
     suspend fun deleteHouse(houseId: Int)
     suspend fun updateHouseChecklist(id: Int, checklist: List<CheckItem>)
@@ -32,6 +33,11 @@ class DefaultHouseRepository(
         // null 걸리는 경우 있으니 ? operator 필수 포함
         return localHouseDataSource.observeHouse(id).map { house -> house?.toHouse() }
     }
+
+    override suspend fun getHouse(houseId: Int): House =
+        withContext(ioDispatcher) {
+            localHouseDataSource.getHouse(houseId)?.toHouse()
+        }
 
     override suspend fun insertHouse(house: House) =
         withContext(ioDispatcher) {

@@ -58,7 +58,7 @@ class SelectInput @JvmOverloads constructor(
                 updateUIDesign(R.color.mono900, R.drawable.border_bottom_mono200_1dp)
             }
             InputStatus.FOCUS -> {
-                updateUIDesign(R.color.blue500, R.drawable.border_bottom_emerald400_2dp)
+                updateUIDesign(R.color.blue500, R.drawable.border_bottom_emerald600_2dp)
             }
             InputStatus.DISABLE -> {
                 updateUIDesign(R.color.mono900, 0)

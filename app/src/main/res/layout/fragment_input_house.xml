@@ -23,8 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:onClickBack="@{onClickBackBtn}"
-            app:title="매출 정보 입력" />
-
+            app:title="매물 정보 입력" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -101,13 +100,12 @@
             style="@style/Btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
             android:layout_marginHorizontal="@dimen/margin_padding_size_large"
             android:layout_marginBottom="@dimen/margin_padding_size_large"
             android:enabled="@{viewModel.isBottomBtnEnable}"
             android:onClick="@{()->viewModel.onClickBottomBtn()}"
             android:paddingVertical="@dimen/margin_padding_size_medium"
-            android:text="다음" />
+            android:text="확인" />
 
     </LinearLayout>
 </layout>

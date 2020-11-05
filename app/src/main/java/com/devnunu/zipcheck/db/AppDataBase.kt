@@ -17,7 +17,7 @@ import com.google.gson.reflect.TypeToken
     entities = [
         HouseEntity::class
     ],
-    version = 4,
+    version = 5,
     exportSchema = false
 )
 @TypeConverters(DatabaseConverters::class)

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.devnunu.zipcheck.ui.housedetail.HouseDetailViewModel" />
@@ -24,10 +25,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/border_bottom_mono200_1dp"
+                android:drawableRight="@drawable/ic_edit_24px"
+                android:onClick="@{()->viewModel.onClickEditInfoBtn()}"
                 android:paddingHorizontal="@dimen/margin_padding_size_medium"
                 android:paddingVertical="@dimen/margin_padding_size_medium"
                 android:text="매물정보"
-                android:drawableRight="@drawable/ic_edit_24px"
                 android:textSize="@dimen/text_size_large" />
 
             <com.devnunu.zipcheck.ui.common.text.KeyValueText
@@ -37,7 +39,7 @@
                 android:layout_marginHorizontal="@dimen/margin_padding_size_medium"
                 android:background="@drawable/border_bottom_mono200_1dp"
                 app:key="금액"
-                app:value="@{viewModel.typeAndPriceText}"/>
+                app:value="@{viewModel.typeAndPriceText}" />
 
             <com.devnunu.zipcheck.ui.common.text.KeyValueText
                 android:id="@+id/text_parking"
@@ -105,31 +107,31 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
-                android:background="@color/mono200"/>
+                android:background="@color/mono200" />
 
             <TextView
                 android:id="@+id/text_memo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/border_bottom_mono200_1dp"
+                android:drawableRight="@drawable/ic_edit_24px"
                 android:paddingHorizontal="@dimen/margin_padding_size_medium"
                 android:paddingVertical="@dimen/margin_padding_size_medium"
                 android:text="매물 정보"
-                android:drawableRight="@drawable/ic_edit_24px"
                 android:textSize="@dimen/text_size_large" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="@dimen/margin_padding_size_large"
-                android:paddingHorizontal="@dimen/margin_padding_size_xsmall">
+                android:paddingHorizontal="@dimen/margin_padding_size_xsmall"
+                android:paddingVertical="@dimen/margin_padding_size_large">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingVertical="@dimen/margin_padding_size_medium"
                     android:text="아직 메모가 없습니다."
                     android:textSize="@dimen/text_size_small"
-                    android:paddingVertical="@dimen/margin_padding_size_medium"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -140,7 +142,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
-                android:background="@color/mono200"/>
+                android:background="@color/mono200" />
 
         </LinearLayout>
 

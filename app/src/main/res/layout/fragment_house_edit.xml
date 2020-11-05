@@ -26,7 +26,9 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingBottom="40dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -41,10 +43,77 @@
                     android:layout_marginTop="@dimen/margin_padding_size_medium"
                     android:text="집 정보를 입력해주세요" />
 
+                <com.devnunu.zipcheck.ui.common.input.SelectInput
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_padding_size_xlarge"
+                    android:enabled="@{true}"
+                    android:hint="주차 가능 여부를 선택해주세요"
+                    android:label="주차"
+                    android:onClick="@{()->viewModel.onClickParkingSelector()}"
+                    app:value="@{viewModel.parking}" />
 
+                <com.devnunu.zipcheck.ui.common.input.SelectInput
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_padding_size_xlarge"
+                    android:enabled="@{true}"
+                    android:hint="엘레베이터 여부를 선택해주세요"
+                    android:label="엘레베이터"
+                    android:onClick="@{()->viewModel.onClickElevatorSelector()}"
+                    app:value="@{viewModel.elevator}" />
+
+                <com.devnunu.zipcheck.ui.common.input.BasicInput
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_padding_size_xlarge"
+                    android:hint="관리비를 입력해주세요"
+                    android:inputType="numberDecimal"
+                    android:label="관리비"
+                    app:unit="만원"
+                    app:value="@={viewModel.managementFee}" />
+
+                <com.devnunu.zipcheck.ui.common.input.SelectInput
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_padding_size_xlarge"
+                    android:enabled="@{true}"
+                    android:hint="집 구조를 입력해주세요"
+                    android:label="구조"
+                    android:onClick="@{()->viewModel.onClickHouseType()}"
+                    app:value="@{viewModel.houseType}" />
+
+                <com.devnunu.zipcheck.ui.common.input.BasicInput
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_padding_size_xlarge"
+                    android:hint="면적을 입력해주세요"
+                    android:inputType="numberDecimal"
+                    android:label="면적"
+                    app:unit="평"
+                    app:value="@={viewModel.area}" />
+
+                <com.devnunu.zipcheck.ui.common.input.BasicInput
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_padding_size_xlarge"
+                    android:hint="층을 입력해주세요"
+                    android:inputType="numberDecimal"
+                    android:label="층"
+                    app:unit="층"
+                    app:value="@={viewModel.floor}" />
 
             </LinearLayout>
         </ScrollView>
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_padding_size_large"
+            android:layout_marginBottom="@dimen/margin_padding_size_large"
+            android:paddingVertical="@dimen/margin_padding_size_medium"
+            android:text="확인" />
 
     </LinearLayout>
 </layout>
