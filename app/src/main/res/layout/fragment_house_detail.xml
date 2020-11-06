@@ -6,10 +6,6 @@
     <data>
 
         <variable
-            name="onClickBackBtn"
-            type="android.view.View.OnClickListener" />
-
-        <variable
             name="viewModel"
             type="com.devnunu.zipcheck.ui.housedetail.HouseDetailViewModel" />
 
@@ -19,14 +15,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-        <com.devnunu.zipcheck.ui.common.header.Header
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:onClickBack="@{onClickBackBtn}"
-            app:onClickRightIcon="@{()->viewModel.onClickDeleteBtn()}"
-            app:rightImage="@drawable/ic_delete_24px"
-            app:title="@{viewModel.house.name}" />
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"

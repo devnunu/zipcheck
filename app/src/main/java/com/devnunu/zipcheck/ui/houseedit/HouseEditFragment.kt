@@ -31,7 +31,6 @@ class HouseEditFragment : BaseFragmentKoin<FragmentHouseEditBinding, HouseEditVi
     override fun setBindingVariables() {
         binding.also {
             it.viewModel = viewModel
-            it.onClickBackBtn = View.OnClickListener { findNavController().popBackStack() }
         }
     }
 

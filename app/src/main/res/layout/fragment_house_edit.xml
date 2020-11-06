@@ -5,10 +5,6 @@
     <data>
 
         <variable
-            name="onClickBackBtn"
-            type="android.view.View.OnClickListener" />
-
-        <variable
             name="viewModel"
             type="com.devnunu.zipcheck.ui.houseedit.HouseEditViewModel" />
     </data>
@@ -18,11 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-        <com.devnunu.zipcheck.ui.common.header.Header
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:onClickBack="@{onClickBackBtn}" />
 
         <ScrollView
             android:layout_width="match_parent"

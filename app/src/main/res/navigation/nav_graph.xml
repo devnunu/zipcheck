@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.devnunu.zipcheck.ui.home.HomeFragment"
-        android:label="HomeFragment"
+        android:label=""
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_houseDetailFragment"
@@ -40,7 +40,7 @@
     <fragment
         android:id="@+id/inputHouseFragment"
         android:name="com.devnunu.zipcheck.ui.inputhouse.InputHouseFragment"
-        android:label="InputHouseFragment"
+        android:label="매물 정보 입력"
         tools:layout="@layout/fragment_input_house">
         <action
             android:id="@+id/action_inputHouseFragment_to_homeFragment"
@@ -51,7 +51,7 @@
     <fragment
         android:id="@+id/houseDetailFragment"
         android:name="com.devnunu.zipcheck.ui.housedetail.HouseDetailFragment"
-        android:label="HouseDetailFragment"
+        android:label=""
         tools:layout="@layout/fragment_house_detail">
         <argument
             android:name="houseId"
@@ -75,7 +75,7 @@
     <fragment
         android:id="@+id/houseEditFragment"
         android:name="com.devnunu.zipcheck.ui.houseedit.HouseEditFragment"
-        android:label="houseEditFragment"
+        android:label=""
         tools:layout="@layout/fragment_house_edit">
         <argument
             android:name="houseId"
