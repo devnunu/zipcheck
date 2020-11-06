@@ -13,6 +13,8 @@ import androidx.viewpager2.widget.ViewPager2
 import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.common.BaseFragmentKoin
 import com.devnunu.zipcheck.common.EventObserver
+import com.devnunu.zipcheck.common.util.CustomViewUtil
+import com.devnunu.zipcheck.common.util.TabLayoutUtil
 import com.devnunu.zipcheck.databinding.FragmentHouseDetailBinding
 import com.devnunu.zipcheck.ui.housedetail.pager.HouseDetailPagerAdapter
 import com.devnunu.zipcheck.ui.housedetail.photoslider.PhotoSliderAdapter
@@ -73,7 +75,9 @@ class HouseDetailFragment : BaseFragmentKoin<FragmentHouseDetailBinding, HouseDe
             viewpager.adapter = adapter
             TabLayoutMediator(layoutTab, viewpager) { tab, position ->
                 tab.text = textArray[position]
+                tab.customView = CustomViewUtil.createCustomFontTextViewForTab(position, textArray)
             }.attach()
+            layoutTab.addOnTabSelectedListener(TabLayoutUtil.onFindaTabSelectedListener())
             viewpager.isSaveEnabled = false
         }
     }
