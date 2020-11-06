@@ -19,14 +19,6 @@ class InfoFragment : BaseFragmentKoin<FragmentHouseDetailInfoBinding, HouseDetai
         }
     }
 
-    override fun setEventObservers() {
-        viewModel.onClickEditBtn.observe(this, EventObserver { id ->
-            val action =
-                HouseDetailFragmentDirections.actionHouseDetailFragmentToHouseModifyFragment(id)
-            findNavController().navigate(action)
-        })
-    }
-
     companion object {
         fun newInstance(): InfoFragment {
             return InfoFragment()

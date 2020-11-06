@@ -20,18 +20,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/text_house_info"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/border_bottom_mono200_1dp"
-                android:drawableRight="@drawable/ic_edit_24px"
-                android:onClick="@{()->viewModel.onClickEditInfoBtn()}"
-                android:paddingHorizontal="@dimen/margin_padding_size_medium"
-                android:paddingVertical="@dimen/margin_padding_size_medium"
-                android:text="매물정보"
-                android:textSize="@dimen/text_size_large" />
-
             <com.devnunu.zipcheck.ui.common.text.KeyValueText
                 android:id="@+id/text_transaction_type"
                 android:layout_width="match_parent"
@@ -117,7 +105,7 @@
                 android:drawableRight="@drawable/ic_edit_24px"
                 android:paddingHorizontal="@dimen/margin_padding_size_medium"
                 android:paddingVertical="@dimen/margin_padding_size_medium"
-                android:text="매물 정보"
+                android:text="메모"
                 android:textSize="@dimen/text_size_large" />
 
             <androidx.constraintlayout.widget.ConstraintLayout

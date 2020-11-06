@@ -30,7 +30,7 @@ class HouseDetailFragment : BaseFragmentKoin<FragmentHouseDetailBinding, HouseDe
         const val REQUEST_CODE_SELECT_PICTURES = 30828
     }
 
-    private val textArray = arrayOf("체크리스트", "매물 정보")
+    private val textArray = arrayOf("매물 정보", "체크리스트")
     private val arg: HouseDetailFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -100,10 +100,6 @@ class HouseDetailFragment : BaseFragmentKoin<FragmentHouseDetailBinding, HouseDe
             adapter.setItem(it)
         })
 
-        viewModel.onClickDeleteBtn.observe(this, EventObserver {
-            showDeleteConfirmDialog()
-        })
-
         viewModel.onSuccessDeleteHouse.observe(this, EventObserver {
             showToast("집 정보가 삭제 되었습니다.")
             findNavController().popBackStack()
@@ -124,6 +120,15 @@ class HouseDetailFragment : BaseFragmentKoin<FragmentHouseDetailBinding, HouseDe
         when (item.itemId) {
             R.id.menu_delete -> {
                 showDeleteConfirmDialog()
+                true
+            }
+            R.id.menu_edit -> {
+                val houseId = viewModel.getHouseId()
+                houseId?.let {
+                    val action
+                            = HouseDetailFragmentDirections.actionHouseDetailFragmentToHouseModifyFragment(it)
+                    findNavController().navigate(action)
+                }
                 true
             }
             else -> false

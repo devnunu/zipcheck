@@ -38,17 +38,11 @@ class HouseDetailViewModel(
     /**
      * event
      * */
-    private val _onClickDeleteBtn = MutableLiveData<Event<Unit>>()
-    val onClickDeleteBtn: LiveData<Event<Unit>> = _onClickDeleteBtn
-
     private val _onSuccessDeleteHouse = MutableLiveData<Event<Unit>>()
     val onSuccessDeleteHouse: LiveData<Event<Unit>> = _onSuccessDeleteHouse
 
     private val _onClickAddPhotos = MutableLiveData<Event<Unit>>()
     val onClickAddPhotos: LiveData<Event<Unit>> = _onClickAddPhotos
-
-    private val _onClickEditBtn = MutableLiveData<Event<Int>>()
-    val onClickEditBtn: LiveData<Event<Int>> = _onClickEditBtn
 
     /**
      * data loading start
@@ -75,14 +69,14 @@ class HouseDetailViewModel(
         return _imageUriList.value?.size ?: 0
     }
 
+    fun getHouseId(): Int? {
+        return houseId.value
+    }
+
 
     /**
      * click handler
      * */
-    fun onClickDeleteBtn() {
-        _onClickDeleteBtn.value = Event(Unit)
-    }
-
     fun onClickRate(index: Int, point: Int) {
         viewModelScope.launch {
             val houseId = houseId.value
@@ -96,11 +90,5 @@ class HouseDetailViewModel(
 
     fun onClickAddPhotos() {
         _onClickAddPhotos.value = Event(Unit)
-    }
-
-    fun onClickEditInfoBtn() {
-        houseId.value?.let {
-            _onClickEditBtn.value = Event(it)
-        }
     }
 }
