@@ -40,4 +40,8 @@ class LocalHouseDataSource(
     override suspend fun deleteHouse(houseId: Int) {
         return checklistDao.deleteHouse(houseId)
     }
+
+    override suspend fun updateHouse(house: House) {
+        return checklistDao.updateHouse(house.toHouseEntity())
+    }
 }

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.devnunu.zipcheck.data.house.entity.HouseEntity
 import com.devnunu.zipcheck.data.house.model.CheckItem
+import com.devnunu.zipcheck.data.house.model.HouseStructure
 
 @Dao
 interface HouseDao {
@@ -20,10 +21,13 @@ interface HouseDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertHouse(house: HouseEntity)
 
+    @Query("delete from House where id = :houseId")
+    suspend fun deleteHouse(houseId: Int)
+
     @Query("update House set checklist = :checklist where id = :houseId")
     suspend fun updateHouseChecklist(houseId: Int, checklist: List<CheckItem>)
 
-    @Query("delete from House where id = :houseId")
-    suspend fun deleteHouse(houseId: Int)
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun updateHouse(houseEntity: HouseEntity)
 
 }

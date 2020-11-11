@@ -54,14 +54,14 @@ class HouseDetailViewModel(
     val managementFee = house.map {
         when (it?.managementFee) {
             null -> "-"
-            else -> "${it?.managementFee}만원"
+            else -> "${it.managementFee}만원"
         }
     }
 
     val structure = house.map {
         when (it?.structure) {
             null -> "-"
-            else -> it.structure.displayName
+            else -> it.structure?.displayName
         }
     }
 
@@ -75,14 +75,14 @@ class HouseDetailViewModel(
     val floor = house.map {
         when (it?.floor) {
             null -> "-"
-            else -> "${it?.floor}층"
+            else -> "${it.floor}층"
         }
     }
 
     val houseType = house.map {
         when (it?.houseType) {
             null -> "-"
-            else -> it?.houseType.displayName
+            else -> it.houseType?.displayName
         }
     }
 

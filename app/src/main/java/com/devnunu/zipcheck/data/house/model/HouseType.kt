@@ -5,5 +5,16 @@ enum class HouseType(val displayName: String) {
     MULTI_HOUSE_HOLE("다세대주택"),
     DETACHED_HOUSE("단독주택"),
     OFFICE_TEL("오피스텔"),
-    APARTMENT("아파트"),
+    APARTMENT("아파트");
+
+    companion object {
+        fun fromDisplayName(text: String?): HouseType? {
+            HouseType.values().forEach { houseType ->
+                if (houseType.displayName.equals(text, ignoreCase = true)) {
+                    return houseType
+                }
+            }
+            return null
+        }
+    }
 }

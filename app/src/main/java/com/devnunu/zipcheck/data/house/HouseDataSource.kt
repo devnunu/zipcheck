@@ -12,4 +12,5 @@ interface HouseDataSource {
     suspend fun insertHouse(house: House)
     suspend fun deleteHouse(houseId: Int)
     suspend fun updateHouseChecklist(houseId: Int, checklist: List<CheckItem>)
+    suspend fun updateHouse(house: House)
 }

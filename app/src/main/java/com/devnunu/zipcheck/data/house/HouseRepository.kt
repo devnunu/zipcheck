@@ -2,6 +2,7 @@ package com.devnunu.zipcheck.data.house
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
+import com.devnunu.zipcheck.data.house.entity.HouseEntity
 import com.devnunu.zipcheck.data.house.mapper.toHouse
 import com.devnunu.zipcheck.data.house.model.CheckItem
 import com.devnunu.zipcheck.data.house.model.House
@@ -16,6 +17,7 @@ interface HouseRepository {
     suspend fun insertHouse(house: House)
     suspend fun deleteHouse(houseId: Int)
     suspend fun updateHouseChecklist(id: Int, checklist: List<CheckItem>)
+    suspend fun updateHouse(house: House)
 }
 
 class DefaultHouseRepository(
@@ -52,6 +54,12 @@ class DefaultHouseRepository(
     override suspend fun deleteHouse(houseId: Int) {
         return withContext(ioDispatcher) {
             localHouseDataSource.deleteHouse(houseId)
+        }
+    }
+
+    override suspend fun updateHouse(house: House) {
+        return withContext(ioDispatcher) {
+            localHouseDataSource.updateHouse(house)
         }
     }
 }

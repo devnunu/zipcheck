@@ -75,5 +75,9 @@ class HouseEditFragment : BaseFragmentKoin<FragmentHouseEditBinding, HouseEditVi
             })
             bottomSheet.show(parentFragmentManager, bottomSheet.tag)
         })
+
+        viewModel.onSuccessUpdateHouse.observe(this, EventObserver {
+            findNavController().popBackStack()
+        })
     }
 }

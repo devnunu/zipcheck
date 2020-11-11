@@ -10,11 +10,11 @@ data class House(
     var memo: String? = null,
     var transactionType: TransactionType?,
     val checklist: List<CheckItem>,
-    val area: Int? = null,
-    val floor: Int? = null,
-    val elevator:Boolean? = null,
-    val structure: HouseStructure? = null,
-    val parking: Boolean? = null,
-    val managementFee: Int? = null,
-    val houseType: HouseType? = null
+    var area: Int? = null,
+    var floor: Int? = null,
+    var elevator:Boolean? = null,
+    var structure: HouseStructure? = null,
+    var parking: Boolean? = null,
+    var managementFee: Int? = null,
+    var houseType: HouseType? = null
 )
