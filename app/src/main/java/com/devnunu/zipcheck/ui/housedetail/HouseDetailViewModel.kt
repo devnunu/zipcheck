@@ -35,6 +35,57 @@ class HouseDetailViewModel(
     private val _imageUriList = MutableLiveData<List<Uri>>(listOf())
     val imageUriList: LiveData<List<Uri>> = _imageUriList
 
+    val parkingText = house.map {
+        when (it?.parking) {
+            null -> "-"
+            true -> "가능"
+            else -> "불가능"
+        }
+    }
+
+    val elevator = house.map {
+        when (it?.elevator) {
+            null -> "-"
+            true -> "있음"
+            else -> "없음"
+        }
+    }
+
+    val managementFee = house.map {
+        when (it?.managementFee) {
+            null -> "-"
+            else -> "${it?.managementFee}만원"
+        }
+    }
+
+    val structure = house.map {
+        when (it?.structure) {
+            null -> "-"
+            else -> it.structure.displayName
+        }
+    }
+
+    val area = house.map {
+        when (it?.area) {
+            null -> "-"
+            else -> "${it.area}평"
+        }
+    }
+
+    val floor = house.map {
+        when (it?.floor) {
+            null -> "-"
+            else -> "${it?.floor}층"
+        }
+    }
+
+    val houseType = house.map {
+        when (it?.houseType) {
+            null -> "-"
+            else -> it?.houseType.displayName
+        }
+    }
+
     /**
      * event
      * */

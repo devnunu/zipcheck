@@ -40,7 +40,6 @@
     <fragment
         android:id="@+id/inputHouseFragment"
         android:name="com.devnunu.zipcheck.ui.inputhouse.InputHouseFragment"
-        android:label="매물 정보 입력"
         tools:layout="@layout/fragment_input_house">
         <action
             android:id="@+id/action_inputHouseFragment_to_homeFragment"
@@ -85,7 +84,7 @@
     <fragment
         android:id="@+id/houseMemoFragment"
         android:name="com.devnunu.zipcheck.ui.housememo.HouseMemoFragment"
-        android:label="houseMemoFragment"
+        android:label=""
         tools:layout="@layout/fragment_house_memo">
         <argument
             android:name="houseId"

@@ -36,7 +36,7 @@
                 android:layout_marginHorizontal="@dimen/margin_padding_size_medium"
                 android:background="@drawable/border_bottom_mono200_1dp"
                 app:key="주차"
-                app:value="1대가능" />
+                app:value="@{viewModel.parkingText}" />
 
             <com.devnunu.zipcheck.ui.common.text.KeyValueText
                 android:id="@+id/text_elevator"
@@ -45,7 +45,7 @@
                 android:layout_marginHorizontal="@dimen/margin_padding_size_medium"
                 android:background="@drawable/border_bottom_mono200_1dp"
                 app:key="엘레베이터"
-                app:value="없음" />
+                app:value="@{viewModel.elevator}" />
 
             <com.devnunu.zipcheck.ui.common.text.KeyValueText
                 android:id="@+id/text_management_fee"
@@ -54,7 +54,7 @@
                 android:layout_marginHorizontal="@dimen/margin_padding_size_medium"
                 android:background="@drawable/border_bottom_mono200_1dp"
                 app:key="관리비"
-                app:value="3만원" />
+                app:value="@{viewModel.managementFee}" />
 
             <com.devnunu.zipcheck.ui.common.text.KeyValueText
                 android:id="@+id/text_structure"
@@ -63,7 +63,7 @@
                 android:layout_marginHorizontal="@dimen/margin_padding_size_medium"
                 android:background="@drawable/border_bottom_mono200_1dp"
                 app:key="구조"
-                app:value="쓰리룸+" />
+                app:value="@{viewModel.structure}" />
 
             <com.devnunu.zipcheck.ui.common.text.KeyValueText
                 android:id="@+id/text_area"
@@ -72,7 +72,7 @@
                 android:layout_marginHorizontal="@dimen/margin_padding_size_medium"
                 android:background="@drawable/border_bottom_mono200_1dp"
                 app:key="면적"
-                app:value="19평" />
+                app:value="@{viewModel.area}" />
 
             <com.devnunu.zipcheck.ui.common.text.KeyValueText
                 android:id="@+id/text_floor"
@@ -81,7 +81,7 @@
                 android:layout_marginHorizontal="@dimen/margin_padding_size_medium"
                 android:background="@drawable/border_bottom_mono200_1dp"
                 app:key="층"
-                app:value="5층" />
+                app:value="@{viewModel.floor}" />
 
             <com.devnunu.zipcheck.ui.common.text.KeyValueText
                 android:id="@+id/text_house_type"
@@ -90,7 +90,7 @@
                 android:layout_marginHorizontal="@dimen/margin_padding_size_medium"
                 android:background="@drawable/border_bottom_mono200_1dp"
                 app:key="건물 종류"
-                app:value="다가구주택" />
+                app:value="@{viewModel.houseType}" />
 
             <View
                 android:layout_width="match_parent"

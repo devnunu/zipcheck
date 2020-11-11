@@ -4,6 +4,7 @@ import com.devnunu.zipcheck.common.ext.filteredAveragePoint
 import com.devnunu.zipcheck.common.util.CurrencyUtil
 import com.devnunu.zipcheck.data.house.model.House
 import com.devnunu.zipcheck.data.house.model.TransactionType
+import kotlin.math.roundToInt
 
 class HouseItem(house: House) {
 
@@ -13,7 +14,7 @@ class HouseItem(house: House) {
 
     val point = house.filteredAveragePoint
 
-    val pointText = house.filteredAveragePoint.toString()
+    val pointText = ((house.filteredAveragePoint * 100).roundToInt() /100f).toString()
 
     val typeAndPriceText = getHousePrice(house)
 
