@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.devnunu.zipcheck.common.ext.clickableNonIndication
 import com.devnunu.zipcheck.common.theme.Regular16
 
 @Composable
@@ -19,7 +20,10 @@ fun CheckBoxText(
     text: String,
     onCheckedChange: (Boolean) -> Unit,
 ) {
-    Row(modifier = modifier) {
+    Row(
+        modifier = modifier
+            .clickableNonIndication { onCheckedChange(!checked) }
+    ) {
         ZipCheckCheckBox(
             checked = checked,
             onCheckedChange = onCheckedChange

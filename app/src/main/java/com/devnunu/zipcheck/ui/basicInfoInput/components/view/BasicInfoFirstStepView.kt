@@ -35,12 +35,10 @@ fun BasicInfoFirstStepView(
             currentPage = state.currentPage
         )
         Spacer(modifier = Modifier.height(30.dp))
-        val aliasFocusRequester = remember { FocusRequester() }
         BasicInput(
             label = "별칭",
             value = state.alias,
             placeholder = "별칭을 입력해주세요",
-            focusRequester = aliasFocusRequester,
             onValueChange = viewModel::onChangeAlias,
         )
         Spacer(modifier = Modifier.height(30.dp))
