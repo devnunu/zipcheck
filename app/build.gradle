@@ -2,7 +2,6 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
-    id 'com.google.dagger.hilt.android'
 }
 
 android {
@@ -56,6 +55,7 @@ dependencies {
 
     def nav_version = "2.5.3"
     def compose_ui_version = "1.2.0"
+    def orbit_version = "4.6.1"
 
     // android x
     implementation 'androidx.core:core-ktx:1.7.0'
@@ -71,12 +71,10 @@ dependencies {
     // navigation
     implementation "androidx.navigation:navigation-compose:$nav_version"
 
-    // hilt
-    implementation "com.google.dagger:hilt-android:2.44"
-    kapt "com.google.dagger:hilt-compiler:2.44"
-
-    // mavericks
-    implementation 'com.airbnb.android:mavericks:3.0.1'
+    // orbit
+    implementation("org.orbit-mvi:orbit-core:$orbit_version")
+    implementation("org.orbit-mvi:orbit-viewmodel:$orbit_version")
+    implementation("org.orbit-mvi:orbit-compose:$orbit_version")
 
     // test
     testImplementation 'junit:junit:4.13.2'
