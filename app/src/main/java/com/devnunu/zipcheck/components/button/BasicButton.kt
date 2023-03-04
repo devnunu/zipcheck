@@ -27,8 +27,11 @@ enum class BtnStyle(
     PRIMARY_RADIUS(lightMint8, white, null, RoundedCornerShape(14.dp)),
     PRIMARY_ROUND(lightMint8, white, null, RoundedCornerShape(100.dp)),
 
-    DISABLE_RADIUS(gray99, gray80, null, RoundedCornerShape(14.dp)),
-    DISABLE_ROUND(gray99, gray80, null, RoundedCornerShape(100.dp)),
+    LINE(white, lightSlate11, lightSlate7, RoundedCornerShape(0.dp)),
+    LINE_RADIUS(white, lightSlate11, lightSlate7, RoundedCornerShape(100.dp)),
+
+    DISABLE_RADIUS(lightSlate6, lightSlate9, null, RoundedCornerShape(14.dp)),
+    DISABLE_ROUND(lightSlate6, lightSlate9, null, RoundedCornerShape(100.dp)),
 }
 
 enum class BtnSize(
@@ -50,6 +53,13 @@ fun BasicButton(
     enable: Boolean = true,
     onClick: () -> Unit,
 ) {
+    val buttonStyle = if (enable) buttonStyle else {
+        when (buttonStyle) {
+            BtnStyle.PRIMARY_RADIUS,
+            BtnStyle.LINE_RADIUS -> BtnStyle.DISABLE_RADIUS
+            else -> BtnStyle.DISABLE_ROUND
+        }
+    }
 
     val fontStyle = when (buttonSize) {
         BtnSize.LARGE -> Bold16

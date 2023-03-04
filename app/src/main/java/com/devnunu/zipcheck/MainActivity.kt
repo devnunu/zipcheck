@@ -12,7 +12,7 @@ import com.devnunu.zipcheck.common.navigation.LocalNavController
 import com.devnunu.zipcheck.common.navigation.Screen
 import com.devnunu.zipcheck.ui.basicInfoInput.BasicInfoInputScreen
 import com.devnunu.zipcheck.ui.home.HomeScreen
-import com.devnunu.zipcheck.ui.theme.ZipCheckTheme
+import com.devnunu.zipcheck.common.theme.ZipCheckTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

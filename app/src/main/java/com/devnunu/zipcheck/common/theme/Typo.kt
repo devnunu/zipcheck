@@ -1,5 +1,6 @@
 package com.devnunu.zipcheck.common.theme
 
+import androidx.compose.material.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextStyle
@@ -8,6 +9,15 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.devnunu.zipcheck.R
+
+val Typography: Typography
+    get() = Typography(
+        body1 = TextStyle(
+            fontFamily = fonts,
+            fontWeight = FontWeight.Normal,
+            fontSize = 16.sp
+        )
+    )
 
 val fonts = FontFamily(
     Font(R.font.Pretendard_Bold, weight = FontWeight.Bold),
