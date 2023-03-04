@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.devnunu.zipcheck.common.navigation.LocalNavController
 import com.devnunu.zipcheck.components.ZipCheckScaffold
+import com.devnunu.zipcheck.components.input.BasicInput
 import com.devnunu.zipcheck.components.topBar.TopBar
 import com.devnunu.zipcheck.ui.basicInfoInput.components.BasicInfoInputStepIndicator
 import org.koin.androidx.compose.koinViewModel
@@ -30,16 +31,22 @@ fun BasicInfoInputScreen(
         }
     ) {
         Column(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 20.dp)
         ) {
             BasicInfoInputStepIndicator(
                 modifier = Modifier.fillMaxWidth(),
                 currentPage = state.currentPage
             )
             Spacer(modifier = Modifier.height(30.dp))
-            Text(
-                text = "Hello BasicInfoInputScreen"
+            BasicInput(
+                label = "별칭",
+                value = state.alias,
+                placeholder = "별칭을 입력해주세요",
+                onValueChange = viewModel::onChangeAlias
             )
+            Spacer(modifier = Modifier.height(30.dp))
         }
     }
 
