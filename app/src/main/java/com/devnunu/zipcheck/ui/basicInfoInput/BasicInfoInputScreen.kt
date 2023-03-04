@@ -1,11 +1,11 @@
 package com.devnunu.zipcheck.ui.basicInfoInput
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import com.devnunu.zipcheck.common.navigation.LocalNavController
 import com.devnunu.zipcheck.components.ZipCheckScaffold
 import com.devnunu.zipcheck.components.topBar.TopBar
@@ -33,10 +33,14 @@ fun BasicInfoInputScreen(
             modifier = Modifier.fillMaxSize()
         ) {
             BasicInfoInputStepIndicator(
+                modifier = Modifier.fillMaxWidth(),
                 currentPage = state.currentPage
             )
+            Spacer(modifier = Modifier.height(30.dp))
+            Text(
+                text = "Hello BasicInfoInputScreen"
+            )
         }
-        Text(text = "Hello BasicInfoInputScreen")
     }
 
 }
