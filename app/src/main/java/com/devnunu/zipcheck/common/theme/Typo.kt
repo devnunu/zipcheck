@@ -20,10 +20,10 @@ val Typography: Typography
     )
 
 val fonts = FontFamily(
-    Font(R.font.Pretendard_Bold, weight = FontWeight.Bold),
-    Font(R.font.Pretendard_Medium, weight = FontWeight.Medium),
-    Font(R.font.Pretendard_Regular, weight = FontWeight.Normal),
-    Font(R.font.Pretendard_Light, weight = FontWeight.Light),
+    Font(R.font.pretendard_bold, weight = FontWeight.Bold),
+    Font(R.font.pretendard_medium, weight = FontWeight.Medium),
+    Font(R.font.pretendard_regular, weight = FontWeight.Normal),
+    Font(R.font.pretendard_light, weight = FontWeight.Light),
 )
 
 val Bold = TextStyle(
