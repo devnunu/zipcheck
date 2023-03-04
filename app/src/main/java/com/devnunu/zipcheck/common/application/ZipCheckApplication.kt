@@ -1,4 +1,4 @@
-package com.devnunu.zipcheck.common
+package com.devnunu.zipcheck.common.application
 
 import android.app.Application
 import com.airbnb.mvrx.Mavericks
