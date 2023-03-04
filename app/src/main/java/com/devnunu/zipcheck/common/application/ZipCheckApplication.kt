@@ -1,11 +1,18 @@
 package com.devnunu.zipcheck.common.application
 
 import android.app.Application
-import com.airbnb.mvrx.Mavericks
-import dagger.hilt.android.HiltAndroidApp
+import com.devnunu.zipcheck.di.uiModule
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.GlobalContext.startKoin
 
 class ZipCheckApplication : Application() {
     override fun onCreate() {
         super.onCreate()
+        startKoin{
+            androidContext(this@ZipCheckApplication)
+            modules(
+                uiModule
+            )
+        }
     }
 }

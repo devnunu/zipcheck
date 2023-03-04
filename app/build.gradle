@@ -56,6 +56,8 @@ dependencies {
     def nav_version = "2.5.3"
     def compose_ui_version = "1.2.0"
     def orbit_version = "4.6.1"
+    def koin_android_version = "3.3.3"
+    def koin_android_compose_version = "3.4.2"
 
     // android x
     implementation 'androidx.core:core-ktx:1.7.0'
@@ -70,6 +72,11 @@ dependencies {
 
     // navigation
     implementation "androidx.navigation:navigation-compose:$nav_version"
+
+    // koin
+    implementation "io.insert-koin:koin-android:$koin_android_version"
+    implementation "io.insert-koin:koin-androidx-navigation:$koin_android_version"
+    implementation "io.insert-koin:koin-androidx-compose:$koin_android_compose_version"
 
     // orbit
     implementation("org.orbit-mvi:orbit-core:$orbit_version")
