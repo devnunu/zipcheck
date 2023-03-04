@@ -83,6 +83,9 @@ dependencies {
     implementation("org.orbit-mvi:orbit-viewmodel:$orbit_version")
     implementation("org.orbit-mvi:orbit-compose:$orbit_version")
 
+    // accompanist
+    implementation "com.google.accompanist:accompanist-navigation-animation:0.29.1-alpha"
+
     // test
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
