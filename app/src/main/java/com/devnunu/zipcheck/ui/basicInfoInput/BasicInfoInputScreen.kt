@@ -1,7 +1,6 @@
 package com.devnunu.zipcheck.ui.basicInfoInput
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -10,6 +9,7 @@ import com.devnunu.zipcheck.common.navigation.LocalNavController
 import com.devnunu.zipcheck.components.ZipCheckScaffold
 import com.devnunu.zipcheck.components.input.BasicInput
 import com.devnunu.zipcheck.components.topBar.TopBar
+import com.devnunu.zipcheck.ui.basicInfoInput.components.BasicInfoInputRoomSelector
 import com.devnunu.zipcheck.ui.basicInfoInput.components.BasicInfoInputStepIndicator
 import org.koin.androidx.compose.koinViewModel
 import org.orbitmvi.orbit.compose.collectAsState
@@ -47,7 +47,11 @@ fun BasicInfoInputScreen(
                 onValueChange = viewModel::onChangeAlias
             )
             Spacer(modifier = Modifier.height(30.dp))
+            BasicInfoInputRoomSelector(
+                label = "집 구조",
+                selectedRoomType = state.roomType,
+                onClickRoomType = viewModel::onClickRoomType
+            )
         }
     }
-
 }
