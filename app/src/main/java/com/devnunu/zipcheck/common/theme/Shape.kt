@@ -1,4 +1,4 @@
-package com.devnunu.zipcheck.ui.theme
+package com.devnunu.zipcheck.common.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes
