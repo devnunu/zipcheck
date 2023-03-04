@@ -1,7 +1,8 @@
-package com.devnunu.zipcheck.components
+package com.devnunu.zipcheck.components.scaffold
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 
@@ -9,11 +10,13 @@ import androidx.compose.runtime.Composable
 @Composable
 fun ZipCheckScaffold(
     topBar: (@Composable () -> Unit) = {},
-    content: @Composable () -> Unit
+    bottomBar: @Composable () -> Unit = {},
+    content: @Composable (PaddingValues) -> Unit
 ) {
     Scaffold(
         topBar = topBar,
+        bottomBar = bottomBar
     ) {
-        content()
+        content(it)
     }
 }

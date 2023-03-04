@@ -23,7 +23,6 @@ val lightSlate10 = Color(0xFF7E868C)
 val lightSlate11 = Color(0xFF687076)
 val lightSlate12 = Color(0xFF11181C)
 
-
 val lightMint1 = Color(0xFFF9FEFD)
 val lightMint2 = Color(0xFFEFFEFA)
 val lightMint3 = Color(0xFFE1FBF4)
@@ -36,6 +35,10 @@ val lightMint9 = Color(0xFF70E1C8)
 val lightMint10 = Color(0xFF69D9C1)
 val lightMint11 = Color(0xFF147D6F)
 val lightMint12 = Color(0xFF09342E)
+
+val lightGreen9 = Color(0xFF30A46C)
+
+val lightRed10 = Color(0xFFDC3D43)
 
 val white = Color(0xFFFFFFFF)
 val black = Color(0xFF000000)

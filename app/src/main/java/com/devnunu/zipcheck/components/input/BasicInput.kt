@@ -1,7 +1,12 @@
 package com.devnunu.zipcheck.components.input
 
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.relocation.BringIntoViewRequester
+import androidx.compose.foundation.relocation.bringIntoViewRequester
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
@@ -13,6 +18,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.geometry.Rect
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -20,7 +27,9 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.devnunu.zipcheck.common.theme.*
+import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun BasicInput(
     modifier: Modifier = Modifier,
@@ -29,12 +38,14 @@ fun BasicInput(
     value: String?,
     unit: String? = null,
     placeholder: String,
+    errorText: String? = null,
     focusRequester: FocusRequester? = null,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions(),
     maxLines: Int = Int.MAX_VALUE,
     maxLength: Int = Int.MAX_VALUE,
     singleLine: Boolean = false,
+    onFocusChanged: (Boolean) -> Unit = {},
     onValueChange: (String) -> Unit,
     enabled: Boolean = true,
 ) {
@@ -43,14 +54,33 @@ fun BasicInput(
     val annotatedLabel = buildAnnotatedString {
         append(label)
         if (isEssential) {
-            withStyle(style = SpanStyle(color = lightSlate12)) {
-                append("*")
+            withStyle(style = SpanStyle(color = lightRed10)) {
+                append(" *")
             }
         }
     }
 
+//    val bringIntoViewRequester = remember { BringIntoViewRequester() }
+//    val coroutineScope = rememberCoroutineScope()
+//
+//    fun bringIntoView(isFocused: Boolean) {
+//        if (isFocused) {
+//            coroutineScope.launch {
+//                bringIntoViewRequester.bringIntoView(
+//                    rect = Rect(500f, 0f, 1000f, 500f)
+//                )
+//            }
+//        }
+//    }
+
+    LaunchedEffect(isFocused) {
+        onFocusChanged(isFocused)
+    }
+
     Column(
-        modifier = modifier.fillMaxWidth()
+        modifier = modifier
+            .fillMaxWidth()
+//            .bringIntoViewRequester(bringIntoViewRequester)
     ) {
         if (label.isNotEmpty()) {
             Text(
@@ -58,11 +88,23 @@ fun BasicInput(
                 text = annotatedLabel,
             )
         }
+
         Spacer(modifier = Modifier.height(10.dp))
+
+        val borderColor: Color by animateColorAsState(
+            targetValue = when {
+                errorText != null -> lightRed10
+                isFocused -> lightGreen9
+                else -> lightSlate7
+            },
+            animationSpec = tween(
+                durationMillis = 300,
+            )
+        )
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .border(1.dp, lightSlate7, RoundedCornerShape(10.dp))
+                .border(1.dp, borderColor, RoundedCornerShape(10.dp))
         ) {
             val inputModifier =
                 if (focusRequester != null) Modifier.focusRequester(focusRequester) else Modifier

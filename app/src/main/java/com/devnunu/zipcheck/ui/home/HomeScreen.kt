@@ -1,6 +1,5 @@
 package com.devnunu.zipcheck.ui.home
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
@@ -14,10 +13,9 @@ import androidx.compose.ui.unit.dp
 import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.common.navigation.LocalNavController
 import com.devnunu.zipcheck.common.navigation.Screen
-import com.devnunu.zipcheck.common.theme.Bold20
 import com.devnunu.zipcheck.common.theme.BoldN20
 import com.devnunu.zipcheck.common.theme.lightSlate10
-import com.devnunu.zipcheck.components.ZipCheckScaffold
+import com.devnunu.zipcheck.components.scaffold.ZipCheckScaffold
 import com.devnunu.zipcheck.components.button.BasicButton
 import com.devnunu.zipcheck.components.button.BtnSize
 import com.devnunu.zipcheck.components.button.BtnStyle

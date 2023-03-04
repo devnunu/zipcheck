@@ -12,8 +12,20 @@ import org.orbitmvi.orbit.viewmodel.container
 data class BasicInfoInputState(
     val currentPage: Int = PAGE_FIRST,
     val alias: String? = null,
-    val roomType: RoomType = RoomType.TYPE_A
-)
+    val roomType: RoomType = RoomType.TYPE_A,
+    val depositAmount: Long? = null,
+    val monthlyAmount: Long? = null,
+    val maintenanceCost: Long? = null,
+    val isNoMonthlyAmount: Boolean = false,
+    val isNoMaintenanceCost: Boolean = false,
+) {
+    val isBtnEnable: Boolean
+        get() = if (currentPage == PAGE_FIRST) {
+            depositAmount != null && monthlyAmount != null
+        } else {
+            false
+        }
+}
 
 class BasicInfoInputViewModel : ContainerHost<BasicInfoInputState, Nothing>, ViewModel() {
 
@@ -25,6 +37,40 @@ class BasicInfoInputViewModel : ContainerHost<BasicInfoInputState, Nothing>, Vie
 
     fun onClickRoomType(roomType: RoomType) = intent {
         reduce { state.copy(roomType = roomType) }
+    }
+
+    fun onChangeDepositAmount(depositAmount: String) = intent {
+        reduce { state.copy(depositAmount = depositAmount.toLongOrNull()) }
+    }
+
+    fun onChangeMonthlyAmount(monthlyAmount: String) = intent {
+        reduce { state.copy(monthlyAmount = monthlyAmount.toLongOrNull()) }
+    }
+
+    fun onChangeMaintenanceCost(maintenanceCost: String) = intent {
+        reduce { state.copy(maintenanceCost = maintenanceCost.toLongOrNull()) }
+    }
+
+    fun onClickNoMonthlyAmount(
+        isNoMonthlyAmount: Boolean
+    ) = intent {
+        reduce {
+            state.copy(
+                monthlyAmount = 0,
+                isNoMonthlyAmount = isNoMonthlyAmount
+            )
+        }
+    }
+
+    fun onClickNoMaintenanceCost(
+        isNoMaintenanceCost: Boolean
+    ) = intent {
+        reduce {
+            state.copy(
+                monthlyAmount = 0,
+                isNoMaintenanceCost = isNoMaintenanceCost
+            )
+        }
     }
 
     companion object {

@@ -4,10 +4,8 @@ import android.annotation.SuppressLint
 import androidx.annotation.DrawableRes
 import androidx.annotation.IdRes
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.Surface
@@ -20,6 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.devnunu.zipcheck.common.ext.applyIf
@@ -82,6 +81,7 @@ fun BasicButton(
 
     Surface(
         modifier = btnModifier
+            .background(white)
             .clip(buttonStyle.shape)
             .applyIf(enable) {
                 clickableRipple {
@@ -93,13 +93,15 @@ fun BasicButton(
         color = buttonStyle.bgColor,
     ) {
         Row(
-            modifier = Modifier.padding(
-                top = buttonSize.paddingTop,
-                bottom = buttonSize.paddingBottom,
-                start = buttonSize.paddingStart,
-                end = buttonSize.paddingEnd
-            ),
-            verticalAlignment = Alignment.CenterVertically
+            modifier = Modifier
+                .padding(
+                    top = buttonSize.paddingTop,
+                    bottom = buttonSize.paddingBottom,
+                    start = buttonSize.paddingStart,
+                    end = buttonSize.paddingEnd
+                ),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center
         ) {
             if (iconRight != null) {
                 Icon(
@@ -125,4 +127,27 @@ fun BasicButton(
             }
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun BasicButtonPreview1() {
+    BasicButton(
+        modifier = Modifier.fillMaxWidth(),
+        buttonStyle = BtnStyle.PRIMARY_RADIUS,
+        buttonSize = BtnSize.LARGE,
+        text = "다음",
+        onClick = {}
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun BasicButtonPrevie2() {
+    BasicButton(
+        buttonStyle = BtnStyle.PRIMARY_RADIUS,
+        buttonSize = BtnSize.LARGE,
+        text = "다음",
+        onClick = {}
+    )
 }
