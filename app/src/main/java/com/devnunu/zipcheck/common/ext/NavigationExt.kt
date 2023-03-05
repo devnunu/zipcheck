@@ -5,6 +5,7 @@ import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import com.google.accompanist.navigation.animation.composable
 
@@ -16,7 +17,18 @@ fun NavGraphBuilder.composableRightIn(
     composable(
         route = route,
         enterTransition = { slideIntoContainer(AnimatedContentScope.SlideDirection.Left) },
-        exitTransition = { slideOutOfContainer(AnimatedContentScope.SlideDirection.Right) },
+        popExitTransition = { slideOutOfContainer(AnimatedContentScope.SlideDirection.Right) },
         content = content
     )
+}
+
+fun NavController.navigateWithPopUp(
+    toRoute: String,
+    fromRoute: String
+) {
+    this.navigate(toRoute) {
+        popUpTo(fromRoute) {
+            inclusive = true
+        }
+    }
 }

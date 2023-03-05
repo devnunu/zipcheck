@@ -9,6 +9,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.devnunu.zipcheck.common.navigation.LocalNavController
+import com.devnunu.zipcheck.common.navigation.Routes
 import com.devnunu.zipcheck.components.button.BasicButton
 import com.devnunu.zipcheck.components.button.BtnSize
 import com.devnunu.zipcheck.components.button.BtnStyle
@@ -71,6 +72,7 @@ fun BasicInfoInputScreen(
                         }
                     } else {
                         navController.popBackStack()
+                        navController.navigate(Routes.BasicInfoDone.route)
                     }
 
                 }

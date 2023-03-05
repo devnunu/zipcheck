@@ -14,12 +14,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavOptions
 import com.devnunu.zipcheck.components.button.BasicButton
 import com.devnunu.zipcheck.components.button.BtnSize
 import com.devnunu.zipcheck.components.button.BtnStyle
 import com.devnunu.zipcheck.components.scaffold.ZipCheckScaffold
 import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.common.ext.clickableNonIndication
+import com.devnunu.zipcheck.common.ext.navigateWithPopUp
+import com.devnunu.zipcheck.common.navigation.LocalNavController
+import com.devnunu.zipcheck.common.navigation.Routes
 import com.devnunu.zipcheck.common.theme.*
 import org.koin.androidx.compose.koinViewModel
 
@@ -27,6 +31,8 @@ import org.koin.androidx.compose.koinViewModel
 fun BasicInfoDoneScreen(
     viewModel: BasicInfoDoneViewModel = koinViewModel()
 ) {
+    val navController = LocalNavController.current
+
     ZipCheckScaffold(
         bottomBar = {
             Row(
@@ -47,7 +53,9 @@ fun BasicInfoDoneScreen(
                     buttonStyle = BtnStyle.PRIMARY_RADIUS,
                     buttonSize = BtnSize.LARGE,
                     text = "홈으로 가기",
-                    onClick = {}
+                    onClick = {
+                        navController.popBackStack()
+                    }
                 )
             }
         }
