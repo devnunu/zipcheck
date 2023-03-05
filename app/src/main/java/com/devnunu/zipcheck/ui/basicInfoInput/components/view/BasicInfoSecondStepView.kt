@@ -15,6 +15,7 @@ import com.devnunu.zipcheck.components.input.BasicSelector
 import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.components.input.BasicInput
 import com.devnunu.zipcheck.ui.basicInfoInput.BasicInfoInputViewModel
+import com.devnunu.zipcheck.ui.basicInfoInput.components.input.BasicInfoMapInput
 import org.koin.androidx.compose.koinViewModel
 import org.orbitmvi.orbit.compose.collectAsState
 
@@ -39,6 +40,10 @@ fun BasicInfoSecondStepView(
             rightIcon = R.drawable.ic_calendar,
             placeholder = "날짜를 입력해주세요",
             onClickSelector = {}
+        )
+        Spacer(modifier = Modifier.height(30.dp))
+        BasicInfoMapInput(
+            label = "집 위치"
         )
         Spacer(modifier = Modifier.height(30.dp))
         BasicInput(
