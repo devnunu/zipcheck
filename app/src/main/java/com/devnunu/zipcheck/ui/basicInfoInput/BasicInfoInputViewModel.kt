@@ -118,8 +118,12 @@ class BasicInfoInputViewModel(
         }
     }
 
-    fun addHouse() = intent {
-        houseRepository.addHouse(getHouse(state))
+    fun addHouse(
+        onSuccess: (String) -> Unit
+    ) = intent {
+        val house = getHouse(state)
+        houseRepository.addHouse(house)
+        onSuccess(house.id)
     }
 
     private fun getHouse(state: BasicInfoInputState): House =

@@ -14,6 +14,7 @@ data class House(
     val maintenanceCost: Long? = null,
     val memo: String? = null,
     val roomInfoUrl: String? = null,
+    var houseWriteStatus: HouseWriteStatus = HouseWriteStatus.IN_PROGRESS
 ) {
     val isNoMonthlyAmount: Boolean
         get() = monthlyAmount != null && monthlyAmount == 0L

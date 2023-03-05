@@ -7,9 +7,6 @@ val Purple500 = Color(0xFF6200EE)
 val Purple700 = Color(0xFF3700B3)
 val Teal200 = Color(0xFF03DAC5)
 
-val gray80 = Color(0xFFB2B2B2)
-val gray99 = Color(0xFFF5F5F5)
-
 val lightSlate1 = Color(0xFFFBFCFD)
 val lightSlate2 = Color(0xFFF8F9FA)
 val lightSlate3 = Color(0xFFF1F3F5)
@@ -39,6 +36,8 @@ val lightMint12 = Color(0xFF09342E)
 val lightGreen9 = Color(0xFF30A46C)
 
 val lightRed10 = Color(0xFFDC3D43)
+
+val gray = Color(0xFF656565)
 
 val white = Color(0xFFFFFFFF)
 val black = Color(0xFF000000)

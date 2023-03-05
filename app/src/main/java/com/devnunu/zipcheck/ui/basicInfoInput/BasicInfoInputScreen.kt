@@ -71,9 +71,14 @@ fun BasicInfoInputScreen(
                             pagerState.animateScrollToPage(PAGE_SECOND)
                         }
                     } else {
-                        viewModel.addHouse()
-                        navController.popBackStack()
-                        navController.navigate(Routes.BasicInfoDone.route)
+                        viewModel.addHouse(
+                            onSuccess = { houseId ->
+                                scope.launch {
+                                    navController.popBackStack()
+                                    navController.navigate(Routes.BasicInfoDone.getArgumentsRoute(houseId))
+                                }
+                            }
+                        )
                     }
                 }
             )

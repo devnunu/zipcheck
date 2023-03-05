@@ -8,6 +8,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -25,13 +26,18 @@ import com.devnunu.zipcheck.common.ext.navigateWithPopUp
 import com.devnunu.zipcheck.common.navigation.LocalNavController
 import com.devnunu.zipcheck.common.navigation.Routes
 import com.devnunu.zipcheck.common.theme.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun BasicInfoDoneScreen(
-    viewModel: BasicInfoDoneViewModel = koinViewModel()
+    viewModel: BasicInfoDoneViewModel = koinViewModel(),
+    houseId: String? = null
 ) {
     val navController = LocalNavController.current
+
+    val scope: CoroutineScope = rememberCoroutineScope()
 
     ZipCheckScaffold(
         bottomBar = {
@@ -108,7 +114,16 @@ fun BasicInfoDoneScreen(
                     Spacer(modifier = Modifier.height(2.dp))
                     Text(
                         modifier = Modifier.clickableNonIndication {
-                            // 탈락 리스트로 옮기기
+                            houseId?.let {
+                                viewModel.onClickChangeHouseStatusFail(
+                                    houseId = it,
+                                    onSuccess= {
+                                        scope.launch {
+                                            navController.popBackStack()
+                                        }
+                                    }
+                                )
+                            }
                         },
                         style = Regular12,
                         text = "탈락 리스트로 옮기기",

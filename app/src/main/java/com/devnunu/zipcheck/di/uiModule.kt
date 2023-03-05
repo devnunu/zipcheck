@@ -14,6 +14,6 @@ val uiModule = module {
         BasicInfoInputViewModel(get())
     }
     viewModel {
-        BasicInfoDoneViewModel()
+        BasicInfoDoneViewModel(get())
     }
 }

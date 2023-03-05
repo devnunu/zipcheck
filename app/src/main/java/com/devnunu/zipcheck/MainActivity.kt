@@ -6,9 +6,11 @@ import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.navigation.navArgument
 import com.devnunu.zipcheck.common.ext.composableRightIn
 import com.devnunu.zipcheck.common.navigation.LocalNavController
 import com.devnunu.zipcheck.common.navigation.Routes
+import com.devnunu.zipcheck.common.navigation.Routes.BasicInfoDone.ARGUMENTS_HOUSE_ID
 import com.devnunu.zipcheck.ui.basicInfoInput.BasicInfoInputScreen
 import com.devnunu.zipcheck.ui.home.HomeScreen
 import com.devnunu.zipcheck.common.theme.ZipCheckTheme
@@ -43,9 +45,13 @@ class MainActivity : ComponentActivity() {
                             BasicInfoInputScreen()
                         }
                         composable(
-                            route = Routes.BasicInfoDone.route,
-                        ) {
-                            BasicInfoDoneScreen()
+                            route = Routes.BasicInfoDone.getArgumentsRoute(),
+                            arguments = Routes.BasicInfoDone.arguments
+                        ) { backStackEntry ->
+                            val houseId = backStackEntry.arguments?.getString(ARGUMENTS_HOUSE_ID)
+                            BasicInfoDoneScreen(
+                                houseId = houseId
+                            )
                         }
                     }
                 }
