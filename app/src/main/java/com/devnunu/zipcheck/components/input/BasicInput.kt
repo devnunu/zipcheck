@@ -2,11 +2,8 @@ package com.devnunu.zipcheck.components.input
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.relocation.BringIntoViewRequester
-import androidx.compose.foundation.relocation.bringIntoViewRequester
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
@@ -18,23 +15,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
-import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.devnunu.zipcheck.common.theme.*
-import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun BasicInput(
     modifier: Modifier = Modifier,
     label: String,
     isEssential: Boolean = false,
+    isCursorAlwaysToLastIndex: Boolean = false,
     value: String?,
     unit: String? = null,
     placeholder: String,
@@ -45,9 +42,10 @@ fun BasicInput(
     maxLines: Int = Int.MAX_VALUE,
     maxLength: Int = Int.MAX_VALUE,
     singleLine: Boolean = false,
+    enabled: Boolean = true,
+    labelRightContent: (@Composable () -> Unit)? = null,
     onFocusChanged: (Boolean) -> Unit = {},
     onValueChange: (String) -> Unit,
-    enabled: Boolean = true,
 ) {
     var isFocused by remember { mutableStateOf(false) }
 
@@ -60,18 +58,15 @@ fun BasicInput(
         }
     }
 
-//    val bringIntoViewRequester = remember { BringIntoViewRequester() }
-//    val coroutineScope = rememberCoroutineScope()
-//
-//    fun bringIntoView(isFocused: Boolean) {
-//        if (isFocused) {
-//            coroutineScope.launch {
-//                bringIntoViewRequester.bringIntoView(
-//                    rect = Rect(500f, 0f, 1000f, 500f)
-//                )
-//            }
-//        }
-//    }
+    var textFieldValueState by remember { mutableStateOf(TextFieldValue(text = value.orEmpty())) }
+    val textFieldValue = textFieldValueState.copy(
+        text = value.orEmpty(),
+        selection = if (isCursorAlwaysToLastIndex) {
+            TextRange(index = value.orEmpty().length)
+        } else {
+            TextRange.Zero
+        }
+    )
 
     LaunchedEffect(isFocused) {
         onFocusChanged(isFocused)
@@ -80,13 +75,20 @@ fun BasicInput(
     Column(
         modifier = modifier
             .fillMaxWidth()
-//            .bringIntoViewRequester(bringIntoViewRequester)
     ) {
         if (label.isNotEmpty()) {
-            Text(
-                style = Medium14,
-                text = annotatedLabel,
-            )
+            Row(
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(
+                    style = Medium14,
+                    text = annotatedLabel,
+                )
+                if (labelRightContent != null) {
+                    Spacer(modifier = Modifier.weight(1f))
+                    labelRightContent()
+                }
+            }
         }
 
         Spacer(modifier = Modifier.height(10.dp))
@@ -115,12 +117,13 @@ fun BasicInput(
                         isFocused = it.isFocused
                     }
                     .padding(start = 12.dp, end = 12.dp, top = 10.dp, bottom = 10.dp),
-                value = value.orEmpty(),
+                value = textFieldValue,
                 singleLine = singleLine,
                 maxLines = maxLines,
                 onValueChange = {
-                    if (it.length <= maxLength) {
-                        onValueChange(it)
+                    if (it.text.length <= maxLength) {
+                        textFieldValueState = it
+                        onValueChange(it.text)
                     }
                 },
                 textStyle = Regular14,

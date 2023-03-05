@@ -2,13 +2,18 @@ package com.devnunu.zipcheck.ui.basicInfoInput.components.view
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import com.devnunu.zipcheck.components.button.BasicButton
+import com.devnunu.zipcheck.components.button.BtnSize
+import com.devnunu.zipcheck.components.button.BtnStyle
 import com.devnunu.zipcheck.components.checkBox.CheckBoxText
 import com.devnunu.zipcheck.components.input.BasicInput
 import com.devnunu.zipcheck.ui.basicInfoInput.BasicInfoInputViewModel
@@ -49,20 +54,44 @@ fun BasicInfoFirstStepView(
         )
         Spacer(modifier = Modifier.height(30.dp))
         BasicInput(
-            label = "전/월세 보증금",
-            value = (state.depositAmount ?: 0).toString(),
+            label = "집 너비",
+            value = (state.roomArea.value).orEmpty(),
             isEssential = true,
+            isCursorAlwaysToLastIndex = true,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            placeholder = "집 너비를 입력해 주세요",
+            unit = state.roomArea.type.typeName,
+            singleLine = true,
+            onValueChange = viewModel::onChangeRoomArea,
+            labelRightContent = {
+                BasicButton(
+                    buttonStyle = BtnStyle.GRAY_ROUND,
+                    buttonSize = BtnSize.SMALL,
+                    text = state.roomArea.transformType.typeName,
+                    onClick = viewModel::onClickChangeRoomAreaType
+                )
+            },
+        )
+        Spacer(modifier = Modifier.height(30.dp))
+        BasicInput(
+            label = "전/월세 보증금",
+            value = state.depositAmount?.toString().orEmpty(),
+            isEssential = true,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             placeholder = "보증금을 입력해주세요",
             unit = "만원",
+            singleLine = true,
             onValueChange = viewModel::onChangeDepositAmount,
         )
         Spacer(modifier = Modifier.height(30.dp))
         BasicInput(
             label = "월세",
-            value = (state.monthlyAmount ?: 0).toString(),
+            value = state.monthlyAmount?.toString().orEmpty(),
             isEssential = true,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             placeholder = "월세를 입력해주세요",
             unit = "만원",
+            singleLine = true,
             enabled = !state.isNoMonthlyAmount,
             onValueChange = viewModel::onChangeMonthlyAmount,
         )
@@ -75,10 +104,12 @@ fun BasicInfoFirstStepView(
         Spacer(modifier = Modifier.height(30.dp))
         BasicInput(
             label = "관리비",
-            value = (state.maintenanceCost ?: 0).toString(),
+            value = state.maintenanceCost?.toString().orEmpty(),
             isEssential = true,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             placeholder = "관리비를 입력해주세요",
             unit = "만원",
+            singleLine = true,
             enabled = !state.isNoMaintenanceCost,
             onValueChange = viewModel::onChangeMaintenanceCost,
         )

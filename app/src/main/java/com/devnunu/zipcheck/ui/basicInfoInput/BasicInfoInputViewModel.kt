@@ -1,6 +1,8 @@
 package com.devnunu.zipcheck.ui.basicInfoInput
 
 import androidx.lifecycle.ViewModel
+import com.devnunu.zipcheck.data.RoomArea
+import com.devnunu.zipcheck.data.RoomAreaType
 import com.devnunu.zipcheck.data.RoomType
 import com.devnunu.zipcheck.ui.basicInfoInput.BasicInfoInputViewModel.Companion.PAGE_FIRST
 import com.devnunu.zipcheck.ui.home.HomeState
@@ -13,6 +15,7 @@ data class BasicInfoInputState(
     val currentPage: Int = PAGE_FIRST,
     val alias: String? = null,
     val roomType: RoomType = RoomType.TYPE_A,
+    val roomArea: RoomArea = RoomArea(type = RoomAreaType.PYONG),
     val depositAmount: Long? = null,
     val monthlyAmount: Long? = null,
     val maintenanceCost: Long? = null,
@@ -37,6 +40,26 @@ class BasicInfoInputViewModel : ContainerHost<BasicInfoInputState, Nothing>, Vie
 
     fun onClickRoomType(roomType: RoomType) = intent {
         reduce { state.copy(roomType = roomType) }
+    }
+
+    fun onChangeRoomArea(value: String) = intent {
+        reduce {
+            state.copy(
+                roomArea = state.roomArea.copy(value = value)
+            )
+        }
+    }
+
+    fun onClickChangeRoomAreaType() = intent {
+        val roomArea = state.roomArea
+        reduce {
+            state.copy(
+                roomArea = roomArea.copy(
+                    value = roomArea.transformValue.toString(),
+                    type = roomArea.transformType
+                )
+            )
+        }
     }
 
     fun onChangeDepositAmount(depositAmount: String) = intent {
