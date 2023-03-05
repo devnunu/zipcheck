@@ -1,5 +1,6 @@
 package com.devnunu.zipcheck.ui.basicInfoInput
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.pager.HorizontalPager
@@ -38,6 +39,15 @@ fun BasicInfoInputScreen(
     LaunchedEffect(pagerState.currentPage) {
         viewModel.onPageChange(pagerState.currentPage)
     }
+    BackHandler {
+        if (pagerState.currentPage == PAGE_SECOND) {
+            scope.launch {
+                pagerState.animateScrollToPage(PAGE_FIRST)
+            }
+        } else {
+            navController.popBackStack()
+        }
+    }
     ZipCheckScaffold(
         topBar = {
             TopBar(
@@ -55,13 +65,14 @@ fun BasicInfoInputScreen(
                 text = "다음",
                 enable = state.isBtnAndScrollEnable,
                 onClick = {
-                    scope.launch {
-                        if (pagerState.currentPage == PAGE_FIRST) {
-                            pagerState.scrollToPage(PAGE_SECOND)
-                        } else {
-                            navController.popBackStack()
+                    if (pagerState.currentPage == PAGE_FIRST) {
+                        scope.launch {
+                            pagerState.animateScrollToPage(PAGE_SECOND)
                         }
+                    } else {
+                        navController.popBackStack()
                     }
+
                 }
             )
         }
