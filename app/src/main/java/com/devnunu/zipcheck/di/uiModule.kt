@@ -8,10 +8,10 @@ import org.koin.dsl.module
 
 val uiModule = module {
     viewModel {
-        HomeViewModel()
+        HomeViewModel(get())
     }
     viewModel {
-        BasicInfoInputViewModel()
+        BasicInfoInputViewModel(get())
     }
     viewModel {
         BasicInfoDoneViewModel()

@@ -18,10 +18,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.devnunu.zipcheck.common.ext.applyIf
 import com.devnunu.zipcheck.common.ext.clickableNonIndication
 import com.devnunu.zipcheck.common.theme.*
-import com.devnunu.zipcheck.data.RoomType
+import com.devnunu.zipcheck.data.model.RoomType
 
 @Composable
 fun BasicInfoInputRoomSelector(

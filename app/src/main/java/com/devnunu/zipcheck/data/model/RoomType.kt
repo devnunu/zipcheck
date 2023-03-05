@@ -1,4 +1,4 @@
-package com.devnunu.zipcheck.data
+package com.devnunu.zipcheck.data.model
 
 enum class RoomType(val typeName: String) {
     TYPE_A("원룸"),

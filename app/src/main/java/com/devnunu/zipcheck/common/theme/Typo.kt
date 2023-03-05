@@ -29,19 +29,19 @@ val fonts = FontFamily(
 val Bold = TextStyle(
     fontFamily = fonts,
     fontWeight = FontWeight.Bold,
-    color = black
+    color = lightSlate12
 )
 
 val Medium = TextStyle(
     fontFamily = fonts,
     fontWeight = FontWeight.Medium,
-    color = black
+    color = lightSlate12
 )
 
 val Regular = TextStyle(
     fontFamily = fonts,
     fontWeight = FontWeight.Normal,
-    color = black
+    color = lightSlate12
 )
 
 val Bold30: TextStyle
@@ -51,7 +51,7 @@ val Bold30: TextStyle
         fontWeight = FontWeight.Bold,
         letterSpacing = with(LocalDensity.current) { (-0.6 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (33 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val BoldN30: TextStyle
@@ -61,7 +61,7 @@ val BoldN30: TextStyle
         fontWeight = FontWeight.Bold,
         letterSpacing = with(LocalDensity.current) { (-0.6 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (40.5 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val MediumN30: TextStyle
@@ -71,7 +71,7 @@ val MediumN30: TextStyle
         fontWeight = FontWeight.Medium,
         letterSpacing = with(LocalDensity.current) { (-0.6 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (40.5 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Medium30: TextStyle
@@ -81,7 +81,7 @@ val Medium30: TextStyle
         fontWeight = FontWeight.Medium,
         letterSpacing = with(LocalDensity.current) { (-0.6 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (33 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val RegularN30: TextStyle
@@ -91,7 +91,7 @@ val RegularN30: TextStyle
         fontWeight = FontWeight.Normal,
         letterSpacing = with(LocalDensity.current) { (-0.6 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (40.5 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Regular30: TextStyle
@@ -101,7 +101,7 @@ val Regular30: TextStyle
         fontWeight = FontWeight.Normal,
         letterSpacing = with(LocalDensity.current) { (-0.6 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (33 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val LightN30: TextStyle
@@ -111,7 +111,7 @@ val LightN30: TextStyle
         fontWeight = FontWeight.Light,
         letterSpacing = with(LocalDensity.current) { (-0.6 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (45 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Light30: TextStyle
@@ -121,7 +121,7 @@ val Light30: TextStyle
         fontWeight = FontWeight.Light,
         letterSpacing = with(LocalDensity.current) { (-0.6 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (33 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Bold27: TextStyle
@@ -131,7 +131,7 @@ val Bold27: TextStyle
         fontWeight = FontWeight.Bold,
         letterSpacing = with(LocalDensity.current) { (-0.54 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (29.7 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val BoldN27: TextStyle
@@ -141,7 +141,7 @@ val BoldN27: TextStyle
         fontWeight = FontWeight.Bold,
         letterSpacing = with(LocalDensity.current) { (-0.54 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (39.2 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val MediumN27: TextStyle
@@ -151,7 +151,7 @@ val MediumN27: TextStyle
         fontWeight = FontWeight.Medium,
         letterSpacing = with(LocalDensity.current) { (-0.54 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (40.5 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Medium27: TextStyle
@@ -161,7 +161,7 @@ val Medium27: TextStyle
         fontWeight = FontWeight.Medium,
         letterSpacing = with(LocalDensity.current) { (-0.54 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (29.7 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Regular27: TextStyle
@@ -171,7 +171,7 @@ val Regular27: TextStyle
         fontWeight = FontWeight.Normal,
         letterSpacing = with(LocalDensity.current) { (-0.54 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (29.7 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val RegularN27: TextStyle
@@ -181,7 +181,7 @@ val RegularN27: TextStyle
         fontWeight = FontWeight.Normal,
         letterSpacing = with(LocalDensity.current) { (-0.54 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (36.5 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Light27: TextStyle
@@ -191,7 +191,7 @@ val Light27: TextStyle
         fontWeight = FontWeight.Light,
         letterSpacing = with(LocalDensity.current) { (-0.54 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (29.7 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val LightN27: TextStyle
@@ -201,7 +201,7 @@ val LightN27: TextStyle
         fontWeight = FontWeight.Light,
         letterSpacing = with(LocalDensity.current) { (-1.35 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (39.2 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val BoldN26: TextStyle
@@ -211,7 +211,7 @@ val BoldN26: TextStyle
         fontWeight = FontWeight.Bold,
         letterSpacing = with(LocalDensity.current) { (-1.04 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (35.1 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val LightN26: TextStyle
@@ -221,7 +221,7 @@ val LightN26: TextStyle
         fontWeight = FontWeight.Light,
         letterSpacing = with(LocalDensity.current) { (-1.04 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (35.1 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val BoldN25: TextStyle
@@ -231,7 +231,7 @@ val BoldN25: TextStyle
         fontWeight = FontWeight.Bold,
         letterSpacing = with(LocalDensity.current) { (-0.5 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (33.8 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Bold25: TextStyle
@@ -241,7 +241,7 @@ val Bold25: TextStyle
         fontWeight = FontWeight.Bold,
         letterSpacing = with(LocalDensity.current) { (-0.62 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (27.5 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val MediumN25: TextStyle
@@ -251,7 +251,7 @@ val MediumN25: TextStyle
         fontWeight = FontWeight.Medium,
         letterSpacing = with(LocalDensity.current) { (-0.5 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (37.5 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Medium25: TextStyle
@@ -261,7 +261,7 @@ val Medium25: TextStyle
         fontWeight = FontWeight.Medium,
         letterSpacing = with(LocalDensity.current) { (-0.5 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (27.5 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val RegularN25: TextStyle
@@ -271,7 +271,7 @@ val RegularN25: TextStyle
         fontWeight = FontWeight.Normal,
         letterSpacing = with(LocalDensity.current) { (-0.5 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (33.8 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Regular25: TextStyle
@@ -281,7 +281,7 @@ val Regular25: TextStyle
         fontWeight = FontWeight.Normal,
         letterSpacing = with(LocalDensity.current) { (-0.5 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (27.5 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val LightN25: TextStyle
@@ -291,7 +291,7 @@ val LightN25: TextStyle
         fontWeight = FontWeight.Light,
         letterSpacing = with(LocalDensity.current) { (-0.5 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (37.5 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Light25: TextStyle
@@ -301,7 +301,7 @@ val Light25: TextStyle
         fontWeight = FontWeight.Light,
         letterSpacing = with(LocalDensity.current) { (-0.5 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (27.5 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val BoldN24: TextStyle
@@ -311,7 +311,7 @@ val BoldN24: TextStyle
         fontWeight = FontWeight.Light,
         letterSpacing = with(LocalDensity.current) { (-0.6 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (32.4 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Bold24: TextStyle
@@ -321,7 +321,7 @@ val Bold24: TextStyle
         fontWeight = FontWeight.Bold,
         letterSpacing = with(LocalDensity.current) { (-0.6 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (26.4 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val MediumN24: TextStyle
@@ -331,7 +331,7 @@ val MediumN24: TextStyle
         fontWeight = FontWeight.Medium,
         letterSpacing = with(LocalDensity.current) { (-0.48 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (36 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Medium24: TextStyle
@@ -341,7 +341,7 @@ val Medium24: TextStyle
         fontWeight = FontWeight.Medium,
         letterSpacing = with(LocalDensity.current) { (-0.48 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (26.4 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val RegularN24: TextStyle
@@ -351,7 +351,7 @@ val RegularN24: TextStyle
         fontWeight = FontWeight.Normal,
         letterSpacing = with(LocalDensity.current) { (-0.48 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (32.4 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Regular24: TextStyle
@@ -361,7 +361,7 @@ val Regular24: TextStyle
         fontWeight = FontWeight.Normal,
         letterSpacing = with(LocalDensity.current) { (-0.48 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (26.4 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val LightN24: TextStyle
@@ -371,7 +371,7 @@ val LightN24: TextStyle
         fontWeight = FontWeight.Light,
         letterSpacing = with(LocalDensity.current) { (-0.48 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (36 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Light24: TextStyle
@@ -381,7 +381,7 @@ val Light24: TextStyle
         fontWeight = FontWeight.Light,
         letterSpacing = with(LocalDensity.current) { (-0.48 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (26.4 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Bold22: TextStyle
@@ -391,7 +391,7 @@ val Bold22: TextStyle
         fontWeight = FontWeight.Bold,
         letterSpacing = with(LocalDensity.current) { (-0.44 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (24.2 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val BoldN22: TextStyle
@@ -401,7 +401,7 @@ val BoldN22: TextStyle
         fontWeight = FontWeight.Bold,
         letterSpacing = with(LocalDensity.current) { (-0.44 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (30.8 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Regular22: TextStyle
@@ -411,7 +411,7 @@ val Regular22: TextStyle
         fontWeight = FontWeight.Normal,
         letterSpacing = with(LocalDensity.current) { (-0.44 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (24.2 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val RegularN22: TextStyle
@@ -421,7 +421,7 @@ val RegularN22: TextStyle
         fontWeight = FontWeight.Normal,
         letterSpacing = with(LocalDensity.current) { (-0.44 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (30.8 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val BoldN20: TextStyle
@@ -431,7 +431,7 @@ val BoldN20: TextStyle
         fontWeight = FontWeight.Bold,
         letterSpacing = with(LocalDensity.current) { (-0.4 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (27 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Bold20: TextStyle
@@ -441,7 +441,7 @@ val Bold20: TextStyle
         fontWeight = FontWeight.Bold,
         letterSpacing = with(LocalDensity.current) { (-0.4 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (22 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val MediumN20: TextStyle
@@ -451,7 +451,7 @@ val MediumN20: TextStyle
         fontWeight = FontWeight.Medium,
         letterSpacing = with(LocalDensity.current) { (-0.4 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (30 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Medium20: TextStyle
@@ -461,7 +461,7 @@ val Medium20: TextStyle
         fontWeight = FontWeight.Medium,
         letterSpacing = with(LocalDensity.current) { (-0.4 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (22 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val RegularN20: TextStyle
@@ -471,7 +471,7 @@ val RegularN20: TextStyle
         fontWeight = FontWeight.Normal,
         letterSpacing = with(LocalDensity.current) { (-0.4 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (27 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Regular20: TextStyle
@@ -481,7 +481,7 @@ val Regular20: TextStyle
         fontWeight = FontWeight.Normal,
         letterSpacing = with(LocalDensity.current) { (-0.4 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (22 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val LightN20: TextStyle
@@ -491,7 +491,7 @@ val LightN20: TextStyle
         fontWeight = FontWeight.Light,
         letterSpacing = with(LocalDensity.current) { (-0.4 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (30 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Light20: TextStyle
@@ -501,7 +501,7 @@ val Light20: TextStyle
         fontWeight = FontWeight.Light,
         letterSpacing = with(LocalDensity.current) { (-0.4 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (22 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val BoldN18: TextStyle
@@ -511,7 +511,7 @@ val BoldN18: TextStyle
         fontWeight = FontWeight.Bold,
         letterSpacing = with(LocalDensity.current) { (-0.36 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (27 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Bold18: TextStyle
@@ -521,7 +521,7 @@ val Bold18: TextStyle
         fontWeight = FontWeight.Bold,
         letterSpacing = with(LocalDensity.current) { (-0.36 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (19.8 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val MediumN18: TextStyle
@@ -531,7 +531,7 @@ val MediumN18: TextStyle
         fontWeight = FontWeight.Medium,
         letterSpacing = with(LocalDensity.current) { (-0.36 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (24.3 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Medium18: TextStyle
@@ -541,7 +541,7 @@ val Medium18: TextStyle
         fontWeight = FontWeight.Medium,
         letterSpacing = with(LocalDensity.current) { (-0.36 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (19.8 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val RegularN18: TextStyle
@@ -551,7 +551,7 @@ val RegularN18: TextStyle
         fontWeight = FontWeight.Normal,
         letterSpacing = with(LocalDensity.current) { (-0.36 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (27 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Regular18: TextStyle
@@ -561,7 +561,7 @@ val Regular18: TextStyle
         fontWeight = FontWeight.Normal,
         letterSpacing = with(LocalDensity.current) { (-0.36 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (19.8 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val BoldN16: TextStyle
@@ -571,7 +571,7 @@ val BoldN16: TextStyle
         fontWeight = FontWeight.Bold,
         letterSpacing = with(LocalDensity.current) { (-0.32 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (21.6 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Bold16: TextStyle
@@ -581,7 +581,7 @@ val Bold16: TextStyle
         fontWeight = FontWeight.Bold,
         letterSpacing = with(LocalDensity.current) { (-0.32 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (17.6 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val MediumN16: TextStyle
@@ -591,7 +591,7 @@ val MediumN16: TextStyle
         fontWeight = FontWeight.Medium,
         letterSpacing = with(LocalDensity.current) { (-0.32 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (24 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Medium16: TextStyle
@@ -601,7 +601,7 @@ val Medium16: TextStyle
         fontWeight = FontWeight.Medium,
         letterSpacing = with(LocalDensity.current) { (-0.32 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (17.6 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val RegularN16: TextStyle
@@ -611,7 +611,7 @@ val RegularN16: TextStyle
         fontWeight = FontWeight.Normal,
         letterSpacing = with(LocalDensity.current) { (-0.32 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (21.6 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Regular16: TextStyle
@@ -621,7 +621,7 @@ val Regular16: TextStyle
         fontWeight = FontWeight.Normal,
         letterSpacing = with(LocalDensity.current) { (-0.32 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (17.6 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val BoldN14: TextStyle
@@ -631,7 +631,7 @@ val BoldN14: TextStyle
         fontWeight = FontWeight.Bold,
         letterSpacing = with(LocalDensity.current) { (-0.14 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (21 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Bold14: TextStyle
@@ -641,7 +641,7 @@ val Bold14: TextStyle
         fontWeight = FontWeight.Bold,
         letterSpacing = with(LocalDensity.current) { (-0.14 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (15.4 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val MediumN14: TextStyle
@@ -651,7 +651,7 @@ val MediumN14: TextStyle
         fontWeight = FontWeight.Medium,
         letterSpacing = with(LocalDensity.current) { (-0.14 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (18.9 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Medium14: TextStyle
@@ -661,7 +661,7 @@ val Medium14: TextStyle
         fontWeight = FontWeight.Medium,
         letterSpacing = with(LocalDensity.current) { (-0.14 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (15.4 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val RegularN14: TextStyle
@@ -671,7 +671,7 @@ val RegularN14: TextStyle
         fontWeight = FontWeight.Normal,
         letterSpacing = with(LocalDensity.current) { (-0.14 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (21 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Regular14: TextStyle
@@ -681,7 +681,7 @@ val Regular14: TextStyle
         fontWeight = FontWeight.Normal,
         letterSpacing = with(LocalDensity.current) { (-0.14 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (15.4 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val BoldN12: TextStyle
@@ -691,7 +691,7 @@ val BoldN12: TextStyle
         fontWeight = FontWeight.Bold,
         letterSpacing = with(LocalDensity.current) { (-0.12 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (18 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Bold12: TextStyle
@@ -701,7 +701,7 @@ val Bold12: TextStyle
         fontWeight = FontWeight.Bold,
         letterSpacing = with(LocalDensity.current) { (-0.12 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (13.2 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val MediumN12: TextStyle
@@ -711,7 +711,7 @@ val MediumN12: TextStyle
         fontWeight = FontWeight.Medium,
         letterSpacing = with(LocalDensity.current) { (-0.12 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (16.2 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Medium12: TextStyle
@@ -721,7 +721,7 @@ val Medium12: TextStyle
         fontWeight = FontWeight.Medium,
         letterSpacing = with(LocalDensity.current) { (-0.12 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (13.2 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Regular12: TextStyle
@@ -731,7 +731,7 @@ val Regular12: TextStyle
         fontWeight = FontWeight.Normal,
         letterSpacing = with(LocalDensity.current) { (-0.12 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (13.2 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Bold11: TextStyle
@@ -741,7 +741,7 @@ val Bold11: TextStyle
         fontWeight = FontWeight.Bold,
         letterSpacing = with(LocalDensity.current) { (-0.06 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (12.6 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Medium11: TextStyle
@@ -751,7 +751,7 @@ val Medium11: TextStyle
         fontWeight = FontWeight.Medium,
         letterSpacing = with(LocalDensity.current) { (-0.11 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (12.1 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Bold10: TextStyle
@@ -760,7 +760,7 @@ val Bold10: TextStyle
         fontSize = with(LocalDensity.current) { (10 / fontScale).sp },
         fontWeight = FontWeight.Bold,
         lineHeight = with(LocalDensity.current) { (11 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val MediumN10: TextStyle
@@ -770,7 +770,7 @@ val MediumN10: TextStyle
         fontWeight = FontWeight.Medium,
         letterSpacing = with(LocalDensity.current) { (-0.1 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (13.5 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Medium10: TextStyle
@@ -780,7 +780,7 @@ val Medium10: TextStyle
         fontWeight = FontWeight.Medium,
         letterSpacing = with(LocalDensity.current) { (-0.1 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (11 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 /**
@@ -793,7 +793,7 @@ val Medium08: TextStyle
         fontWeight = FontWeight.Medium,
         letterSpacing = with(LocalDensity.current) { (-0.1 / fontScale).sp },
         lineHeight = with(LocalDensity.current) { (11 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Bold08: TextStyle
@@ -802,7 +802,7 @@ val Bold08: TextStyle
         fontSize = with(LocalDensity.current) { (8 / fontScale).sp },
         fontWeight = FontWeight.Bold,
         lineHeight = with(LocalDensity.current) { (11 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 
 val Regular13: TextStyle
@@ -811,6 +811,6 @@ val Regular13: TextStyle
         fontSize = with(LocalDensity.current) { (13 / fontScale).sp },
         fontWeight = FontWeight.Normal,
         lineHeight = with(LocalDensity.current) { (11 / fontScale).sp },
-        color = black
+        color = lightSlate12
     )
 

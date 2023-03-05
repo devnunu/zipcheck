@@ -1,7 +1,6 @@
-package com.devnunu.zipcheck.data
+package com.devnunu.zipcheck.data.model
 
 import com.devnunu.zipcheck.common.ext.roundDecimal
-import kotlin.math.roundToInt
 
 enum class RoomAreaType(val typeName: String) {
     PYONG("평"),

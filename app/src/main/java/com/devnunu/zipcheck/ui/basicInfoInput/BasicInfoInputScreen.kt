@@ -71,10 +71,10 @@ fun BasicInfoInputScreen(
                             pagerState.animateScrollToPage(PAGE_SECOND)
                         }
                     } else {
+                        viewModel.addHouse()
                         navController.popBackStack()
                         navController.navigate(Routes.BasicInfoDone.route)
                     }
-
                 }
             )
         }

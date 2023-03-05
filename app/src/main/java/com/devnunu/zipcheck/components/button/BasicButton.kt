@@ -87,7 +87,6 @@ fun BasicButton(
 
     Surface(
         modifier = btnModifier
-            .background(white)
             .clip(buttonStyle.shape)
             .applyIf(enable) {
                 clickableRipple {
