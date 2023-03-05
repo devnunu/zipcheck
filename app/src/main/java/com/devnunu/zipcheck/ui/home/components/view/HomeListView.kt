@@ -1,6 +1,8 @@
 package com.devnunu.zipcheck.ui.home.components.view
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -26,7 +28,8 @@ fun HomeListView(
     val houseList = state.houseList
 
     LazyColumn(
-        modifier = modifier
+        modifier = modifier,
+        contentPadding = PaddingValues(bottom = 80.dp)
     ) {
         itemsIndexed(houseList) { index, house ->
             HouseItem(
@@ -35,7 +38,8 @@ fun HomeListView(
             )
             if (index < houseList.lastIndex) {
                 Divider(
-                    color = lightSlate6,
+                    modifier = Modifier.padding(horizontal = 20.dp),
+                    color = lightSlate6.copy(alpha = 0.4f),
                     thickness = 1.dp
                 )
             }

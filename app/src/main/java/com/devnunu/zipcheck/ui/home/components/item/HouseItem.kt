@@ -31,7 +31,7 @@ fun HouseItem(
     ) {
         Image(
             modifier = Modifier.size(52.dp),
-            painter = painterResource(id = R.drawable.ic_house_purple),
+            painter = painterResource(id = house.imgResId),
             contentDescription = null
         )
         Spacer(modifier = Modifier.width(20.dp))
@@ -46,13 +46,20 @@ fun HouseItem(
             Spacer(modifier = Modifier.height(2.dp))
             Text(
                 style = Bold16,
-                text = "3층집 꼭대기층",
+                text = house.alias ?: "이름 없음",
                 color = lightSlate12
             )
             Spacer(modifier = Modifier.height(2.dp))
+            val budgetTxt = if (house.depositAmount == null && house.monthlyAmount == null) {
+                "미입력"
+            } else if (house.monthlyAmount == null) {
+                "보증금 ${house.depositAmount}"
+            } else {
+                "보증금 ${house.depositAmount} / 월 ${house.monthlyAmount}"
+            }
             Text(
                 style = Medium14,
-                text = "보증금 1000 / 월 50",
+                text = budgetTxt,
                 color = lightSlate11
             )
         }

@@ -61,8 +61,7 @@ fun HomeScreen(
                     onClickAddHouseBtn = { onClickAddHouse() }
                 )
             } else {
-                HomeListView(
-                )
+                HomeListView()
             }
         }
     }
