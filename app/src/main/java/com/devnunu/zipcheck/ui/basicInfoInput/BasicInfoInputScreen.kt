@@ -1,6 +1,9 @@
 package com.devnunu.zipcheck.ui.basicInfoInput
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -10,10 +13,17 @@ import com.devnunu.zipcheck.components.button.BtnSize
 import com.devnunu.zipcheck.components.button.BtnStyle
 import com.devnunu.zipcheck.components.scaffold.ZipCheckScaffold
 import com.devnunu.zipcheck.components.topBar.TopBar
+import com.devnunu.zipcheck.ui.basicInfoInput.BasicInfoInputViewModel.Companion.PAGE_FIRST
+import com.devnunu.zipcheck.ui.basicInfoInput.BasicInfoInputViewModel.Companion.PAGE_SECOND
+import com.devnunu.zipcheck.ui.basicInfoInput.components.BasicInfoInputStepIndicator
 import com.devnunu.zipcheck.ui.basicInfoInput.components.view.BasicInfoFirstStepView
+import com.devnunu.zipcheck.ui.basicInfoInput.components.view.BasicInfoSecondStepView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 import org.orbitmvi.orbit.compose.collectAsState
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun BasicInfoInputScreen(
     viewModel: BasicInfoInputViewModel = koinViewModel()
@@ -22,6 +32,12 @@ fun BasicInfoInputScreen(
 
     val navController = LocalNavController.current
 
+    val scope: CoroutineScope = rememberCoroutineScope()
+    val pagerState = rememberPagerState()
+
+    LaunchedEffect(pagerState.currentPage) {
+        viewModel.onPageChange(pagerState.currentPage)
+    }
     ZipCheckScaffold(
         topBar = {
             TopBar(
@@ -37,14 +53,44 @@ fun BasicInfoInputScreen(
                 buttonStyle = BtnStyle.PRIMARY_RADIUS,
                 buttonSize = BtnSize.LARGE,
                 text = "다음",
-                onClick = {}
+                enable = state.isBtnAndScrollEnable,
+                onClick = {
+                    scope.launch {
+                        if (pagerState.currentPage == PAGE_FIRST) {
+                            pagerState.scrollToPage(PAGE_SECOND)
+                        } else {
+                            navController.popBackStack()
+                        }
+                    }
+                }
             )
         }
     ) { paddingValues ->
-        BasicInfoFirstStepView(
-            modifier = Modifier.padding(
-                bottom = paddingValues.calculateBottomPadding()
-            )
+        BasicInfoInputStepIndicator(
+            modifier = Modifier.fillMaxWidth(),
+            currentPage = pagerState.currentPage
         )
+        HorizontalPager(
+            pageCount = 2,
+            userScrollEnabled = state.isBtnAndScrollEnable,
+            state = pagerState
+        ) { page ->
+            when (page) {
+                PAGE_FIRST -> {
+                    BasicInfoFirstStepView(
+                        modifier = Modifier.padding(
+                            bottom = paddingValues.calculateBottomPadding()
+                        )
+                    )
+                }
+                else -> {
+                    BasicInfoSecondStepView(
+                        modifier = Modifier.padding(
+                            bottom = paddingValues.calculateBottomPadding()
+                        )
+                    )
+                }
+            }
+        }
     }
 }

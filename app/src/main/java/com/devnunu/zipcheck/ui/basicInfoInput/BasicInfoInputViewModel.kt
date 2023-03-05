@@ -22,17 +22,21 @@ data class BasicInfoInputState(
     val isNoMonthlyAmount: Boolean = false,
     val isNoMaintenanceCost: Boolean = false,
 ) {
-    val isBtnEnable: Boolean
+    val isBtnAndScrollEnable: Boolean
         get() = if (currentPage == PAGE_FIRST) {
             depositAmount != null && monthlyAmount != null
         } else {
-            false
+            true
         }
 }
 
 class BasicInfoInputViewModel : ContainerHost<BasicInfoInputState, Nothing>, ViewModel() {
 
     override val container = container<BasicInfoInputState, Nothing>(BasicInfoInputState())
+
+    fun onPageChange(currentPage: Int) = intent {
+        reduce { state.copy(currentPage = currentPage) }
+    }
 
     fun onChangeAlias(alias: String) = intent {
         reduce { state.copy(alias = alias) }

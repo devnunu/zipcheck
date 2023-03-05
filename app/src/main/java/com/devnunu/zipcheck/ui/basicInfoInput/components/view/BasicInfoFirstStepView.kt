@@ -35,10 +35,6 @@ fun BasicInfoFirstStepView(
             .verticalScroll(rememberScrollState())
             .padding(horizontal = 20.dp),
     ) {
-        BasicInfoInputStepIndicator(
-            modifier = Modifier.fillMaxWidth(),
-            currentPage = state.currentPage
-        )
         Spacer(modifier = Modifier.height(30.dp))
         BasicInput(
             label = "별칭",
@@ -105,7 +101,6 @@ fun BasicInfoFirstStepView(
         BasicInput(
             label = "관리비",
             value = state.maintenanceCost?.toString().orEmpty(),
-            isEssential = true,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             placeholder = "관리비를 입력해주세요",
             unit = "만원",
@@ -119,5 +114,6 @@ fun BasicInfoFirstStepView(
             text = "관리비 없음",
             onCheckedChange = viewModel::onClickNoMaintenanceCost,
         )
+        Spacer(modifier = Modifier.height(50.dp))
     }
 }

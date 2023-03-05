@@ -59,14 +59,15 @@ fun BasicInput(
     }
 
     var textFieldValueState by remember { mutableStateOf(TextFieldValue(text = value.orEmpty())) }
-    val textFieldValue = textFieldValueState.copy(
-        text = value.orEmpty(),
-        selection = if (isCursorAlwaysToLastIndex) {
-            TextRange(index = value.orEmpty().length)
-        } else {
-            TextRange.Zero
-        }
-    )
+    val textFieldValue = when (isCursorAlwaysToLastIndex) {
+        true -> textFieldValueState.copy(
+            text = value.orEmpty(),
+            selection = TextRange(index = value.orEmpty().length)
+        )
+        else -> textFieldValueState.copy(
+            text = value.orEmpty()
+        )
+    }
 
     LaunchedEffect(isFocused) {
         onFocusChanged(isFocused)

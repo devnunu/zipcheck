@@ -48,7 +48,7 @@ fun BasicInfoInputStepIndicatorItem(
             lightSlate5
         },
         animationSpec = tween(
-            durationMillis = 1000,
+            durationMillis = 300,
         )
     )
     Canvas(
