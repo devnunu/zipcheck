@@ -26,7 +26,8 @@ data class BasicInfoInputState(
 ) {
     val isBtnAndScrollEnable: Boolean
         get() = if (currentPage == PAGE_FIRST) {
-            depositAmount != null && monthlyAmount != null
+            true
+//            depositAmount != null && monthlyAmount != null
         } else {
             true
         }

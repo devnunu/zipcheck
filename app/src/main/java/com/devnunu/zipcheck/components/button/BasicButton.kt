@@ -34,6 +34,9 @@ enum class BtnStyle(
     PRIMARY_RADIUS(lightMint8, white, null, RoundedCornerShape(14.dp)),
     PRIMARY_ROUND(lightMint8, white, null, RoundedCornerShape(100.dp)),
 
+    LIGHT_GREEN_RADIUS(lightMint3, lightMint8, null, RoundedCornerShape(14.dp)),
+    LIGHT_GREEN_ROUND(lightMint3, lightMint8, null, RoundedCornerShape(100.dp)),
+
     LINE_RADIUS(white, lightSlate11, lightSlate7, RoundedCornerShape(14.dp)),
     LINE_ROUND(white, lightSlate11, lightSlate7, RoundedCornerShape(100.dp)),
 

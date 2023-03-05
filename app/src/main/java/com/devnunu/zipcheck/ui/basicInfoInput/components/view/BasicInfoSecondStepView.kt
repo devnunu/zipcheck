@@ -1,19 +1,17 @@
 package com.devnunu.zipcheck.ui.basicInfoInput.components.view
 
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import com.devnunu.zipcheck.components.input.BasicSelector
 import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.components.input.BasicInput
+import com.devnunu.zipcheck.components.input.BasicSelector
 import com.devnunu.zipcheck.ui.basicInfoInput.BasicInfoInputViewModel
 import com.devnunu.zipcheck.ui.basicInfoInput.components.input.BasicInfoMapInput
 import org.koin.androidx.compose.koinViewModel

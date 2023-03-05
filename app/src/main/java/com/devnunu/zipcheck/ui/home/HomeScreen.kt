@@ -12,7 +12,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.common.navigation.LocalNavController
-import com.devnunu.zipcheck.common.navigation.Screen
+import com.devnunu.zipcheck.common.navigation.Routes
 import com.devnunu.zipcheck.common.theme.BoldN20
 import com.devnunu.zipcheck.common.theme.lightSlate10
 import com.devnunu.zipcheck.components.scaffold.ZipCheckScaffold
@@ -72,7 +72,7 @@ fun HomeScreen(
                     iconRight = R.drawable.ic_add,
                     text = "집 추가하기",
                     onClick = {
-                        navController.navigate(Screen.BasicInfoInput.route)
+                        navController.navigate(Routes.BasicInfoInput.route)
                     }
                 )
             }
