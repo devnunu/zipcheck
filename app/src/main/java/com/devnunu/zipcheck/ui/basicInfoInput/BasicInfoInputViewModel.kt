@@ -19,6 +19,8 @@ data class BasicInfoInputState(
     val depositAmount: Long? = null,
     val monthlyAmount: Long? = null,
     val maintenanceCost: Long? = null,
+    val memo: String? = null,
+    val roomInfoUrl: String? = null,
     val isNoMonthlyAmount: Boolean = false,
     val isNoMaintenanceCost: Boolean = false,
 ) {
@@ -97,6 +99,18 @@ class BasicInfoInputViewModel : ContainerHost<BasicInfoInputState, Nothing>, Vie
                 monthlyAmount = 0,
                 isNoMaintenanceCost = isNoMaintenanceCost
             )
+        }
+    }
+
+    fun onChangeMemo(memo: String) = intent {
+        reduce {
+            state.copy(memo = memo)
+        }
+    }
+
+    fun onChangeRoomInfoUrl(roomInfoUrl: String?) = intent {
+        reduce {
+            state.copy(roomInfoUrl = roomInfoUrl)
         }
     }
 

@@ -6,9 +6,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.devnunu.zipcheck.components.button.BasicButton
@@ -18,7 +16,6 @@ import com.devnunu.zipcheck.components.checkBox.CheckBoxText
 import com.devnunu.zipcheck.components.input.BasicInput
 import com.devnunu.zipcheck.ui.basicInfoInput.BasicInfoInputViewModel
 import com.devnunu.zipcheck.ui.basicInfoInput.components.BasicInfoInputRoomSelector
-import com.devnunu.zipcheck.ui.basicInfoInput.components.BasicInfoInputStepIndicator
 import org.koin.androidx.compose.koinViewModel
 import org.orbitmvi.orbit.compose.collectAsState
 
