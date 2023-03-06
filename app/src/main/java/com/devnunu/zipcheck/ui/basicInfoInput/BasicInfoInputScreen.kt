@@ -21,11 +21,12 @@ import com.devnunu.zipcheck.ui.basicInfoInput.components.BasicInfoInputStepIndic
 import com.devnunu.zipcheck.ui.basicInfoInput.components.view.BasicInfoFirstStepView
 import com.devnunu.zipcheck.ui.basicInfoInput.components.view.BasicInfoSecondStepView
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 import org.orbitmvi.orbit.compose.collectAsState
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun BasicInfoInputScreen(
     viewModel: BasicInfoInputViewModel = koinViewModel()
@@ -33,18 +34,12 @@ fun BasicInfoInputScreen(
     val state by viewModel.collectAsState()
 
     val navController = LocalNavController.current
-
+    val currentPage = state.currentPage
     val scope: CoroutineScope = rememberCoroutineScope()
-    val pagerState = rememberPagerState()
 
-    LaunchedEffect(pagerState.currentPage) {
-        viewModel.onPageChange(pagerState.currentPage)
-    }
     BackHandler {
-        if (pagerState.currentPage == PAGE_SECOND) {
-            scope.launch {
-                pagerState.animateScrollToPage(PAGE_FIRST)
-            }
+        if (currentPage == PAGE_SECOND) {
+            viewModel.onPageChange(PAGE_FIRST)
         } else {
             navController.popBackStack()
         }
@@ -66,16 +61,18 @@ fun BasicInfoInputScreen(
                 text = "다음",
                 enable = state.isBtnAndScrollEnable,
                 onClick = {
-                    if (pagerState.currentPage == PAGE_FIRST) {
-                        scope.launch {
-                            pagerState.animateScrollToPage(PAGE_SECOND)
-                        }
+                    if (currentPage == PAGE_FIRST) {
+                        viewModel.onPageChange(PAGE_SECOND)
                     } else {
                         viewModel.addHouse(
                             onSuccess = { houseId ->
                                 scope.launch {
                                     navController.popBackStack()
-                                    navController.navigate(Routes.BasicInfoDone.getArgumentsRoute(houseId))
+                                    navController.navigate(
+                                        Routes.BasicInfoDone.getArgumentsRoute(
+                                            houseId
+                                        )
+                                    )
                                 }
                             }
                         )
@@ -86,28 +83,22 @@ fun BasicInfoInputScreen(
     ) { paddingValues ->
         BasicInfoInputStepIndicator(
             modifier = Modifier.fillMaxWidth(),
-            currentPage = pagerState.currentPage
+            currentPage = currentPage
         )
-        HorizontalPager(
-            pageCount = 2,
-            userScrollEnabled = state.isBtnAndScrollEnable,
-            state = pagerState
-        ) { page ->
-            when (page) {
-                PAGE_FIRST -> {
-                    BasicInfoFirstStepView(
-                        modifier = Modifier.padding(
-                            bottom = paddingValues.calculateBottomPadding()
-                        )
+        when (currentPage) {
+            PAGE_FIRST -> {
+                BasicInfoFirstStepView(
+                    modifier = Modifier.padding(
+                        bottom = paddingValues.calculateBottomPadding()
                     )
-                }
-                else -> {
-                    BasicInfoSecondStepView(
-                        modifier = Modifier.padding(
-                            bottom = paddingValues.calculateBottomPadding()
-                        )
+                )
+            }
+            else -> {
+                BasicInfoSecondStepView(
+                    modifier = Modifier.padding(
+                        bottom = paddingValues.calculateBottomPadding()
                     )
-                }
+                )
             }
         }
     }

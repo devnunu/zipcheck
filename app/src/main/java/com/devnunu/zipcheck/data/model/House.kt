@@ -1,6 +1,7 @@
 package com.devnunu.zipcheck.data.model
 
 import com.devnunu.zipcheck.R
+import com.devnunu.zipcheck.common.ext.toKrCurrencyFullText
 import java.util.*
 
 data class House(

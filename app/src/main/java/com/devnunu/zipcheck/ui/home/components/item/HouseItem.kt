@@ -11,6 +11,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.common.ext.clickableRipple
+import com.devnunu.zipcheck.common.ext.toKrCurrencyFullText
 import com.devnunu.zipcheck.common.theme.*
 import com.devnunu.zipcheck.data.model.House
 
@@ -53,9 +54,10 @@ fun HouseItem(
             val budgetTxt = if (house.depositAmount == null && house.monthlyAmount == null) {
                 "미입력"
             } else if (house.monthlyAmount == null) {
-                "보증금 ${house.depositAmount}"
+                "보증금 ${house.depositAmount.toKrCurrencyFullText(true)}"
             } else {
-                "보증금 ${house.depositAmount} / 월 ${house.monthlyAmount}"
+                "보증금 ${house.depositAmount.toKrCurrencyFullText(true)} " +
+                        "/ 월 ${house.monthlyAmount.toKrCurrencyFullText(true)}"
             }
             Text(
                 style = Medium14,

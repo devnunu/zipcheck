@@ -9,6 +9,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.devnunu.zipcheck.common.navigation.LocalNavController
+import com.devnunu.zipcheck.common.navigation.Routes
 import com.devnunu.zipcheck.common.theme.lightSlate6
 import com.devnunu.zipcheck.ui.home.HomeViewModel
 import com.devnunu.zipcheck.ui.home.components.indicator.HomeStatusIndicator
@@ -24,6 +26,8 @@ fun HomeListView(
     val state by viewModel.collectAsState()
 
     val houseList = state.filteredHouseList
+
+    val navController = LocalNavController.current
 
     Column(
         modifier = modifier,
@@ -44,7 +48,7 @@ fun HomeListView(
             itemsIndexed(houseList) { index, house ->
                 HouseItem(
                     house = house,
-                    onClick = {}
+                    onClick = { navController.navigate(Routes.BasicInfoTemp.getArgumentsRoute(house.id)) }
                 )
                 if (index < houseList.lastIndex) {
                     Divider(

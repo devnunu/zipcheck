@@ -131,9 +131,9 @@ class BasicInfoInputViewModel(
             alias = state.alias,
             roomType = state.roomType,
             roomArea = state.roomArea,
-            depositAmount = state.depositAmount,
-            monthlyAmount = state.monthlyAmount,
-            maintenanceCost = state.maintenanceCost,
+            depositAmount = state.depositAmount?.times(10000),
+            monthlyAmount = state.monthlyAmount?.times(10000),
+            maintenanceCost = state.maintenanceCost?.times(10000),
             memo = state.memo,
             roomInfoUrl = state.roomInfoUrl,
         )
