@@ -1,12 +1,10 @@
 package com.devnunu.zipcheck.components.scaffold
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.ModalBottomSheetState
-import androidx.compose.material.ModalBottomSheetValue
-import androidx.compose.material.rememberModalBottomSheetState
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -22,7 +20,6 @@ fun rememberScaffoldBottomSheetView(
     val modalBottomSheetState = rememberBottomSheetState(
         onDismissBottomSheet = onCloseBottomSheet
     )
-    val isKeyboardOpened = WindowInsets.isImeVisible
     return ScaffoldBottomSheetView(
         viewModelSheetState = viewModelSheetState,
         sheetState = modalBottomSheetState,
@@ -30,11 +27,7 @@ fun rememberScaffoldBottomSheetView(
     ) {
         CZBottomSheetWrapper(
             modalBottomSheetState = modalBottomSheetState,
-            onClickBack = {
-                if(!isKeyboardOpened) {
-                    onCloseBottomSheet()
-                }
-            }
+            onClickBack = onCloseBottomSheet
         ) {
             content()
         }
@@ -51,7 +44,7 @@ fun rememberBottomSheetState(
     confirmValueChange = {
         if (it == ModalBottomSheetValue.Hidden) {
             onDismissBottomSheet()
-            return@rememberModalBottomSheetState true
+            return@rememberModalBottomSheetState false
         }
         if (it == ModalBottomSheetValue.HalfExpanded) {
             return@rememberModalBottomSheetState false

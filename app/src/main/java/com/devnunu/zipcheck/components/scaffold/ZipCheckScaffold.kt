@@ -6,8 +6,11 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.graphics.Shape
 import com.devnunu.zipcheck.components.bottomSheet.BottomSheetState
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.distinctUntilChanged
 
 @OptIn(ExperimentalMaterialApi::class)
 data class ScaffoldBottomSheetView(
@@ -36,12 +39,15 @@ fun ZipCheckScaffold(
     }
 
     if (bottomSheetView != null) {
-        LaunchedEffect(bottomSheetView.viewModelSheetState) {
-            when (bottomSheetView.viewModelSheetState) {
-                is BottomSheetState.Closed -> bottomSheetView.sheetState.hide()
-                is BottomSheetState.Opened -> bottomSheetView.sheetState.show()
-                else -> Unit
-            }
+        LaunchedEffect(bottomSheetView) {
+            snapshotFlow { bottomSheetView.viewModelSheetState }
+                .distinctUntilChanged()
+                .collect { viewModelSheetState ->
+                    when (viewModelSheetState) {
+                        is BottomSheetState.Closed -> bottomSheetView.sheetState.hide()
+                        is BottomSheetState.Opened -> bottomSheetView.sheetState.show()
+                    }
+                }
         }
         ModalBottomSheetLayout(
             sheetState = bottomSheetView.sheetState,
@@ -52,6 +58,6 @@ fun ZipCheckScaffold(
             }
         )
     } else {
-
+        child()
     }
 }

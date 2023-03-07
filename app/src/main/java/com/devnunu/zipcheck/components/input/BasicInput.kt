@@ -72,7 +72,6 @@ fun BasicInput(
     LaunchedEffect(isFocused) {
         onFocusChanged(isFocused)
     }
-
     Column(
         modifier = modifier
             .fillMaxWidth()

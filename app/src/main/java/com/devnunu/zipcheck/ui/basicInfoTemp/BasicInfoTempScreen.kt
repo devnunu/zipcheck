@@ -17,9 +17,11 @@ import com.devnunu.zipcheck.components.button.BasicButton
 import com.devnunu.zipcheck.components.button.BtnSize
 import com.devnunu.zipcheck.components.button.BtnStyle
 import com.devnunu.zipcheck.components.scaffold.ZipCheckScaffold
+import com.devnunu.zipcheck.components.scaffold.rememberScaffoldBottomSheetView
 import com.devnunu.zipcheck.components.topBar.TopBar
-import com.devnunu.zipcheck.ui.basicInfoTemp.components.BasicInfoTempItem
-import com.devnunu.zipcheck.ui.basicInfoTemp.components.BasicInfoTempLocationItem
+import com.devnunu.zipcheck.ui.basicInfoTemp.components.item.BasicInfoTempItem
+import com.devnunu.zipcheck.ui.basicInfoTemp.components.item.BasicInfoTempLocationItem
+import com.devnunu.zipcheck.ui.basicInfoTemp.components.bottomSheet.BasicInfoTempInputBottomSheet
 import org.orbitmvi.orbit.compose.collectAsState
 
 @Composable
@@ -28,6 +30,8 @@ fun BasicInfoTempScreen(
 ) {
     val state by viewModel.collectAsState()
     val house = state.house
+
+    val viewModelSheetState = state.bottomSheetState
 
     val navController = LocalNavController.current
 
@@ -47,6 +51,32 @@ fun BasicInfoTempScreen(
                 text = "다음",
                 onClick = {}
             )
+        },
+        bottomSheetView = rememberScaffoldBottomSheetView(
+            viewModelSheetState = viewModelSheetState,
+            onCloseBottomSheet = viewModel::onCloseBottomSheet
+        ) {
+            when (viewModelSheetState.tag) {
+                BasicInfoTempBottomSheetTag.ALIAS -> {
+                    BasicInfoTempInputBottomSheet(
+                        initialValue = house?.alias,
+                        label = "별칭",
+                        placeHolder = "별칭을 입력해주세요",
+                        tag = BasicInfoTempBottomSheetTag.ALIAS,
+                        onClickSave = viewModel::onClickInputBottomSheetSaveBtn
+                    )
+                }
+                BasicInfoTempBottomSheetTag.VISIT_DATE -> Unit
+                BasicInfoTempBottomSheetTag.LOCATION -> Unit
+                BasicInfoTempBottomSheetTag.MEMO -> Unit
+                BasicInfoTempBottomSheetTag.ROOM_TYPE -> Unit
+                BasicInfoTempBottomSheetTag.ROOM_INFO_URL -> Unit
+                BasicInfoTempBottomSheetTag.ROOM_AREA -> Unit
+                BasicInfoTempBottomSheetTag.DEPOSIT_AMOUNT -> Unit
+                BasicInfoTempBottomSheetTag.MONTHLY_AMOUNT -> Unit
+                BasicInfoTempBottomSheetTag.MAINTENANCE_AMOUNT -> Unit
+                else -> Unit
+            }
         }
     ) { paddingValues ->
         Column(
@@ -71,33 +101,45 @@ fun BasicInfoTempScreen(
                 BasicInfoTempItem(
                     key = "별칭",
                     value = house?.alias,
-                    onClick = {}
+                    onClick = {
+                        viewModel.onClickOpenBottomSheet(BasicInfoTempBottomSheetTag.ALIAS)
+                    }
                 )
                 BasicInfoTempItem(
                     key = "집보는 날짜",
                     value = null,
-                    onClick = {}
+                    onClick = {
+                        viewModel.onClickOpenBottomSheet(BasicInfoTempBottomSheetTag.VISIT_DATE)
+                    }
                 )
                 BasicInfoTempLocationItem(
                     location = null,
-                    onClick = {}
+                    onClick = {
+                        viewModel.onClickOpenBottomSheet(BasicInfoTempBottomSheetTag.LOCATION)
+                    }
                 )
                 BasicInfoTempItem(
                     key = "부동산 정보 메모",
                     value = house?.memo,
                     maxLines = 2,
-                    onClick = {}
+                    onClick = {
+                        viewModel.onClickOpenBottomSheet(BasicInfoTempBottomSheetTag.MEMO)
+                    }
                 )
                 BasicInfoTempItem(
                     key = "URL 주소",
                     value = house?.roomInfoUrl,
                     maxLines = 2,
-                    onClick = {}
+                    onClick = {
+                        viewModel.onClickOpenBottomSheet(BasicInfoTempBottomSheetTag.ROOM_INFO_URL)
+                    }
                 )
                 BasicInfoTempItem(
                     key = "집구조",
                     value = house?.roomType?.typeName,
-                    onClick = {}
+                    onClick = {
+                        viewModel.onClickOpenBottomSheet(BasicInfoTempBottomSheetTag.ROOM_TYPE)
+                    }
                 )
                 val roomArea = if (house?.roomArea?.value != null) {
                     "${house.roomArea.value} ${house.roomArea.type.typeName}"
@@ -107,22 +149,30 @@ fun BasicInfoTempScreen(
                 BasicInfoTempItem(
                     key = "집너비",
                     value = roomArea,
-                    onClick = {}
+                    onClick = {
+                        viewModel.onClickOpenBottomSheet(BasicInfoTempBottomSheetTag.ROOM_AREA)
+                    }
                 )
                 BasicInfoTempItem(
                     key = "보증금",
                     value = house?.depositAmount?.toKrCurrencyFullText(true),
-                    onClick = {}
+                    onClick = {
+                        viewModel.onClickOpenBottomSheet(BasicInfoTempBottomSheetTag.DEPOSIT_AMOUNT)
+                    }
                 )
                 BasicInfoTempItem(
                     key = "월세",
                     value = house?.monthlyAmount?.toKrCurrencyFullText(true),
-                    onClick = {}
+                    onClick = {
+                        viewModel.onClickOpenBottomSheet(BasicInfoTempBottomSheetTag.MONTHLY_AMOUNT)
+                    }
                 )
                 BasicInfoTempItem(
                     key = "관리비",
                     value = house?.maintenanceCost?.toKrCurrencyFullText(true),
-                    onClick = {}
+                    onClick = {
+                        viewModel.onClickOpenBottomSheet(BasicInfoTempBottomSheetTag.MAINTENANCE_AMOUNT)
+                    }
                 )
                 Spacer(modifier = Modifier.height(50.dp))
             }

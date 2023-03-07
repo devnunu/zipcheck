@@ -1,4 +1,4 @@
-package com.devnunu.zipcheck.ui.basicInfoTemp.components
+package com.devnunu.zipcheck.ui.basicInfoTemp.components.item
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
