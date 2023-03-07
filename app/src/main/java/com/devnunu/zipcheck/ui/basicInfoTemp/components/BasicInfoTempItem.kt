@@ -33,7 +33,9 @@ fun BasicInfoTempItem(
     ) {
         Spacer(modifier = Modifier.width(20.dp))
         Text(
-            modifier = Modifier.weight(5f),
+            modifier = Modifier
+                .weight(5f)
+                .padding(vertical = 2.dp),
             style = Medium14,
             text = key,
             color = lightSlate11
@@ -51,6 +53,7 @@ fun BasicInfoTempItem(
         )
         Spacer(modifier = Modifier.width(16.dp))
         Icon(
+            modifier = Modifier.padding(vertical = 3.dp),
             painter = painterResource(id = R.drawable.ic_arrow_mini_right),
             contentDescription = null,
             tint = lightSlate8
