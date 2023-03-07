@@ -15,7 +15,7 @@ class HouseRepository {
 
     init {
         val houseList = mutableListOf<House>()
-        repeat(20) {
+        repeat(5) {
             houseList.add(House())
         }
         _houseListFlow.value = houseList

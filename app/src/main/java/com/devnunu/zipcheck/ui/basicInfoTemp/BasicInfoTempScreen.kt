@@ -19,6 +19,7 @@ import com.devnunu.zipcheck.components.button.BtnStyle
 import com.devnunu.zipcheck.components.scaffold.ZipCheckScaffold
 import com.devnunu.zipcheck.components.topBar.TopBar
 import com.devnunu.zipcheck.ui.basicInfoTemp.components.BasicInfoTempItem
+import com.devnunu.zipcheck.ui.basicInfoTemp.components.BasicInfoTempLocationItem
 import org.orbitmvi.orbit.compose.collectAsState
 
 @Composable
@@ -75,6 +76,10 @@ fun BasicInfoTempScreen(
                 BasicInfoTempItem(
                     key = "집보는 날짜",
                     value = null,
+                    onClick = {}
+                )
+                BasicInfoTempLocationItem(
+                    location = null,
                     onClick = {}
                 )
                 BasicInfoTempItem(
