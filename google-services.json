@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "118859944726",
+    "project_id": "zipcheck-39066",
+    "storage_bucket": "zipcheck-39066.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:118859944726:android:3e2c73a10c6ddda212f637",
+        "android_client_info": {
+          "package_name": "com.devnunu.zipcheck"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "118859944726-301g1fmrdi00nu67jkeo6hveg89260s6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASSfE8SHlvsWlJq-BLkkxyQM_5Pd29z7c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "118859944726-301g1fmrdi00nu67jkeo6hveg89260s6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
