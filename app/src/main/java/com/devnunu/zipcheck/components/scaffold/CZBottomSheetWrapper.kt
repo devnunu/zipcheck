@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.devnunu.zipcheck.components.bottomSheet.BottomSheetState
 
-@OptIn(ExperimentalMaterialApi::class, ExperimentalLayoutApi::class)
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun rememberScaffoldBottomSheetView(
     viewModelSheetState: BottomSheetState<*>,
@@ -40,8 +40,7 @@ fun rememberBottomSheetState(
     onDismissBottomSheet: () -> Unit
 ) = rememberModalBottomSheetState(
     initialValue = ModalBottomSheetValue.Hidden,
-    skipHalfExpanded = true,
-    confirmValueChange = {
+    confirmStateChange = {
         if (it == ModalBottomSheetValue.Hidden) {
             onDismissBottomSheet()
             return@rememberModalBottomSheetState false

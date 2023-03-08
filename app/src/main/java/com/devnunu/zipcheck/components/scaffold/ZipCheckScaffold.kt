@@ -44,8 +44,8 @@ fun ZipCheckScaffold(
                 .distinctUntilChanged()
                 .collect { viewModelSheetState ->
                     when (viewModelSheetState) {
-                        is BottomSheetState.Closed -> bottomSheetView.sheetState.hide()
-                        is BottomSheetState.Opened -> bottomSheetView.sheetState.show()
+                        is BottomSheetState.Closed -> bottomSheetView.sheetState.animateTo(ModalBottomSheetValue.Hidden)
+                        is BottomSheetState.Opened -> bottomSheetView.sheetState.animateTo(ModalBottomSheetValue.Expanded)
                     }
                 }
         }

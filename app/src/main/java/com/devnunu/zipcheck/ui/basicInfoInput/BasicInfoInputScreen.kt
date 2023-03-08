@@ -1,11 +1,11 @@
 package com.devnunu.zipcheck.ui.basicInfoInput
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.pager.HorizontalPager
-import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.runtime.*
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.devnunu.zipcheck.common.navigation.LocalNavController
@@ -21,8 +21,6 @@ import com.devnunu.zipcheck.ui.basicInfoInput.components.BasicInfoInputStepIndic
 import com.devnunu.zipcheck.ui.basicInfoInput.components.view.BasicInfoFirstStepView
 import com.devnunu.zipcheck.ui.basicInfoInput.components.view.BasicInfoSecondStepView
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 import org.orbitmvi.orbit.compose.collectAsState

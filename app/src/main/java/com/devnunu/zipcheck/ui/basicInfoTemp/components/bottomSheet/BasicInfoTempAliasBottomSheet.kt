@@ -33,12 +33,6 @@ fun BasicInfoTempInputBottomSheet(
     val focusRequester = remember { FocusRequester() }
     val keyboardController = LocalSoftwareKeyboardController.current
 
-    val scope: CoroutineScope = rememberCoroutineScope()
-    LaunchedEffect(Unit) {
-        scope.launch {
-            focusRequester.requestFocus()
-        }
-    }
     Column(
         modifier = Modifier.padding(horizontal = 20.dp)
     ) {

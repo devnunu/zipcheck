@@ -14,11 +14,11 @@ class HouseRepository {
     private val _houseListFlow = MutableStateFlow<List<House>>(mutableListOf())
 
     init {
-        val houseList = mutableListOf<House>()
-        repeat(5) {
-            houseList.add(House())
-        }
-        _houseListFlow.value = houseList
+//        val houseList = mutableListOf<House>()
+//        repeat(5) {
+//            houseList.add(House())
+//        }
+//        _houseListFlow.value = houseList
     }
 
     /**
