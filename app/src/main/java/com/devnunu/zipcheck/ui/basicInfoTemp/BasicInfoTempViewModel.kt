@@ -10,7 +10,6 @@ import org.orbitmvi.orbit.syntax.simple.reduce
 import org.orbitmvi.orbit.viewmodel.container
 
 enum class BasicInfoTempBottomSheetTag {
-    NONE,
     ALIAS,
     VISIT_DATE,
     LOCATION,
@@ -26,7 +25,7 @@ enum class BasicInfoTempBottomSheetTag {
 data class BasicInfoTempState(
     val house: House? = null,
     val bottomSheetState: BottomSheetState<BasicInfoTempBottomSheetTag> =
-        BottomSheetState.Closed(BasicInfoTempBottomSheetTag.NONE)
+        BottomSheetState.Closed(null)
 )
 
 class BasicInfoTempViewModel(
