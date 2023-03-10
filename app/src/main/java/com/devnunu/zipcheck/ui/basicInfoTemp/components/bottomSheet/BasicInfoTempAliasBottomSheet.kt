@@ -1,11 +1,16 @@
 package com.devnunu.zipcheck.ui.basicInfoTemp.components.bottomSheet
 
+import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.layout.onPlaced
+import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import com.devnunu.zipcheck.components.button.BasicButton
 import com.devnunu.zipcheck.components.button.BtnSize
@@ -13,8 +18,6 @@ import com.devnunu.zipcheck.components.button.BtnStyle
 import com.devnunu.zipcheck.components.checkBox.CheckBoxText
 import com.devnunu.zipcheck.components.input.BasicInput
 import com.devnunu.zipcheck.ui.basicInfoTemp.BasicInfoTempBottomSheetTag
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
@@ -33,8 +36,17 @@ fun BasicInfoTempInputBottomSheet(
     val focusRequester = remember { FocusRequester() }
     val keyboardController = LocalSoftwareKeyboardController.current
 
+    LaunchedEffect(Unit) {
+            focusRequester.requestFocus()
+    }
     Column(
-        modifier = Modifier.padding(horizontal = 20.dp)
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(IntrinsicSize.Min)
+            .padding(horizontal = 20.dp)
+            .onSizeChanged {
+                focusRequester.requestFocus()
+            }
     ) {
         Spacer(modifier = Modifier.height(50.dp))
         BasicInput(
@@ -45,6 +57,11 @@ fun BasicInfoTempInputBottomSheet(
             onValueChange = { str ->
                 value = str
             },
+            onFocusChanged = { focus ->
+                if (focus) {
+                    keyboardController?.show()
+                }
+            }
         )
         Spacer(modifier = Modifier.height(16.dp))
         if (checkBoxText != null) {
