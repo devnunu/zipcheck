@@ -1,4 +1,4 @@
-package com.devnunu.zipcheck.components.scaffold
+package com.devnunu.zipcheck.components.bottomSheet
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.core.*
@@ -8,7 +8,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.devnunu.zipcheck.components.bottomSheet.BottomSheetState
+import com.devnunu.zipcheck.components.scaffold.ScaffoldBottomSheetView
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable

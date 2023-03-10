@@ -17,7 +17,7 @@ import com.devnunu.zipcheck.components.button.BasicButton
 import com.devnunu.zipcheck.components.button.BtnSize
 import com.devnunu.zipcheck.components.button.BtnStyle
 import com.devnunu.zipcheck.components.scaffold.ZipCheckScaffold
-import com.devnunu.zipcheck.components.scaffold.rememberScaffoldBottomSheetView
+import com.devnunu.zipcheck.components.bottomSheet.rememberScaffoldBottomSheetView
 import com.devnunu.zipcheck.components.topBar.TopBar
 import com.devnunu.zipcheck.ui.basicInfoTemp.components.item.BasicInfoTempItem
 import com.devnunu.zipcheck.ui.basicInfoTemp.components.item.BasicInfoTempLocationItem
