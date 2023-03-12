@@ -18,7 +18,7 @@ import com.devnunu.zipcheck.components.button.BtnStyle
 import com.devnunu.zipcheck.components.scaffold.ZipCheckScaffold
 import com.devnunu.zipcheck.components.topBar.TopBar
 import com.devnunu.zipcheck.ui.tempOption.components.TempOptionCustomItem
-import com.devnunu.zipcheck.ui.tempOption.components.TempOptionItem
+import com.devnunu.zipcheck.ui.tempOption.components.item.TempOptionItem
 import com.devnunu.zipcheck.ui.tempOption.components.bottomSheet.TempOptionCustomBottomSheet
 import org.orbitmvi.orbit.compose.collectAsState
 
@@ -93,6 +93,9 @@ fun TempOptionScreen(
                         onClickItem = {
                             viewModel.onClickItem(houseOption)
                         },
+                        onDeleteCustomOption = {
+                            viewModel.onDeleteCustomOption(houseOption)
+                        }
                     )
                 }
                 item {

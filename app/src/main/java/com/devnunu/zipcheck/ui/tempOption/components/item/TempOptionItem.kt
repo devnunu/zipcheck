@@ -1,4 +1,4 @@
-package com.devnunu.zipcheck.ui.tempOption.components
+package com.devnunu.zipcheck.ui.tempOption.components.item
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
@@ -12,30 +12,45 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.devnunu.zipcheck.common.ext.clickableNonIndication
-import com.devnunu.zipcheck.common.ext.clickableRipple
 import com.devnunu.zipcheck.common.theme.*
 import com.devnunu.zipcheck.components.checkBox.ZipCheckCheckBox
 import com.devnunu.zipcheck.data.model.HouseOption
+import com.devnunu.zipcheck.R
 
 @Composable
 fun TempOptionItem(
     houseOption: HouseOption,
     onClickItem: (HouseOption) -> Unit,
+    onDeleteCustomOption: (HouseOption) -> Unit,
 ) {
-    val isSelected = houseOption.selected
+    val isSelected = houseOption.isSelected
     val borderColor = if (isSelected) lightMint8 else lightSlate6
     Box(
         modifier = Modifier
             .height(120.dp)
-            .clickableNonIndication { onClickItem(houseOption) }
+            .clickableNonIndication {
+                onClickItem(houseOption)
+            }
             .border(1.dp, borderColor, RoundedCornerShape(8.dp))
     ) {
+        val customCheckedIconId = if (houseOption.isCustom) {
+            R.drawable.ic_close_mini
+        } else {
+            null
+        }
         ZipCheckCheckBox(
             modifier = Modifier
                 .align(Alignment.TopEnd)
                 .padding(top = 4.dp, end = 4.dp),
             checked = isSelected,
-            onCheckedChange = { onClickItem(houseOption) }
+            customCheckedIconId = customCheckedIconId,
+            onCheckedChange = {
+                if (houseOption.isCustom && isSelected) {
+                    onDeleteCustomOption(houseOption)
+                } else {
+                    onClickItem(houseOption)
+                }
+            }
         )
         Column(
             modifier = Modifier

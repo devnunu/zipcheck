@@ -7,7 +7,7 @@ data class HouseOption(
     var optionName: String,
     @DrawableRes val iconRedId: Int,
     val isCustom: Boolean = false,
-    var selected: Boolean = false,
+    var isSelected: Boolean = false,
 ) {
 
     companion object {
@@ -25,7 +25,8 @@ data class HouseOption(
             HouseOption(
                 optionName = optionName,
                 iconRedId = R.drawable.ic_option_custom,
-                isCustom = true
+                isCustom = true,
+                isSelected = true
             )
     }
 }

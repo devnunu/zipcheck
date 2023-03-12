@@ -42,10 +42,19 @@ class TempOptionViewModel(
     fun onClickItem(clickedHouseOption: HouseOption) = intent {
         val houseOptionList = state.houseOptionList.toMutableList().map { houseOption ->
             if (houseOption == clickedHouseOption) {
-                houseOption.copy(selected = !houseOption.selected)
+                houseOption.copy(isSelected = !houseOption.isSelected)
             } else {
                 houseOption
             }
+        }
+        reduce {
+            state.copy(houseOptionList = houseOptionList)
+        }
+    }
+
+    fun onDeleteCustomOption(clickedHouseOption: HouseOption) = intent {
+        val houseOptionList = state.houseOptionList.toMutableList().filter { houseOption ->
+            houseOption != clickedHouseOption
         }
         reduce {
             state.copy(houseOptionList = houseOptionList)
