@@ -1,16 +1,14 @@
 package com.devnunu.zipcheck.ui.basicInfoTemp.components.bottomSheet
 
-import android.util.Log
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.*
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.layout.onGloballyPositioned
-import androidx.compose.ui.layout.onPlaced
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import androidx.compose.ui.unit.IntSize
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.devnunu.zipcheck.components.button.BasicButton
 import com.devnunu.zipcheck.components.button.BtnSize
@@ -21,12 +19,14 @@ import com.devnunu.zipcheck.ui.basicInfoTemp.BasicInfoTempBottomSheetTag
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun BasicInfoTempInputBottomSheet(
+fun BasicInfoInputBottomSheet(
     initialValue: String?,
     initialCheckValue: Boolean? = null,
     label: String,
     placeHolder: String,
     checkBoxText: String? = null,
+    isNumber: Boolean = false,
+    unit: String? = null,
     tag: BasicInfoTempBottomSheetTag,
     onClickSave: (BasicInfoTempBottomSheetTag, String?, Boolean?) -> Unit
 ) {
@@ -37,7 +37,7 @@ fun BasicInfoTempInputBottomSheet(
     val keyboardController = LocalSoftwareKeyboardController.current
 
     LaunchedEffect(Unit) {
-            focusRequester.requestFocus()
+        focusRequester.requestFocus()
     }
     Column(
         modifier = Modifier
@@ -53,6 +53,10 @@ fun BasicInfoTempInputBottomSheet(
             label = label,
             value = value,
             placeholder = placeHolder,
+            keyboardOptions = KeyboardOptions(
+                keyboardType = if (isNumber) KeyboardType.Number else KeyboardType.Text
+            ),
+            unit = unit,
             focusRequester = focusRequester,
             onValueChange = { str ->
                 value = str

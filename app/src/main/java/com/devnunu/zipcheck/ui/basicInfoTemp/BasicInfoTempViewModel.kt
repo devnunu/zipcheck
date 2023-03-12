@@ -19,7 +19,7 @@ enum class BasicInfoTempBottomSheetTag {
     ROOM_AREA,
     DEPOSIT_AMOUNT,
     MONTHLY_AMOUNT,
-    MAINTENANCE_AMOUNT
+    MAINTENANCE_COST
 }
 
 data class BasicInfoTempState(
@@ -54,7 +54,26 @@ class BasicInfoTempViewModel(
         reduce {
             val house = state.house
             when (tag) {
-                BasicInfoTempBottomSheetTag.ALIAS -> state.copy(house = house?.copy(alias = value))
+                BasicInfoTempBottomSheetTag.ALIAS -> {
+                    state.copy(house = house?.copy(alias = value))
+                }
+                BasicInfoTempBottomSheetTag.MEMO -> {
+                    state.copy(house = house?.copy(memo = value))
+                }
+                BasicInfoTempBottomSheetTag.ROOM_INFO_URL -> {
+                    state.copy(house = house?.copy(roomInfoUrl = value))
+                }
+                BasicInfoTempBottomSheetTag.DEPOSIT_AMOUNT -> {
+                    state.copy(house = house?.copy(depositAmount = value?.toLongOrNull()))
+                }
+                BasicInfoTempBottomSheetTag.MONTHLY_AMOUNT -> {
+                    val value = if (isChecked == true) value?.toLongOrNull() else null
+                    state.copy(house = house?.copy(monthlyAmount = value))
+                }
+                BasicInfoTempBottomSheetTag.MAINTENANCE_COST -> {
+                    val value = if (isChecked == true) value?.toLongOrNull() else null
+                    state.copy(house = house?.copy(maintenanceCost = value))
+                }
                 else -> state
             }
         }
