@@ -17,14 +17,14 @@ sealed class Routes(val route: String) {
         }
     }
 
-    object BasicInfoTemp : Routes("basicInfo/temp") {
+    object TempBasicInfo : Routes("temp/basicInfo") {
         const val ARGUMENTS_HOUSE_ID = "houseId"
         val arguments: List<NamedNavArgument> =
             listOf(navArgument(BasicInfoDone.ARGUMENTS_HOUSE_ID) { defaultValue = "" })
 
         fun getArgumentsRoute(houseId: String? = null): String {
             val houseId = houseId ?: "{${BasicInfoDone.ARGUMENTS_HOUSE_ID}}"
-            return "${BasicInfoTemp.route}?houseId=$houseId"
+            return "${TempBasicInfo.route}?houseId=$houseId"
         }
     }
 }

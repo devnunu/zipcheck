@@ -1,4 +1,4 @@
-package com.devnunu.zipcheck.ui.basicInfoTemp.components.bottomSheet
+package com.devnunu.zipcheck.ui.tempBasicInfo.components.bottomSheet
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
@@ -6,7 +6,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
@@ -15,11 +14,11 @@ import com.devnunu.zipcheck.components.button.BtnSize
 import com.devnunu.zipcheck.components.button.BtnStyle
 import com.devnunu.zipcheck.components.checkBox.CheckBoxText
 import com.devnunu.zipcheck.components.input.BasicInput
-import com.devnunu.zipcheck.ui.basicInfoTemp.BasicInfoTempBottomSheetTag
+import com.devnunu.zipcheck.ui.tempBasicInfo.TempBasicInfoBottomSheetTag
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun BasicInfoInputBottomSheet(
+fun TempBasicInfoBottomSheet(
     initialValue: String?,
     initialCheckValue: Boolean? = null,
     label: String,
@@ -27,8 +26,8 @@ fun BasicInfoInputBottomSheet(
     checkBoxText: String? = null,
     isNumber: Boolean = false,
     unit: String? = null,
-    tag: BasicInfoTempBottomSheetTag,
-    onClickSave: (BasicInfoTempBottomSheetTag, String?, Boolean?) -> Unit
+    tag: TempBasicInfoBottomSheetTag,
+    onClickSave: (TempBasicInfoBottomSheetTag, String?, Boolean?) -> Unit
 ) {
     var value by remember { mutableStateOf(initialValue) }
     var checkValue by remember { mutableStateOf(initialCheckValue) }

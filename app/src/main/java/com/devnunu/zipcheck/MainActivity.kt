@@ -12,8 +12,7 @@ import com.devnunu.zipcheck.common.navigation.Routes
 import com.devnunu.zipcheck.common.theme.ZipCheckTheme
 import com.devnunu.zipcheck.ui.basicInfoDone.BasicInfoDoneScreen
 import com.devnunu.zipcheck.ui.basicInfoInput.BasicInfoInputScreen
-import com.devnunu.zipcheck.ui.basicInfoTemp.BasicInfoTempScreen
-import com.devnunu.zipcheck.ui.basicInfoTemp.BasicInfoTempViewModel
+import com.devnunu.zipcheck.ui.tempBasicInfo.TempBasicInfoScreen
 import com.devnunu.zipcheck.ui.home.HomeScreen
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
@@ -58,13 +57,13 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                         composableRightIn(
-                            route = Routes.BasicInfoTemp.getArgumentsRoute(),
-                            arguments = Routes.BasicInfoTemp.arguments
+                            route = Routes.TempBasicInfo.getArgumentsRoute(),
+                            arguments = Routes.TempBasicInfo.arguments
                         ) { backStackEntry ->
                             val houseId = backStackEntry.arguments?.getString(
-                                Routes.BasicInfoTemp.ARGUMENTS_HOUSE_ID
+                                Routes.TempBasicInfo.ARGUMENTS_HOUSE_ID
                             )
-                            BasicInfoTempScreen(
+                            TempBasicInfoScreen(
                                 viewModel = koinViewModel(
                                     parameters = { parametersOf(houseId) }
                                 )

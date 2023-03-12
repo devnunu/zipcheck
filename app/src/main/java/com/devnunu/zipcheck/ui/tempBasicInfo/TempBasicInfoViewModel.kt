@@ -1,4 +1,4 @@
-package com.devnunu.zipcheck.ui.basicInfoTemp
+package com.devnunu.zipcheck.ui.tempBasicInfo
 
 import androidx.lifecycle.ViewModel
 import com.devnunu.zipcheck.components.bottomSheet.BottomSheetState
@@ -10,7 +10,7 @@ import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.reduce
 import org.orbitmvi.orbit.viewmodel.container
 
-enum class BasicInfoTempBottomSheetTag {
+enum class TempBasicInfoBottomSheetTag {
     ALIAS,
     VISIT_DATE,
     LOCATION,
@@ -23,18 +23,18 @@ enum class BasicInfoTempBottomSheetTag {
     MAINTENANCE_COST
 }
 
-data class BasicInfoTempState(
+data class TempBasicInfoState(
     val house: House? = null,
-    val bottomSheetState: BottomSheetState<BasicInfoTempBottomSheetTag> =
+    val bottomSheetState: BottomSheetState<TempBasicInfoBottomSheetTag> =
         BottomSheetState.Closed(null)
 )
 
-class BasicInfoTempViewModel(
+class TempBasicInfoViewModel(
     private val houseId: String,
     private val houseRepository: HouseRepository,
-) : ContainerHost<BasicInfoTempState, Nothing>, ViewModel() {
+) : ContainerHost<TempBasicInfoState, Nothing>, ViewModel() {
 
-    override val container = container<BasicInfoTempState, Nothing>(BasicInfoTempState())
+    override val container = container<TempBasicInfoState, Nothing>(TempBasicInfoState())
 
     /**
      * Bottom Sheet
@@ -43,35 +43,35 @@ class BasicInfoTempViewModel(
         reduce { state.copy(bottomSheetState = state.bottomSheetState.close()) }
     }
 
-    fun onClickOpenBottomSheet(tag: BasicInfoTempBottomSheetTag) = intent {
+    fun onClickOpenBottomSheet(tag: TempBasicInfoBottomSheetTag) = intent {
         reduce { state.copy(bottomSheetState = state.bottomSheetState.open(tag)) }
     }
 
     fun onClickInputBottomSheetSaveBtn(
-        tag: BasicInfoTempBottomSheetTag,
+        tag: TempBasicInfoBottomSheetTag,
         value: String?,
         isChecked: Boolean?
     ) = intent {
         reduce {
             val house = state.house
             when (tag) {
-                BasicInfoTempBottomSheetTag.ALIAS -> {
+                TempBasicInfoBottomSheetTag.ALIAS -> {
                     state.copy(house = house?.copy(alias = value))
                 }
-                BasicInfoTempBottomSheetTag.MEMO -> {
+                TempBasicInfoBottomSheetTag.MEMO -> {
                     state.copy(house = house?.copy(memo = value))
                 }
-                BasicInfoTempBottomSheetTag.ROOM_INFO_URL -> {
+                TempBasicInfoBottomSheetTag.ROOM_INFO_URL -> {
                     state.copy(house = house?.copy(roomInfoUrl = value))
                 }
-                BasicInfoTempBottomSheetTag.DEPOSIT_AMOUNT -> {
+                TempBasicInfoBottomSheetTag.DEPOSIT_AMOUNT -> {
                     state.copy(house = house?.copy(depositAmount = value?.toLongOrNull()))
                 }
-                BasicInfoTempBottomSheetTag.MONTHLY_AMOUNT -> {
+                TempBasicInfoBottomSheetTag.MONTHLY_AMOUNT -> {
                     val value = if (isChecked == true) value?.toLongOrNull() else null
                     state.copy(house = house?.copy(monthlyAmount = value))
                 }
-                BasicInfoTempBottomSheetTag.MAINTENANCE_COST -> {
+                TempBasicInfoBottomSheetTag.MAINTENANCE_COST -> {
                     val value = if (isChecked == true) value?.toLongOrNull() else null
                     state.copy(house = house?.copy(maintenanceCost = value))
                 }

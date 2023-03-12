@@ -1,4 +1,4 @@
-package com.devnunu.zipcheck.ui.basicInfoTemp.components.item
+package com.devnunu.zipcheck.ui.tempBasicInfo.components.item
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -15,11 +15,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.common.ext.clickableNonIndication
-import com.devnunu.zipcheck.common.ext.clickableRipple
 import com.devnunu.zipcheck.common.theme.*
 
 @Composable
-fun BasicInfoTempLocationItem(
+fun TempBasicInfoLocationItem(
     location: String? = null,
     onClick: () -> Unit
 ) {

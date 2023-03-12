@@ -66,7 +66,7 @@ fun HomeListView(
                         house = house,
                         onClick = {
                             navController.navigate(
-                                Routes.BasicInfoTemp.getArgumentsRoute(
+                                Routes.TempBasicInfo.getArgumentsRoute(
                                     house.id
                                 )
                             )

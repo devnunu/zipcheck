@@ -1,4 +1,4 @@
-package com.devnunu.zipcheck.ui.basicInfoTemp.components.item
+package com.devnunu.zipcheck.ui.tempBasicInfo.components.item
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
@@ -15,7 +15,7 @@ import com.devnunu.zipcheck.common.ext.clickableRipple
 import com.devnunu.zipcheck.common.theme.*
 
 @Composable
-fun BasicInfoTempItem(
+fun TempBasicInfoItem(
     key: String,
     value: String? = null,
     maxLines: Int = 1,

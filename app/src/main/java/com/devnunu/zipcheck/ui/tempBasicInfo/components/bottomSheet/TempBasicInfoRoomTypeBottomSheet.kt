@@ -1,4 +1,4 @@
-package com.devnunu.zipcheck.ui.basicInfoTemp.components.bottomSheet
+package com.devnunu.zipcheck.ui.tempBasicInfo.components.bottomSheet
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
@@ -9,7 +9,7 @@ import com.devnunu.zipcheck.common.ext.clickableRipple
 import com.devnunu.zipcheck.data.model.RoomType
 
 @Composable
-fun BasicInfoTempRoomTypeBottomSheet(
+fun TempBasicInfoRoomTypeBottomSheet(
     onClickRoomType: (RoomType) -> Unit
 ) {
     Column(
