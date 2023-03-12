@@ -15,7 +15,7 @@ import com.devnunu.zipcheck.components.button.BtnStyle
 import com.devnunu.zipcheck.components.checkBox.CheckBoxText
 import com.devnunu.zipcheck.components.input.BasicInput
 import com.devnunu.zipcheck.ui.basicInfoInput.BasicInfoInputViewModel
-import com.devnunu.zipcheck.ui.basicInfoInput.components.BasicInfoInputRoomSelector
+import com.devnunu.zipcheck.ui.basicInfoInput.components.input.BasicInfoInputRoomSelector
 import org.koin.androidx.compose.koinViewModel
 import org.orbitmvi.orbit.compose.collectAsState
 

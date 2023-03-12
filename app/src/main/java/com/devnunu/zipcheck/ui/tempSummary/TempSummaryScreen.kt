@@ -1,0 +1,100 @@
+package com.devnunu.zipcheck.ui.tempSummary
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import com.devnunu.zipcheck.common.ext.clickableNonIndication
+import com.devnunu.zipcheck.common.navigation.LocalNavController
+import com.devnunu.zipcheck.common.navigation.Routes
+import com.devnunu.zipcheck.common.theme.*
+import com.devnunu.zipcheck.components.button.BasicButton
+import com.devnunu.zipcheck.components.button.BtnSize
+import com.devnunu.zipcheck.components.button.BtnStyle
+import com.devnunu.zipcheck.components.scaffold.ZipCheckScaffold
+import com.devnunu.zipcheck.components.topBar.TopBar
+import com.devnunu.zipcheck.ui.tempSummary.components.HouseSummarySelector
+import com.devnunu.zipcheck.ui.tempSummary.components.HouseSummaryTag
+import org.orbitmvi.orbit.compose.collectAsState
+
+@Composable
+fun TempSummaryScreen(
+    viewModel: TempSummaryViewModel
+) {
+
+    val state by viewModel.collectAsState()
+    val selectedSummary = state.selectedSummary
+    val houseBenefitList = state.houseBenefitList
+
+    val navController = LocalNavController.current
+
+    ZipCheckScaffold(
+        topBar = {
+            TopBar(
+                title = "총평",
+                onClickBackBtn = { navController.popBackStack() }
+            )
+        },
+        bottomBar = {
+            BasicButton(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 20.dp, end = 20.dp, bottom = 12.dp),
+                buttonStyle = BtnStyle.PRIMARY_RADIUS,
+                buttonSize = BtnSize.LARGE,
+                text = "저장하기",
+                onClick = {
+
+                }
+            )
+        }
+    ) { paddingValues ->
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(
+                    start = 20.dp,
+                    end = 20.dp,
+                    bottom = paddingValues.calculateBottomPadding()
+                )
+                .verticalScroll(rememberScrollState())
+        ) {
+            Spacer(modifier = Modifier.height(30.dp))
+            Text(
+                style = Bold20,
+                text = "이 집은 어떠셨나요?"
+            )
+            Spacer(modifier = Modifier.height(6.dp))
+            Text(
+                style = Regular14,
+                text = "별로에요를 선택하면 바로 탈락 리스트로 보내져요.",
+                color = lightSlate11
+            )
+            Spacer(modifier = Modifier.height(21.dp))
+            HouseSummarySelector(
+                selectedSummary = selectedSummary,
+                onClickSummary = viewModel::onClickSummary
+            )
+            Spacer(modifier = Modifier.height(55.dp))
+            Text(
+                style = Bold18,
+                text = "이 집의 좋았던점을 모두 선택해주세요."
+            )
+            Spacer(modifier = Modifier.height(30.dp))
+            houseBenefitList.forEach { houseBenefit ->
+                HouseSummaryTag(
+                    houseBenefit = houseBenefit,
+                    onClickHouseBenefit = viewModel::onClickHouseBenefit
+                )
+                Spacer(modifier = Modifier.height(12.dp))
+            }
+        }
+    }
+}

@@ -10,6 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.devnunu.zipcheck.common.navigation.LocalNavController
+import com.devnunu.zipcheck.common.navigation.Routes
 import com.devnunu.zipcheck.common.theme.Bold20
 import com.devnunu.zipcheck.components.bottomSheet.rememberScaffoldBottomSheetView
 import com.devnunu.zipcheck.components.button.BasicButton
@@ -30,6 +31,7 @@ fun TempOptionScreen(
     val state by viewModel.collectAsState()
     val viewModelSheetState = state.bottomSheetState
 
+    val house = state.house
     val houseOptionList = state.houseOptionList
 
     val navController = LocalNavController.current
@@ -49,7 +51,13 @@ fun TempOptionScreen(
                 buttonStyle = BtnStyle.PRIMARY_RADIUS,
                 buttonSize = BtnSize.LARGE,
                 text = "다음",
-                onClick = {}
+                onClick = {
+                    navController.navigate(
+                        Routes.TempSummary.getArgumentsRoute(
+                            house?.id
+                        )
+                    )
+                }
             )
         },
         bottomSheetView = rememberScaffoldBottomSheetView(

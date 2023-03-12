@@ -5,6 +5,7 @@ import com.devnunu.zipcheck.ui.basicInfoInput.BasicInfoInputViewModel
 import com.devnunu.zipcheck.ui.tempBasicInfo.TempBasicInfoViewModel
 import com.devnunu.zipcheck.ui.home.HomeViewModel
 import com.devnunu.zipcheck.ui.tempOption.TempOptionViewModel
+import com.devnunu.zipcheck.ui.tempSummary.TempSummaryViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -26,6 +27,12 @@ val uiModule = module {
     }
     viewModel {
         TempOptionViewModel(
+            houseId = get(),
+            houseRepository = get()
+        )
+    }
+    viewModel {
+        TempSummaryViewModel(
             houseId = get(),
             houseRepository = get()
         )

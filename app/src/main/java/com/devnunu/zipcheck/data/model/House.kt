@@ -16,7 +16,9 @@ data class House(
     val memo: String? = null,
     val roomInfoUrl: String? = null,
     var houseWriteStatus: HouseWriteStatus = HouseWriteStatus.IN_PROGRESS,
-    val optionList: List<HouseOption> = HouseOption.getEssentialOptionList()
+    val optionList: List<HouseOption> = HouseOption.getEssentialOptionList(),
+    val benefitList: List<HouseBenefit> = HouseBenefit.getEssentialBenefitList(),
+    val summary: Summary? = null,
 ) {
     val isNoMonthlyAmount: Boolean
         get() = monthlyAmount != null && monthlyAmount == 0L
@@ -31,4 +33,10 @@ data class House(
             3 -> R.drawable.ic_house3
             else -> R.drawable.ic_house4
         }
+}
+
+enum class Summary(val summary: String) {
+    GOOD("좋았어요 \uD83D\uDC4D"),
+    NORMAL("그냥 그래요 \uD83D\uDE10"),
+    BAD("별로에요 \uD83D\uDC4E")
 }

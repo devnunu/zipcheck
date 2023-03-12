@@ -33,7 +33,10 @@ class TempOptionViewModel(
             houseRepository.getHouseListFlow().collect { houseList ->
                 val house = houseList.firstOrNull { it.id == houseId }
                 reduce {
-                    state.copy(houseOptionList = house?.optionList.orEmpty())
+                    state.copy(
+                        house = house,
+                        houseOptionList = house?.optionList.orEmpty()
+                    )
                 }
             }
         }
