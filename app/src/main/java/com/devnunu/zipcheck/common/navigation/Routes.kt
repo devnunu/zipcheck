@@ -49,4 +49,15 @@ sealed class Routes(val route: String) {
             return "${TempSummary.route}?houseId=$houseId"
         }
     }
+
+    object TempDone : Routes("temp/done") {
+        const val ARGUMENTS_HOUSE_ID = "houseId"
+        val arguments: List<NamedNavArgument> =
+            listOf(navArgument(ARGUMENTS_HOUSE_ID) { defaultValue = "" })
+
+        fun getArgumentsRoute(houseId: String? = null): String {
+            val houseId = houseId ?: "{${ARGUMENTS_HOUSE_ID}}"
+            return "${TempDone.route}?houseId=$houseId"
+        }
+    }
 }

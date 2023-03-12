@@ -30,6 +30,8 @@ fun TempSummaryScreen(
 ) {
 
     val state by viewModel.collectAsState()
+
+    val house = state.house
     val selectedSummary = state.selectedSummary
     val houseBenefitList = state.houseBenefitList
 
@@ -51,7 +53,11 @@ fun TempSummaryScreen(
                 buttonSize = BtnSize.LARGE,
                 text = "저장하기",
                 onClick = {
-
+                    navController.navigate(
+                        Routes.TempDone.getArgumentsRoute(
+                            house?.id
+                        )
+                    )
                 }
             )
         }

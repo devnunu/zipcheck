@@ -1,61 +1,60 @@
-package com.devnunu.zipcheck.ui.basicInfoDone
+package com.devnunu.zipcheck.ui.tempDone
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.devnunu.zipcheck.R
+import com.devnunu.zipcheck.common.navigation.LocalNavController
+import com.devnunu.zipcheck.common.navigation.Routes
+import com.devnunu.zipcheck.common.theme.BoldN20
+import com.devnunu.zipcheck.common.theme.MediumN14
+import com.devnunu.zipcheck.common.theme.lightSlate11
 import com.devnunu.zipcheck.components.button.BasicButton
 import com.devnunu.zipcheck.components.button.BtnSize
 import com.devnunu.zipcheck.components.button.BtnStyle
 import com.devnunu.zipcheck.components.scaffold.ZipCheckScaffold
-import com.devnunu.zipcheck.R
-import com.devnunu.zipcheck.common.navigation.LocalNavController
-import com.devnunu.zipcheck.common.theme.*
 import com.devnunu.zipcheck.components.view.NoteFailView
+import com.devnunu.zipcheck.data.model.HouseWriteStatus
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import org.koin.androidx.compose.koinViewModel
+import org.orbitmvi.orbit.compose.collectAsState
 
 @Composable
-fun BasicInfoDoneScreen(
-    viewModel: BasicInfoDoneViewModel = koinViewModel(),
-    houseId: String? = null
+fun TempDoneScreen(
+    viewModel: TempDoneViewModel
 ) {
-    val navController = LocalNavController.current
+
+    val state by viewModel.collectAsState()
+    val house = state.house
 
     val scope: CoroutineScope = rememberCoroutineScope()
 
+    val navController = LocalNavController.current
+
     ZipCheckScaffold(
         bottomBar = {
-            Row(
+            BasicButton(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 20.dp, end = 20.dp, bottom = 12.dp)
-            ) {
-                BasicButton(
-                    modifier = Modifier.weight(1f),
-                    buttonStyle = BtnStyle.LIGHT_GREEN_RADIUS,
-                    buttonSize = BtnSize.LARGE,
-                    text = "이어서 작성하기",
-                    onClick = {}
-                )
-                Spacer(modifier = Modifier.width(10.dp))
-                BasicButton(
-                    modifier = Modifier.weight(1f),
-                    buttonStyle = BtnStyle.PRIMARY_RADIUS,
-                    buttonSize = BtnSize.LARGE,
-                    text = "홈으로 가기",
-                    onClick = {
-                        navController.popBackStack()
-                    }
-                )
-            }
+                    .padding(start = 20.dp, end = 20.dp, bottom = 12.dp),
+                buttonStyle = BtnStyle.PRIMARY_RADIUS,
+                buttonSize = BtnSize.LARGE,
+                text = "다음",
+                onClick = {
+                    navController.popBackStack(
+                        route = Routes.Home.route,
+                        inclusive = false
+                    )
+                }
+            )
         }
     ) { paddingValues ->
         Column(
@@ -75,20 +74,27 @@ fun BasicInfoDoneScreen(
                     painter = painterResource(id = R.drawable.ic_check_round),
                     contentDescription = null,
                 )
-                Spacer(modifier = Modifier.height(26.dp))
+                Spacer(modifier = Modifier.height(30.dp))
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     style = BoldN20,
-                    text = "집 보러 가기 전 체크리스트가\n저장되었어요!",
+                    text = "${house?.alias.orEmpty()}집의 정보가\n저장되었어요!",
                     textAlign = TextAlign.Center
+                )
+                Spacer(modifier = Modifier.height(10.dp))
+                Text(
+                    modifier = Modifier.fillMaxWidth(),
+                    style = MediumN14,
+                    text = "저장한 내용은 홈 화면에서 \n언제든 다시 볼 수 있어요.",
+                    textAlign = TextAlign.Center,
+                    color = lightSlate11
                 )
             }
             Spacer(modifier = Modifier.weight(1f))
-            NoteFailView(
-                onClickChangeToFailText = {
-                    houseId?.let {
+            if (house?.houseWriteStatus == HouseWriteStatus.FAIL)
+                NoteFailView(
+                    onClickChangeToFailText = {
                         viewModel.onClickChangeHouseStatusFail(
-                            houseId = it,
                             onSuccess = {
                                 scope.launch {
                                     navController.popBackStack()
@@ -96,8 +102,7 @@ fun BasicInfoDoneScreen(
                             }
                         )
                     }
-                }
-            )
+                )
             Spacer(modifier = Modifier.height(30.dp))
         }
     }

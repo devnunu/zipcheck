@@ -24,14 +24,3 @@ fun NavGraphBuilder.composableRightIn(
         content = content
     )
 }
-
-fun NavController.navigateWithPopUp(
-    toRoute: String,
-    fromRoute: String
-) {
-    this.navigate(toRoute) {
-        popUpTo(fromRoute) {
-            inclusive = true
-        }
-    }
-}
