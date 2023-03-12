@@ -28,6 +28,7 @@ fun TopBar(
     Box(
         modifier = modifier
             .fillMaxWidth()
+            .padding(vertical = 15.dp)
             .background(white)
     ) {
         if (isShowBackBtn) {

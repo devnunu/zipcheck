@@ -42,26 +42,26 @@ fun BasicInfoFirstStepView(
         Spacer(modifier = Modifier.height(30.dp))
         BasicInfoInputRoomSelector(
             label = "집 구조",
-            selectedRoomType = state.roomType,
-            onClickRoomType = viewModel::onClickRoomType
+            selectedHouseType = state.houseType,
+            onClickHouseType = viewModel::onClickHouseType
         )
         Spacer(modifier = Modifier.height(30.dp))
         BasicInput(
             label = "집 너비",
-            value = (state.roomArea.value).orEmpty(),
+            value = (state.houseArea.value).orEmpty(),
             isEssential = true,
             isCursorAlwaysToLastIndex = true,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             placeholder = "집 너비를 입력해 주세요",
-            unit = state.roomArea.type.typeName,
+            unit = state.houseArea.type.typeName,
             singleLine = true,
-            onValueChange = viewModel::onChangeRoomArea,
+            onValueChange = viewModel::onChangeHouseArea,
             labelRightContent = {
                 BasicButton(
                     buttonStyle = BtnStyle.GRAY_ROUND,
                     buttonSize = BtnSize.SMALL,
-                    text = state.roomArea.transformType.typeName,
-                    onClick = viewModel::onClickChangeRoomAreaType
+                    text = state.houseArea.transformType.typeName,
+                    onClick = viewModel::onClickChangeHouseAreaType
                 )
             },
         )

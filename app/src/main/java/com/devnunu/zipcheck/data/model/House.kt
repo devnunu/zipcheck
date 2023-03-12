@@ -1,15 +1,14 @@
 package com.devnunu.zipcheck.data.model
 
 import com.devnunu.zipcheck.R
-import com.devnunu.zipcheck.common.ext.toKrCurrencyFullText
 import java.util.*
 
 data class House(
     val id: String = UUID.randomUUID().toString(),
     val imgNum: Int = (1..4).random(),
     val alias: String? = null,
-    val roomType: RoomType = RoomType.TYPE_A,
-    val roomArea: RoomArea = RoomArea(type = RoomAreaType.PYONG),
+    val houseType: HouseType = HouseType.TYPE_A,
+    val houseArea: HouseArea = HouseArea(type = HouseAreaType.PYONG),
     val depositAmount: Long? = null,
     val monthlyAmount: Long? = null,
     val maintenanceCost: Long? = null,
@@ -18,6 +17,7 @@ data class House(
     var houseWriteStatus: HouseWriteStatus = HouseWriteStatus.IN_PROGRESS,
     val optionList: List<HouseOption> = HouseOption.getEssentialOptionList(),
     val benefitList: List<HouseBenefit> = HouseBenefit.getEssentialBenefitList(),
+    val roomTypeChecklists: List<RoomTypeChecklist> = RoomTypeChecklist.getEssentialRoomTypeChecklist(),
     val summary: Summary? = null,
 ) {
     val isNoMonthlyAmount: Boolean

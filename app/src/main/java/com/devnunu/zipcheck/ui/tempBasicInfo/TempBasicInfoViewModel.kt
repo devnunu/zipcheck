@@ -3,7 +3,7 @@ package com.devnunu.zipcheck.ui.tempBasicInfo
 import androidx.lifecycle.ViewModel
 import com.devnunu.zipcheck.components.bottomSheet.BottomSheetState
 import com.devnunu.zipcheck.data.model.House
-import com.devnunu.zipcheck.data.model.RoomType
+import com.devnunu.zipcheck.data.model.HouseType
 import com.devnunu.zipcheck.data.repository.HouseRepository
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.syntax.simple.intent
@@ -99,9 +99,9 @@ class TempBasicInfoViewModel(
         onCloseBottomSheet()
     }
 
-    fun onClickRoomType(roomType: RoomType) = intent {
+    fun onClickHouseType(houseType: HouseType) = intent {
         reduce {
-            val changedHouse = state.house?.copy(roomType = roomType)
+            val changedHouse = state.house?.copy(houseType = houseType)
             changedHouse?.let { house ->
                 houseRepository.updateHouse(house)
                 state.copy(

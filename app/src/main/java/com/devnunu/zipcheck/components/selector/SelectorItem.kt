@@ -16,7 +16,6 @@ import com.devnunu.zipcheck.common.theme.Regular14
 import com.devnunu.zipcheck.common.theme.lightMint8
 import com.devnunu.zipcheck.common.theme.lightSlate9
 import com.devnunu.zipcheck.common.theme.white
-import com.devnunu.zipcheck.data.model.RoomType
 
 @Composable
 fun SelectorItem(

@@ -23,7 +23,7 @@ import com.devnunu.zipcheck.components.topBar.TopBar
 import com.devnunu.zipcheck.ui.tempBasicInfo.components.item.TempBasicInfoItem
 import com.devnunu.zipcheck.ui.tempBasicInfo.components.item.TempBasicInfoLocationItem
 import com.devnunu.zipcheck.ui.tempBasicInfo.components.bottomSheet.TempBasicInfoBottomSheet
-import com.devnunu.zipcheck.ui.tempBasicInfo.components.bottomSheet.TempBasicInfoRoomTypeBottomSheet
+import com.devnunu.zipcheck.ui.tempBasicInfo.components.bottomSheet.TempBasicInfoHouseTypeBottomSheet
 import org.orbitmvi.orbit.compose.collectAsState
 
 @Composable
@@ -53,7 +53,7 @@ fun TempBasicInfoScreen(
                 text = "다음",
                 onClick = {
                     navController.navigate(
-                        Routes.TempOptionInfo.getArgumentsRoute(
+                        Routes.TempCheck.getArgumentsRoute(
                             house?.id
                         )
                     )
@@ -95,8 +95,8 @@ fun TempBasicInfoScreen(
                     )
                 }
                 TempBasicInfoBottomSheetTag.ROOM_TYPE -> {
-                    TempBasicInfoRoomTypeBottomSheet(
-                        onClickRoomType = viewModel::onClickRoomType
+                    TempBasicInfoHouseTypeBottomSheet(
+                        onClickHouseType = viewModel::onClickHouseType
                     )
                 }
                 TempBasicInfoBottomSheetTag.ROOM_AREA -> {
@@ -200,19 +200,19 @@ fun TempBasicInfoScreen(
                 )
                 TempBasicInfoItem(
                     key = "집구조",
-                    value = house?.roomType?.typeName,
+                    value = house?.houseType?.typeName,
                     onClick = {
                         viewModel.onClickOpenBottomSheet(TempBasicInfoBottomSheetTag.ROOM_TYPE)
                     }
                 )
-                val roomArea = if (house?.roomArea?.value != null) {
-                    "${house.roomArea.value} ${house.roomArea.type.typeName}"
+                val houseArea = if (house?.houseArea?.value != null) {
+                    "${house.houseArea.value} ${house.houseArea.type.typeName}"
                 } else {
                     null
                 }
                 TempBasicInfoItem(
                     key = "집너비",
-                    value = roomArea,
+                    value = houseArea,
                     onClick = {
                         viewModel.onClickOpenBottomSheet(TempBasicInfoBottomSheetTag.ROOM_AREA)
                     }

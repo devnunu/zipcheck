@@ -13,7 +13,6 @@ import androidx.compose.ui.unit.dp
 import com.devnunu.zipcheck.common.theme.lightSlate7
 import com.devnunu.zipcheck.components.selector.SelectorDivider
 import com.devnunu.zipcheck.components.selector.SelectorItem
-import com.devnunu.zipcheck.data.model.RoomType
 import com.devnunu.zipcheck.data.model.Summary
 
 @Composable

@@ -2,9 +2,9 @@ package com.devnunu.zipcheck.ui.basicInfoInput
 
 import androidx.lifecycle.ViewModel
 import com.devnunu.zipcheck.data.model.House
-import com.devnunu.zipcheck.data.model.RoomArea
-import com.devnunu.zipcheck.data.model.RoomAreaType
-import com.devnunu.zipcheck.data.model.RoomType
+import com.devnunu.zipcheck.data.model.HouseArea
+import com.devnunu.zipcheck.data.model.HouseAreaType
+import com.devnunu.zipcheck.data.model.HouseType
 import com.devnunu.zipcheck.data.repository.HouseRepository
 import com.devnunu.zipcheck.ui.basicInfoInput.BasicInfoInputViewModel.Companion.PAGE_FIRST
 import org.orbitmvi.orbit.ContainerHost
@@ -15,8 +15,8 @@ import org.orbitmvi.orbit.viewmodel.container
 data class BasicInfoInputState(
     val currentPage: Int = PAGE_FIRST,
     val alias: String? = null,
-    val roomType: RoomType = RoomType.TYPE_A,
-    val roomArea: RoomArea = RoomArea(type = RoomAreaType.PYONG),
+    val houseType: HouseType = HouseType.TYPE_A,
+    val houseArea: HouseArea = HouseArea(type = HouseAreaType.PYONG),
     val depositAmount: Long? = null,
     val monthlyAmount: Long? = null,
     val maintenanceCost: Long? = null,
@@ -48,25 +48,25 @@ class BasicInfoInputViewModel(
         reduce { state.copy(alias = alias) }
     }
 
-    fun onClickRoomType(roomType: RoomType) = intent {
-        reduce { state.copy(roomType = roomType) }
+    fun onClickHouseType(houseType: HouseType) = intent {
+        reduce { state.copy(houseType = houseType) }
     }
 
-    fun onChangeRoomArea(value: String) = intent {
+    fun onChangeHouseArea(value: String) = intent {
         reduce {
             state.copy(
-                roomArea = state.roomArea.copy(value = value)
+                houseArea = state.houseArea.copy(value = value)
             )
         }
     }
 
-    fun onClickChangeRoomAreaType() = intent {
-        val roomArea = state.roomArea
+    fun onClickChangeHouseAreaType() = intent {
+        val houseArea = state.houseArea
         reduce {
             state.copy(
-                roomArea = roomArea.copy(
-                    value = roomArea.transformValue.toString(),
-                    type = roomArea.transformType
+                houseArea = houseArea.copy(
+                    value = houseArea.transformValue.toString(),
+                    type = houseArea.transformType
                 )
             )
         }
@@ -129,8 +129,8 @@ class BasicInfoInputViewModel(
     private fun getHouse(state: BasicInfoInputState): House =
         House(
             alias = state.alias,
-            roomType = state.roomType,
-            roomArea = state.roomArea,
+            houseType = state.houseType,
+            houseArea = state.houseArea,
             depositAmount = state.depositAmount?.times(10000),
             monthlyAmount = state.monthlyAmount?.times(10000),
             maintenanceCost = state.maintenanceCost?.times(10000),

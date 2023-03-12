@@ -1,6 +1,6 @@
 package com.devnunu.zipcheck.data.model
 
-enum class RoomType(val typeName: String) {
+enum class HouseType(val typeName: String) {
     TYPE_A("원룸"),
     TYPE_B("1.5룸"),
     TYPE_C("2룸"),

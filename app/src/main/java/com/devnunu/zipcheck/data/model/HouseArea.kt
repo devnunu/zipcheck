@@ -2,26 +2,26 @@ package com.devnunu.zipcheck.data.model
 
 import com.devnunu.zipcheck.common.ext.roundDecimal
 
-enum class RoomAreaType(val typeName: String) {
+enum class HouseAreaType(val typeName: String) {
     PYONG("평"),
     METER("제곱미터")
 }
 
-data class RoomArea(
+data class HouseArea(
     val value: String? = null,
-    val type: RoomAreaType
+    val type: HouseAreaType
 ) {
     val transformValue: Float
-        get() = if (type == RoomAreaType.PYONG) {
+        get() = if (type == HouseAreaType.PYONG) {
             value?.toFloat()?.times(3.306f)?.roundDecimal(1)?: 0f
         } else {
             value?.toFloat()?.div(3.306f)?.roundDecimal(1)?: 0f
         }
 
-    val transformType: RoomAreaType
-        get() = if (type == RoomAreaType.PYONG) {
-            RoomAreaType.METER
+    val transformType: HouseAreaType
+        get() = if (type == HouseAreaType.PYONG) {
+            HouseAreaType.METER
         } else {
-            RoomAreaType.PYONG
+            HouseAreaType.PYONG
         }
 }
