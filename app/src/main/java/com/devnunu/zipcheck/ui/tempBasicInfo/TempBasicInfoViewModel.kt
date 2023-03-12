@@ -36,6 +36,17 @@ class TempBasicInfoViewModel(
 
     override val container = container<TempBasicInfoState, Nothing>(TempBasicInfoState())
 
+    init {
+        intent {
+            houseRepository.getHouseListFlow().collect { houseList ->
+                val house = houseList.firstOrNull { it.id == houseId }
+                reduce {
+                    state.copy(house = house)
+                }
+            }
+        }
+    }
+
     /**
      * Bottom Sheet
      * */
@@ -87,17 +98,6 @@ class TempBasicInfoViewModel(
                 house = state.house?.copy(roomType = roomType),
                 bottomSheetState = state.bottomSheetState.close()
             )
-        }
-    }
-
-    init {
-        intent {
-            houseRepository.getHouseListFlow().collect { houseList ->
-                val house = houseList.firstOrNull { it.id == houseId }
-                reduce {
-                    state.copy(house = house)
-                }
-            }
         }
     }
 }

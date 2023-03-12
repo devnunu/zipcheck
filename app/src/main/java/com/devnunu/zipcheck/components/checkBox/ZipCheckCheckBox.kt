@@ -25,6 +25,7 @@ import com.devnunu.zipcheck.common.theme.white
 
 @Composable
 fun ZipCheckCheckBox(
+    modifier: Modifier = Modifier,
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
 ) {
@@ -42,7 +43,7 @@ fun ZipCheckCheckBox(
     )
 
     Box(
-        modifier = Modifier
+        modifier = modifier
             .size(24.dp)
             .clickableNonIndication { onCheckedChange(!checked) }
             .border(1.dp, borderColor, RoundedCornerShape(6.dp))

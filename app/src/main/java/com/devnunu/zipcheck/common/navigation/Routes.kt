@@ -20,11 +20,22 @@ sealed class Routes(val route: String) {
     object TempBasicInfo : Routes("temp/basicInfo") {
         const val ARGUMENTS_HOUSE_ID = "houseId"
         val arguments: List<NamedNavArgument> =
-            listOf(navArgument(BasicInfoDone.ARGUMENTS_HOUSE_ID) { defaultValue = "" })
+            listOf(navArgument(ARGUMENTS_HOUSE_ID) { defaultValue = "" })
 
         fun getArgumentsRoute(houseId: String? = null): String {
             val houseId = houseId ?: "{${BasicInfoDone.ARGUMENTS_HOUSE_ID}}"
             return "${TempBasicInfo.route}?houseId=$houseId"
+        }
+    }
+
+    object TempOptionInfo : Routes("temp/option") {
+        const val ARGUMENTS_HOUSE_ID = "houseId"
+        val arguments: List<NamedNavArgument> =
+            listOf(navArgument(ARGUMENTS_HOUSE_ID) { defaultValue = "" })
+
+        fun getArgumentsRoute(houseId: String? = null): String {
+            val houseId = houseId ?: "{${BasicInfoDone.ARGUMENTS_HOUSE_ID}}"
+            return "${TempOptionInfo.route}?houseId=$houseId"
         }
     }
 }
