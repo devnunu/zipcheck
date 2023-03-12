@@ -9,6 +9,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.devnunu.zipcheck.common.ext.clickableNonIndication
@@ -22,6 +23,8 @@ import com.devnunu.zipcheck.components.scaffold.ZipCheckScaffold
 import com.devnunu.zipcheck.components.topBar.TopBar
 import com.devnunu.zipcheck.ui.tempSummary.components.HouseSummarySelector
 import com.devnunu.zipcheck.ui.tempSummary.components.HouseSummaryTag
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.compose.collectAsState
 
 @Composable
@@ -36,6 +39,7 @@ fun TempSummaryScreen(
     val houseBenefitList = state.houseBenefitList
 
     val navController = LocalNavController.current
+    val scope: CoroutineScope = rememberCoroutineScope()
 
     ZipCheckScaffold(
         topBar = {
@@ -53,10 +57,16 @@ fun TempSummaryScreen(
                 buttonSize = BtnSize.LARGE,
                 text = "저장하기",
                 onClick = {
-                    navController.navigate(
-                        Routes.TempDone.getArgumentsRoute(
-                            house?.id
-                        )
+                    viewModel.onClickSave(
+                        onSuccess = {
+                            scope.launch {
+                                navController.navigate(
+                                    Routes.TempDone.getArgumentsRoute(
+                                        house?.id
+                                    )
+                                )
+                            }
+                        }
                     )
                 }
             )

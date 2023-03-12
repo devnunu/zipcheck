@@ -35,12 +35,9 @@ class HouseRepository {
         _houseListFlow.value = houseList
     }
 
-    fun updateHouseStatus(id: String, houseWriteStatus: HouseWriteStatus) {
-        val houseList = _houseListFlow.value.toMutableList()
-        houseList.forEach { house ->
-            if (house.id == id) {
-                house.houseWriteStatus = houseWriteStatus
-            }
+    fun updateHouse(newHouse: House) {
+        val houseList = _houseListFlow.value.toMutableList().map { house ->
+            if (house.id == newHouse.id) newHouse else house
         }
         _houseListFlow.value = houseList
     }

@@ -75,6 +75,16 @@ class TempOptionViewModel(
         }
     }
 
+    fun onClickNextBtn(
+        onSuccess: () -> Unit
+    ) = intent {
+        val house = state.house?.copy(optionList = state.houseOptionList)
+        house?.let { house ->
+            houseRepository.updateHouse(house)
+            onSuccess()
+        }
+    }
+
     /**
      * Bottom Sheet
      * */

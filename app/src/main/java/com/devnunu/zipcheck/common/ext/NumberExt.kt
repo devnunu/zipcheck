@@ -10,7 +10,7 @@ fun Float?.roundDecimal(decimal: Int): Float {
 }
 
 fun Long?.toKrCurrencyFullText(addUnit: Boolean = false): String {
-    if (this == null) return if (addUnit) "0원" else "0"
+    if (this == null || this == 0L) return if (addUnit) "0원" else "0"
     var remainValue = this
     var result = ""
     if (remainValue >= 100000000) {

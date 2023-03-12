@@ -104,7 +104,7 @@ fun TempBasicInfoScreen(
                 }
                 TempBasicInfoBottomSheetTag.DEPOSIT_AMOUNT -> {
                     TempBasicInfoBottomSheet(
-                        initialValue = house?.depositAmount?.toString().orEmpty(),
+                        initialValue = house?.depositAmount?.div(10000)?.toString().orEmpty(),
                         label = "보증금",
                         placeHolder = "보증금을 입력해주세요",
                         tag = TempBasicInfoBottomSheetTag.DEPOSIT_AMOUNT,
@@ -115,7 +115,7 @@ fun TempBasicInfoScreen(
                 }
                 TempBasicInfoBottomSheetTag.MONTHLY_AMOUNT -> {
                     TempBasicInfoBottomSheet(
-                        initialValue = house?.monthlyAmount?.toString().orEmpty(),
+                        initialValue = house?.monthlyAmount?.div(10000)?.toString().orEmpty(),
                         initialCheckValue = house?.isNoMonthlyAmount,
                         label = "월세",
                         placeHolder = "월세를 입력해주세요",
@@ -128,7 +128,7 @@ fun TempBasicInfoScreen(
                 }
                 TempBasicInfoBottomSheetTag.MAINTENANCE_COST -> {
                     TempBasicInfoBottomSheet(
-                        initialValue = house?.maintenanceCost?.toString().orEmpty(),
+                        initialValue = house?.maintenanceCost?.div(10000)?.toString().orEmpty(),
                         initialCheckValue = house?.isNoMaintenanceCost,
                         label = "관리비",
                         placeHolder = "관리비를 입력해주세요",

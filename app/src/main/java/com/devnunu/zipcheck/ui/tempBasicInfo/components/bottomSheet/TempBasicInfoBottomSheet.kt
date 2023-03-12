@@ -54,7 +54,9 @@ fun TempBasicInfoBottomSheet(
             ),
             unit = unit,
             focusRequester = focusRequester,
+            isCursorAlwaysToLastIndex = true,
             onValueChange = { str ->
+                checkValue = false
                 value = str
             },
             onFocusChanged = { focus ->
@@ -84,7 +86,7 @@ fun TempBasicInfoBottomSheet(
             text = "확인",
             onClick = {
                 keyboardController?.hide()
-                onClickSave(tag, value, null)
+                onClickSave(tag, value, checkValue)
             }
         )
         Spacer(modifier = Modifier.height(12.dp))

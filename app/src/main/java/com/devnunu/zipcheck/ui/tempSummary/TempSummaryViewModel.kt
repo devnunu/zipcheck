@@ -1,10 +1,7 @@
 package com.devnunu.zipcheck.ui.tempSummary
 
 import androidx.lifecycle.ViewModel
-import com.devnunu.zipcheck.data.model.House
-import com.devnunu.zipcheck.data.model.HouseBenefit
-import com.devnunu.zipcheck.data.model.HouseOption
-import com.devnunu.zipcheck.data.model.Summary
+import com.devnunu.zipcheck.data.model.*
 import com.devnunu.zipcheck.data.repository.HouseRepository
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.syntax.simple.intent
@@ -44,7 +41,7 @@ class TempSummaryViewModel(
         }
     }
 
-    fun onClickHouseBenefit(clickedHouseBenefit: HouseBenefit)  = intent {
+    fun onClickHouseBenefit(clickedHouseBenefit: HouseBenefit) = intent {
         val houseBenefitList = state.houseBenefitList.toMutableList().map { houseBenefit ->
             if (houseBenefit == clickedHouseBenefit) {
                 houseBenefit.copy(isSelected = !houseBenefit.isSelected)
@@ -54,6 +51,22 @@ class TempSummaryViewModel(
         }
         reduce {
             state.copy(houseBenefitList = houseBenefitList)
+        }
+    }
+
+    fun onClickSave(
+        onSuccess: () -> Unit
+    ) = intent {
+        var house = state.house?.copy(
+            summary = state.selectedSummary,
+            benefitList = state.houseBenefitList
+        )
+        if (state.selectedSummary == Summary.BAD) {
+            house = house?.copy(houseWriteStatus = HouseWriteStatus.FAIL)
+        }
+        house?.let { house ->
+            houseRepository.updateHouse(house)
+            onSuccess()
         }
     }
 }

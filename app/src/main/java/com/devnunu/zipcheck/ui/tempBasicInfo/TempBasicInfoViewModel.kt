@@ -65,39 +65,50 @@ class TempBasicInfoViewModel(
     ) = intent {
         reduce {
             val house = state.house
+            var changedHouse: House? = null
+            if (value.isNullOrBlank() && isChecked == null) return@reduce state
             when (tag) {
                 TempBasicInfoBottomSheetTag.ALIAS -> {
-                    state.copy(house = house?.copy(alias = value))
+                    changedHouse = house?.copy(alias = value)
                 }
                 TempBasicInfoBottomSheetTag.MEMO -> {
-                    state.copy(house = house?.copy(memo = value))
+                    changedHouse = house?.copy(memo = value)
                 }
                 TempBasicInfoBottomSheetTag.ROOM_INFO_URL -> {
-                    state.copy(house = house?.copy(roomInfoUrl = value))
+                    changedHouse = house?.copy(roomInfoUrl = value)
                 }
                 TempBasicInfoBottomSheetTag.DEPOSIT_AMOUNT -> {
-                    state.copy(house = house?.copy(depositAmount = value?.toLongOrNull()))
+                    changedHouse = house?.copy(depositAmount = value?.toLongOrNull()?.times(10000))
                 }
                 TempBasicInfoBottomSheetTag.MONTHLY_AMOUNT -> {
-                    val value = if (isChecked == true) value?.toLongOrNull() else null
-                    state.copy(house = house?.copy(monthlyAmount = value))
+                    val value = if (isChecked == true) 0L else value?.toLongOrNull()?.times(10000)
+                    changedHouse = house?.copy(monthlyAmount = value)
                 }
                 TempBasicInfoBottomSheetTag.MAINTENANCE_COST -> {
-                    val value = if (isChecked == true) value?.toLongOrNull() else null
-                    state.copy(house = house?.copy(maintenanceCost = value))
+                    val value = if (isChecked == true) 0L else value?.toLongOrNull()?.times(10000)
+                    changedHouse = house?.copy(maintenanceCost = value)
                 }
                 else -> state
             }
+
+            changedHouse?.let { house ->
+                houseRepository.updateHouse(house)
+                state.copy(house = house)
+            } ?: state
         }
         onCloseBottomSheet()
     }
 
-    fun onClickRoomType(roomType:RoomType) = intent {
+    fun onClickRoomType(roomType: RoomType) = intent {
         reduce {
-            state.copy(
-                house = state.house?.copy(roomType = roomType),
-                bottomSheetState = state.bottomSheetState.close()
-            )
+            val changedHouse = state.house?.copy(roomType = roomType)
+            changedHouse?.let { house ->
+                houseRepository.updateHouse(house)
+                state.copy(
+                    house = changedHouse,
+                    bottomSheetState = state.bottomSheetState.close()
+                )
+            } ?: state
         }
     }
 }

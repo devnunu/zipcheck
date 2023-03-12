@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.devnunu.zipcheck.common.navigation.LocalNavController
@@ -21,6 +22,8 @@ import com.devnunu.zipcheck.components.topBar.TopBar
 import com.devnunu.zipcheck.ui.tempOption.components.TempOptionCustomItem
 import com.devnunu.zipcheck.ui.tempOption.components.item.TempOptionItem
 import com.devnunu.zipcheck.ui.tempOption.components.bottomSheet.TempOptionCustomBottomSheet
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.compose.collectAsState
 
 @Composable
@@ -35,6 +38,7 @@ fun TempOptionScreen(
     val houseOptionList = state.houseOptionList
 
     val navController = LocalNavController.current
+    val scope: CoroutineScope = rememberCoroutineScope()
 
     ZipCheckScaffold(
         topBar = {
@@ -52,10 +56,16 @@ fun TempOptionScreen(
                 buttonSize = BtnSize.LARGE,
                 text = "다음",
                 onClick = {
-                    navController.navigate(
-                        Routes.TempSummary.getArgumentsRoute(
-                            house?.id
-                        )
+                    viewModel.onClickNextBtn(
+                        onSuccess = {
+                            scope.launch {
+                                navController.navigate(
+                                    Routes.TempSummary.getArgumentsRoute(
+                                        house?.id
+                                    )
+                                )
+                            }
+                        }
                     )
                 }
             )
