@@ -16,6 +16,7 @@ import com.devnunu.zipcheck.components.button.BtnSize
 import com.devnunu.zipcheck.components.button.BtnStyle
 import com.devnunu.zipcheck.components.scaffold.ZipCheckScaffold
 import com.devnunu.zipcheck.components.topBar.TopBar
+import com.devnunu.zipcheck.ui.tempOption.components.TempOptionCustomItem
 import com.devnunu.zipcheck.ui.tempOption.components.TempOptionItem
 import org.orbitmvi.orbit.compose.collectAsState
 
@@ -48,11 +49,15 @@ fun TempOptionScreen(
                 onClick = {}
             )
         }
-    ) {
+    ) { paddingValues ->
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 20.dp)
+                .padding(
+                    start = 20.dp,
+                    end = 20.dp,
+                    bottom = paddingValues.calculateBottomPadding()
+                )
         ) {
             Spacer(modifier = Modifier.height(30.dp))
             Text(
@@ -62,6 +67,7 @@ fun TempOptionScreen(
             Spacer(modifier = Modifier.height(34.dp))
             LazyVerticalGrid(
                 columns = GridCells.Fixed(3),
+                contentPadding = PaddingValues(bottom = 20.dp),
                 verticalArrangement = Arrangement.spacedBy(10.dp),
                 horizontalArrangement = Arrangement.spacedBy(10.dp)
             ) {
@@ -71,6 +77,11 @@ fun TempOptionScreen(
                         onClickItem = {
                             viewModel.onClickItem(houseOption)
                         },
+                    )
+                }
+                item {
+                    TempOptionCustomItem(
+                        onClick = {}
                     )
                 }
             }
