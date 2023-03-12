@@ -44,9 +44,6 @@ fun BasicInfoInputBottomSheet(
             .fillMaxWidth()
             .height(IntrinsicSize.Min)
             .padding(horizontal = 20.dp)
-            .onSizeChanged {
-                focusRequester.requestFocus()
-            }
     ) {
         Spacer(modifier = Modifier.height(50.dp))
         BasicInput(

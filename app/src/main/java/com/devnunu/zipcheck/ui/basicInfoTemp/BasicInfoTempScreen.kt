@@ -22,6 +22,7 @@ import com.devnunu.zipcheck.components.topBar.TopBar
 import com.devnunu.zipcheck.ui.basicInfoTemp.components.item.BasicInfoTempItem
 import com.devnunu.zipcheck.ui.basicInfoTemp.components.item.BasicInfoTempLocationItem
 import com.devnunu.zipcheck.ui.basicInfoTemp.components.bottomSheet.BasicInfoInputBottomSheet
+import com.devnunu.zipcheck.ui.basicInfoTemp.components.bottomSheet.BasicInfoTempRoomTypeBottomSheet
 import org.orbitmvi.orbit.compose.collectAsState
 
 @Composable
@@ -86,8 +87,14 @@ fun BasicInfoTempScreen(
                         onClickSave = viewModel::onClickInputBottomSheetSaveBtn
                     )
                 }
-                BasicInfoTempBottomSheetTag.ROOM_TYPE -> Unit
-                BasicInfoTempBottomSheetTag.ROOM_AREA -> Unit
+                BasicInfoTempBottomSheetTag.ROOM_TYPE -> {
+                    BasicInfoTempRoomTypeBottomSheet(
+                        onClickRoomType = viewModel::onClickRoomType
+                    )
+                }
+                BasicInfoTempBottomSheetTag.ROOM_AREA -> {
+
+                }
                 BasicInfoTempBottomSheetTag.DEPOSIT_AMOUNT -> {
                     BasicInfoInputBottomSheet(
                         initialValue = house?.depositAmount?.toString().orEmpty(),
