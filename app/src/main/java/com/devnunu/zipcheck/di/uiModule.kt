@@ -18,7 +18,10 @@ val uiModule = module {
         BasicInfoInputViewModel(get())
     }
     viewModel {
-        BasicInfoDoneViewModel(get())
+        BasicInfoDoneViewModel(
+            houseId = get(),
+            houseRepository = get()
+        )
     }
     viewModel {
         TempBasicInfoViewModel(

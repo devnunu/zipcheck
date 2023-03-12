@@ -56,7 +56,9 @@ class MainActivity : ComponentActivity() {
                                 Routes.BasicInfoDone.ARGUMENTS_HOUSE_ID
                             )
                             BasicInfoDoneScreen(
-                                houseId = houseId
+                                viewModel = koinViewModel(
+                                    parameters = { parametersOf(houseId) }
+                                )
                             )
                         }
                         composableRightIn(

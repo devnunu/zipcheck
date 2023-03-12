@@ -25,7 +25,6 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun BasicInfoDoneScreen(
     viewModel: BasicInfoDoneViewModel = koinViewModel(),
-    houseId: String? = null
 ) {
     val navController = LocalNavController.current
 
@@ -86,16 +85,13 @@ fun BasicInfoDoneScreen(
             Spacer(modifier = Modifier.weight(1f))
             NoteFailView(
                 onClickChangeToFailText = {
-                    houseId?.let {
-                        viewModel.onClickChangeHouseStatusFail(
-                            houseId = it,
-                            onSuccess = {
-                                scope.launch {
-                                    navController.popBackStack()
-                                }
+                    viewModel.onClickChangeHouseStatusFail(
+                        onSuccess = {
+                            scope.launch {
+                                navController.popBackStack()
                             }
-                        )
-                    }
+                        }
+                    )
                 }
             )
             Spacer(modifier = Modifier.height(30.dp))
