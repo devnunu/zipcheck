@@ -6,8 +6,8 @@ import com.devnunu.zipcheck.R
 data class HouseOption(
     var optionName: String,
     @DrawableRes val iconRedId: Int,
-    var selected: Boolean = false,
     val isCustom: Boolean = false,
+    var selected: Boolean = false,
 ) {
 
     companion object {
@@ -20,5 +20,12 @@ data class HouseOption(
             HouseOption("비데", R.drawable.ic_option6),
             HouseOption("샤워부스", R.drawable.ic_option7),
         )
+
+        fun makeCustomHouseOption(optionName: String):HouseOption =
+            HouseOption(
+                optionName = optionName,
+                iconRedId = R.drawable.ic_option_custom,
+                isCustom = true
+            )
     }
 }

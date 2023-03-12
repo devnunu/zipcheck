@@ -1,6 +1,7 @@
 package com.devnunu.zipcheck.ui.tempOption
 
 import androidx.lifecycle.ViewModel
+import com.devnunu.zipcheck.components.bottomSheet.BottomSheetState
 import com.devnunu.zipcheck.data.model.House
 import com.devnunu.zipcheck.data.model.HouseOption
 import com.devnunu.zipcheck.data.repository.HouseRepository
@@ -9,9 +10,15 @@ import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.reduce
 import org.orbitmvi.orbit.viewmodel.container
 
+enum class TempOptionBottomSheetTag {
+    OPTION
+}
+
 data class TempOptionState(
     val house: House? = null,
-    val houseOptionList: List<HouseOption> = emptyList()
+    val houseOptionList: List<HouseOption> = emptyList(),
+    val bottomSheetState: BottomSheetState<TempOptionBottomSheetTag> =
+        BottomSheetState.Closed(null)
 )
 
 class TempOptionViewModel(
@@ -45,4 +52,25 @@ class TempOptionViewModel(
         }
     }
 
+    fun onClickCustomOptionConfirmBtn(optionName: String) = intent {
+        val houseOptionList = state.houseOptionList.toMutableList()
+        houseOptionList.add(HouseOption.makeCustomHouseOption(optionName))
+        reduce {
+            state.copy(
+                houseOptionList = houseOptionList,
+                bottomSheetState = state.bottomSheetState.close()
+            )
+        }
+    }
+
+    /**
+     * Bottom Sheet
+     * */
+    fun onCloseBottomSheet() = intent {
+        reduce { state.copy(bottomSheetState = state.bottomSheetState.close()) }
+    }
+
+    fun onClickOpenBottomSheet(tag: TempOptionBottomSheetTag) = intent {
+        reduce { state.copy(bottomSheetState = state.bottomSheetState.open(tag)) }
+    }
 }

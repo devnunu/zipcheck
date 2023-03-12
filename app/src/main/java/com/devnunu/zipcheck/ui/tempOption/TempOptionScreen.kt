@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.devnunu.zipcheck.common.navigation.LocalNavController
 import com.devnunu.zipcheck.common.theme.Bold20
+import com.devnunu.zipcheck.components.bottomSheet.rememberScaffoldBottomSheetView
 import com.devnunu.zipcheck.components.button.BasicButton
 import com.devnunu.zipcheck.components.button.BtnSize
 import com.devnunu.zipcheck.components.button.BtnStyle
@@ -18,6 +19,7 @@ import com.devnunu.zipcheck.components.scaffold.ZipCheckScaffold
 import com.devnunu.zipcheck.components.topBar.TopBar
 import com.devnunu.zipcheck.ui.tempOption.components.TempOptionCustomItem
 import com.devnunu.zipcheck.ui.tempOption.components.TempOptionItem
+import com.devnunu.zipcheck.ui.tempOption.components.bottomSheet.TempOptionCustomBottomSheet
 import org.orbitmvi.orbit.compose.collectAsState
 
 @Composable
@@ -26,6 +28,7 @@ fun TempOptionScreen(
 ) {
 
     val state by viewModel.collectAsState()
+    val viewModelSheetState = state.bottomSheetState
 
     val houseOptionList = state.houseOptionList
 
@@ -48,6 +51,19 @@ fun TempOptionScreen(
                 text = "다음",
                 onClick = {}
             )
+        },
+        bottomSheetView = rememberScaffoldBottomSheetView(
+            viewModelSheetState = viewModelSheetState,
+            onCloseBottomSheet = viewModel::onCloseBottomSheet
+        ) {
+            when (viewModelSheetState.tag) {
+                TempOptionBottomSheetTag.OPTION -> {
+                    TempOptionCustomBottomSheet(
+                        onClickConfirm = viewModel::onClickCustomOptionConfirmBtn
+                    )
+                }
+                else -> Unit
+            }
         }
     ) { paddingValues ->
         Column(
@@ -81,7 +97,9 @@ fun TempOptionScreen(
                 }
                 item {
                     TempOptionCustomItem(
-                        onClick = {}
+                        onClick = {
+                            viewModel.onClickOpenBottomSheet(TempOptionBottomSheetTag.OPTION)
+                        }
                     )
                 }
             }
