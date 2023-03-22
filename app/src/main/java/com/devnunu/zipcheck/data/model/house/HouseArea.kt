@@ -9,13 +9,13 @@ enum class HouseAreaType(val typeName: String) {
 
 data class HouseArea(
     val value: String? = null,
-    val type: HouseAreaType
+    val type: HouseAreaType? = null
 ) {
     val transformValue: Float
         get() = if (type == HouseAreaType.PYONG) {
-            value?.toFloat()?.times(3.306f)?.roundDecimal(1)?: 0f
+            value?.toFloat()?.times(3.306f)?.roundDecimal(1) ?: 0f
         } else {
-            value?.toFloat()?.div(3.306f)?.roundDecimal(1)?: 0f
+            value?.toFloat()?.div(3.306f)?.roundDecimal(1) ?: 0f
         }
 
     val transformType: HouseAreaType

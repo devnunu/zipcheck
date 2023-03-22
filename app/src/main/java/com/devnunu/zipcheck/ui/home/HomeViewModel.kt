@@ -40,11 +40,9 @@ class HomeViewModel(
     private fun start() = viewModelScope.launch {
         val user = userRepository.getUser()
         if (user == null) {
-            val result = userRepository.saveUser(User())
-            if (result is ResResult.Success) {
-                houseRepository.getAllHouseList()
-            }
+            userRepository.saveUser(User())
         }
+        houseRepository.getAllHouseList()
     }
 
     private fun collectDataFlow() = intent {

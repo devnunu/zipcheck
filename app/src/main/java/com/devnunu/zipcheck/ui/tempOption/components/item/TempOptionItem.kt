@@ -61,7 +61,7 @@ fun TempOptionItem(
             Spacer(modifier = Modifier.height(32.dp))
             val iconTint = if (isSelected) lightSlate11 else lightSlate8
             Icon(
-                painter = painterResource(id = houseOption.iconRedId),
+                painter = painterResource(id = houseOption.iconResId),
                 contentDescription = null,
                 tint = iconTint
             )
@@ -73,7 +73,7 @@ fun TempOptionItem(
                 val textColor = if (isSelected) lightSlate12 else lightSlate10
                 Text(
                     style = Medium12,
-                    text = houseOption.optionName,
+                    text = houseOption.optionName.orEmpty(),
                     color = textColor,
                     textAlign = TextAlign.Center
                 )

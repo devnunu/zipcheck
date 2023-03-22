@@ -53,7 +53,7 @@ fun BasicInfoFirstStepView(
             isCursorAlwaysToLastIndex = true,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             placeholder = "집 너비를 입력해 주세요",
-            unit = state.houseArea.type.typeName,
+            unit = state.houseArea.type?.typeName,
             singleLine = true,
             onValueChange = viewModel::onChangeHouseArea,
             labelRightContent = {

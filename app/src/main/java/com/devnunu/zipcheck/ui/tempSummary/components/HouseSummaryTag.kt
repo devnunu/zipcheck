@@ -59,7 +59,7 @@ fun HouseSummaryTag(
             .background(bgColor, RoundedCornerShape(8.dp))
             .padding(horizontal = 12.dp, vertical = 6.dp),
         style = Medium14,
-        text = houseBenefit.text,
+        text = houseBenefit.text.orEmpty(),
         color = textColor
     )
 }

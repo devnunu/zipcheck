@@ -1,10 +1,12 @@
 package com.devnunu.zipcheck.data.model.house
 
 import com.devnunu.zipcheck.R
+import com.google.firebase.firestore.DocumentId
 import java.util.*
 
 data class House(
-    val id: String = UUID.randomUUID().toString(),
+    @DocumentId
+    val id: String? = null,
     val imgNum: Int = (1..4).random(),
     val alias: String? = null,
     val houseType: HouseType = HouseType.TYPE_A,

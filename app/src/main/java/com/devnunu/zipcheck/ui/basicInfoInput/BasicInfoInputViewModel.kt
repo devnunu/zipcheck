@@ -119,7 +119,7 @@ class BasicInfoInputViewModel(
     }
 
     fun addHouse(
-        onSuccess: (String) -> Unit
+        onSuccess: (String?) -> Unit
     ) = intent {
         val house = getHouse(state)
         houseRepository.addHouse(house)

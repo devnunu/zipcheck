@@ -15,6 +15,11 @@ class HouseApi(
             .await()
             .map { it.toObject() }
 
+    suspend fun addHouse(house: House): House =
+        fireStore.collection(COLLECTION_HOUSES)
+            .add(house)
+            .await()
+
     companion object {
         const val COLLECTION_HOUSES = "houses"
     }

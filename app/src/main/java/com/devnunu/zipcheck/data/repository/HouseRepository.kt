@@ -33,6 +33,7 @@ class HouseRepository(
 
 
     fun addHouse(house: House) {
+
         val houseList = _houseListFlow.value.toMutableList()
         houseList.add(house)
         _houseListFlow.value = houseList

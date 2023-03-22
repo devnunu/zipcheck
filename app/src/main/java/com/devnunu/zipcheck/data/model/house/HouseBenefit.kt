@@ -1,7 +1,7 @@
 package com.devnunu.zipcheck.data.model.house
 
 data class HouseBenefit(
-    val text: String,
+    val text: String? = null,
     val isSelected: Boolean = false
 ) {
     companion object {

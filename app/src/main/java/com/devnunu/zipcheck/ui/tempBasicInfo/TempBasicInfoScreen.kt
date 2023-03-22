@@ -206,7 +206,7 @@ fun TempBasicInfoScreen(
                     }
                 )
                 val houseArea = if (house?.houseArea?.value != null) {
-                    "${house.houseArea.value} ${house.houseArea.type.typeName}"
+                    "${house.houseArea.value} ${house.houseArea.type?.typeName}"
                 } else {
                     null
                 }

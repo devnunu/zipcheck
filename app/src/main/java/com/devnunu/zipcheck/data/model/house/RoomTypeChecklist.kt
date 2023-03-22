@@ -1,7 +1,7 @@
 package com.devnunu.zipcheck.data.model.house
 
 data class RoomTypeChecklist(
-    val name: String,
+    val name: String = "",
     val checklist: List<ChecklistItem> = emptyList()
 ) {
     companion object {
