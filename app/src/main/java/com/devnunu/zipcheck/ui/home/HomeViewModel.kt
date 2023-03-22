@@ -2,6 +2,7 @@ package com.devnunu.zipcheck.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.devnunu.zipcheck.data.model.common.ResResult
 import com.devnunu.zipcheck.data.model.house.House
 import com.devnunu.zipcheck.data.model.house.HouseWriteStatus
 import com.devnunu.zipcheck.data.model.user.User
@@ -39,10 +40,11 @@ class HomeViewModel(
     private fun start() = viewModelScope.launch {
         val user = userRepository.getUser()
         if (user == null) {
-            userRepository.saveUser(User())
+            val result = userRepository.saveUser(User())
+            if (result is ResResult.Success) {
+                houseRepository.getAllHouseList()
+            }
         }
-
-        houseRepository.getAllHouseList()
     }
 
     private fun collectDataFlow() = intent {

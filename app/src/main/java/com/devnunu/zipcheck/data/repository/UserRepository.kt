@@ -1,12 +1,13 @@
 package com.devnunu.zipcheck.data.repository
 
+import com.devnunu.zipcheck.api.UserApi
 import com.devnunu.zipcheck.common.preference.user.UserPreference
+import com.devnunu.zipcheck.data.model.common.ResResult
+import com.devnunu.zipcheck.data.model.common.wrapAsResResult
 import com.devnunu.zipcheck.data.model.user.User
-import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.coroutines.tasks.await
 
 class UserRepository(
-    private val fireStore: FirebaseFirestore,
+    private val userApi: UserApi,
     private val userPreference: UserPreference
 ) {
 
@@ -14,13 +15,9 @@ class UserRepository(
         User(userId)
     }
 
-    suspend fun saveUser(user: User): User =
-        fireStore.collection(COLLECTION_USER)
-            .add(user)
-            .await()
-            .let { User(it.id) }
-
-    companion object {
-        const val COLLECTION_USER = "users"
+    suspend fun saveUser(user: User): ResResult<User> = wrapAsResResult {
+        val user = userApi.saveUser(user)
+        userPreference.userId = user.id
+        user
     }
 }

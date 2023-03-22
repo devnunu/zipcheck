@@ -1,5 +1,8 @@
 package com.devnunu.zipcheck.data.repository
 
+import com.devnunu.zipcheck.api.HouseApi
+import com.devnunu.zipcheck.data.model.common.ResResult
+import com.devnunu.zipcheck.data.model.common.wrapAsResResult
 import com.devnunu.zipcheck.data.model.house.House
 import com.devnunu.zipcheck.data.model.house.HouseWriteStatus
 import com.google.firebase.firestore.FirebaseFirestore
@@ -9,7 +12,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.tasks.await
 
 class HouseRepository(
-    private val fireStore: FirebaseFirestore
+    private val houseApi: HouseApi
 ) {
 
     private val _houseListFlow = MutableStateFlow<List<House>>(mutableListOf())
@@ -22,13 +25,10 @@ class HouseRepository(
     /**
      * CRUD
      * */
-    suspend fun getAllHouseList(): List<House> {
-        val houseList: List<House> = fireStore.collection(COLLECTION_HOUSES)
-            .get()
-            .await()
-            .map { it.toObject() }
+    suspend fun getAllHouseList(): ResResult<List<House>> = wrapAsResResult {
+        val houseList = houseApi.getAllHouseList()
         _houseListFlow.value = houseList
-        return houseList
+        houseList
     }
 
 
@@ -43,9 +43,5 @@ class HouseRepository(
             if (house.id == newHouse.id) newHouse else house
         }
         _houseListFlow.value = houseList
-    }
-
-    companion object {
-        const val COLLECTION_HOUSES = "houses"
     }
 }

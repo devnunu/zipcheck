@@ -1,6 +1,7 @@
 package com.devnunu.zipcheck.common.application
 
 import android.app.Application
+import com.devnunu.zipcheck.di.apiModule
 import com.devnunu.zipcheck.di.preferenceModule
 import com.devnunu.zipcheck.di.repositoryModule
 import com.devnunu.zipcheck.di.uiModule
@@ -15,7 +16,8 @@ class ZipCheckApplication : Application() {
             modules(
                 uiModule,
                 repositoryModule,
-                preferenceModule
+                preferenceModule,
+                apiModule
             )
         }
     }
