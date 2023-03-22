@@ -15,7 +15,7 @@ import com.devnunu.zipcheck.common.theme.Medium12
 import com.devnunu.zipcheck.common.theme.lightSlate11
 import com.devnunu.zipcheck.common.theme.lightSlate3
 import com.devnunu.zipcheck.common.theme.white
-import com.devnunu.zipcheck.data.model.RoomTypeChecklist
+import com.devnunu.zipcheck.data.model.house.RoomTypeChecklist
 
 @Composable
 fun TempCheckRoomTypeSelector(

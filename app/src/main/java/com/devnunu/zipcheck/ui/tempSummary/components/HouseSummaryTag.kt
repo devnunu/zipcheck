@@ -14,7 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.devnunu.zipcheck.common.ext.clickableNonIndication
 import com.devnunu.zipcheck.common.theme.*
-import com.devnunu.zipcheck.data.model.HouseBenefit
+import com.devnunu.zipcheck.data.model.house.HouseBenefit
 
 @Composable
 fun HouseSummaryTag(

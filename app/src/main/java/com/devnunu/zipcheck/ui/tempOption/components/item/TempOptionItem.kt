@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
 import com.devnunu.zipcheck.common.ext.clickableNonIndication
 import com.devnunu.zipcheck.common.theme.*
 import com.devnunu.zipcheck.components.checkBox.ZipCheckCheckBox
-import com.devnunu.zipcheck.data.model.HouseOption
+import com.devnunu.zipcheck.data.model.house.HouseOption
 import com.devnunu.zipcheck.R
 
 @Composable

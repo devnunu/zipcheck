@@ -2,8 +2,8 @@ package com.devnunu.zipcheck.ui.tempBasicInfo
 
 import androidx.lifecycle.ViewModel
 import com.devnunu.zipcheck.components.bottomSheet.BottomSheetState
-import com.devnunu.zipcheck.data.model.House
-import com.devnunu.zipcheck.data.model.HouseType
+import com.devnunu.zipcheck.data.model.house.HouseType
+import com.devnunu.zipcheck.data.model.house.House
 import com.devnunu.zipcheck.data.repository.HouseRepository
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.syntax.simple.intent

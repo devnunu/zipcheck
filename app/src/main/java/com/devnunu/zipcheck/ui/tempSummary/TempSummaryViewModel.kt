@@ -1,7 +1,10 @@
 package com.devnunu.zipcheck.ui.tempSummary
 
 import androidx.lifecycle.ViewModel
-import com.devnunu.zipcheck.data.model.*
+import com.devnunu.zipcheck.data.model.house.House
+import com.devnunu.zipcheck.data.model.house.HouseBenefit
+import com.devnunu.zipcheck.data.model.house.HouseWriteStatus
+import com.devnunu.zipcheck.data.model.house.Summary
 import com.devnunu.zipcheck.data.repository.HouseRepository
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.syntax.simple.intent

@@ -1,4 +1,4 @@
-package com.devnunu.zipcheck.data.model
+package com.devnunu.zipcheck.data.model.house
 
 import androidx.annotation.DrawableRes
 import com.devnunu.zipcheck.R
@@ -21,7 +21,7 @@ data class HouseOption(
             HouseOption("샤워부스", R.drawable.ic_option7),
         )
 
-        fun makeCustomHouseOption(optionName: String):HouseOption =
+        fun makeCustomHouseOption(optionName: String): HouseOption =
             HouseOption(
                 optionName = optionName,
                 iconRedId = R.drawable.ic_option_custom,

@@ -16,7 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.devnunu.zipcheck.common.ext.clickableNonIndication
 import com.devnunu.zipcheck.common.theme.*
-import com.devnunu.zipcheck.data.model.HouseWriteStatus
+import com.devnunu.zipcheck.data.model.house.HouseWriteStatus
 
 @Composable
 fun HomeStatusIndicator(

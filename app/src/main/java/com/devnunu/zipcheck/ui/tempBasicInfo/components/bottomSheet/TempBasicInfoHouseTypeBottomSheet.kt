@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.devnunu.zipcheck.common.ext.clickableRipple
-import com.devnunu.zipcheck.data.model.HouseType
+import com.devnunu.zipcheck.data.model.house.HouseType
 
 @Composable
 fun TempBasicInfoHouseTypeBottomSheet(

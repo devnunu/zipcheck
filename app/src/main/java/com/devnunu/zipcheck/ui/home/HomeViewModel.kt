@@ -1,10 +1,13 @@
 package com.devnunu.zipcheck.ui.home
 
 import androidx.lifecycle.ViewModel
-import com.devnunu.zipcheck.data.model.House
-import com.devnunu.zipcheck.data.model.HouseWriteStatus
+import androidx.lifecycle.viewModelScope
+import com.devnunu.zipcheck.data.model.house.House
+import com.devnunu.zipcheck.data.model.house.HouseWriteStatus
+import com.devnunu.zipcheck.data.model.user.User
 import com.devnunu.zipcheck.data.repository.HouseRepository
-import com.devnunu.zipcheck.ui.basicInfoInput.BasicInfoInputViewModel
+import com.devnunu.zipcheck.data.repository.UserRepository
+import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.reduce
@@ -22,17 +25,30 @@ data class HomeState(
 }
 
 class HomeViewModel(
+    private val userRepository: UserRepository,
     private val houseRepository: HouseRepository,
 ) : ContainerHost<HomeState, Nothing>, ViewModel() {
 
     override val container = container<HomeState, Nothing>(HomeState())
 
     init {
-        intent {
-            houseRepository.getHouseListFlow().collect { houseList ->
-                reduce {
-                    state.copy(houseList = houseList)
-                }
+        collectDataFlow()
+        start()
+    }
+
+    private fun start() = viewModelScope.launch {
+        val user = userRepository.getUser()
+        if (user == null) {
+            userRepository.saveUser(User())
+        }
+
+        houseRepository.getAllHouseList()
+    }
+
+    private fun collectDataFlow() = intent {
+        houseRepository.getHouseListFlow().collect { houseList ->
+            reduce {
+                state.copy(houseList = houseList)
             }
         }
     }

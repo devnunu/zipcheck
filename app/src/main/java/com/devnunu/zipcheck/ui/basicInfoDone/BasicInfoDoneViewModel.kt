@@ -1,10 +1,8 @@
 package com.devnunu.zipcheck.ui.basicInfoDone
 
 import androidx.lifecycle.ViewModel
-import com.devnunu.zipcheck.common.orbit.EmptyState
-import com.devnunu.zipcheck.data.model.House
-import com.devnunu.zipcheck.data.model.HouseWriteStatus
-import com.devnunu.zipcheck.data.model.Summary
+import com.devnunu.zipcheck.data.model.house.House
+import com.devnunu.zipcheck.data.model.house.HouseWriteStatus
 import com.devnunu.zipcheck.data.repository.HouseRepository
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.syntax.simple.intent

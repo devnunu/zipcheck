@@ -18,7 +18,7 @@ import com.devnunu.zipcheck.common.navigation.Routes
 import com.devnunu.zipcheck.common.theme.Medium20
 import com.devnunu.zipcheck.common.theme.lightSlate6
 import com.devnunu.zipcheck.common.theme.lightSlate8
-import com.devnunu.zipcheck.data.model.HouseWriteStatus
+import com.devnunu.zipcheck.data.model.house.HouseWriteStatus
 import com.devnunu.zipcheck.ui.home.HomeViewModel
 import com.devnunu.zipcheck.ui.home.components.indicator.HomeStatusIndicator
 import com.devnunu.zipcheck.ui.home.components.item.HouseItem

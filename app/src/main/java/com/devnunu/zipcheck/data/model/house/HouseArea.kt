@@ -1,4 +1,4 @@
-package com.devnunu.zipcheck.data.model
+package com.devnunu.zipcheck.data.model.house
 
 import com.devnunu.zipcheck.common.ext.roundDecimal
 

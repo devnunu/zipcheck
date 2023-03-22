@@ -1,8 +1,8 @@
 package com.devnunu.zipcheck.ui.tempCheck
 
 import androidx.lifecycle.ViewModel
-import com.devnunu.zipcheck.data.model.House
-import com.devnunu.zipcheck.data.model.RoomTypeChecklist
+import com.devnunu.zipcheck.data.model.house.RoomTypeChecklist
+import com.devnunu.zipcheck.data.model.house.House
 import com.devnunu.zipcheck.data.repository.HouseRepository
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.syntax.simple.intent

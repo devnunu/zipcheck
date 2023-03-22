@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.dp
 import com.devnunu.zipcheck.common.theme.*
 import com.devnunu.zipcheck.components.selector.SelectorDivider
 import com.devnunu.zipcheck.components.selector.SelectorItem
-import com.devnunu.zipcheck.data.model.HouseType
+import com.devnunu.zipcheck.data.model.house.HouseType
 
 @Composable
 fun BasicInfoInputRoomSelector(

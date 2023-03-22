@@ -1,10 +1,10 @@
 package com.devnunu.zipcheck.ui.basicInfoInput
 
 import androidx.lifecycle.ViewModel
-import com.devnunu.zipcheck.data.model.House
-import com.devnunu.zipcheck.data.model.HouseArea
-import com.devnunu.zipcheck.data.model.HouseAreaType
-import com.devnunu.zipcheck.data.model.HouseType
+import com.devnunu.zipcheck.data.model.house.HouseArea
+import com.devnunu.zipcheck.data.model.house.HouseType
+import com.devnunu.zipcheck.data.model.house.House
+import com.devnunu.zipcheck.data.model.house.HouseAreaType
 import com.devnunu.zipcheck.data.repository.HouseRepository
 import com.devnunu.zipcheck.ui.basicInfoInput.BasicInfoInputViewModel.Companion.PAGE_FIRST
 import org.orbitmvi.orbit.ContainerHost

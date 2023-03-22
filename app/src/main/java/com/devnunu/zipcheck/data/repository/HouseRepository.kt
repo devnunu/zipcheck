@@ -1,25 +1,18 @@
 package com.devnunu.zipcheck.data.repository
 
-import com.devnunu.zipcheck.data.model.House
-import com.devnunu.zipcheck.data.model.HouseWriteStatus
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import com.devnunu.zipcheck.data.model.house.House
+import com.devnunu.zipcheck.data.model.house.HouseWriteStatus
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.toObject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.tasks.await
 
-class HouseRepository {
+class HouseRepository(
+    private val fireStore: FirebaseFirestore
+) {
 
     private val _houseListFlow = MutableStateFlow<List<House>>(mutableListOf())
-
-    init {
-        val houseList = mutableListOf<House>()
-        repeat(5) {
-            houseList.add(House())
-        }
-        _houseListFlow.value = houseList
-    }
 
     /**
      * Observer
@@ -29,6 +22,16 @@ class HouseRepository {
     /**
      * CRUD
      * */
+    suspend fun getAllHouseList(): List<House> {
+        val houseList: List<House> = fireStore.collection(COLLECTION_HOUSES)
+            .get()
+            .await()
+            .map { it.toObject() }
+        _houseListFlow.value = houseList
+        return houseList
+    }
+
+
     fun addHouse(house: House) {
         val houseList = _houseListFlow.value.toMutableList()
         houseList.add(house)
@@ -40,5 +43,9 @@ class HouseRepository {
             if (house.id == newHouse.id) newHouse else house
         }
         _houseListFlow.value = houseList
+    }
+
+    companion object {
+        const val COLLECTION_HOUSES = "houses"
     }
 }

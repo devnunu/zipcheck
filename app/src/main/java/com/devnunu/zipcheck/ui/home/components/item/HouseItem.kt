@@ -13,7 +13,7 @@ import com.devnunu.zipcheck.R
 import com.devnunu.zipcheck.common.ext.clickableRipple
 import com.devnunu.zipcheck.common.ext.toKrCurrencyFullText
 import com.devnunu.zipcheck.common.theme.*
-import com.devnunu.zipcheck.data.model.House
+import com.devnunu.zipcheck.data.model.house.House
 
 @Composable
 fun HouseItem(

@@ -22,7 +22,7 @@ import com.devnunu.zipcheck.components.button.BtnSize
 import com.devnunu.zipcheck.components.button.BtnStyle
 import com.devnunu.zipcheck.components.scaffold.ZipCheckScaffold
 import com.devnunu.zipcheck.components.view.NoteFailView
-import com.devnunu.zipcheck.data.model.HouseWriteStatus
+import com.devnunu.zipcheck.data.model.house.HouseWriteStatus
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.compose.collectAsState
