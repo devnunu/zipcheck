@@ -32,8 +32,8 @@ class HouseRepository(
     }
 
 
-    fun addHouse(house: House) {
-
+    suspend fun addHouse(house: House) = wrapAsResResult {
+        houseApi.addHouse(house)
         val houseList = _houseListFlow.value.toMutableList()
         houseList.add(house)
         _houseListFlow.value = houseList
