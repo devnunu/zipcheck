@@ -19,9 +19,9 @@ import com.devnunu.zipcheck.data.model.house.HouseBenefit
 @Composable
 fun HouseSummaryTag(
     houseBenefit: HouseBenefit,
+    isSelected: Boolean,
     onClickHouseBenefit: (HouseBenefit) -> Unit
 ) {
-    val isSelected = houseBenefit.isSelected
     val textColor: Color by animateColorAsState(
         targetValue = if (isSelected) {
             white
@@ -59,7 +59,7 @@ fun HouseSummaryTag(
             .background(bgColor, RoundedCornerShape(8.dp))
             .padding(horizontal = 12.dp, vertical = 6.dp),
         style = Medium14,
-        text = houseBenefit.text.orEmpty(),
+        text = houseBenefit.desc.orEmpty(),
         color = textColor
     )
 }

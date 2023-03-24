@@ -45,12 +45,11 @@ class TempSummaryViewModel(
     }
 
     fun onClickHouseBenefit(clickedHouseBenefit: HouseBenefit) = intent {
-        val houseBenefitList = state.houseBenefitList.toMutableList().map { houseBenefit ->
-            if (houseBenefit == clickedHouseBenefit) {
-                houseBenefit.copy(isSelected = !houseBenefit.isSelected)
-            } else {
-                houseBenefit
-            }
+        val houseBenefitList = state.houseBenefitList.toMutableList()
+        if (houseBenefitList.contains(clickedHouseBenefit)) {
+            houseBenefitList.remove(clickedHouseBenefit)
+        } else {
+            houseBenefitList.add(clickedHouseBenefit)
         }
         reduce {
             state.copy(houseBenefitList = houseBenefitList)

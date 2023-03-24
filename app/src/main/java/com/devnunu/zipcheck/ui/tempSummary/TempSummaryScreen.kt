@@ -1,10 +1,7 @@
 package com.devnunu.zipcheck.ui.tempSummary
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -12,15 +9,18 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.devnunu.zipcheck.common.ext.clickableNonIndication
 import com.devnunu.zipcheck.common.navigation.LocalNavController
 import com.devnunu.zipcheck.common.navigation.Routes
-import com.devnunu.zipcheck.common.theme.*
+import com.devnunu.zipcheck.common.theme.Bold18
+import com.devnunu.zipcheck.common.theme.Bold20
+import com.devnunu.zipcheck.common.theme.Regular14
+import com.devnunu.zipcheck.common.theme.lightSlate11
 import com.devnunu.zipcheck.components.button.BasicButton
 import com.devnunu.zipcheck.components.button.BtnSize
 import com.devnunu.zipcheck.components.button.BtnStyle
 import com.devnunu.zipcheck.components.scaffold.ZipCheckScaffold
 import com.devnunu.zipcheck.components.topBar.TopBar
+import com.devnunu.zipcheck.data.model.house.HouseBenefit
 import com.devnunu.zipcheck.ui.tempSummary.components.HouseSummarySelector
 import com.devnunu.zipcheck.ui.tempSummary.components.HouseSummaryTag
 import kotlinx.coroutines.CoroutineScope
@@ -104,9 +104,10 @@ fun TempSummaryScreen(
                 text = "이 집의 좋았던점을 모두 선택해주세요."
             )
             Spacer(modifier = Modifier.height(30.dp))
-            houseBenefitList.forEach { houseBenefit ->
+            HouseBenefit.values().forEach { houseBenefit ->
                 HouseSummaryTag(
                     houseBenefit = houseBenefit,
+                    isSelected = houseBenefitList.contains(houseBenefit),
                     onClickHouseBenefit = viewModel::onClickHouseBenefit
                 )
                 Spacer(modifier = Modifier.height(12.dp))

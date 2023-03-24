@@ -18,7 +18,7 @@ data class House(
     val roomInfoUrl: String? = null,
     var houseWriteStatus: HouseWriteStatus = HouseWriteStatus.IN_PROGRESS,
     val optionList: List<HouseOption> = HouseOption.getEssentialOptionList(),
-    val benefitList: List<HouseBenefit> = HouseBenefit.getEssentialBenefitList(),
+    val benefitList: List<HouseBenefit> = emptyList(),
     val roomTypeChecklists: List<RoomTypeChecklist> = RoomTypeChecklist.getEssentialRoomTypeChecklist(),
     val summary: Summary? = null,
 ) {
