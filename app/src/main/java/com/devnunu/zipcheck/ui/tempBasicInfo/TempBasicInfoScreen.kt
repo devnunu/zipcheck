@@ -1,14 +1,19 @@
 package com.devnunu.zipcheck.ui.tempBasicInfo
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import com.devnunu.zipcheck.common.ext.showToast
 import com.devnunu.zipcheck.common.ext.toKrCurrencyFullText
 import com.devnunu.zipcheck.common.navigation.LocalNavController
 import com.devnunu.zipcheck.common.navigation.Routes
@@ -20,10 +25,14 @@ import com.devnunu.zipcheck.components.button.BtnStyle
 import com.devnunu.zipcheck.components.scaffold.ZipCheckScaffold
 import com.devnunu.zipcheck.components.bottomSheet.rememberScaffoldBottomSheetView
 import com.devnunu.zipcheck.components.topBar.TopBar
+import com.devnunu.zipcheck.ui.components.ToastViewModel
 import com.devnunu.zipcheck.ui.tempBasicInfo.components.item.TempBasicInfoItem
 import com.devnunu.zipcheck.ui.tempBasicInfo.components.item.TempBasicInfoLocationItem
 import com.devnunu.zipcheck.ui.tempBasicInfo.components.bottomSheet.TempBasicInfoBottomSheet
 import com.devnunu.zipcheck.ui.tempBasicInfo.components.bottomSheet.TempBasicInfoHouseTypeBottomSheet
+import kotlinx.coroutines.launch
+import org.koin.androidx.compose.getKoin
+import org.koin.androidx.compose.koinViewModel
 import org.orbitmvi.orbit.compose.collectAsState
 
 @Composable
@@ -37,7 +46,9 @@ fun TempBasicInfoScreen(
 
     val navController = LocalNavController.current
 
+    val toastViewModel: ToastViewModel = koinViewModel()
     ZipCheckScaffold(
+        toastViewModel = toastViewModel,
         topBar = {
             TopBar(
                 onClickBackBtn = { navController.popBackStack() }
@@ -71,7 +82,14 @@ fun TempBasicInfoScreen(
                         label = "별칭",
                         placeHolder = "별칭을 입력해주세요",
                         tag = TempBasicInfoBottomSheetTag.ALIAS,
-                        onClickSave = viewModel::onClickInputBottomSheetSaveBtn
+                        onClickSave = { _, alias, _ ->
+                            viewModel.onClickSaveAliasBtn(
+                                alias = alias,
+                                onFailure = {
+                                    toastViewModel.showToast("정보 업데이트가 실패했습니다.\n잠시후 다시 시도해주세요")
+                                }
+                            )
+                        }
                     )
                 }
                 TempBasicInfoBottomSheetTag.VISIT_DATE -> Unit

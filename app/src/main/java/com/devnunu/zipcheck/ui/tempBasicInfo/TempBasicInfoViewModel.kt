@@ -1,10 +1,13 @@
 package com.devnunu.zipcheck.ui.tempBasicInfo
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.devnunu.zipcheck.components.bottomSheet.BottomSheetState
+import com.devnunu.zipcheck.data.model.common.ResResult
 import com.devnunu.zipcheck.data.model.house.HouseType
 import com.devnunu.zipcheck.data.model.house.House
 import com.devnunu.zipcheck.data.repository.HouseRepository
+import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.reduce
@@ -58,15 +61,35 @@ class TempBasicInfoViewModel(
         reduce { state.copy(bottomSheetState = state.bottomSheetState.open(tag)) }
     }
 
+    /**
+     * Update Values
+     * */
+    fun onClickSaveAliasBtn(
+        alias: String?,
+        onFailure: () -> Unit
+    ) = viewModelScope.launch {
+        intent {
+            val houseId = state.house?.id.orEmpty()
+            val result = houseRepository.updateHouseAlias(houseId, alias.orEmpty())
+            if (result is ResResult.Error) {
+                onFailure()
+            } else {
+                val house = state.house?.copy(alias = alias)
+                reduce { state.copy(house = house) }
+            }
+            onCloseBottomSheet()
+        }
+    }
+
     fun onClickInputBottomSheetSaveBtn(
         tag: TempBasicInfoBottomSheetTag,
         value: String?,
         isChecked: Boolean?
-    ) = intent {
-        reduce {
+    ) = viewModelScope.launch {
+        intent {
+            if (value.isNullOrBlank() && isChecked == null) return@intent
             val house = state.house
             var changedHouse: House? = null
-            if (value.isNullOrBlank() && isChecked == null) return@reduce state
             when (tag) {
                 TempBasicInfoBottomSheetTag.ALIAS -> {
                     changedHouse = house?.copy(alias = value)
@@ -90,24 +113,25 @@ class TempBasicInfoViewModel(
                 }
                 else -> state
             }
-
             changedHouse?.let { house ->
                 houseRepository.updateHouse(house)
-                state.copy(house = house)
-            } ?: state
+                reduce { state.copy(house = house) }
+            }
+            onCloseBottomSheet()
         }
-        onCloseBottomSheet()
     }
 
-    fun onClickHouseType(houseType: HouseType) = intent {
-        reduce {
+    fun onClickHouseType(houseType: HouseType) = viewModelScope.launch {
+        intent {
             val changedHouse = state.house?.copy(houseType = houseType)
             changedHouse?.let { house ->
                 houseRepository.updateHouse(house)
-                state.copy(
-                    house = changedHouse,
-                    bottomSheetState = state.bottomSheetState.close()
-                )
+                reduce {
+                    state.copy(
+                        house = changedHouse,
+                        bottomSheetState = state.bottomSheetState.close()
+                    )
+                }
             } ?: state
         }
     }

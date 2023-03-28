@@ -1,6 +1,7 @@
 package com.devnunu.zipcheck.components.scaffold
 
 import android.annotation.SuppressLint
+import android.widget.Toast
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material.*
@@ -8,7 +9,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.platform.LocalContext
 import com.devnunu.zipcheck.components.bottomSheet.BottomSheetState
+import com.devnunu.zipcheck.ui.components.ToastViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.distinctUntilChanged
 
@@ -27,6 +30,7 @@ fun ZipCheckScaffold(
     topBar: (@Composable () -> Unit) = {},
     bottomBar: @Composable () -> Unit = {},
     bottomSheetView: ScaffoldBottomSheetView? = null,
+    toastViewModel: ToastViewModel? = null,
     content: @Composable (PaddingValues) -> Unit
 ) {
     val child = @Composable {
@@ -38,14 +42,31 @@ fun ZipCheckScaffold(
         }
     }
 
+    if (toastViewModel != null) {
+        val context = LocalContext.current
+        LaunchedEffect(Unit) {
+            toastViewModel.toastMessage
+                .collect { message ->
+                    Toast.makeText(
+                        context,
+                        message,
+                        Toast.LENGTH_SHORT,
+                    ).show()
+                }
+        }
+    }
     if (bottomSheetView != null) {
         LaunchedEffect(bottomSheetView) {
             snapshotFlow { bottomSheetView.viewModelSheetState }
                 .distinctUntilChanged()
                 .collect { viewModelSheetState ->
                     when (viewModelSheetState) {
-                        is BottomSheetState.Closed -> bottomSheetView.sheetState.animateTo(ModalBottomSheetValue.Hidden)
-                        is BottomSheetState.Opened -> bottomSheetView.sheetState.animateTo(ModalBottomSheetValue.Expanded)
+                        is BottomSheetState.Closed -> bottomSheetView.sheetState.animateTo(
+                            ModalBottomSheetValue.Hidden
+                        )
+                        is BottomSheetState.Opened -> bottomSheetView.sheetState.animateTo(
+                            ModalBottomSheetValue.Expanded
+                        )
                     }
                 }
         }
