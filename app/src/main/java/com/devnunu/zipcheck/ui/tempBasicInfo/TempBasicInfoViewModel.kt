@@ -64,23 +64,6 @@ class TempBasicInfoViewModel(
     /**
      * Update Values
      * */
-    fun onClickSaveAliasBtn(
-        alias: String?,
-        onFailure: () -> Unit
-    ) = viewModelScope.launch {
-        intent {
-            val houseId = state.house?.id.orEmpty()
-            val result = houseRepository.updateHouseAlias(houseId, alias.orEmpty())
-            if (result is ResResult.Error) {
-                onFailure()
-            } else {
-                val house = state.house?.copy(alias = alias)
-                reduce { state.copy(house = house) }
-            }
-            onCloseBottomSheet()
-        }
-    }
-
     fun onClickInputBottomSheetSaveBtn(
         tag: TempBasicInfoBottomSheetTag,
         value: String?,

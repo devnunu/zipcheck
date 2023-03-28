@@ -1,6 +1,5 @@
 package com.devnunu.zipcheck.api
 
-import com.devnunu.zipcheck.data.model.common.wrapAsResResult
 import com.devnunu.zipcheck.data.model.house.House
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
@@ -20,15 +19,6 @@ class HouseApi(
     suspend fun addHouse(house: House): House {
         houseCollection.add(house).await()!!
         return house
-    }
-
-    suspend fun updateHouseAlias(
-        houseId: String,
-        alias: String
-    ) {
-        houseCollection.document(houseId)
-            .update("alias", alias)
-            .await()
     }
 
     suspend fun updateHouse(

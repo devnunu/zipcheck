@@ -39,20 +39,6 @@ class HouseRepository(
         _houseListFlow.value = houseList
     }
 
-    suspend fun updateHouseAlias(
-        houseId: String,
-        alias: String
-    ) = wrapAsResResult {
-        houseApi.updateHouseAlias(
-            houseId = houseId,
-            alias = alias
-        )
-        val houseList = _houseListFlow.value.toMutableList().map { house ->
-            if (house.id == houseId) house.copy(alias = alias) else house
-        }
-        _houseListFlow.value = houseList
-    }
-
     suspend fun updateHouse(house: House) = wrapAsResResult {
         val newHouse = houseApi.updateHouse(house)
         val houseList = _houseListFlow.value.toMutableList().map { house ->

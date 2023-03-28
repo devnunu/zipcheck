@@ -82,14 +82,7 @@ fun TempBasicInfoScreen(
                         label = "별칭",
                         placeHolder = "별칭을 입력해주세요",
                         tag = TempBasicInfoBottomSheetTag.ALIAS,
-                        onClickSave = { _, alias, _ ->
-                            viewModel.onClickSaveAliasBtn(
-                                alias = alias,
-                                onFailure = {
-                                    toastViewModel.showToast("정보 업데이트가 실패했습니다.\n잠시후 다시 시도해주세요")
-                                }
-                            )
-                        }
+                        onClickSave = viewModel::onClickInputBottomSheetSaveBtn
                     )
                 }
                 TempBasicInfoBottomSheetTag.VISIT_DATE -> Unit
