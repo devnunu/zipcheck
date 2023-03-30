@@ -1,15 +1,13 @@
 package com.devnunu.zipcheck.data.model.house
 
-import android.os.Parcelable
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.devnunu.zipcheck.R
-import kotlinx.android.parcel.Parcelize
 
 @Entity
 data class House(
-    @PrimaryKey(autoGenerate = true) val id: Long = -1,
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val imgNum: Int = (1..4).random(),
     val alias: String? = null,
     val houseType: HouseType = HouseType.TYPE_A,
