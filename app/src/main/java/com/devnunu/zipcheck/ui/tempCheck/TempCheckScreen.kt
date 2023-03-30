@@ -30,15 +30,17 @@ fun TempCheckScreen(
     val state by viewModel.collectAsState()
     val house = state.house
 
-    val filteredRoomTypeChecklist = state.filteredRoomTypeChecklist
-    val selectedCheckList = state.selectedChecklist
+    val selectedRoomType = state.selectedRoomType
+    val selectedChecklists = state.selectedChecklist
+    val plainChecklist = state.plainChecklist
+    val roomTypeList = state.roomTypeList
 
     val navController = LocalNavController.current
 
     ZipCheckScaffold(
         topBar = {
             TopBar(
-                title = selectedCheckList?.name,
+                title = selectedRoomType?.displayName,
                 onClickBackBtn = { navController.popBackStack() }
             )
         },
@@ -71,8 +73,8 @@ fun TempCheckScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 TempCheckRoomTypeSelector(
-                    roomTypeList = filteredRoomTypeChecklist,
-                    selectedCheckList = selectedCheckList,
+                    roomTypeList = roomTypeList,
+                    selectedCheckList = selectedRoomType,
                     onClickRoomType = viewModel::onClickRoomType
                 )
             }
@@ -96,16 +98,15 @@ fun TempCheckScreen(
                     text = description
                 )
                 Spacer(modifier = Modifier.height(40.dp))
-                selectedCheckList?.checklist?.forEachIndexed { index, checklistItem ->
+                plainChecklist.forEachIndexed { index, item ->
                     if (index != 0) {
                         Spacer(modifier = Modifier.height(30.dp))
                     }
+                    val isChecked = selectedChecklists.contains(item)
                     CheckBoxText(
-                        checked = checklistItem.isChecked,
-                        text = checklistItem.name,
-                        onCheckedChange = { isChecked ->
-                            viewModel.onCheckChange(index, isChecked)
-                        }
+                        checked = isChecked,
+                        text = item,
+                        onCheckedChange = { viewModel.onCheckChange(item) }
                     )
                 }
                 Spacer(modifier = Modifier.height(80.dp))

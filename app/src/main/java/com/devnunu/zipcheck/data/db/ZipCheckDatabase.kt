@@ -5,20 +5,19 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.devnunu.zipcheck.data.db.converter.HouseBenefitConverter
 import com.devnunu.zipcheck.data.db.converter.HouseOptionConverter
-import com.devnunu.zipcheck.data.db.converter.RoomTypeChecklistConverter
+import com.devnunu.zipcheck.data.db.converter.StringListConverter
 import com.devnunu.zipcheck.data.db.dao.HouseDao
 import com.devnunu.zipcheck.data.model.house.House
-import com.devnunu.zipcheck.data.model.house.HouseBenefit
 
 @Database(
     entities = [House::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 @TypeConverters(
     HouseBenefitConverter::class,
     HouseOptionConverter::class,
-    RoomTypeChecklistConverter::class
+    StringListConverter::class
 )
 abstract class ZipCheckDatabase : RoomDatabase() {
 

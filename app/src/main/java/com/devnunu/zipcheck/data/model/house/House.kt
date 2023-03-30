@@ -10,19 +10,20 @@ data class House(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val imgNum: Int = (1..4).random(),
     val alias: String? = null,
-    val houseType: HouseType = HouseType.TYPE_A,
-    @Embedded
-    val houseArea: HouseArea = HouseArea(type = HouseAreaType.PYONG),
     val depositAmount: Long? = null,
     val monthlyAmount: Long? = null,
     val maintenanceCost: Long? = null,
     val memo: String? = null,
     val roomInfoUrl: String? = null,
+    val summary: Summary? = null,
+    val houseType: HouseType = HouseType.TYPE_A,
     var houseWriteStatus: HouseWriteStatus = HouseWriteStatus.IN_PROGRESS,
+    @Embedded
+    val houseArea: HouseArea = HouseArea(type = HouseAreaType.PYONG),
+    @Embedded
+    val checklist: Checklist = Checklist(),
     val optionList: List<HouseOption> = HouseOption.getEssentialOptionList(),
     val benefitList: List<HouseBenefit> = emptyList(),
-    val roomTypeChecklists: List<RoomTypeChecklist> = RoomTypeChecklist.getEssentialRoomTypeChecklist(),
-    val summary: Summary? = null,
 ) {
     val isNoMonthlyAmount: Boolean
         get() = monthlyAmount != null && monthlyAmount == 0L

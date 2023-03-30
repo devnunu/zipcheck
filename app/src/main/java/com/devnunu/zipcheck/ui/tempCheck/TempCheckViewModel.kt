@@ -1,8 +1,9 @@
 package com.devnunu.zipcheck.ui.tempCheck
 
 import androidx.lifecycle.ViewModel
-import com.devnunu.zipcheck.data.model.house.RoomTypeChecklist
+import com.devnunu.zipcheck.data.model.house.Checklist
 import com.devnunu.zipcheck.data.model.house.House
+import com.devnunu.zipcheck.data.model.house.RoomType
 import com.devnunu.zipcheck.data.repository.HouseRepository
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.syntax.simple.intent
@@ -14,28 +15,29 @@ data class TempCheckState(
     val currentPagerIndex: Int = 0
 ) {
 
-    val filteredRoomTypeChecklist: List<RoomTypeChecklist>
-        get() {
-            val checklistNames = RoomTypeChecklist.getChecklist(house?.houseType)
-            return house?.roomTypeChecklists?.filter { roomType ->
-                checklistNames.contains(roomType.name)
-            } ?: emptyList()
-        }
+    val roomTypeList: List<RoomType>
+        get() = RoomType.getRoomTypes(house?.houseType)
 
-    val selectedChecklist: RoomTypeChecklist?
-        get() = house?.roomTypeChecklists?.getOrNull(currentPagerIndex)
+    val selectedRoomType: RoomType?
+        get() = roomTypeList.getOrNull(currentPagerIndex)
+
+    val selectedChecklist: List<String>
+        get() = house?.checklist?.getChecklist(selectedRoomType) ?: emptyList()
+
+    val plainChecklist: List<String>
+        get() = Checklist.getPlainChecklist(selectedRoomType)
 
     val description: String
-        get() = when (selectedChecklist?.name) {
-            RoomTypeChecklist.ENTRANCE.name ->
+        get() = when (selectedRoomType) {
+            RoomType.ENTRANCE ->
                 "이제 집 안으로 들어가볼게요.\n현관 환경은 어떤가요?"
-            RoomTypeChecklist.LIVING_AND_KITCHEN.name ->
+            RoomType.LIVING_AND_KITCHEN ->
                 "거실과 부엌의 상태는 어떤가요?"
-            RoomTypeChecklist.ROOM1.name ->
+            RoomType.ROOM1 ->
                 "첫번째 방의 상태는 어떤가요?"
-            RoomTypeChecklist.ROOM2.name ->
+            RoomType.ROOM2 ->
                 "두번째 방의 상태는 어떤가요?"
-            RoomTypeChecklist.BATHROOM.name ->
+            RoomType.BATHROOM ->
                 "화장실의 상태는 어떤가요?"
             else -> ""
         }
@@ -49,43 +51,55 @@ class TempCheckViewModel(
     override val container = container<TempCheckState, Nothing>(TempCheckState())
 
     init {
-        intent {
-            houseRepository.getHouseListFlow().collect { houseList ->
-                val house = houseList.firstOrNull { it.id == houseId }
-                reduce {
-                    state.copy(
-                        house = house
-                    )
-                }
+        collectDataFlow()
+    }
+
+    private fun collectDataFlow() = intent {
+        houseRepository.getHouseFlow(houseId).collect { house ->
+            reduce {
+                state.copy(house = house)
             }
         }
     }
 
-    fun onClickRoomType(roomTypeChecklist: RoomTypeChecklist) = intent {
+    fun onClickRoomType(clickedRoomType: RoomType) = intent {
         reduce {
-            val index = state.house?.roomTypeChecklists?.indexOfFirst { roomType ->
-                roomType.name == roomTypeChecklist.name
-            } ?: 0
+            val index = state.roomTypeList.indexOfFirst { roomType ->
+                roomType == clickedRoomType
+            }
             state.copy(currentPagerIndex = index)
         }
     }
 
-    fun onCheckChange(index: Int, isChecked: Boolean) = intent {
-        val checklist = state.selectedChecklist?.checklist?.toMutableList()
-        checklist?.getOrNull(index)?.isChecked = isChecked
-        val selectedCheckList = state.selectedChecklist?.copy(
-            checklist = checklist.orEmpty()
-        )
-        val roomTypeChecklists = state.house?.roomTypeChecklists?.map { roomType ->
-            if (roomType.name == selectedCheckList?.name) {
-                selectedCheckList
-            } else {
-                roomType
+    fun onCheckChange(item: String) = intent {
+        val selectedChecklist = state.selectedChecklist.toMutableList()
+        if (selectedChecklist.contains(item)) {
+            selectedChecklist.remove(item)
+        } else {
+            selectedChecklist.add(item)
+        }
+        val checklist: Checklist = state.house?.checklist ?: Checklist()
+        var changedChecklist = Checklist()
+        when (state.selectedRoomType) {
+            RoomType.ENTRANCE -> {
+                changedChecklist = checklist.copy(entranceChecklists = selectedChecklist)
             }
-        } ?: emptyList()
-        val house = state.house?.copy(roomTypeChecklists = roomTypeChecklists)
+            RoomType.LIVING_AND_KITCHEN -> {
+                changedChecklist = checklist.copy(livingAndKitchenChecklists = selectedChecklist)
+            }
+            RoomType.ROOM1 -> {
+                changedChecklist = checklist.copy(room1Checklists = selectedChecklist)
+            }
+            RoomType.ROOM2 -> {
+                changedChecklist = checklist.copy(room2Checklist = selectedChecklist)
+            }
+            RoomType.BATHROOM -> {
+                changedChecklist = checklist.copy(bathRoomChecklist = selectedChecklist)
+            }
+            else -> Unit
+        }
+        val house = state.house?.copy(checklist = changedChecklist)
         house?.let { house ->
-            state.copy(house = house)
             houseRepository.updateHouse(house)
         }
     }

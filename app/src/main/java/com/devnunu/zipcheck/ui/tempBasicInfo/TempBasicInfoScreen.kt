@@ -63,11 +63,8 @@ fun TempBasicInfoScreen(
                 buttonSize = BtnSize.LARGE,
                 text = "다음",
                 onClick = {
-                    navController.navigate(
-                        Routes.TempCheck.getArgumentsRoute(
-                            house?.id
-                        )
-                    )
+                    val route = Routes.TempCheck.getArgumentsRoute(house?.id)
+                    navController.navigate(route)
                 }
             )
         },

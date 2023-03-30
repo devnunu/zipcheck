@@ -10,7 +10,7 @@ sealed class Routes(val route: String) {
     object BasicInfoDone : Routes("basicInfo/done") {
         const val ARGUMENTS_HOUSE_ID = "houseId"
         val arguments: List<NamedNavArgument> =
-            listOf(navArgument(ARGUMENTS_HOUSE_ID) { defaultValue = "" })
+            listOf(navArgument(ARGUMENTS_HOUSE_ID) { type = NavType.LongType })
 
         fun getArgumentsRoute(houseId: Long? = null): String {
             val houseId = houseId ?: "{${ARGUMENTS_HOUSE_ID}}"
@@ -34,7 +34,7 @@ sealed class Routes(val route: String) {
     object TempCheck : Routes("temp/check") {
         const val ARGUMENTS_HOUSE_ID = "houseId"
         val arguments: List<NamedNavArgument> =
-            listOf(navArgument(ARGUMENTS_HOUSE_ID) { defaultValue = "" })
+            listOf(navArgument(ARGUMENTS_HOUSE_ID) { type = NavType.LongType })
 
         fun getArgumentsRoute(houseId: Long? = null): String {
             val houseId = houseId ?: "{${ARGUMENTS_HOUSE_ID}}"
@@ -45,7 +45,7 @@ sealed class Routes(val route: String) {
     object TempOptionInfo : Routes("temp/option") {
         const val ARGUMENTS_HOUSE_ID = "houseId"
         val arguments: List<NamedNavArgument> =
-            listOf(navArgument(ARGUMENTS_HOUSE_ID) { defaultValue = "" })
+            listOf(navArgument(ARGUMENTS_HOUSE_ID) { type = NavType.LongType })
 
         fun getArgumentsRoute(houseId: Long? = null): String {
             val houseId = houseId ?: "{${ARGUMENTS_HOUSE_ID}}"
@@ -56,7 +56,7 @@ sealed class Routes(val route: String) {
     object TempSummary : Routes("temp/summary") {
         const val ARGUMENTS_HOUSE_ID = "houseId"
         val arguments: List<NamedNavArgument> =
-            listOf(navArgument(ARGUMENTS_HOUSE_ID) { defaultValue = "" })
+            listOf(navArgument(ARGUMENTS_HOUSE_ID) { type = NavType.LongType })
 
         fun getArgumentsRoute(houseId: Long? = null): String {
             val houseId = houseId ?: "{${ARGUMENTS_HOUSE_ID}}"
@@ -67,7 +67,7 @@ sealed class Routes(val route: String) {
     object TempDone : Routes("temp/done") {
         const val ARGUMENTS_HOUSE_ID = "houseId"
         val arguments: List<NamedNavArgument> =
-            listOf(navArgument(ARGUMENTS_HOUSE_ID) { defaultValue = "" })
+            listOf(navArgument(ARGUMENTS_HOUSE_ID) { type = NavType.LongType })
 
         fun getArgumentsRoute(houseId: Long? = null): String {
             val houseId = houseId ?: "{${ARGUMENTS_HOUSE_ID}}"

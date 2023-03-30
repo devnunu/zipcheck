@@ -15,13 +15,13 @@ import com.devnunu.zipcheck.common.theme.Medium12
 import com.devnunu.zipcheck.common.theme.lightSlate11
 import com.devnunu.zipcheck.common.theme.lightSlate3
 import com.devnunu.zipcheck.common.theme.white
-import com.devnunu.zipcheck.data.model.house.RoomTypeChecklist
+import com.devnunu.zipcheck.data.model.house.RoomType
 
 @Composable
 fun TempCheckRoomTypeSelector(
-    roomTypeList: List<RoomTypeChecklist>,
-    selectedCheckList: RoomTypeChecklist?,
-    onClickRoomType: (RoomTypeChecklist) -> Unit
+    roomTypeList: List<RoomType>,
+    selectedCheckList: RoomType?,
+    onClickRoomType: (RoomType) -> Unit
 ) {
     Row {
         roomTypeList.forEachIndexed { index, roomType ->
@@ -39,9 +39,9 @@ fun TempCheckRoomTypeSelector(
 
 @Composable
 fun TempCheckRoomTypeSelectorItem(
-    roomType: RoomTypeChecklist,
+    roomType: RoomType,
     isSelected: Boolean,
-    onClickRoomType: (RoomTypeChecklist) -> Unit
+    onClickRoomType: (RoomType) -> Unit
 ) {
     val bgColor = if (isSelected) lightSlate11 else lightSlate3
     val textColor = if (isSelected) white else lightSlate11
@@ -51,7 +51,7 @@ fun TempCheckRoomTypeSelectorItem(
             .background(bgColor, RoundedCornerShape(8.dp))
             .padding(horizontal = 10.dp, vertical = 4.dp),
         style = Medium12,
-        text = roomType.name,
+        text = roomType.displayName,
         color = textColor
     )
 }
