@@ -20,6 +20,11 @@ class HouseRepository(
         return localDataSource.observeAll().stateIn(coroutineScope)
     }
 
+    suspend fun getHouseFlow(houseId: Long): StateFlow<House> {
+        val coroutineScope = CoroutineScope(Dispatchers.IO)
+        return localDataSource.observeById(houseId).stateIn(coroutineScope)
+    }
+
 
     /**
      * CRUD

@@ -1,6 +1,7 @@
 package com.devnunu.zipcheck.common.navigation
 
 import androidx.navigation.NamedNavArgument
+import androidx.navigation.NavType
 import androidx.navigation.navArgument
 
 sealed class Routes(val route: String) {
@@ -20,10 +21,12 @@ sealed class Routes(val route: String) {
     object TempBasicInfo : Routes("temp/basicInfo") {
         const val ARGUMENTS_HOUSE_ID = "houseId"
         val arguments: List<NamedNavArgument> =
-            listOf(navArgument(ARGUMENTS_HOUSE_ID) { defaultValue = "" })
+            listOf(
+                navArgument(ARGUMENTS_HOUSE_ID) { type = NavType.LongType }
+            )
 
         fun getArgumentsRoute(houseId: Long? = null): String {
-            val houseId = houseId ?: "{${ARGUMENTS_HOUSE_ID}}"
+            val houseId = houseId ?: "{${BasicInfoDone.ARGUMENTS_HOUSE_ID}}"
             return "${TempBasicInfo.route}?houseId=$houseId"
         }
     }

@@ -40,12 +40,13 @@ class TempBasicInfoViewModel(
     override val container = container<TempBasicInfoState, Nothing>(TempBasicInfoState())
 
     init {
-        intent {
-            houseRepository.getHouseListFlow().collect { houseList ->
-                val house = houseList.firstOrNull { it.id == houseId }
-                reduce {
-                    state.copy(house = house)
-                }
+        collectDataFlow()
+    }
+
+    private fun collectDataFlow() = intent {
+        houseRepository.getHouseFlow(houseId).collect { house ->
+            reduce {
+                state.copy(house = house)
             }
         }
     }
@@ -69,9 +70,9 @@ class TempBasicInfoViewModel(
         value: String?,
         isChecked: Boolean?
     ) = intent {
+        if (value.isNullOrBlank() && isChecked == null) return@intent
         val house = state.house
         var changedHouse: House? = null
-        if (value.isNullOrBlank() && isChecked == null) return@intent
         when (tag) {
             TempBasicInfoBottomSheetTag.ALIAS -> {
                 changedHouse = house?.copy(alias = value)

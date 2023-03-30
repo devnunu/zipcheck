@@ -64,12 +64,9 @@ fun HomeListView(
                 itemsIndexed(houseList) { index, house ->
                     HouseItem(
                         house = house,
-                        onClick = {
-                            navController.navigate(
-                                Routes.TempBasicInfo.getArgumentsRoute(
-                                    house.id
-                                )
-                            )
+                        onClick = { id ->
+                            val route = Routes.TempBasicInfo.getArgumentsRoute(id)
+                            navController.navigate(route)
                         }
                     )
                     if (index < houseList.lastIndex) {
