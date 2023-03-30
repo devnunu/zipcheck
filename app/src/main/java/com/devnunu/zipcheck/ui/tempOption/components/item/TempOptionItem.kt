@@ -14,26 +14,26 @@ import androidx.compose.ui.unit.dp
 import com.devnunu.zipcheck.common.ext.clickableNonIndication
 import com.devnunu.zipcheck.common.theme.*
 import com.devnunu.zipcheck.components.checkBox.ZipCheckCheckBox
-import com.devnunu.zipcheck.data.model.house.HouseOption
 import com.devnunu.zipcheck.R
+import com.devnunu.zipcheck.data.model.house.HouseOption
 
 @Composable
 fun TempOptionItem(
-    houseOption: HouseOption,
+    houseOptionItem: HouseOption,
     onClickItem: (HouseOption) -> Unit,
     onDeleteCustomOption: (HouseOption) -> Unit,
 ) {
-    val isSelected = houseOption.isSelected
+    val isSelected = houseOptionItem.isSelected
     val borderColor = if (isSelected) lightMint8 else lightSlate6
     Box(
         modifier = Modifier
             .height(120.dp)
             .clickableNonIndication {
-                onClickItem(houseOption)
+                onClickItem(houseOptionItem)
             }
             .border(1.dp, borderColor, RoundedCornerShape(8.dp))
     ) {
-        val customCheckedIconId = if (houseOption.isCustom) {
+        val customCheckedIconId = if (houseOptionItem.isCustom) {
             R.drawable.ic_close_mini
         } else {
             null
@@ -45,10 +45,10 @@ fun TempOptionItem(
             checked = isSelected,
             customCheckedIconId = customCheckedIconId,
             onCheckedChange = {
-                if (houseOption.isCustom && isSelected) {
-                    onDeleteCustomOption(houseOption)
+                if (houseOptionItem.isCustom && isSelected) {
+                    onDeleteCustomOption(houseOptionItem)
                 } else {
-                    onClickItem(houseOption)
+                    onClickItem(houseOptionItem)
                 }
             }
         )
@@ -61,7 +61,7 @@ fun TempOptionItem(
             Spacer(modifier = Modifier.height(32.dp))
             val iconTint = if (isSelected) lightSlate11 else lightSlate8
             Icon(
-                painter = painterResource(id = houseOption.iconResId),
+                painter = painterResource(id = houseOptionItem.iconResId),
                 contentDescription = null,
                 tint = iconTint
             )
@@ -73,7 +73,7 @@ fun TempOptionItem(
                 val textColor = if (isSelected) lightSlate12 else lightSlate10
                 Text(
                     style = Medium12,
-                    text = houseOption.optionName.orEmpty(),
+                    text = houseOptionItem.optionName.orEmpty(),
                     color = textColor,
                     textAlign = TextAlign.Center
                 )

@@ -18,7 +18,7 @@ import com.devnunu.zipcheck.data.model.house.House
 @Composable
 fun HouseItem(
     house: House,
-    onClick: (String?) -> Unit
+    onClick: (Long?) -> Unit
 ) {
     Row(
         modifier = Modifier

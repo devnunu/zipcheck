@@ -17,7 +17,7 @@ val uiModule = module {
         ToastViewModel()
     }
     viewModel {
-        HomeViewModel(get(), get())
+        HomeViewModel(get())
     }
     viewModel {
         BasicInfoInputViewModel(get())

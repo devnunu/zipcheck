@@ -42,7 +42,7 @@ data class TempCheckState(
 }
 
 class TempCheckViewModel(
-    private val houseId: String,
+    private val houseId: Long,
     private val houseRepository: HouseRepository,
 ) : ContainerHost<TempCheckState, Nothing>, ViewModel() {
 

@@ -14,7 +14,7 @@ data class BasicInfoDone(
 )
 
 class BasicInfoDoneViewModel(
-    private val houseId: String,
+    private val houseId: Long,
     private val houseRepository: HouseRepository
 ) : ContainerHost<BasicInfoDone, Nothing>, ViewModel() {
 

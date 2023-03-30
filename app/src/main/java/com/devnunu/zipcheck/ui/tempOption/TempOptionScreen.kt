@@ -35,7 +35,7 @@ fun TempOptionScreen(
     val viewModelSheetState = state.bottomSheetState
 
     val house = state.house
-    val houseOptionList = state.houseOptionList
+    val houseOptionList = state.houseOptionItemList
 
     val navController = LocalNavController.current
     val scope: CoroutineScope = rememberCoroutineScope()
@@ -107,7 +107,7 @@ fun TempOptionScreen(
             ) {
                 items(houseOptionList) { houseOption ->
                     TempOptionItem(
-                        houseOption = houseOption,
+                        houseOptionItem = houseOption,
                         onClickItem = {
                             viewModel.onClickItem(houseOption)
                         },

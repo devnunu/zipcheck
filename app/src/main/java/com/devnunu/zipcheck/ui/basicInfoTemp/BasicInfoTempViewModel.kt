@@ -29,7 +29,7 @@ data class BasicInfoTempState(
 )
 
 class BasicInfoTempViewModel(
-    private val houseId: String,
+    private val houseId: Long,
     private val houseRepository: HouseRepository,
 ) : ContainerHost<BasicInfoTempState, Nothing>, ViewModel() {
 

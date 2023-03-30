@@ -53,7 +53,7 @@ class MainActivity : ComponentActivity() {
                             route = Routes.BasicInfoDone.getArgumentsRoute(),
                             arguments = Routes.BasicInfoDone.arguments
                         ) { backStackEntry ->
-                            val houseId = backStackEntry.arguments?.getString(
+                            val houseId = backStackEntry.arguments?.getInt(
                                 Routes.BasicInfoDone.ARGUMENTS_HOUSE_ID
                             )
                             BasicInfoDoneScreen(
@@ -66,7 +66,7 @@ class MainActivity : ComponentActivity() {
                             route = Routes.TempBasicInfo.getArgumentsRoute(),
                             arguments = Routes.TempBasicInfo.arguments
                         ) { backStackEntry ->
-                            val houseId = backStackEntry.arguments?.getString(
+                            val houseId = backStackEntry.arguments?.getInt(
                                 Routes.TempBasicInfo.ARGUMENTS_HOUSE_ID
                             )
                             TempBasicInfoScreen(
@@ -79,7 +79,7 @@ class MainActivity : ComponentActivity() {
                             route = Routes.TempCheck.getArgumentsRoute(),
                             arguments = Routes.TempCheck.arguments
                         ) { backStackEntry ->
-                            val houseId = backStackEntry.arguments?.getString(
+                            val houseId = backStackEntry.arguments?.getInt(
                                 Routes.TempCheck.ARGUMENTS_HOUSE_ID
                             )
                             TempCheckScreen(
@@ -92,7 +92,7 @@ class MainActivity : ComponentActivity() {
                             route = Routes.TempOptionInfo.getArgumentsRoute(),
                             arguments = Routes.TempOptionInfo.arguments
                         ) { backStackEntry ->
-                            val houseId = backStackEntry.arguments?.getString(
+                            val houseId = backStackEntry.arguments?.getInt(
                                 Routes.TempOptionInfo.ARGUMENTS_HOUSE_ID
                             )
                             TempOptionScreen(
@@ -105,7 +105,7 @@ class MainActivity : ComponentActivity() {
                             route = Routes.TempSummary.getArgumentsRoute(),
                             arguments = Routes.TempSummary.arguments
                         ) { backStackEntry ->
-                            val houseId = backStackEntry.arguments?.getString(
+                            val houseId = backStackEntry.arguments?.getInt(
                                 Routes.TempSummary.ARGUMENTS_HOUSE_ID
                             )
                             TempSummaryScreen(
@@ -118,7 +118,7 @@ class MainActivity : ComponentActivity() {
                             route = Routes.TempDone.getArgumentsRoute(),
                             arguments = Routes.TempDone.arguments
                         ) { backStackEntry ->
-                            val houseId = backStackEntry.arguments?.getString(
+                            val houseId = backStackEntry.arguments?.getInt(
                                 Routes.TempDone.ARGUMENTS_HOUSE_ID
                             )
                             TempDoneScreen(

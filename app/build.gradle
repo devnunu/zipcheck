@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'com.google.gms.google-services'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -59,6 +60,7 @@ dependencies {
     def orbit_version = "4.6.1"
     def koin_android_version = "3.3.3"
     def koin_android_compose_version = "3.4.2"
+    def room_version = "2.5.1"
 
     // android x
     implementation 'androidx.core:core-ktx:1.7.0'
@@ -79,10 +81,19 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-firestore-ktx'
 
+    // room
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
     // koin
     implementation "io.insert-koin:koin-android:$koin_android_version"
     implementation "io.insert-koin:koin-androidx-navigation:$koin_android_version"
     implementation "io.insert-koin:koin-androidx-compose:$koin_android_compose_version"
+
+    // gson
+    implementation 'com.google.code.gson:gson:2.10.1'
 
     // orbit
     implementation("org.orbit-mvi:orbit-core:$orbit_version")

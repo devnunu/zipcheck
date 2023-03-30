@@ -11,7 +11,7 @@ sealed class Routes(val route: String) {
         val arguments: List<NamedNavArgument> =
             listOf(navArgument(ARGUMENTS_HOUSE_ID) { defaultValue = "" })
 
-        fun getArgumentsRoute(houseId: String? = null): String {
+        fun getArgumentsRoute(houseId: Long? = null): String {
             val houseId = houseId ?: "{${ARGUMENTS_HOUSE_ID}}"
             return "${BasicInfoDone.route}?houseId=$houseId"
         }
@@ -22,7 +22,7 @@ sealed class Routes(val route: String) {
         val arguments: List<NamedNavArgument> =
             listOf(navArgument(ARGUMENTS_HOUSE_ID) { defaultValue = "" })
 
-        fun getArgumentsRoute(houseId: String? = null): String {
+        fun getArgumentsRoute(houseId: Long? = null): String {
             val houseId = houseId ?: "{${ARGUMENTS_HOUSE_ID}}"
             return "${TempBasicInfo.route}?houseId=$houseId"
         }
@@ -33,7 +33,7 @@ sealed class Routes(val route: String) {
         val arguments: List<NamedNavArgument> =
             listOf(navArgument(ARGUMENTS_HOUSE_ID) { defaultValue = "" })
 
-        fun getArgumentsRoute(houseId: String? = null): String {
+        fun getArgumentsRoute(houseId: Long? = null): String {
             val houseId = houseId ?: "{${ARGUMENTS_HOUSE_ID}}"
             return "${TempCheck.route}?houseId=$houseId"
         }
@@ -44,7 +44,7 @@ sealed class Routes(val route: String) {
         val arguments: List<NamedNavArgument> =
             listOf(navArgument(ARGUMENTS_HOUSE_ID) { defaultValue = "" })
 
-        fun getArgumentsRoute(houseId: String? = null): String {
+        fun getArgumentsRoute(houseId: Long? = null): String {
             val houseId = houseId ?: "{${ARGUMENTS_HOUSE_ID}}"
             return "${TempOptionInfo.route}?houseId=$houseId"
         }
@@ -55,7 +55,7 @@ sealed class Routes(val route: String) {
         val arguments: List<NamedNavArgument> =
             listOf(navArgument(ARGUMENTS_HOUSE_ID) { defaultValue = "" })
 
-        fun getArgumentsRoute(houseId: String? = null): String {
+        fun getArgumentsRoute(houseId: Long? = null): String {
             val houseId = houseId ?: "{${ARGUMENTS_HOUSE_ID}}"
             return "${TempSummary.route}?houseId=$houseId"
         }
@@ -66,7 +66,7 @@ sealed class Routes(val route: String) {
         val arguments: List<NamedNavArgument> =
             listOf(navArgument(ARGUMENTS_HOUSE_ID) { defaultValue = "" })
 
-        fun getArgumentsRoute(houseId: String? = null): String {
+        fun getArgumentsRoute(houseId: Long? = null): String {
             val houseId = houseId ?: "{${ARGUMENTS_HOUSE_ID}}"
             return "${TempDone.route}?houseId=$houseId"
         }

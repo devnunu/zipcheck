@@ -1,15 +1,19 @@
 package com.devnunu.zipcheck.data.model.house
 
+import android.os.Parcelable
+import androidx.room.Embedded
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.devnunu.zipcheck.R
-import com.google.firebase.firestore.DocumentId
-import java.util.*
+import kotlinx.android.parcel.Parcelize
 
+@Entity
 data class House(
-    @DocumentId
-    val id: String? = null,
+    @PrimaryKey(autoGenerate = true) val id: Long = -1,
     val imgNum: Int = (1..4).random(),
     val alias: String? = null,
     val houseType: HouseType = HouseType.TYPE_A,
+    @Embedded
     val houseArea: HouseArea = HouseArea(type = HouseAreaType.PYONG),
     val depositAmount: Long? = null,
     val monthlyAmount: Long? = null,

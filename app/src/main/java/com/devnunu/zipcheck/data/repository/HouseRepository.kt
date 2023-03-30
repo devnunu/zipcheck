@@ -1,49 +1,34 @@
 package com.devnunu.zipcheck.data.repository
 
-import com.devnunu.zipcheck.api.HouseApi
-import com.devnunu.zipcheck.data.model.common.ResResult
+import com.devnunu.zipcheck.data.db.dao.HouseDao
 import com.devnunu.zipcheck.data.model.common.wrapAsResResult
 import com.devnunu.zipcheck.data.model.house.House
-import com.devnunu.zipcheck.data.model.house.HouseWriteStatus
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.toObject
-import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.flow.stateIn
 
 class HouseRepository(
-    private val houseApi: HouseApi
+    private val localDataSource: HouseDao,
 ) {
-
-    private val _houseListFlow = MutableStateFlow<List<House>>(mutableListOf())
 
     /**
      * Observer
      * */
-    fun getHouseListFlow(): StateFlow<List<House>> = _houseListFlow
+    suspend fun getHouseListFlow(): StateFlow<List<House>> {
+        val coroutineScope = CoroutineScope(Dispatchers.IO)
+        return localDataSource.observeAll().stateIn(coroutineScope)
+    }
+
 
     /**
      * CRUD
      * */
-    suspend fun getAllHouseList(): ResResult<List<House>> = wrapAsResResult {
-        val houseList = houseApi.getAllHouseList()
-        _houseListFlow.value = houseList
-        houseList
-    }
-
-
     suspend fun addHouse(house: House) = wrapAsResResult {
-        val house = houseApi.addHouse(house)
-        val houseList = _houseListFlow.value.toMutableList()
-        houseList.add(house)
-        _houseListFlow.value = houseList
+        localDataSource.addHouse(house)
     }
 
     suspend fun updateHouse(house: House) = wrapAsResResult {
-        val newHouse = houseApi.updateHouse(house)
-        val houseList = _houseListFlow.value.toMutableList().map { house ->
-            if (house.id == newHouse.id) newHouse else house
-        }
-        _houseListFlow.value = houseList
+        localDataSource.upsert(house)
     }
 }

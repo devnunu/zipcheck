@@ -18,7 +18,7 @@ data class TempSummaryState(
 )
 
 class TempSummaryViewModel(
-    private val houseId: String,
+    private val houseId: Long,
     private val houseRepository: HouseRepository,
 ) : ContainerHost<TempSummaryState, Nothing>, ViewModel() {
 

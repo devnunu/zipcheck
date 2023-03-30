@@ -2,12 +2,10 @@ package com.devnunu.zipcheck.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.devnunu.zipcheck.data.model.common.ResResult
 import com.devnunu.zipcheck.data.model.house.House
 import com.devnunu.zipcheck.data.model.house.HouseWriteStatus
 import com.devnunu.zipcheck.data.model.user.User
 import com.devnunu.zipcheck.data.repository.HouseRepository
-import com.devnunu.zipcheck.data.repository.UserRepository
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.syntax.simple.intent
@@ -26,7 +24,6 @@ data class HomeState(
 }
 
 class HomeViewModel(
-    private val userRepository: UserRepository,
     private val houseRepository: HouseRepository,
 ) : ContainerHost<HomeState, Nothing>, ViewModel() {
 
@@ -34,15 +31,6 @@ class HomeViewModel(
 
     init {
         collectDataFlow()
-        start()
-    }
-
-    private fun start() = viewModelScope.launch {
-        val user = userRepository.getUser()
-        if (user == null) {
-            userRepository.saveUser(User())
-        }
-        houseRepository.getAllHouseList()
     }
 
     private fun collectDataFlow() = intent {

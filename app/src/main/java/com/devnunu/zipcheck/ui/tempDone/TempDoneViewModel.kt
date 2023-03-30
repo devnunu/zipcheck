@@ -14,7 +14,7 @@ data class TempDoneState(
 )
 
 class TempDoneViewModel(
-    private val houseId: String,
+    private val houseId: Long,
     private val houseRepository: HouseRepository,
 ) : ContainerHost<TempDoneState, Nothing>, ViewModel() {
 

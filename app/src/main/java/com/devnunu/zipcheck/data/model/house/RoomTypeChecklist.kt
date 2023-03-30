@@ -1,9 +1,13 @@
 package com.devnunu.zipcheck.data.model.house
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class RoomTypeChecklist(
     val name: String = "",
     val checklist: List<ChecklistItem> = emptyList()
-) {
+) : Parcelable {
     companion object {
         val ENTRANCE = RoomTypeChecklist(
             name = "현관",
